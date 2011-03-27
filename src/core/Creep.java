@@ -11,4 +11,9 @@ public class Creep implements IDrawableCreep {
 		// TODO: stub
 		return Type.GENERIC;
 	}
+
+	public double getHealthFraction() {
+		// TODO: stub
+		return 1;
+	}
 }

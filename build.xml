@@ -1,0 +1,15 @@
+<project default="compile">
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	
+	<target name="init">
+		<mkdir dir="${build}" />
+	</target>
+	
+	<target name="compile" depends="init">
+	</target>
+	
+	<target name="clean">
+		<delete dir="${build}" />
+	</target>
+</project>
