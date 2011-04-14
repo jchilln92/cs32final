@@ -4,20 +4,29 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
 import src.core.Map;
 import src.core.TileType;
+import src.core.Tower;
 
 public class MapComponent extends JComponent {
+	private static final long serialVersionUID = 1L;
+	
 	private Map m;
+	public ArrayList<IDrawableCreep> creeps;
 	private boolean gridOn;
+	private Tower placingTower;
 	
 	public MapComponent(Map m) {
 		this.m = m;
+		this.placingTower = null;
+		this.creeps = new ArrayList<IDrawableCreep>();
 	}
 	
 	public boolean isGridOn() {
@@ -26,6 +35,18 @@ public class MapComponent extends JComponent {
 
 	public void setGridOn(boolean gridOn) {
 		this.gridOn = gridOn;
+	}
+	
+	public boolean isPlacingTower() {
+		return placingTower != null;
+	}
+	
+	public void setPlacingTower(Tower t) {
+		if (t == null) {
+			this.placingTower = null;
+		} else {
+			this.placingTower = t;
+		}
 	}
 
 	@Override
@@ -53,6 +74,28 @@ public class MapComponent extends JComponent {
 					gg.draw(tile);
 				}
 			}
+		}
+		
+		// draw error box over terrain squares if we are placing a tower
+		if (isPlacingTower()) {
+			Point mouse = getMousePosition();
+			
+			if (mouse != null) {
+				int x = (int)(mouse.getX() / tileWidth);
+				int y = (int)(mouse.getY() / tileHeight);
+				
+				if (m.isTerrain(x, y)) {
+					tile.setFrame(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
+					gg.setColor(ColorConstants.invalidTowerPlacementColor);
+					gg.fill(tile);
+					gg.setColor(ColorConstants.invalidTowerPlacementColor2);
+					gg.draw(tile);
+				}
+			}
+		}
+		
+		for (IDrawableCreep c : creeps) {
+			CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
 		}
 	}
 	

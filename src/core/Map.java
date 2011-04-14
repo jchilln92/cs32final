@@ -1,10 +1,14 @@
 package src.core;
 
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+
 public class Map {
 	private int width;
 	private int height;
 	private TileType tiles[][];
-	
+	private CreepPath path;
+
 	public static Map demoMap() {
 		Map demo = new Map(15, 15);
 		
@@ -13,6 +17,20 @@ public class Map {
 				demo.tiles[x][y] = TileType.GRASS;
 			}
 		}
+		
+		ArrayList<Point2D.Double> path = new ArrayList<Point2D.Double>();
+		path.add(new Point2D.Double(1.5, 0));
+		path.add(new Point2D.Double(1.5, 3.5));
+		path.add(new Point2D.Double(3.5, 3.5));
+		path.add(new Point2D.Double(3.5, 5.5));
+		path.add(new Point2D.Double(6.5, 5.5));
+		path.add(new Point2D.Double(6.5, 9.5));
+		path.add(new Point2D.Double(11.5, 9.5));
+		path.add(new Point2D.Double(11.5, 12.5));
+		path.add(new Point2D.Double(12.5, 12.5));
+		path.add(new Point2D.Double(12.5, 15));
+		
+		demo.path = new CreepPath(path);
 		
 		demo.tiles[0][7] = TileType.WATER;
 		demo.tiles[1][0] = TileType.PATH;
@@ -85,6 +103,20 @@ public class Map {
 		assert !(x >= width) && !(y >= height) : "Out of bounds";
 		
 		return tiles[x][y];
+	}
+	
+	public boolean isTerrain(int x, int y) {
+		switch (getTileType(x, y)) {
+		case ROCK:
+		case WATER:
+			return true;
+		default:
+			return false;
+		}
+	}
+	
+	public CreepPath getPath() {
+		return path;
 	}
 	
 	public int getWidth() {
