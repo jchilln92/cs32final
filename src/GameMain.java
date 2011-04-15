@@ -24,24 +24,25 @@ public class GameMain extends JFrame {
 	public GameMain() {
 		// set up window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(800, 600); // TODO: Figure out resize and/or move this to another file
-		
+		setSize(800, 600); // TODO: Figure out resize and/or move this to
+							// another file
+
 		getContentPane().setLayout(new BorderLayout());
-		
+
 		// set up some test data that will be run
 		Map m = Map.demoMap();
-		
+
 		// initialize a game
 		Game g = new Game();
-		
+
 		// single creep
 		Creep c = new Creep();
 		c.setPath(m.getPath());
 		c.setPosition(m.getPath().getPoint(0));
-		
+
 		ArrayList<Creep> creeps = new ArrayList<Creep>();
 		creeps.add(c);
-		
+
 		// single tower
 		Tower t = new Tower();
 		Damage d = new Damage();
@@ -50,17 +51,17 @@ public class GameMain extends JFrame {
 		t.setRadius(4);
 		t.setX(7);
 		t.setY(8);
-		
+
 		ArrayList<Tower> towers = new ArrayList<Tower>();
 		towers.add(t);
-		
+
 		// a player
 		Player p = new Player();
-		
+
 		g.setCreeps(creeps);
 		g.setTowers(towers);
 		g.setPlayer(p);
-		
+
 		// map component to draw everything
 		MapComponent mc = new MapComponent(Map.demoMap());
 		mc.setSize(600, 600);
@@ -69,24 +70,24 @@ public class GameMain extends JFrame {
 		mc.creeps = creeps;
 		mc.towers = towers;
 		getContentPane().add(mc, BorderLayout.LINE_START);
-		
+
 		// setup sidebar
 		Sidebar s = new Sidebar();
 		getContentPane().add(s, BorderLayout.LINE_END);
-		
+
 		Runner r = new Runner();
 		r.setGame(g);
 		Thread thread = new Thread(r);
 		thread.start();
 	}
-	
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				final GameMain main = new GameMain();
 				main.setVisible(true);
-				
+
 				// refresh the window at about 30 fps
 				Timer t = new Timer(33, new ActionListener() {
 					@Override
@@ -94,7 +95,7 @@ public class GameMain extends JFrame {
 						main.repaint();
 					}
 				});
-				
+
 				t.start();
 			}
 		});

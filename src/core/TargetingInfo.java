@@ -6,12 +6,9 @@ package src.core;
 public class TargetingInfo {
 	private Strategy strategy;
 	private boolean hitsFlying;
-	
+
 	public enum Strategy {
-		CLOSEST,
-		FURTHEST,
-		STRONGEST,
-		WEAKEST
+		CLOSEST, FURTHEST, STRONGEST, WEAKEST
 	}
 
 	public Strategy getStrategy() {

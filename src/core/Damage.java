@@ -7,9 +7,11 @@ public class Damage {
 	private double instantDamage; // the instant damage caused by this damage
 	private double timeDamage; // the amount of damage caused over time
 	private double period; // how frequently timeDamage should be applied
-	private double effectDuration; // how long any time-based effects of this damage should last
-	private double speedChange; // the change in movement speed caused by this damage
-	
+	private double effectDuration; // how long any time-based effects of this
+									// damage should last
+	private double speedChange; // the change in movement speed caused by this
+								// damage
+
 	public double getInstantDamage() {
 		return instantDamage;
 	}

@@ -11,13 +11,13 @@ public class Map {
 
 	public static Map demoMap() {
 		Map demo = new Map(15, 15);
-		
+
 		for (int x = 0; x < 15; x++) {
 			for (int y = 0; y < 15; y++) {
 				demo.tiles[x][y] = TileType.GRASS;
 			}
 		}
-		
+
 		ArrayList<Point2D.Double> path = new ArrayList<Point2D.Double>();
 		path.add(new Point2D.Double(1.5, 0));
 		path.add(new Point2D.Double(1.5, 3.5));
@@ -29,9 +29,9 @@ public class Map {
 		path.add(new Point2D.Double(11.5, 12.5));
 		path.add(new Point2D.Double(12.5, 12.5));
 		path.add(new Point2D.Double(12.5, 15));
-		
+
 		demo.path = new CreepPath(path);
-		
+
 		demo.tiles[0][7] = TileType.WATER;
 		demo.tiles[1][0] = TileType.PATH;
 		demo.tiles[1][1] = TileType.PATH;
@@ -88,23 +88,23 @@ public class Map {
 		demo.tiles[12][12] = TileType.PATH;
 		demo.tiles[12][13] = TileType.PATH;
 		demo.tiles[12][14] = TileType.PATH;
-		
+
 		return demo;
 	}
-	
+
 	public Map(int width, int height) {
 		this.width = width;
 		this.height = height;
-		
+
 		tiles = new TileType[width][height];
 	}
-	
+
 	public TileType getTileType(int x, int y) {
 		assert !(x >= width) && !(y >= height) : "Out of bounds";
-		
+
 		return tiles[x][y];
 	}
-	
+
 	public boolean isTerrain(int x, int y) {
 		switch (getTileType(x, y)) {
 		case ROCK:
@@ -114,23 +114,23 @@ public class Map {
 			return false;
 		}
 	}
-	
+
 	public CreepPath getPath() {
 		return path;
 	}
-	
+
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public void setHeight(int height) {
 		this.height = height;
 	}

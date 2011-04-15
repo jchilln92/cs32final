@@ -25,7 +25,7 @@ public class Player {
 	public void setHealth(double health) {
 		this.health = health;
 	}
-	
+
 	public void decreaseHealth(double amount) {
 		this.health -= amount;
 	}
