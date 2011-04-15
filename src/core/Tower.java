@@ -2,11 +2,33 @@ package src.core;
 
 import src.ui.IDrawableTower;
 
-public class Tower implements IDrawableTower{
+/**
+ * Represents a tower and all of its attributes, including attack radius, which creeps to
+ * attack first, damage done, and how fast to fire.
+ */
+public class Tower implements IDrawableTower {
 	private Damage damage;
 	private double radius;
+	private double fireRate;
+	private TargetingInfo targeting;
 	private int x, y;
 	private double price;
+	
+	public Tower() {
+		targeting = new TargetingInfo();
+	}
+
+	public double getFireRate() {
+		return fireRate;
+	}
+
+	public void setFireRate(double fireRate) {
+		this.fireRate = fireRate;
+	}
+
+	public TargetingInfo getTargeting() {
+		return targeting;
+	}
 
 	public double getRadius() {
 		return radius;
