@@ -12,6 +12,7 @@ public class Tower implements IDrawableTower {
 	private double fireRate;
 	private TargetingInfo targeting;
 	private int x, y;
+	private double investment;
 	
 	public Tower() {
 		targeting = new TargetingInfo();
@@ -73,6 +74,25 @@ public class Tower implements IDrawableTower {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	
+	public void setInvestment(double d){
+		investment = d;
+	}
+	
+	public double getInvestment(){
+		return investment;
+	}
+	
+	
+	//Applies an upgrade u onto this tower, modifying its Damage, TargetingInfo, and self
+	public void applyUpgrade(Upgrade u){
+		
+		u.updateDamage(damage);  // all damage modifications
+		u.updateTargeting(targeting); // canHitFlying
+		u.updateTower(this); //radius, rate of fire, investment
+
 	}
 
 }
