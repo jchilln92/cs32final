@@ -74,5 +74,4 @@ public class Tower implements IDrawableTower {
 	public void setY(int y) {
 		this.y = y;
 	}
-
 }

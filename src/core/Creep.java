@@ -8,6 +8,7 @@ public class Creep implements IDrawableCreep {
 	private double health;
 	private Type type;
 	private boolean flying;
+	private double damageToBase;
 	
 	private CreepPath path;
 	private int pathIndex;
@@ -26,8 +27,9 @@ public class Creep implements IDrawableCreep {
 		health = 100;
 		flying = false;
 		type = Type.GENERIC;
+		damageToBase = 10;
 	}
-	
+
 	/**
 	 * Determines the direction this creep is moving in.
 	 * 
@@ -41,6 +43,11 @@ public class Creep implements IDrawableCreep {
 			setPosition(target);
 			incrementPathTarget();
 			target = path.getPoint(pathIndex);
+			
+			if (target == null) {
+				return null;
+			}
+			
 			length = position.distance(target);
 		}
 		
@@ -48,6 +55,10 @@ public class Creep implements IDrawableCreep {
 				  									  target.getY() - position.getY());
 		
 		return new Point2D.Double(direction.getX() / length, direction.getY() / length);
+	}
+	
+	public double getDamageToBase() {
+		return damageToBase;
 	}
 	
 	public void applyDamage(Damage d) {
