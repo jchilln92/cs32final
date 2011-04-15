@@ -7,7 +7,7 @@ public class Game {
 	private ArrayList<Creep> creeps;
 	private ArrayList<Tower> towers;
 	private Player player;
-	private int elapsedTime;
+	private int elapsedTime; // the total game time, in seconds
 	
 	public Map getMap() {
 		return map;
