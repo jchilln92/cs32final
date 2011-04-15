@@ -27,6 +27,13 @@ public class Game {
 
 		while (it.hasNext()) {
 			Creep c = it.next();
+			
+			if (c.getHealthFraction() <= 0) {
+				it.remove();
+				player.reapReward(c.getReward());
+				continue;
+			}
+			
 			Point2D.Double direction = c.getNextDirection();
 
 			if (direction == null) { // the creep reached the end of the path

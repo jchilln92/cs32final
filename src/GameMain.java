@@ -46,7 +46,7 @@ public class GameMain extends JFrame {
 		// single tower
 		Tower t = new Tower();
 		Damage d = new Damage();
-		d.setInstantDamage(.1);
+		d.setInstantDamage(1);
 		t.setDamage(d);
 		t.setRadius(4);
 		t.setX(7);
