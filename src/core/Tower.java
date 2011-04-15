@@ -2,10 +2,11 @@ package src.core;
 
 import src.ui.IDrawableTower;
 
-public class Tower implements IDrawableTower {
+public class Tower implements IDrawableTower{
 	private Damage damage;
 	private double radius;
 	private int x, y;
+	private double price;
 
 	public double getRadius() {
 		return radius;
@@ -52,4 +53,5 @@ public class Tower implements IDrawableTower {
 	public void setY(int y) {
 		this.y = y;
 	}
+
 }

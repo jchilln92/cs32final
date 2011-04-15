@@ -13,6 +13,8 @@ public class Creep implements IDrawableCreep {
 	private int pathIndex;
 
 	private Point2D.Double position;
+
+	private double price;
 	
 	public enum Type {
 		GENERIC
@@ -91,4 +93,5 @@ public class Creep implements IDrawableCreep {
 	public void setPosition(Point2D.Double p) {
 		position = p;
 	}
+
 }
