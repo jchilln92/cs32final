@@ -3,7 +3,6 @@ package src;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -12,7 +11,9 @@ import javax.swing.Timer;
 
 import src.core.Creep;
 import src.core.Damage;
+import src.core.Game;
 import src.core.Map;
+import src.core.Player;
 import src.core.Tower;
 import src.ui.MapComponent;
 import src.ui.side.Sidebar;
@@ -29,6 +30,9 @@ public class GameMain extends JFrame {
 		
 		// set up some test data that will be run
 		Map m = Map.demoMap();
+		
+		// initialize a game
+		Game g = new Game();
 		
 		// single creep
 		Creep c = new Creep();
@@ -50,6 +54,13 @@ public class GameMain extends JFrame {
 		ArrayList<Tower> towers = new ArrayList<Tower>();
 		towers.add(t);
 		
+		// a player
+		Player p = new Player();
+		
+		g.setCreeps(creeps);
+		g.setTowers(towers);
+		g.setPlayer(p);
+		
 		// map component to draw everything
 		MapComponent mc = new MapComponent(Map.demoMap());
 		mc.setSize(600, 600);
@@ -64,8 +75,7 @@ public class GameMain extends JFrame {
 		getContentPane().add(s, BorderLayout.LINE_END);
 		
 		Runner r = new Runner();
-		r.creeps = creeps;
-		r.towers = towers;
+		r.setGame(g);
 		Thread thread = new Thread(r);
 		thread.start();
 	}

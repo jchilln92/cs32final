@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import src.core.Creep;
+import src.core.Game;
 import src.core.Tower;
 
 /**
@@ -11,16 +12,16 @@ import src.core.Tower;
  * other features may be tested.
  */
 public class Runner implements Runnable {
-	public ArrayList<Creep> creeps;
-	public ArrayList<Tower> towers;
+	public static long tickDuration = 30; // how long each tick is, in milliseconds
+	
+	private Game g;
 	
 	public void run() {
 		while (true) {
-			stepCreeps();
-			doTowers();
-			
+			g.tick();
+
 			try {
-				Thread.sleep(30);
+				Thread.sleep(tickDuration);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -28,24 +29,7 @@ public class Runner implements Runnable {
 		}
 	}
 	
-	public void stepCreeps() {
-		double speed = .05; // tiles per frame
-		
-		for (Creep c : creeps) {
-			Point2D.Double direction = c.getNextDirection();
-			c.setPosition(new Point2D.Double(direction.getX() * speed + c.getPosition().getX(), 
-											 direction.getY() * speed + c.getPosition().getY()));
-		}
-	}
-	
-	public void doTowers() {
-		for (Tower t : towers) {
-			for (Creep c : creeps) {
-				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius()) {
-					c.applyDamage(t.getDamage());
-					break;
-				}
-			}
-		}
+	public void setGame(Game g) {
+		this.g = g;
 	}
 }
