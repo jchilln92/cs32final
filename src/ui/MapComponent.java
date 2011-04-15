@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.JComponent;
 
@@ -19,7 +20,8 @@ public class MapComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
 	
 	private Map m;
-	public ArrayList<IDrawableCreep> creeps;
+	public Collection<? extends IDrawableCreep> creeps;
+	public Collection<? extends IDrawableTower> towers;
 	private boolean gridOn;
 	private Tower placingTower;
 	
@@ -27,6 +29,7 @@ public class MapComponent extends JComponent {
 		this.m = m;
 		this.placingTower = null;
 		this.creeps = new ArrayList<IDrawableCreep>();
+		this.towers = new ArrayList<IDrawableTower>();
 	}
 	
 	public boolean isGridOn() {
@@ -96,6 +99,10 @@ public class MapComponent extends JComponent {
 		
 		for (IDrawableCreep c : creeps) {
 			CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
+		}
+		
+		for (IDrawableTower t : towers) {
+			TowerDrawer.drawTower(t, tileHeight, tileWidth, gg);
 		}
 	}
 	

@@ -4,8 +4,8 @@ import java.awt.geom.Point2D;
 import src.ui.IDrawableCreep;
 
 public class Creep implements IDrawableCreep {
-	private int baseHealth;
-	private int health;
+	private double baseHealth;
+	private double health;
 	private Type type;
 	private boolean flying;
 	
@@ -48,6 +48,10 @@ public class Creep implements IDrawableCreep {
 		return new Point2D.Double(direction.getX() / length, direction.getY() / length);
 	}
 	
+	public void applyDamage(Damage d) {
+		health -= d.getInstantDamage();
+	}
+	
 	public CreepPath getPath() {
 		return path;
 	}
@@ -77,7 +81,7 @@ public class Creep implements IDrawableCreep {
 	}
 
 	public double getHealthFraction() {
-		return ((double) health) / baseHealth;
+		return health / baseHealth;
 	}
 	
 	public Point2D.Double getPosition() {
