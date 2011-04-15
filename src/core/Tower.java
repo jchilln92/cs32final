@@ -12,7 +12,6 @@ public class Tower implements IDrawableTower {
 	private double fireRate;
 	private TargetingInfo targeting;
 	private int x, y;
-	private double price;
 	
 	public Tower() {
 		targeting = new TargetingInfo();
