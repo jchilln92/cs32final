@@ -72,7 +72,7 @@ public class GameMain extends JFrame {
 		getContentPane().add(mc, BorderLayout.LINE_START);
 
 		// setup sidebar
-		Sidebar s = new Sidebar();
+		Sidebar s = new Sidebar(g);
 		getContentPane().add(s, BorderLayout.LINE_END);
 
 		Runner r = new Runner();
