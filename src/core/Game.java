@@ -33,7 +33,9 @@ public class Game {
 			toSend.setPath(map.getPath());
 			toSend.setPosition(map.getPath().getPoint(0));
 			
-			creeps.add(toSend);
+			synchronized (creeps) {
+				creeps.add(toSend);
+			}
 		}
 
 		// do a bunch of stuff to update the state of the game
@@ -50,7 +52,10 @@ public class Game {
 			Creep c = it.next();
 			
 			if (c.getHealthFraction() <= 0) {
-				it.remove();
+				synchronized (creeps) {
+					it.remove();
+				}
+				
 				player.reapReward(c.getReward());
 				continue;
 			}
@@ -59,7 +64,11 @@ public class Game {
 
 			if (direction == null) { // the creep reached the end of the path
 				player.decreaseHealth(c.getDamageToBase());
-				it.remove();
+				
+				synchronized (creeps) {
+					it.remove();
+				}
+				
 				continue;
 			}
 
