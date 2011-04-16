@@ -107,11 +107,11 @@ public class Map {
 
 	public boolean isTerrain(int x, int y) {
 		switch (getTileType(x, y)) {
-		case ROCK:
-		case WATER:
-			return true;
-		default:
-			return false;
+			case ROCK:
+			case WATER:
+				return true;
+			default:
+				return false;
 		}
 	}
 
