@@ -5,6 +5,8 @@ import java.awt.GridBagLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import java.util.ArrayList;
 
@@ -28,10 +30,13 @@ public class TowerPurchasePanel extends JPanel {
 	private static final String purchaseTowersText = "Purchase Towers:";
 	
 	private JLabel purchaseTowersLabel;
+	private JLabel towerInfoLabel;
+	private JLabel damageLabel;
+	private JLabel rangeLabel;
+	private JLabel abilitiesLabel;
+	private JLabel costLabel;
 	
 	private ArrayList<JButton> towerButtons;
-	
-	private JButton testButton;
 	
 	public TowerPurchasePanel(GameController controller) {
 		super(new GridBagLayout());
@@ -39,19 +44,29 @@ public class TowerPurchasePanel extends JPanel {
 		gc = controller;
 		
 		purchaseTowersLabel = new JLabel(purchaseTowersText);
-		
+		towerInfoLabel = new JLabel("FRIDAY");
+		damageLabel = new JLabel("FRIDAY");
+		rangeLabel = new JLabel("GOTTA GET DOWN");
+		abilitiesLabel = new JLabel(".");
+		costLabel = new JLabel(".");
 		towerButtons = new ArrayList<JButton>();
 		
 		GridBagConstraints c = new GridBagConstraints();
-
+		c.weightx = 1;
 		c.gridx = 1;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(purchaseTowersLabel, c);
-		String path = "assets/tower-icon1.png";
-		ImageIcon towerIcon = new ImageIcon(path);
+	
+		
 		for(int index = 0; index < 8; index++){
+			String path = "assets/tower-icon1.png";
+			//String path = "assets/tower-icon"+index+1".png";
+			ImageIcon towerIcon = new ImageIcon(path);
 			JButton towerButton = new JButton(towerIcon);
+			
+	
+			
 			towerButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Tower testTower = new Tower();
@@ -59,29 +74,73 @@ public class TowerPurchasePanel extends JPanel {
 					testTower.setPrice(100);
 					Damage d = new Damage();
 					d.setInstantDamage(.1);
-					testTower.setDamage(d);
-					
+					testTower.setDamage(d);	
 					gc.beginPurchasingTower(testTower);
 				}
 			});
 			
+			towerButton.addMouseListener(new MouseListener() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					towerInfoLabel.setOpaque(false);
+					damageLabel.setOpaque(false);
+					rangeLabel.setOpaque(false);
+					abilitiesLabel.setOpaque(false);
+					costLabel.setOpaque(false);
+					
+					towerInfoLabel.setText("Info: ");
+					damageLabel.setText("Damage: ");
+					rangeLabel.setText("Range: ");
+					abilitiesLabel.setText("Abilities: ");
+					costLabel.setText("Cost: ");
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					towerInfoLabel.setOpaque(true);
+					damageLabel.setOpaque(true);
+					rangeLabel.setOpaque(true);
+					abilitiesLabel.setOpaque(true);
+					costLabel.setOpaque(true);
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+				}
+				
+			});
+			
 			towerButtons.add(towerButton);
-			c.gridx = 0+index/3;
-			c.gridy = 1+index%3;
+			if(index == 7)
+				c.gridx = 2;
+			else
+				c.gridx = 0+index%3;
+			c.gridy = 1+index/3;
 			c.fill = GridBagConstraints.NONE;
 			add(towerButton, c);
 		}
-		testButton = new JButton(towerIcon);
-		c.gridx = 2;
+		c.gridx = 1;
 		c.gridy = 4;
-		c.fill = GridBagConstraints.NONE;
-		add(testButton);		
-	
-		
-		
-
-
-
+		add(towerInfoLabel, c);
+		c.gridy = 5;
+		add(damageLabel, c);
+		c.gridy = 6;
+		add(rangeLabel, c);
+		c.gridy = 7;
+		add(abilitiesLabel, c);
+		c.gridy = 8;
+		add(costLabel, c);
 
 	}
 }

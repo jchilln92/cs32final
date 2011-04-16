@@ -66,6 +66,7 @@ public class TimeWavePanel extends JPanel {
 		});
 
 		GridBagConstraints c = new GridBagConstraints();
+		c.weightx = 1;
 
 		c.gridx = 0;
 		c.gridy = 0;

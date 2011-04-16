@@ -42,8 +42,7 @@ public class PlayerStatsPanel extends JPanel {
 		updateDisplay();
 
 		GridBagConstraints c = new GridBagConstraints();
-		//c.anchor = GridBagConstraints.LINE_END;
-		//c.anchor = GridBagConstraints.CENTER;
+		
 		c.gridx = 0;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
