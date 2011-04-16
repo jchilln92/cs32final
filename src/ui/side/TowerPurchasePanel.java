@@ -87,12 +87,6 @@ public class TowerPurchasePanel extends JPanel {
 
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					towerInfoLabel.setOpaque(false);
-					damageLabel.setOpaque(false);
-					rangeLabel.setOpaque(false);
-					abilitiesLabel.setOpaque(false);
-					costLabel.setOpaque(false);
-					
 					towerInfoLabel.setText("Info: ");
 					damageLabel.setText("Damage: ");
 					rangeLabel.setText("Range: ");
