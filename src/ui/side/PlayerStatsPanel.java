@@ -1,5 +1,6 @@
 package src.ui.side;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,8 +19,8 @@ public class PlayerStatsPanel extends JPanel {
 
 	private Player player;
 
-	private static final String goldText = "Gold:";
-	private static final String healthText = "Health:";
+	private static final String goldText = "Gold: ";
+	private static final String healthText = "Health: ";
 
 	private JLabel goldLabel;
 	private JLabel healthLabel;
@@ -32,15 +33,17 @@ public class PlayerStatsPanel extends JPanel {
 		player = p;
 
 		goldLabel = new JLabel(goldText);
+		goldLabel.setForeground(Color.YELLOW);
 		healthLabel = new JLabel(healthText);
+		healthLabel.setForeground(Color.RED);
 		goldValueLabel = new JLabel("0");
 		healthValueLabel = new JLabel("0");
 		
 		updateDisplay();
 
 		GridBagConstraints c = new GridBagConstraints();
-		c.anchor = GridBagConstraints.LINE_END;
-
+		//c.anchor = GridBagConstraints.LINE_END;
+		//c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;

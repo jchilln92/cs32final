@@ -16,7 +16,6 @@ import javax.swing.JComponent;
 import src.GameController;
 import src.core.Map;
 import src.core.TileType;
-import src.core.Tower;
 
 public class MapComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
@@ -152,8 +151,10 @@ public class MapComponent extends JComponent {
 		}
 
 		if (gc != null) {
-			for (IDrawableCreep c : gc.getDrawableCreeps()) {
-				CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
+			synchronized (gc.getDrawableCreeps()) {
+				for (IDrawableCreep c : gc.getDrawableCreeps()) {
+					CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
+				}
 			}
 	
 			for (IDrawableTower t : gc.getDrawableTowers()) {
