@@ -12,9 +12,30 @@ import src.ui.IDrawableTower;
  */
 public class GameController {
 	private Game game;
+	private Tower placingTower; // a tower pending purchase
+	private boolean isPaused;
+	
+	public GameController() {
+		placingTower = null;
+		isPaused = false;
+	}
+	
+	public Game getGame() {
+		return game;
+	}
 	
 	public void setGame(Game g) {
 		game = g;
+	}
+	
+	public void tick() {
+		if (!isPaused) {
+			game.tick();
+		}
+	}
+	
+	public void pause(boolean shouldPause) {
+		isPaused = shouldPause;
 	}
 	
 	public Collection<? extends IDrawableCreep> getDrawableCreeps() {
@@ -35,10 +56,35 @@ public class GameController {
 		return false;
 	}
 	
-	public void towerWasPlaced(Tower t, int x, int y) {
-		t.setX(x);
-		t.setY(y);
+	/*
+	 * Tower purchase handling methods
+	 */
+	public boolean isPlacingTower() {
+		return placingTower != null;
+	}
+
+	public void setPlacingTower(Tower t) {
+		placingTower = t;
+	}
+	
+	public Tower getPlacingTower() {
+		return placingTower;
+	}
+	
+	public void beginPurchasingTower(Tower t) {
+		setPlacingTower(t);
+	}
+	
+	public void cancelTowerPurchase() {
+		setPlacingTower(null);
+	}
+	
+	public void finalizeTowerPurchase(int x, int y) {
+		placingTower.setX(x);
+		placingTower.setY(y);
 		
-		game.getTowers().add(t);
+		game.getPlayer().purchase(placingTower);
+		game.getTowers().add(placingTower);
+		placingTower = null;
 	}
 }

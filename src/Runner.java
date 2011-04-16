@@ -12,14 +12,13 @@ import src.core.Tower;
  * currently in place so that other features may be tested.
  */
 public class Runner implements Runnable {
-	public static long tickDuration = 30; // how long each tick is, in
-											// milliseconds
+	public static long tickDuration = 30; // how long each tick is, in milliseconds
 
-	private Game g;
+	private GameController gc;
 
 	public void run() {
 		while (true) {
-			g.tick();
+			gc.tick();
 
 			try {
 				Thread.sleep(tickDuration);
@@ -30,7 +29,7 @@ public class Runner implements Runnable {
 		}
 	}
 
-	public void setGame(Game g) {
-		this.g = g;
+	public void setGameController(GameController gc) {
+		this.gc = gc;
 	}
 }

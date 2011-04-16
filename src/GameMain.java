@@ -52,13 +52,6 @@ public class GameMain extends JFrame {
 		t.setX(7);
 		t.setY(8);
 		
-		// another tower, for testing
-		Tower t2 = new Tower();
-		Damage d2 = new Damage();
-		d2.setInstantDamage(1);
-		t2.setDamage(d2);
-		t2.setRadius(3);
-
 		ArrayList<Tower> towers = new ArrayList<Tower>();
 		towers.add(t);
 
@@ -78,15 +71,14 @@ public class GameMain extends JFrame {
 		mc.setSize(600, 600);
 		mc.setGridOn(true);
 		mc.setGameController(gc);
-		mc.setPlacingTower(t2);
 		getContentPane().add(mc, BorderLayout.LINE_START);
 
 		// setup sidebar
-		Sidebar s = new Sidebar(g);
+		Sidebar s = new Sidebar(gc);
 		getContentPane().add(s, BorderLayout.LINE_END);
 
 		Runner r = new Runner();
-		r.setGame(g);
+		r.setGameController(gc);
 		Thread thread = new Thread(r);
 		thread.start();
 	}
