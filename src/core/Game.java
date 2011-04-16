@@ -7,13 +7,14 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Game {
-	private static final int creepDelay = 30; // delay, in ticks, between creeps
+	private static final int creepDelay = 25; // delay, in ticks, between creeps
 	
 	private Map map;
 	private ArrayList<Creep> creeps;
 	private ArrayList<Tower> towers;
 	private Player player;
 	private int elapsedTime; // the total game time, in "ticks"
+	private int wavesSent; // the total number of waves sent
 	
 	private LinkedList<Creep> creepQueue; // the creeps that are waiting to be sent out onto the map
 	private int lastCreepTime; // the time the last creep was sent
@@ -90,6 +91,8 @@ public class Game {
 	}
 	
 	public void sendWave(Collection<Creep> wave) {
+		wavesSent++;
+		
 		for (Creep c : wave) {
 			creepQueue.add(c);
 		}
@@ -133,5 +136,9 @@ public class Game {
 
 	public void setElapsedTime(int elapsedTime) {
 		this.elapsedTime = elapsedTime;
+	}
+	
+	public int getWavesSent() {
+		return wavesSent;
 	}
 }

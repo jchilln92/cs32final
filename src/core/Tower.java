@@ -14,7 +14,12 @@ public class Tower implements IDrawableTower, IPurchasable {
 	private TargetingInfo targeting;
 	private int x, y;
 	private double investment;
-
+	private Tower.Type type;
+	
+	public static void createTower(Type t){
+		
+	}
+	
 	public Tower() {
 		targeting = new TargetingInfo();
 	}
@@ -40,7 +45,7 @@ public class Tower implements IDrawableTower, IPurchasable {
 	}
 
 	public enum Type {
-		GENERIC
+		GENERIC, GUN;
 	}
 
 	public Damage getDamage() {
@@ -56,9 +61,12 @@ public class Tower implements IDrawableTower, IPurchasable {
 		return 0;
 	}
 
+	public void setType(Tower.Type t){
+		type = t;
+	}
+	
 	public Type getType() {
-		// TODO: stub
-		return Type.GENERIC;
+		return type;
 	}
 
 	public int getX() {

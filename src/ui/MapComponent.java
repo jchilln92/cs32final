@@ -31,7 +31,7 @@ public class MapComponent extends JComponent {
 	
 	private void setupMouseEvents() {
 		this.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				if (gc.isPlacingTower()) {
 					Point mouse = getMouseTile();
 					
