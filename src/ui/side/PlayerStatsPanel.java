@@ -18,8 +18,8 @@ public class PlayerStatsPanel extends JPanel {
 
 	private Player player;
 
-	private static final String goldText = "Gold:";
-	private static final String healthText = "Health:";
+	private static final String goldText = "Gold: ";
+	private static final String healthText = "Health: ";
 
 	private JLabel goldLabel;
 	private JLabel healthLabel;
@@ -39,8 +39,8 @@ public class PlayerStatsPanel extends JPanel {
 		updateDisplay();
 
 		GridBagConstraints c = new GridBagConstraints();
-		c.anchor = GridBagConstraints.LINE_END;
-
+		//c.anchor = GridBagConstraints.LINE_END;
+		//c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
