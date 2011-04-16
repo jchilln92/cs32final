@@ -6,12 +6,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.swing.JComponent;
 
+import src.GameController;
 import src.core.Map;
 import src.core.TileType;
 import src.core.Tower;
@@ -20,18 +24,64 @@ public class MapComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
 
 	private Map m;
-	public Collection<? extends IDrawableCreep> creeps;
-	public Collection<? extends IDrawableTower> towers;
+	private GameController gc;
 	private boolean gridOn;
 	private Tower placingTower;
 
 	public MapComponent(Map m) {
 		this.m = m;
 		this.placingTower = null;
-		this.creeps = new ArrayList<IDrawableCreep>();
-		this.towers = new ArrayList<IDrawableTower>();
+		
+		setupMouseEvents();
+	}
+	
+	private void setupMouseEvents() {
+		this.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (isPlacingTower()) {
+					Point mouse = getMouseTile();
+					
+					int x = mouse.x;
+					int y = mouse.y;
+					
+					if (!m.isTerrain(x, y) && !gc.tileIsOccupied(x, y)) {
+						gc.towerWasPlaced(placingTower, x, y);
+						setPlacingTower(null);
+					}
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Determines what tile of the map the user's mouse is positioned over.
+	 * @return the x and y tile coordinates of the user's mouse, or null, if the
+	 * 		   mouse is not positioned over this component.
+	 */
+	private Point getMouseTile() {
+		Point mouse = getMousePosition();
+		
+		if (mouse != null) {
+			int x = (int) (mouse.getX() / getTileWidth());
+			int y = (int) (mouse.getY() / getTileHeight());
+			return new Point(x, y);
+		}
+
+		return null;
+	}
+	
+	private double getTileWidth() {
+		return getWidth() / m.getWidth();
+	}
+	
+	private double getTileHeight() {
+		return getHeight() / m.getHeight();
 	}
 
+	public void setGameController(GameController gc) {
+		this.gc = gc;
+	}
+	
 	public boolean isGridOn() {
 		return gridOn;
 	}
@@ -63,8 +113,8 @@ public class MapComponent extends JComponent {
 		gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		double tileWidth = getWidth() / m.getWidth();
-		double tileHeight = getHeight() / m.getHeight();
+		double tileWidth = getTileWidth();
+		double tileHeight = getTileHeight();
 
 		Rectangle2D tile = new Rectangle2D.Double(0, 0, tileWidth, tileHeight);
 		for (int x = 0; x < m.getWidth(); x++) {
@@ -83,15 +133,14 @@ public class MapComponent extends JComponent {
 
 		// draw error box over terrain squares if we are placing a tower
 		if (isPlacingTower()) {
-			Point mouse = getMousePosition();
+			Point mouse = getMouseTile();
 
 			if (mouse != null) {
-				int x = (int) (mouse.getX() / tileWidth);
-				int y = (int) (mouse.getY() / tileHeight);
+				int x = mouse.x;
+				int y = mouse.y;
 
-				if (m.isTerrain(x, y)) {
-					tile.setFrame(x * tileWidth, y * tileHeight, tileWidth,
-							tileHeight);
+				if (m.isTerrain(x, y) || gc.tileIsOccupied(x, y)) {
+					tile.setFrame(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 					gg.setColor(ColorConstants.invalidTowerPlacementColor);
 					gg.fill(tile);
 					gg.setColor(ColorConstants.invalidTowerPlacementColor2);
@@ -100,12 +149,14 @@ public class MapComponent extends JComponent {
 			}
 		}
 
-		for (IDrawableCreep c : creeps) {
-			CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
-		}
-
-		for (IDrawableTower t : towers) {
-			TowerDrawer.drawTower(t, tileHeight, tileWidth, gg);
+		if (gc != null) {
+			for (IDrawableCreep c : gc.getDrawableCreeps()) {
+				CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
+			}
+	
+			for (IDrawableTower t : gc.getDrawableTowers()) {
+				TowerDrawer.drawTower(t, tileHeight, tileWidth, gg);
+			}
 		}
 	}
 
