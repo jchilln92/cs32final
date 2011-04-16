@@ -4,16 +4,37 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Game {
+	private static final int creepDelay = 30; // delay, in ticks, between creeps
+	
 	private Map map;
 	private ArrayList<Creep> creeps;
 	private ArrayList<Tower> towers;
 	private Player player;
 	private int elapsedTime; // the total game time, in "ticks"
+	
+	private LinkedList<Creep> creepQueue; // the creeps that are waiting to be sent out onto the map
+	private int lastCreepTime; // the time the last creep was sent
 
+	public Game() {
+		creepQueue = new LinkedList<Creep>();
+	}
+	
 	public void tick() {
 		elapsedTime++;
+		
+		// time to send another creep, if there is one...
+		if (creepQueue.size() != 0 && elapsedTime - lastCreepTime > creepDelay) {
+			lastCreepTime = elapsedTime;
+			
+			Creep toSend = creepQueue.poll();
+			toSend.setPath(map.getPath());
+			toSend.setPosition(map.getPath().getPoint(0));
+			
+			creeps.add(toSend);
+		}
 
 		// do a bunch of stuff to update the state of the game
 		stepCreeps();
@@ -56,6 +77,12 @@ public class Game {
 					break;
 				}
 			}
+		}
+	}
+	
+	public void sendWave(Collection<Creep> wave) {
+		for (Creep c : wave) {
+			creepQueue.add(c);
 		}
 	}
 

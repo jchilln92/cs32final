@@ -16,7 +16,6 @@ import javax.swing.JComponent;
 import src.GameController;
 import src.core.Map;
 import src.core.TileType;
-import src.core.Tower;
 
 public class MapComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
