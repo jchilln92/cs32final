@@ -6,6 +6,7 @@ import src.ui.IDrawableCreep;
 public class Creep implements IDrawableCreep {
 	private double baseHealth;
 	private double health;
+	private double reward;
 	private Type type;
 	private boolean flying;
 	private double damageToBase;
@@ -24,10 +25,15 @@ public class Creep implements IDrawableCreep {
 	public Creep() {
 		pathIndex = 0;
 		baseHealth = 100;
+		reward = 100;
 		health = 100;
 		flying = false;
 		type = Type.GENERIC;
 		damageToBase = 10;
+	}
+
+	public double getReward() {
+		return reward;
 	}
 
 	/**
@@ -105,5 +111,4 @@ public class Creep implements IDrawableCreep {
 	public void setPosition(Point2D.Double p) {
 		position = p;
 	}
-
 }

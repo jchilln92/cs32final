@@ -29,4 +29,12 @@ public class Player {
 	public void decreaseHealth(double amount) {
 		this.health -= amount;
 	}
+	
+	public void purchase(IPurchasable item) {
+		gold -= item.getPrice();
+	}
+	
+	public void reapReward(double reward) {
+		gold += reward;
+	}
 }

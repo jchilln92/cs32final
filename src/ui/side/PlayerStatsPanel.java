@@ -1,5 +1,6 @@
 package src.ui.side;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -25,13 +26,17 @@ public class PlayerStatsPanel extends JPanel {
 	private JLabel goldValueLabel;
 	private JLabel healthValueLabel;
 
-	public PlayerStatsPanel() {
+	public PlayerStatsPanel(Player p) {
 		super(new GridBagLayout());
+		
+		player = p;
 
 		goldLabel = new JLabel(goldText);
 		healthLabel = new JLabel(healthText);
 		goldValueLabel = new JLabel("0");
 		healthValueLabel = new JLabel("0");
+		
+		updateDisplay();
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.LINE_END;
@@ -54,6 +59,12 @@ public class PlayerStatsPanel extends JPanel {
 		c.gridx = 1;
 		c.gridy = 1;
 		add(healthValueLabel, c);
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		updateDisplay();
 	}
 
 	public void setPlayer(Player player) {

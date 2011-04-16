@@ -51,7 +51,7 @@ public class GameMain extends JFrame {
 		t.setRadius(4);
 		t.setX(7);
 		t.setY(8);
-
+		
 		ArrayList<Tower> towers = new ArrayList<Tower>();
 		towers.add(t);
 
@@ -61,22 +61,24 @@ public class GameMain extends JFrame {
 		g.setCreeps(creeps);
 		g.setTowers(towers);
 		g.setPlayer(p);
+		
+		// set up a gamecontroller to mediate interaction between backend and frontend
+		GameController gc = new GameController();
+		gc.setGame(g);
 
 		// map component to draw everything
 		MapComponent mc = new MapComponent(Map.demoMap());
 		mc.setSize(600, 600);
 		mc.setGridOn(true);
-		mc.setPlacingTower(new Tower());
-		mc.creeps = creeps;
-		mc.towers = towers;
+		mc.setGameController(gc);
 		getContentPane().add(mc, BorderLayout.LINE_START);
 
 		// setup sidebar
-		Sidebar s = new Sidebar();
+		Sidebar s = new Sidebar(gc);
 		getContentPane().add(s, BorderLayout.LINE_END);
 
 		Runner r = new Runner();
-		r.setGame(g);
+		r.setGameController(gc);
 		Thread thread = new Thread(r);
 		thread.start();
 	}

@@ -114,6 +114,12 @@ public class Map {
 				return false;
 		}
 	}
+	
+	public boolean isPath(int x, int y) {
+		if (getTileType(x, y) == TileType.PATH) return true;
+		
+		return false;
+	}
 
 	public CreepPath getPath() {
 		return path;

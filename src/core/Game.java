@@ -27,11 +27,17 @@ public class Game {
 
 		while (it.hasNext()) {
 			Creep c = it.next();
+			
+			if (c.getHealthFraction() <= 0) {
+				it.remove();
+				player.reapReward(c.getReward());
+				continue;
+			}
+			
 			Point2D.Double direction = c.getNextDirection();
 
 			if (direction == null) { // the creep reached the end of the path
 				player.decreaseHealth(c.getDamageToBase());
-				System.out.println(player.getHealth());
 				it.remove();
 				continue;
 			}
@@ -45,8 +51,7 @@ public class Game {
 	private void doTowers() {
 		for (Tower t : towers) {
 			for (Creep c : creeps) {
-				if (c.getPosition().distance(t.getX(), t.getY()) < t
-						.getRadius()) {
+				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius()) {
 					c.applyDamage(t.getDamage());
 					break;
 				}

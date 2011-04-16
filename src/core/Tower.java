@@ -6,10 +6,11 @@ import src.ui.IDrawableTower;
  * Represents a tower and all of its attributes, including attack radius, which
  * creeps to attack first, damage done, and how fast to fire.
  */
-public class Tower implements IDrawableTower {
+public class Tower implements IDrawableTower, IPurchasable {
 	private Damage damage;
 	private double radius;
 	private double fireRate;
+	private double price;
 	private TargetingInfo targeting;
 	private int x, y;
 	private double investment;
@@ -93,5 +94,12 @@ public class Tower implements IDrawableTower {
 		u.updateTower(this); // radius, rate of fire, investment
 
 	}
+	
+	public double getPrice() {
+		return price;
+	}
 
+	public void setPrice(double p) {
+		price = p;
+	}
 }
