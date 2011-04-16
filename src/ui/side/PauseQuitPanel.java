@@ -25,11 +25,21 @@ public class PauseQuitPanel extends JPanel {
 	public PauseQuitPanel(GameController controller) {
 		super(new GridBagLayout());
 		
+		this.gc = controller;
+		
 		pauseButton = new JButton("Pause");
+		pauseButton.setActionCommand("pause");
 		pauseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gc.pause(true);
-				pauseButton.setText("Resume");
+				if (e.getActionCommand().equals("pause")) {
+					gc.togglePause(true);
+					pauseButton.setActionCommand("resume");
+					pauseButton.setText("Resume");
+				} else if (e.getActionCommand().equals("resume")) {
+					gc.togglePause(false);
+					pauseButton.setActionCommand("pause");
+					pauseButton.setText("Pause");
+				}
 			}
 		});
 		

@@ -3,18 +3,21 @@ package src.ui.side;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.GameController;
 import src.Runner;
 import src.core.Game;
 
 public class TimeWavePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Game game;
+	private GameController gc;
 	
 	private static final String waveText = "Wave: ";
 	private static final String nextWaveText = "Next wave in: ";
@@ -35,10 +38,10 @@ public class TimeWavePanel extends JPanel {
 	private JButton nextWaveButton;
 	private JButton fastForwardButton;
 	
-	public TimeWavePanel(Game g) {
+	public TimeWavePanel(GameController controller) {
 		super(new GridBagLayout());
 		
-		game = g;
+		this.gc = controller;
 		
 		waveNumberLabel = new JLabel(waveText);
 		waveNumberValueLabel = new JLabel("1");
@@ -50,10 +53,19 @@ public class TimeWavePanel extends JPanel {
 		elapsedValueLabel = new JLabel();
 		
 		nextWaveButton = new JButton(nextWaveButtonText);
-		fastForwardButton = new JButton(fastForwardButtonText);		
+		
+		fastForwardButton = new JButton(fastForwardButtonText);
+		fastForwardButton.addMouseListener(new MouseAdapter() {			
+			public void mousePressed(MouseEvent e) {
+				gc.toggleDoubleTime(true);
+			}
+			
+			public void mouseReleased(MouseEvent e) {
+				gc.toggleDoubleTime(false);
+			}
+		});
 
 		GridBagConstraints c = new GridBagConstraints();
-		//c.anchor = GridBagConstraints.LINE_END;
 
 		c.gridx = 0;
 		c.gridy = 0;
@@ -99,19 +111,16 @@ public class TimeWavePanel extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
 		updateDisplay();
 	}
 	
 	public void updateDisplay() {
-		// TODO: find a better way to format this (with a preexisting class)
-		
 		//update wave number
 		
 		//update Next Wave in
 		
 		//update Time elapsed		
-		long secondsElapsed = (game.getElapsedTime() * Runner.tickDuration) / 1000;
+		long secondsElapsed = (gc.getGame().getElapsedTime() * Runner.tickDuration) / 1000;
 		
 		long hours = secondsElapsed / 3600;
 		String hoursText = Long.toString(hours);

@@ -14,10 +14,12 @@ public class GameController {
 	private Game game;
 	private Tower placingTower; // a tower pending purchase
 	private boolean isPaused;
+	private boolean isDoubleTime;
 	
 	public GameController() {
 		placingTower = null;
 		isPaused = false;
+		isDoubleTime = false;
 	}
 	
 	public Game getGame() {
@@ -28,14 +30,25 @@ public class GameController {
 		game = g;
 	}
 	
+	/*
+	 * Time control methods
+	 */
 	public void tick() {
 		if (!isPaused) {
 			game.tick();
+			
+			if (isDoubleTime) {
+				game.tick();
+			}
 		}
 	}
 	
-	public void pause(boolean shouldPause) {
+	public void togglePause(boolean shouldPause) {
 		isPaused = shouldPause;
+	}
+	
+	public void toggleDoubleTime(boolean dt) {
+		isDoubleTime = dt;
 	}
 	
 	public Collection<? extends IDrawableCreep> getDrawableCreeps() {

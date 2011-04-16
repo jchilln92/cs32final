@@ -19,7 +19,7 @@ public class Sidebar extends JPanel {
 		setLayout(layoutManager);
 		
 		PlayerStatsPanel playerStats = new PlayerStatsPanel(controller.getGame().getPlayer());
-		TimeWavePanel timeWave = new TimeWavePanel(controller.getGame());
+		TimeWavePanel timeWave = new TimeWavePanel(controller);
 		TowerPurchasePanel towerPurchase = new TowerPurchasePanel(controller);
 		PauseQuitPanel pauseQuit = new PauseQuitPanel(controller);
 
