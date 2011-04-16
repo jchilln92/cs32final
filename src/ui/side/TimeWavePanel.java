@@ -44,7 +44,7 @@ public class TimeWavePanel extends JPanel {
 		this.gc = controller;
 		
 		waveNumberLabel = new JLabel(waveText);
-		waveNumberValueLabel = new JLabel("1");
+		waveNumberValueLabel = new JLabel(Integer.toString(gc.getGame().getWavesSent()));
 		
 		nextWaveLabel = new JLabel(nextWaveText);
 		nextWaveValueLabel = new JLabel();
@@ -116,6 +116,7 @@ public class TimeWavePanel extends JPanel {
 	
 	public void updateDisplay() {
 		//update wave number
+		waveNumberValueLabel.setText(Integer.toString(gc.getGame().getWavesSent()));
 		
 		//update Next Wave in
 		
