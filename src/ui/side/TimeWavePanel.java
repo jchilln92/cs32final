@@ -8,13 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.GameController;
 import src.Runner;
 import src.core.Game;
 
 public class TimeWavePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Game game;
+	private GameController gc;
 	
 	private static final String waveText = "Wave: ";
 	private static final String nextWaveText = "Next wave in: ";
@@ -35,10 +36,10 @@ public class TimeWavePanel extends JPanel {
 	private JButton nextWaveButton;
 	private JButton fastForwardButton;
 	
-	public TimeWavePanel(Game g) {
+	public TimeWavePanel(GameController gc) {
 		super(new GridBagLayout());
 		
-		game = g;
+		this.gc = gc;
 		
 		waveNumberLabel = new JLabel(waveText);
 		waveNumberValueLabel = new JLabel("1");
@@ -111,7 +112,7 @@ public class TimeWavePanel extends JPanel {
 		//update Next Wave in
 		
 		//update Time elapsed		
-		long secondsElapsed = (game.getElapsedTime() * Runner.tickDuration) / 1000;
+		long secondsElapsed = (gc.getGame().getElapsedTime() * Runner.tickDuration) / 1000;
 		
 		long hours = secondsElapsed / 3600;
 		String hoursText = Long.toString(hours);

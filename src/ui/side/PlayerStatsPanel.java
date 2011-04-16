@@ -1,5 +1,6 @@
 package src.ui.side;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -32,7 +33,9 @@ public class PlayerStatsPanel extends JPanel {
 		player = p;
 
 		goldLabel = new JLabel(goldText);
+		goldLabel.setForeground(Color.YELLOW);
 		healthLabel = new JLabel(healthText);
+		healthLabel.setForeground(Color.RED);
 		goldValueLabel = new JLabel("0");
 		healthValueLabel = new JLabel("0");
 		
