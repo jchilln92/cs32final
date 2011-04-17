@@ -5,19 +5,12 @@ import java.awt.GridBagLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.GameController;
-import src.core.Damage;
-import src.core.Tower;
 
 /**
  * Panel displaying buttons that allow the user to purchase a tower.
@@ -40,8 +33,20 @@ public class CancelPurchasePanel extends JPanel {
 		gc = controller;
 		
 		purchaseLabel = new JLabel("Purchasing");
-		towerNameLabel = new JLabel(gc.getPlacingTower() + ":");
+		towerNameLabel = new JLabel();
+		if(gc.getPlacingTower() == null)
+			towerNameLabel.setText("Magical Tower:");
+		else
+			towerNameLabel.setText(gc.getPlacingTower().getType() + ":");
 		tipLabel = new JLabel(tipText);
+		
+		cancelButton = new JButton("Cancel Purchase");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gc.cancelTowerPurchase();
+			}
+		});
+		
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -55,6 +60,10 @@ public class CancelPurchasePanel extends JPanel {
 		add(towerNameLabel, c);
 		
 		c.gridy = 2;
+		c.fill = GridBagConstraints.NONE;
+		add(cancelButton, c);
+		
+		c.gridy = 3;
 		c.fill = GridBagConstraints.NONE;
 		add(tipLabel, c);
 		

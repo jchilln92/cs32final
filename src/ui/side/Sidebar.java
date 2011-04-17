@@ -2,6 +2,7 @@ package src.ui.side;
 
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 
 import javax.swing.BoxLayout;
@@ -26,7 +27,14 @@ public class Sidebar extends JPanel {
 		
 		PlayerStatsPanel playerStats = new PlayerStatsPanel(controller.getGame().getPlayer());
 		TimeWavePanel timeWave = new TimeWavePanel(controller);
+		
+		JPanel purchasePanel = new JPanel(new CardLayout());
+
 		TowerPurchasePanel towerPurchase = new TowerPurchasePanel(controller);
+		CancelPurchasePanel cancelPurchase = new CancelPurchasePanel(controller);	
+		
+		purchasePanel.add(towerPurchase, "Tower Purchase");
+		purchasePanel.add(cancelPurchase, "Cancel Purchase");		
 		PauseQuitPanel pauseQuit = new PauseQuitPanel(controller);
 
 		playerStats.setBorder(borderLine);
@@ -35,7 +43,7 @@ public class Sidebar extends JPanel {
 		pauseQuit.setBorder(borderLine);
 		add(playerStats, BorderLayout.LINE_START);
 		add(timeWave, BorderLayout.LINE_START);
-		add(towerPurchase, BorderLayout.LINE_START);
+		add(purchasePanel, BorderLayout.LINE_START);
 		add(pauseQuit, BorderLayout.LINE_START);
 	}
 } 
