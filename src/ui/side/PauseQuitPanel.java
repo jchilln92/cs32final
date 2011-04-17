@@ -1,12 +1,19 @@
 package src.ui.side;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+import javax.swing.border.Border;
 
 import src.GameController;
 
@@ -19,14 +26,47 @@ public class PauseQuitPanel extends JPanel {
 
 	private GameController gc;
 	
+	private PopupFactory popupGenerator;
 	private JButton pauseButton;
 	private JButton quitButton;
+	private JButton confirmQuitButton;
+	private JButton returnToGameButton;
+	
+	private JPanel quitPanel;
+	private Popup quitPopup;
+	
 	
 	public PauseQuitPanel(GameController controller) {
 		super(new GridBagLayout());
 		
 		this.gc = controller;
+
+		popupGenerator = PopupFactory.getSharedInstance();
 		
+		quitPanel = new JPanel();
+		quitPanel.setLayout(new BorderLayout());
+		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
+		quitPanel.setBorder(borderLine);
+		quitPanel.add(new JLabel("Quit current game?"), BorderLayout.PAGE_START);
+		
+		confirmQuitButton = new JButton("Totes!");
+		confirmQuitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//return to the main menu
+
+			}
+		});
+		returnToGameButton = new JButton("So Inapropro...");
+		returnToGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gc.togglePause(false);
+				quitPopup.hide();
+
+			}
+		});		
+		quitPanel.add(confirmQuitButton, BorderLayout.LINE_START);
+		quitPanel.add(returnToGameButton, BorderLayout.LINE_END);
+
 		pauseButton = new JButton("Pause");
 		pauseButton.setActionCommand("pause");
 		pauseButton.addActionListener(new ActionListener() {
@@ -47,11 +87,12 @@ public class PauseQuitPanel extends JPanel {
 		
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//do stuff
+				gc.togglePause(true);
+				makePopup();
+
 			}
 		});
 		
-
 		GridBagConstraints c = new GridBagConstraints();
 		c.weightx = 1;
 		c.gridx = 0;
@@ -65,5 +106,12 @@ public class PauseQuitPanel extends JPanel {
 		add(quitButton, c);
 	}
 	
+	public void makePopup(){
+		quitPopup = popupGenerator.getPopup(this, quitPanel, 
+				320-(int)quitPanel.getSize().getWidth()/2, 
+				240-(int)quitPanel.getSize().getHeight()/2);
+		quitPopup.show();	
+	}
 
 }
+
