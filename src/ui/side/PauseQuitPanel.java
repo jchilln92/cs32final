@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -68,11 +67,6 @@ public class PauseQuitPanel extends JPanel {
 		quitPanel.add(confirmQuitButton, BorderLayout.LINE_START);
 		quitPanel.add(returnToGameButton, BorderLayout.LINE_END);
 
-		
-
-				
-		
-
 		pauseButton = new JButton("Pause");
 		pauseButton.setActionCommand("pause");
 		pauseButton.addActionListener(new ActionListener() {
@@ -113,11 +107,9 @@ public class PauseQuitPanel extends JPanel {
 	}
 	
 	public void makePopup(){
-
 		quitPopup = popupGenerator.getPopup(this, quitPanel, 
 				320-(int)quitPanel.getSize().getWidth()/2, 
 				240-(int)quitPanel.getSize().getHeight()/2);
-		
 		quitPopup.show();	
 	}
 
