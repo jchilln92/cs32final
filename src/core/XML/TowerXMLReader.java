@@ -17,7 +17,6 @@ import java.util.Map;
 /**
  *XML Reader for reading in information about towers
  */
-
 public class TowerXMLReader {
 	String inputFile;
 	Tower.Type type;
@@ -98,7 +97,7 @@ public class TowerXMLReader {
 		
 	
 	public static void main(String[] args) throws FileNotFoundException, DocumentException{
-		TowerXMLReader reader = new TowerXMLReader("/home/al63/exampleTower.xml");
+		TowerXMLReader reader = new TowerXMLReader("/home/al63/course/cs32final/src/core/XML/exampleTower.xml");
 		HashMap<Tower.Type, Tower> test = reader.readXML();
 		
 		for (Tower t: test.values()){
