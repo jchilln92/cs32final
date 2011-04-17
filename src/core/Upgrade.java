@@ -1,50 +1,50 @@
 package src.core;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
 /**
  * 
  * The upgrade class holds all of the changes a tower upgrade can apply onto a
  * tower.
  */
 public class Upgrade implements IPurchasable {
-
-	// All of these fields represent percentage increases that will be added on
-	// to a current tower's values
-	// ex: an instantDamageChange value of 0.1 means a 10% increase in the
-	// towers instantDamage.
+	/* All of these fields represent percentage increases that will be added on 
+	 * to a current tower's values ex: an instantDamageChange value of 0.1 means 
+	 * a 10% increase in the tower's instantDamage
+	 */
+	@Element(name="dInstantDamage")
 	private double instantDamageChange; // modifies instantDamage
+	
+	@Element(name="dTimeDamage")
 	private double timeDamageChange; // modifies time damage
+	
+	@Element(name="dPeriod")
 	private double periodChange; // modifies period
+	
+	@Element(name="dDuration")
 	private double effectDurationChange;// modifies effectDuration
+	
+	@Element(name="dSpeedEffect")
 	private double speedEffectChange; // modifies speedChange
 
+	@Element(name="dRadius")
 	private double radiusChange;
+	
+	@Element(name="dFireRate")
 	private double fireRateChange;
+	
+	@Element
 	private boolean canHitFlying;
 
+	@Attribute(name="price")
 	private double priceOfUpgrade;
 	
-	
+	@Attribute
 	private int level; //level 1, 2, or 3
+	
+	@Attribute
 	private Tower.Type type; // the type of tower this upgrade applies to
-
-	public Upgrade() {
-		// Change later to use an XML reader to get these values
-		instantDamageChange = 0;
-		timeDamageChange = 0;
-		periodChange = 0;
-		effectDurationChange = 0;
-		speedEffectChange = 0;
-
-		radiusChange = 0;
-		fireRateChange = 0;
-		canHitFlying = false;
-
-		priceOfUpgrade = 0;
-		this.setPrice(0);
-		
-		level = 0;
-		type = Tower.Type.GUN;
-	}
 
 	public double getInstantDamageChange() {
 		return instantDamageChange;
@@ -86,50 +86,6 @@ public class Upgrade implements IPurchasable {
 	@Override
 	public void setPrice(double p) {
 		priceOfUpgrade = p;
-	}
-	
-	public void setInstantDamageChange(double instantDamageChange) {
-		this.instantDamageChange = instantDamageChange;
-	}
-
-	public void setTimeDamageChange(double timeDamageChange) {
-		this.timeDamageChange = timeDamageChange;
-	}
-
-	public void setPeriodChange(double periodChange) {
-		this.periodChange = periodChange;
-	}
-
-	public void setEffectDurationChange(double effectDurationChange) {
-		this.effectDurationChange = effectDurationChange;
-	}
-
-	public void setSpeedEffectChange(double speedEffectChange) {
-		this.speedEffectChange = speedEffectChange;
-	}
-
-	public void setRadiusChange(double radiusChange) {
-		this.radiusChange = radiusChange;
-	}
-
-	public void setFireRateChange(double fireRateChange) {
-		this.fireRateChange = fireRateChange;
-	}
-
-	public void setCanHitFlying(boolean canHitFlying) {
-		this.canHitFlying = canHitFlying;
-	}
-
-	public void setPriceOfUpgrade(double priceOfUpgrade) {
-		this.priceOfUpgrade = priceOfUpgrade;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public void setType(Tower.Type type) {
-		this.type = type;
 	}
 
 	// Modifies Damage d's fields based on this upgrade's change fields
