@@ -63,7 +63,7 @@ public class Tower implements IDrawableTower, IPurchasable {
 	}
 
 	public enum Type {
-		GENERIC, GUN;
+		GUN, ANTIAIR, SLOWING, MORTAR, FRIEND, FLAME, STASIS, HTA;
 	}
 
 	public Damage getDamage() {

@@ -51,7 +51,7 @@ public class GameMain extends JFrame {
 		}
 
 		// single tower
-		Tower t = Tower.createTower(Tower.Type.GENERIC);
+		Tower t = Tower.createTower(Tower.Type.GUN);
 		t.setX(7);
 		t.setY(8);
 		

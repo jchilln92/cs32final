@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -58,38 +59,29 @@ public class TowerPurchasePanel extends JPanel {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(purchaseTowersLabel, c);
 	
+		Tower.Type types[] = {Tower.Type.GUN, Tower.Type.ANTIAIR, Tower.Type.SLOWING, Tower.Type.MORTAR,
+							  Tower.Type.FRIEND, Tower.Type.FLAME, Tower.Type.STASIS, Tower.Type.HTA};
 		
-		for(int index = 0; index < 8; index++){
+		for (int index = 0; index < 8; index++) {
 			String path = "assets/tower-icon1.png";
 			//String path = "assets/tower-icon"+index+1".png";
 			ImageIcon towerIcon = new ImageIcon(path);
 			JButton towerButton = new JButton(towerIcon);
-			
-	
+			final Tower.Type type = types[index];
 			
 			towerButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Tower testTower = new Tower();
-					testTower.setRadius(4);
-					testTower.setPrice(100);
-					Damage d = new Damage();
-					d.setInstantDamage(.1);
-					testTower.setDamage(d);	
-					gc.beginPurchasingTower(testTower);
+					gc.beginPurchasingTower(Tower.createTower(type));
 				}
 			});
 			
-			towerButton.addMouseListener(new MouseListener() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-
-				}
-
+			towerButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
+					Tower t = Tower.createTower(type);
 					towerInfoLabel.setText("Info: ");
 					damageLabel.setText("Damage: ");
-					rangeLabel.setText("Range: ");
+					rangeLabel.setText("Range: " + Double.toString(t.getRadius()));
 					abilitiesLabel.setText("Abilities: ");
 					costLabel.setText("Cost: ");
 				}
@@ -102,17 +94,6 @@ public class TowerPurchasePanel extends JPanel {
 					abilitiesLabel.setText(" ");
 					costLabel.setText(" ");
 				}
-
-				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-				}
-
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-				}
-				
 			});
 			
 			towerButtons.add(towerButton);
