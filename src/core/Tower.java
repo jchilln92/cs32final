@@ -2,6 +2,9 @@ package src.core;
 
 import java.util.HashMap;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
 import src.core.XML.TowerXMLReader;
 import src.ui.IDrawableTower;
 
@@ -12,18 +15,30 @@ import src.ui.IDrawableTower;
 public class Tower implements IDrawableTower, IPurchasable {
 	private static HashMap<Type, Tower> templateTowers = null;
 	
+	@Attribute
+	private Tower.Type type;
+	
+	@Element
 	private Damage damage;
+	
+	@Element
 	private double radius;
+	
+	@Element
 	private double fireRate;
+	
+	@Element
 	private double price;
+	
+	@Element(required=false)
 	private TargetingInfo targeting;
+	
 	private int x, y;
 	private double investment;
-	private Tower.Type type;
 	
 	public static Tower createTower(Type t){
 		if (templateTowers == null) {
-			templateTowers = TowerXMLReader.readXML("src/core/XML/exampleTower.xml");
+			templateTowers = TowerXMLReader.readXML("bin/src/core/XML/exampleTower.xml");
 		}
 		
 		Tower template = templateTowers.get(t);

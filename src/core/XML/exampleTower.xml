@@ -1,45 +1,101 @@
-<TOWERS>
-  <TOWER TYPE="GUN" COST="999">
-    <STATS RADIUS="1" FIRERATE="1.5"/>
-    <DAMAGE INSTANT=".2" TIME="1" PERIOD="0" DURATION="0" SPEEDCHANGE=".1"/>
-    <TARGETING HITSFLYING="false" />
-  </TOWER>
-  <TOWER TYPE="ANTIAIR" COST="999">
-    <STATS RADIUS="1.5" FIRERATE="1.5"/>
-    <DAMAGE INSTANT=".2" TIME="1" PERIOD="0" DURATION="0" SPEEDCHANGE=".1"/>
-    <TARGETING HITSFLYING="false" />
-  </TOWER>
-  <TOWER TYPE="SLOWING" COST="999">
-    <STATS RADIUS="2" FIRERATE="1.5"/>
-    <DAMAGE INSTANT=".2" TIME="1" PERIOD="0" DURATION="0" SPEEDCHANGE=".1"/>
-    <TARGETING HITSFLYING="false" />
-  </TOWER>
-  <TOWER TYPE="MORTAR" COST="999">
-    <STATS RADIUS="2.5" FIRERATE="1.5"/>
-    <DAMAGE INSTANT=".2" TIME="1" PERIOD="0" DURATION="0" SPEEDCHANGE=".1"/>
-    <TARGETING HITSFLYING="false" />
-  </TOWER>
-  <TOWER TYPE="FRIEND" COST="999">
-    <STATS RADIUS="3" FIRERATE="1.5"/>
-    <DAMAGE INSTANT=".2" TIME="1" PERIOD="0" DURATION="0" SPEEDCHANGE=".1"/>
-    <TARGETING HITSFLYING="false" />
-  </TOWER>
-  <TOWER TYPE="FLAME" COST="999">
-    <STATS RADIUS="3.5" FIRERATE="1.5"/>
-    <DAMAGE INSTANT=".2" TIME="1" PERIOD="0" DURATION="0" SPEEDCHANGE=".1"/>
-    <TARGETING HITSFLYING="false" />
-  </TOWER>
-  <TOWER TYPE="STASIS" COST="999">
-    <STATS RADIUS="4" FIRERATE="1.5"/>
-    <DAMAGE INSTANT=".2" TIME="1" PERIOD="0" DURATION="0" SPEEDCHANGE=".1"/>
-    <TARGETING HITSFLYING="false" />
-  </TOWER>
-  <TOWER TYPE="HTA" COST="999">
-    <STATS RADIUS="10" FIRERATE="1.5"/>
-    <DAMAGE INSTANT="5" TIME="1" PERIOD="0" DURATION="0" SPEEDCHANGE=".1"/>
-    <TARGETING HITSFLYING="false" />
-  </TOWER>
-</TOWERS>
+<towers>
+  <tower type="GUN">
+  	<price>999</price>
+  	<radius>1</radius>
+  	<fireRate>1.5</fireRate>
+  	<damage>
+  		<instantDamage>.1</instantDamage>
+  		<timeDamage>1</timeDamage>
+  		<period>0</period>
+  		<effectDuration>0</effectDuration>
+  		<speedChange>.1</speedChange>
+  	</damage>
+  </tower>
+  <tower type="ANTIAIR">
+  	<price>999</price>
+  	<radius>1</radius>
+  	<fireRate>1.5</fireRate>
+  	<damage>
+  		<instantDamage>.1</instantDamage>
+  		<timeDamage>1</timeDamage>
+  		<period>0</period>
+  		<effectDuration>0</effectDuration>
+  		<speedChange>.1</speedChange>
+  	</damage>
+  </tower>
+  <tower type="SLOWING">
+  	<price>999</price>
+  	<radius>1</radius>
+  	<fireRate>1.5</fireRate>
+  	<damage>
+  		<instantDamage>.1</instantDamage>
+  		<timeDamage>1</timeDamage>
+  		<period>0</period>
+  		<effectDuration>0</effectDuration>
+  		<speedChange>.1</speedChange>
+  	</damage>
+  </tower>
+  <tower type="MORTAR">
+  	<price>999</price>
+  	<radius>1</radius>
+  	<fireRate>1.5</fireRate>
+  	<damage>
+  		<instantDamage>.1</instantDamage>
+  		<timeDamage>1</timeDamage>
+  		<period>0</period>
+  		<effectDuration>0</effectDuration>
+  		<speedChange>.1</speedChange>
+  	</damage>
+  </tower>
+  <tower type="FRIEND">
+  	<price>999</price>
+  	<radius>1</radius>
+  	<fireRate>1.5</fireRate>
+  	<damage>
+  		<instantDamage>.1</instantDamage>
+  		<timeDamage>1</timeDamage>
+  		<period>0</period>
+  		<effectDuration>0</effectDuration>
+  		<speedChange>.1</speedChange>
+  	</damage>
+  </tower>
+  <tower type="FLAME">
+  	<price>999</price>
+  	<radius>1</radius>
+  	<fireRate>1.5</fireRate>
+  	<damage>
+  		<instantDamage>.1</instantDamage>
+  		<timeDamage>1</timeDamage>
+  		<period>0</period>
+  		<effectDuration>0</effectDuration>
+  		<speedChange>.1</speedChange>
+  	</damage>
+  </tower>
+  <tower type="STASIS">
+  	<price>999</price>
+  	<radius>1</radius>
+  	<fireRate>1.5</fireRate>
+  	<damage>
+  		<instantDamage>.1</instantDamage>
+  		<timeDamage>1</timeDamage>
+  		<period>0</period>
+  		<effectDuration>0</effectDuration>
+  		<speedChange>.1</speedChange>
+  	</damage>
+  </tower>
+  <tower type="HTA">
+  	<price>999</price>
+  	<radius>10</radius>
+  	<fireRate>1.5</fireRate>
+  	<damage>
+  		<instantDamage>3</instantDamage>
+  		<timeDamage>1</timeDamage>
+  		<period>0</period>
+  		<effectDuration>0</effectDuration>
+  		<speedChange>.1</speedChange>
+  	</damage>
+  </tower>
+</towers>
   
       
     

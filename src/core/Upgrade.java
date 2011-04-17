@@ -43,7 +43,7 @@ public class Upgrade implements IPurchasable {
 		this.setPrice(0);
 		
 		level = 0;
-		type = Tower.Type.GENERIC;
+		type = Tower.Type.GUN;
 	}
 
 	public double getInstantDamageChange() {
@@ -132,7 +132,7 @@ public class Upgrade implements IPurchasable {
 		this.type = type;
 	}
 
-	// Modifies Damage d's fields based on this upgrades change fields
+	// Modifies Damage d's fields based on this upgrade's change fields
 	public void updateDamage(Damage d) {
 		double curInstantDamage = d.getInstantDamage();
 		double curTimeDamage = d.getTimeDamage();
@@ -162,6 +162,4 @@ public class Upgrade implements IPurchasable {
 		t.setRadius(curRadius + curRadius * getRadiusChange());
 		t.setInvestment(curInvestment + getPrice());
 	}
-
-	
 }
