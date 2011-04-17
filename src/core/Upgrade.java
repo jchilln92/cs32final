@@ -22,6 +22,10 @@ public class Upgrade implements IPurchasable {
 	private boolean canHitFlying;
 
 	private double priceOfUpgrade;
+	
+	
+	private int level; //level 1, 2, or 3
+	private Tower.Type type; // the type of tower this upgrade applies to
 
 	public Upgrade() {
 		// Change later to use an XML reader to get these values
@@ -37,6 +41,9 @@ public class Upgrade implements IPurchasable {
 
 		priceOfUpgrade = 0;
 		this.setPrice(0);
+		
+		level = 0;
+		type = Tower.Type.GENERIC;
 	}
 
 	public double getInstantDamageChange() {

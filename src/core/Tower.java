@@ -1,5 +1,8 @@
 package src.core;
 
+import java.util.HashMap;
+
+import src.core.XML.TowerXMLReader;
 import src.ui.IDrawableTower;
 
 /**
@@ -7,6 +10,8 @@ import src.ui.IDrawableTower;
  * creeps to attack first, damage done, and how fast to fire.
  */
 public class Tower implements IDrawableTower, IPurchasable {
+	private static HashMap<Type, Tower> templateTowers = null;
+	
 	private Damage damage;
 	private double radius;
 	private double fireRate;
@@ -16,8 +21,21 @@ public class Tower implements IDrawableTower, IPurchasable {
 	private double investment;
 	private Tower.Type type;
 	
-	public static void createTower(Type t){
+	public static Tower createTower(Type t){
+		if (templateTowers == null) {
+			templateTowers = TowerXMLReader.readXML("src/core/XML/exampleTower.xml");
+		}
 		
+		Tower template = templateTowers.get(t);
+		Tower tower = new Tower();
+		
+		tower.setDamage(template.getDamage());
+		tower.setFireRate(template.getFireRate());
+		tower.setPrice(template.getPrice());
+		tower.setRadius(template.getRadius());
+		tower.setType(t);
+		
+		return tower;
 	}
 	
 	public Tower() {
