@@ -12,8 +12,15 @@ public class TowerDrawer {
 		tower.setArcByCenter(t.getX() * tileWidth + tileWidth / 2, t.getY()
 				* tileHeight + tileHeight / 2, tileWidth / 2 - 5, 0, 360,
 				Arc2D.PIE);
-
-		g.setColor(Color.BLUE);
+		
+		switch (t.getType()) {
+			case HTA:
+				g.setColor(Color.YELLOW);
+				break;
+			default:
+				g.setColor(Color.BLUE);
+		}
+		
 		g.fill(tower);
 	}
 }

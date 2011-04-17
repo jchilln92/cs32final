@@ -22,6 +22,10 @@ public class Upgrade implements IPurchasable {
 	private boolean canHitFlying;
 
 	private double priceOfUpgrade;
+	
+	
+	private int level; //level 1, 2, or 3
+	private Tower.Type type; // the type of tower this upgrade applies to
 
 	public Upgrade() {
 		// Change later to use an XML reader to get these values
@@ -37,6 +41,9 @@ public class Upgrade implements IPurchasable {
 
 		priceOfUpgrade = 0;
 		this.setPrice(0);
+		
+		level = 0;
+		type = Tower.Type.GENERIC;
 	}
 
 	public double getInstantDamageChange() {
@@ -80,6 +87,50 @@ public class Upgrade implements IPurchasable {
 	public void setPrice(double p) {
 		priceOfUpgrade = p;
 	}
+	
+	public void setInstantDamageChange(double instantDamageChange) {
+		this.instantDamageChange = instantDamageChange;
+	}
+
+	public void setTimeDamageChange(double timeDamageChange) {
+		this.timeDamageChange = timeDamageChange;
+	}
+
+	public void setPeriodChange(double periodChange) {
+		this.periodChange = periodChange;
+	}
+
+	public void setEffectDurationChange(double effectDurationChange) {
+		this.effectDurationChange = effectDurationChange;
+	}
+
+	public void setSpeedEffectChange(double speedEffectChange) {
+		this.speedEffectChange = speedEffectChange;
+	}
+
+	public void setRadiusChange(double radiusChange) {
+		this.radiusChange = radiusChange;
+	}
+
+	public void setFireRateChange(double fireRateChange) {
+		this.fireRateChange = fireRateChange;
+	}
+
+	public void setCanHitFlying(boolean canHitFlying) {
+		this.canHitFlying = canHitFlying;
+	}
+
+	public void setPriceOfUpgrade(double priceOfUpgrade) {
+		this.priceOfUpgrade = priceOfUpgrade;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public void setType(Tower.Type type) {
+		this.type = type;
+	}
 
 	// Modifies Damage d's fields based on this upgrades change fields
 	public void updateDamage(Damage d) {
@@ -109,6 +160,8 @@ public class Upgrade implements IPurchasable {
 
 		t.setFireRate(curFireRate + curFireRate * getFireRateChange());
 		t.setRadius(curRadius + curRadius * getRadiusChange());
-		t.setInvestment(curInvestment + curInvestment * getRadiusChange());
+		t.setInvestment(curInvestment + getPrice());
 	}
+
+	
 }
