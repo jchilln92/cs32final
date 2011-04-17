@@ -44,11 +44,11 @@ public class TowerPurchasePanel extends JPanel {
 		gc = controller;
 		
 		purchaseTowersLabel = new JLabel(purchaseTowersText);
-		towerInfoLabel = new JLabel("FRIDAY");
-		damageLabel = new JLabel("FRIDAY");
-		rangeLabel = new JLabel("GOTTA GET DOWN");
-		abilitiesLabel = new JLabel(".");
-		costLabel = new JLabel(".");
+		towerInfoLabel = new JLabel(" ");
+		damageLabel = new JLabel(" ");
+		rangeLabel = new JLabel(" ");
+		abilitiesLabel = new JLabel(" ");
+		costLabel = new JLabel(" ");
 		towerButtons = new ArrayList<JButton>();
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -96,11 +96,11 @@ public class TowerPurchasePanel extends JPanel {
 
 				@Override
 				public void mouseExited(MouseEvent e) {
-					towerInfoLabel.setOpaque(true);
-					damageLabel.setOpaque(true);
-					rangeLabel.setOpaque(true);
-					abilitiesLabel.setOpaque(true);
-					costLabel.setOpaque(true);
+					towerInfoLabel.setText(" ");
+					damageLabel.setText(" ");
+					rangeLabel.setText(" ");
+					abilitiesLabel.setText(" ");
+					costLabel.setText(" ");
 				}
 
 				@Override
