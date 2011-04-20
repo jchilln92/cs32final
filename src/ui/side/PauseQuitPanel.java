@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Popup;
 import javax.swing.PopupFactory;
@@ -26,47 +27,17 @@ public class PauseQuitPanel extends JPanel {
 
 	private GameController gc;
 	
-	private PopupFactory popupGenerator;
 	private JButton pauseButton;
 	private JButton quitButton;
-	private JButton confirmQuitButton;
-	private JButton returnToGameButton;
 	
-	private JPanel quitPanel;
-	private Popup quitPopup;
+	private JOptionPane quitPopup;
 	
 	
 	public PauseQuitPanel(GameController controller) {
 		super(new GridBagLayout());
 		
 		this.gc = controller;
-
-		popupGenerator = PopupFactory.getSharedInstance();
-		
-		quitPanel = new JPanel();
-		quitPanel.setLayout(new BorderLayout());
-		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
-		quitPanel.setBorder(borderLine);
-		quitPanel.add(new JLabel("Quit current game?"), BorderLayout.PAGE_START);
-		
-		confirmQuitButton = new JButton("Totes!");
-		confirmQuitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//return to the main menu
-
-			}
-		});
-		returnToGameButton = new JButton("So Inapropro...");
-		returnToGameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gc.togglePause(false);
-				quitPopup.hide();
-
-			}
-		});		
-		quitPanel.add(confirmQuitButton, BorderLayout.LINE_START);
-		quitPanel.add(returnToGameButton, BorderLayout.LINE_END);
-
+	
 		pauseButton = new JButton("Pause");
 		pauseButton.setActionCommand("pause");
 		pauseButton.addActionListener(new ActionListener() {
@@ -89,7 +60,6 @@ public class PauseQuitPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				gc.togglePause(true);
 				makePopup();
-
 			}
 		});
 		
@@ -105,13 +75,25 @@ public class PauseQuitPanel extends JPanel {
 		c.fill = GridBagConstraints.NONE;
 		add(quitButton, c);
 	}
-	
 	public void makePopup(){
-		quitPopup = popupGenerator.getPopup(this, quitPanel, 
-				320-(int)quitPanel.getSize().getWidth()/2, 
-				240-(int)quitPanel.getSize().getHeight()/2);
-		quitPopup.show();	
+		Object[] options = {"That is SO Raven.",
+        "Totes inapropro, Raven!"};
+		int n = JOptionPane.showOptionDialog(this, //we need to replace this with the main panel
+		"Are you sure you want to quit current game?",
+		"There is racism in the world.",
+		JOptionPane.YES_NO_CANCEL_OPTION,
+		JOptionPane.QUESTION_MESSAGE,
+		null,
+		options,
+		options[1]);
+		if(n == 0){ //quitting the game
+
+		}
+		else{ //not quitting the game
+			gc.togglePause(false);
+		}
 	}
+	
 
 }
 

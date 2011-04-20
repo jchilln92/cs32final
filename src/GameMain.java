@@ -16,9 +16,13 @@ import src.core.Map;
 import src.core.Player;
 import src.core.Tower;
 import src.ui.MapComponent;
+import src.ui.title.TitleScreen;
 import src.ui.side.Sidebar;
 
 public class GameMain extends JFrame {
+	
+	private TitleScreen ts;
+	
 	private static final long serialVersionUID = 1L;
 
 	public GameMain() {
@@ -26,9 +30,41 @@ public class GameMain extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600); // TODO: Figure out resize and/or move this to
 							// another file
+		
+		ts = new TitleScreen(this);
+		
+		getContentPane().add(ts);
 
+	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				final GameMain main = new GameMain();
+				main.setVisible(true);
+
+				// refresh the window at about 30 fps
+				Timer t = new Timer(33, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						main.repaint();
+					}
+				});
+
+				t.start();
+			}
+		});
+	}
+	
+	public void showTitleScreen(){
+		getContentPane().removeAll();
+		getContentPane().add(ts);
+	}
+	public void createGame(){
+		getContentPane().removeAll();
 		getContentPane().setLayout(new BorderLayout());
-
+		
 		// set up some test data that will be run
 		Map m = Map.demoMap();
 
@@ -76,7 +112,7 @@ public class GameMain extends JFrame {
 		mc.setSize(600, 600);
 		mc.setGridOn(true);
 		mc.setGameController(gc);
-		getContentPane().add(mc, BorderLayout.LINE_START);
+		getContentPane().add(mc, BorderLayout.CENTER);
 
 		// setup sidebar
 		Sidebar s = new Sidebar(gc);
@@ -86,25 +122,8 @@ public class GameMain extends JFrame {
 		r.setGameController(gc);
 		Thread thread = new Thread(r);
 		thread.start();
-	}
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				final GameMain main = new GameMain();
-				main.setVisible(true);
-
-				// refresh the window at about 30 fps
-				Timer t = new Timer(33, new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						main.repaint();
-					}
-				});
-
-				t.start();
-			}
-		});
+		
+		getContentPane().validate();
+		
 	}
 }
