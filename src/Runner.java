@@ -12,7 +12,7 @@ import src.core.Tower;
  * currently in place so that other features may be tested.
  */
 public class Runner implements Runnable {
-	public static long tickDuration = 30; // how long each tick is, in milliseconds
+	public static long tickDuration = 33; // how long each tick is, in milliseconds
 
 	private GameController gc;
 

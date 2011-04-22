@@ -76,16 +76,6 @@ public class GameMain extends JFrame {
 		c.setPath(m.getPath());
 		c.setPosition(m.getPath().getPoint(0));
 
-		ArrayList<Creep> creeps = new ArrayList<Creep>();
-		creeps.add(c);
-		
-		// make a giant wave and send it, just as a test
-		ArrayList<Creep> wave = new ArrayList<Creep>();
-		for (int i = 0; i < 1000; i++) {
-			Creep waveCreep = new Creep();
-			wave.add(waveCreep);
-		}
-
 		// single tower
 		Tower t = Tower.createTower(Tower.Type.GUN);
 		t.setX(7);
@@ -98,10 +88,8 @@ public class GameMain extends JFrame {
 		Player p = new Player();
 
 		g.setMap(m);
-		g.setCreeps(creeps);
 		g.setTowers(towers);
 		g.setPlayer(p);
-		g.sendWave(wave);
 		
 		// set up a gamecontroller to mediate interaction between backend and frontend
 		GameController gc = new GameController();

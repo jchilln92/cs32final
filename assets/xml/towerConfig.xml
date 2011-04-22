@@ -1,10 +1,10 @@
 <towers>
 	<tower type="GUN">
-		<price>999</price>
-		<radius>1</radius>
+		<price>150</price>
+		<radius>3</radius>
 		<fireRate>1.5</fireRate>
 		<damage>
-			<instantDamage>.1</instantDamage>
+			<instantDamage>.2</instantDamage>
 			<timeDamage>1</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>

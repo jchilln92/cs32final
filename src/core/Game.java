@@ -6,8 +6,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import src.WaveGenerator;
+
 public class Game {
 	private static final int creepDelay = 25; // delay, in ticks, between creeps
+	private static final int waveTime = 1000; // number of ticks between each wave (about 30 seconds)
 	
 	private Map map;
 	private ArrayList<Creep> creeps;
@@ -15,16 +18,25 @@ public class Game {
 	private Player player;
 	private int elapsedTime; // the total game time, in "ticks"
 	private int wavesSent; // the total number of waves sent
+	private int lastWaveTime; // the elapsedTime when the last wave was sent
 	
 	private LinkedList<Creep> creepQueue; // the creeps that are waiting to be sent out onto the map
 	private int lastCreepTime; // the time the last creep was sent
 
 	public Game() {
+		creeps = new ArrayList<Creep>();
 		creepQueue = new LinkedList<Creep>();
 	}
 	
 	public void tick() {
 		elapsedTime++;
+		
+		// time to send another wave
+		if (elapsedTime - lastWaveTime >= waveTime) {
+			lastWaveTime = elapsedTime;
+			
+			sendWave(WaveGenerator.generateWave(wavesSent + 1)); // wavesSent + 1 == wave number
+		}
 		
 		// time to send another creep, if there is one...
 		if (creepQueue.size() != 0 && elapsedTime - lastCreepTime > creepDelay) {
@@ -96,6 +108,10 @@ public class Game {
 		for (Creep c : wave) {
 			creepQueue.add(c);
 		}
+	}
+	
+	public int getTicksUntilNextWave() {
+		return waveTime - (elapsedTime - lastWaveTime);
 	}
 
 	public Map getMap() {

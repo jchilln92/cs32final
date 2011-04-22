@@ -23,7 +23,6 @@ public class TimeWavePanel extends JPanel {
 	private static final String elapsedText = "Time elapsed: ";
 	private static final String nextWaveButtonText = "Next Wave!";
 	private static final String fastForwardButtonText = ">>";
-	private static final int waveTime = 60;
 	
 	private JLabel waveNumberLabel;
 	private JLabel waveNumberValueLabel;
@@ -119,29 +118,31 @@ public class TimeWavePanel extends JPanel {
 		waveNumberValueLabel.setText(Integer.toString(gc.getGame().getWavesSent()));
 		
 		//update Next Wave in
+		long secondsUntilNextWave = gc.getGame().getTicksUntilNextWave() * Runner.tickDuration / 1000;
+		nextWaveValueLabel.setText(convertSecondsToTimeString(secondsUntilNextWave));
 		
 		//update Time elapsed		
 		long secondsElapsed = (gc.getGame().getElapsedTime() * Runner.tickDuration) / 1000;
-		
-		long hours = secondsElapsed / 3600;
+		elapsedValueLabel.setText(convertSecondsToTimeString(secondsElapsed));
+	}
+	
+	private String convertSecondsToTimeString(long seconds) {
+		long hours = seconds / 3600;
 		String hoursText = Long.toString(hours);
 		if(hours < 10)
 			hoursText = "0"+hoursText;
-		secondsElapsed = secondsElapsed % 3600;
+		seconds = seconds % 3600;
 		
-		long minutes = secondsElapsed / 60;
+		long minutes = seconds / 60;
 		String minutesText = Long.toString(minutes);
 		if(minutes < 10)
 			minutesText = "0"+minutesText;
-		secondsElapsed = secondsElapsed % 60;
-		
-		long seconds = secondsElapsed;
+		seconds = seconds % 60;
 		
 		String secondsText = Long.toString(seconds);
 		if(seconds < 10)
 			secondsText = "0"+secondsText;
 		
-		String time = hoursText + ":" + minutesText + ":" + secondsText;
-		elapsedValueLabel.setText(time);
+		return hoursText + ":" + minutesText + ":" + secondsText;
 	}
 }
