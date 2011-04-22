@@ -53,6 +53,6 @@ public class Sidebar extends JPanel {
 	}
 
 	public void showTowerUpgrade() {
-		// TODO: implement
+		towerPanel.showUpgradePanel();
 	}
 } 

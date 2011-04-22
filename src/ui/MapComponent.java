@@ -32,15 +32,17 @@ public class MapComponent extends JComponent {
 	private void setupMouseEvents() {
 		this.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
+				Point mouse = getMouseTile();
+				
+				int x = mouse.x;
+				int y = mouse.y;
+				
 				if (gc.isPlacingTower()) {
-					Point mouse = getMouseTile();
-					
-					int x = mouse.x;
-					int y = mouse.y;
-					
 					if (!m.isTerrain(x, y) && !gc.tileIsOccupied(x, y) && !m.isPath(x, y)) {
 						gc.finalizeTowerPurchase(x, y);
 					}
+				} else if (gc.tileIsOccupied(x, y)) {
+					gc.toggleTowerSelection(x, y);
 				}
 			}
 		});
@@ -163,6 +165,14 @@ public class MapComponent extends JComponent {
 					gg.draw(tile);
 				}
 			}
+		}
+		
+		// show a tower as highlighted if it is currently selected
+		if (gc.isTowerSelected()) {
+			IDrawableTower t = gc.getSelectedTower();
+			tile.setFrame(t.getX() * tileWidth, t.getY() * tileHeight, tileWidth, tileHeight);
+			gg.setColor(ColorConstants.towerHighlightColor);
+			gg.draw(tile);
 		}
 
 		if (gc != null) {

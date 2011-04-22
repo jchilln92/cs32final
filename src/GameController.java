@@ -14,6 +14,7 @@ import src.ui.side.Sidebar;
 public class GameController {
 	private Game game;
 	private Tower placingTower; // a tower pending purchase
+	private Tower selectedTower; // a tower that is selected
 	private Sidebar side;
 	private boolean isPaused;
 	private boolean isDoubleTime;
@@ -70,17 +71,22 @@ public class GameController {
 	}
 	
 	public boolean tileIsOccupied(int x, int y) {
+		Tower t = getTowerAtTile(x, y);
+		return t == null ? false : true;
+	}
+	
+	private Tower getTowerAtTile(int x, int y) {
 		for (Tower t : game.getTowers()) {
 			if (t.getX() == x && t.getY() == y) {
-				return true;
+				return t;
 			}
 		}
 		
-		return false;
+		return null;
 	}
 	
 	/*
-	 * Tower purchase handling methods
+	 * Tower purchase/upgrade handling methods
 	 */
 	public boolean isPlacingTower() {
 		return placingTower != null;
@@ -94,6 +100,30 @@ public class GameController {
 		return placingTower;
 	}
 	
+	public boolean isTowerSelected() {
+		return selectedTower != null;
+	}
+	
+	public Tower getSelectedTower() {
+		return selectedTower;
+	}
+
+	public void setSelectedTower(Tower selectedTower) {
+		this.selectedTower = selectedTower;
+	}
+	
+	public void toggleTowerSelection(int x, int y) {
+		Tower t = getTowerAtTile(x, y);
+		
+		if (t == null || selectedTower == getTowerAtTile(x, y)) {
+			selectedTower = null;
+			side.showTowerPurchase();
+		} else {
+			selectedTower = t;
+			side.showTowerUpgrade();
+		}
+	}
+
 	public void beginPurchasingTower(Tower t) {
 		setPlacingTower(t);
 		side.showTowerPurchaseCancel();
@@ -111,5 +141,7 @@ public class GameController {
 		game.getPlayer().purchase(placingTower);
 		game.getTowers().add(placingTower);
 		placingTower = null;
+		
+		side.showTowerPurchase();
 	}
 }

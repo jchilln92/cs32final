@@ -15,6 +15,7 @@ public class TowerCardPanel extends JPanel {
 	private GameController controller;
 	private TowerPurchasePanel tpPanel;
 	private CancelPurchasePanel cpPanel;
+	private TowerUpgradePanel tuPanel;
 	
 	private enum PanelID {
 		PURCHASE, CANCEL_PURCHASE, STATS_UPGRADE
@@ -27,11 +28,13 @@ public class TowerCardPanel extends JPanel {
 		// initialize subpanels
 		tpPanel = new TowerPurchasePanel(controller);
 		cpPanel = new CancelPurchasePanel(controller);
+		tuPanel = new TowerUpgradePanel(controller);
 		
 		// for some reason you can add an arbitrary object as an identifier
 		// for cardlayout, but it only accepts a string for the method show.
 		add(tpPanel, PanelID.PURCHASE.toString());
 		add(cpPanel, PanelID.CANCEL_PURCHASE.toString());
+		add(tuPanel, PanelID.STATS_UPGRADE.toString());
 	}
 	
 	public void showPurchasePanel() {
@@ -42,5 +45,10 @@ public class TowerCardPanel extends JPanel {
 	public void showCancelPanel() {
 		CardLayout layout = (CardLayout) getLayout();
 		layout.show(this, PanelID.CANCEL_PURCHASE.toString());
+	}
+	
+	public void showUpgradePanel() {
+		CardLayout layout = (CardLayout) getLayout();
+		layout.show(this, PanelID.STATS_UPGRADE.toString());
 	}
 }

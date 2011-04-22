@@ -1,9 +1,11 @@
 package src.core;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 import src.FilePaths;
 import src.core.xml.TowerXMLReader;
@@ -33,6 +35,9 @@ public class Tower implements IDrawableTower, IPurchasable {
 	
 	@Element(required=false)
 	private TargetingInfo targeting;
+	
+	@ElementList(required=false)
+	private ArrayList<Upgrade> upgrades;
 	
 	private int x, y;
 	private double investment;
@@ -130,11 +135,9 @@ public class Tower implements IDrawableTower, IPurchasable {
 	// Applies an upgrade u onto this tower, modifying its Damage,
 	// TargetingInfo, and self
 	public void applyUpgrade(Upgrade u) {
-
 		u.updateDamage(damage); // all damage modifications
 		u.updateTargeting(targeting); // canHitFlying
 		u.updateTower(this); // radius, rate of fire, investment
-
 	}
 	
 	public double getPrice() {
