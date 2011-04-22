@@ -5,7 +5,8 @@ import java.util.HashMap;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
-import src.core.XML.TowerXMLReader;
+import src.FilePaths;
+import src.core.xml.TowerXMLReader;
 import src.ui.IDrawableTower;
 
 /**
@@ -39,7 +40,8 @@ public class Tower implements IDrawableTower, IPurchasable {
 	public static Tower createTower(Type t){
 		if (templateTowers == null) {
 			//templateTowers = TowerXMLReader.readXML("/src/core/XML/exampleTower.xml");
-			templateTowers = TowerXMLReader.readXML("/home/jqtran/course/cs032/cs32final/src/core/XML/exampleTower.xml");
+			//templateTowers = TowerXMLReader.readXML("/home/jqtran/course/cs032/cs32final/src/core/XML/exampleTower.xml");
+			templateTowers = TowerXMLReader.readXML(FilePaths.xmlPath + "towerConfig.xml");
 		}
 		
 		Tower template = templateTowers.get(t);

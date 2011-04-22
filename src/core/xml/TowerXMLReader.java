@@ -1,4 +1,4 @@
-package src.core.XML;
+package src.core.xml;
 
 import java.io.File;
 import java.util.HashMap;

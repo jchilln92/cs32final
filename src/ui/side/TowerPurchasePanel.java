@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.FilePaths;
 import src.GameController;
 import src.core.Damage;
 import src.core.Tower;
@@ -63,7 +64,7 @@ public class TowerPurchasePanel extends JPanel {
 							  Tower.Type.FRIEND, Tower.Type.FLAME, Tower.Type.STASIS, Tower.Type.HTA};
 		
 		for (int index = 0; index < 8; index++) {
-			String path = "assets/tower-icon1.png";
+			String path = FilePaths.imgPath + "tower-icon1.png";
 			//String path = "assets/tower-icon"+index+1".png";
 			ImageIcon towerIcon = new ImageIcon(path);
 			JButton towerButton = new JButton(towerIcon);
