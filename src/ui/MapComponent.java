@@ -112,7 +112,7 @@ public class MapComponent extends JComponent {
 			}
 		}
 
-		if (gc.isPlacingTower()) {
+		if (gc.isPlacingTower()) { // draw appropriate graphics if we are placing a tile
 			Point mouse = getMouseTile();
 
 			if (mouse != null) {
@@ -146,6 +146,21 @@ public class MapComponent extends JComponent {
 					gc.getPlacingTower().setY(y);
 					
 					TowerDrawer.drawTower(gc.getPlacingTower(), tileHeight, tileWidth, gg);
+				}
+			}
+		} else {
+			Point mouse = getMouseTile();
+			
+			if (mouse != null) {
+				int x = mouse.x;
+				int y = mouse.y;
+				
+				if (gc.tileIsOccupied(x, y)) {
+					// draw a hover display over any towers we're hovering over
+					tile.setFrame(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
+					
+					gg.setColor(ColorConstants.towerHighlightColor);
+					gg.draw(tile);
 				}
 			}
 		}

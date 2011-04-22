@@ -31,10 +31,9 @@ public class GameMain extends JFrame {
 		setSize(800, 600); // TODO: Figure out resize and/or move this to
 							// another file
 		
+		// initialize the title screen
 		ts = new TitleScreen(this);
-		
 		getContentPane().add(ts);
-
 	}
 
 	public static void main(String[] args) {
@@ -61,6 +60,7 @@ public class GameMain extends JFrame {
 		getContentPane().removeAll();
 		getContentPane().add(ts);
 	}
+	
 	public void createGame(){
 		getContentPane().removeAll();
 		getContentPane().setLayout(new BorderLayout());
@@ -117,6 +117,8 @@ public class GameMain extends JFrame {
 		// setup sidebar
 		Sidebar s = new Sidebar(gc);
 		getContentPane().add(s, BorderLayout.LINE_END);
+		
+		gc.setSide(s);
 
 		Runner r = new Runner();
 		r.setGameController(gc);

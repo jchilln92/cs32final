@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import src.GameMain;
 
 public class TitleScreen extends JPanel {
-
 	private JLabel titleLabel;
 	private JButton splayerButton;
 	private JButton mplayerButton;

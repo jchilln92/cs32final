@@ -54,6 +54,7 @@ public class TowerPurchasePanel extends JPanel {
 		towerButtons = new ArrayList<JButton>();
 		
 		GridBagConstraints c = new GridBagConstraints();
+		
 		c.weightx = 1;
 		c.gridx = 1;
 		c.gridy = 0;
@@ -65,7 +66,7 @@ public class TowerPurchasePanel extends JPanel {
 		
 		for (int index = 0; index < 8; index++) {
 			String path = FilePaths.imgPath + "tower-icon1.png";
-			//String path = "assets/tower-icon"+index+1".png";
+			
 			ImageIcon towerIcon = new ImageIcon(path);
 			JButton towerButton = new JButton(towerIcon);
 			final Tower.Type type = types[index];
@@ -98,25 +99,31 @@ public class TowerPurchasePanel extends JPanel {
 			});
 			
 			towerButtons.add(towerButton);
+			
 			if(index == 7)
 				c.gridx = 2;
 			else
-				c.gridx = 0+index%3;
-			c.gridy = 1+index/3;
+				c.gridx = 0 + index % 3;
+			
+			c.gridy = 1 + index / 3;
 			c.fill = GridBagConstraints.NONE;
 			add(towerButton, c);
 		}
+		
 		c.gridx = 1;
 		c.gridy = 4;
 		add(towerInfoLabel, c);
+		
 		c.gridy = 5;
 		add(damageLabel, c);
+		
 		c.gridy = 6;
 		add(rangeLabel, c);
+		
 		c.gridy = 7;
 		add(abilitiesLabel, c);
+		
 		c.gridy = 8;
 		add(costLabel, c);
-
 	}
 }

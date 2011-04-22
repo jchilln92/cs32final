@@ -12,4 +12,5 @@ public class ColorConstants {
 	public static final Color invalidTowerPlacementColor2 = new Color(255, 0, 0);
 	public static final Color radiusIndicatorColor = new Color(0, 0, 255, 100);
 	public static final Color radiusIndicatorColor2 = new Color(0, 0, 255);
+	public static final Color towerHighlightColor = Color.ORANGE;
 }

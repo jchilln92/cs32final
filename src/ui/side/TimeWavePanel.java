@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 import src.GameController;
 import src.Runner;
-import src.core.Game;
 
 public class TimeWavePanel extends JPanel {
 	private static final long serialVersionUID = 1L;

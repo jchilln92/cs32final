@@ -1,20 +1,13 @@
 package src.ui.side;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
-import javax.swing.border.Border;
 
 import src.GameController;
 
@@ -31,7 +24,6 @@ public class PauseQuitPanel extends JPanel {
 	private JButton quitButton;
 	
 	private JOptionPane quitPopup;
-	
 	
 	public PauseQuitPanel(GameController controller) {
 		super(new GridBagLayout());
@@ -75,9 +67,9 @@ public class PauseQuitPanel extends JPanel {
 		c.fill = GridBagConstraints.NONE;
 		add(quitButton, c);
 	}
+	
 	public void makePopup(){
-		Object[] options = {"That is SO Raven.",
-        "Totes inapropro, Raven!"};
+		Object[] options = {"That is SO Raven.", "Totes inapropro, Raven!"};
 		int n = JOptionPane.showOptionDialog(this, //we need to replace this with the main panel
 		"Are you sure you want to quit current game?",
 		"There is racism in the world.",
@@ -86,10 +78,10 @@ public class PauseQuitPanel extends JPanel {
 		null,
 		options,
 		options[1]);
+		
 		if(n == 0){ //quitting the game
-
-		}
-		else{ //not quitting the game
+			
+		} else{ //not quitting the game
 			gc.togglePause(false);
 		}
 	}

@@ -39,8 +39,6 @@ public class Tower implements IDrawableTower, IPurchasable {
 	
 	public static Tower createTower(Type t){
 		if (templateTowers == null) {
-			//templateTowers = TowerXMLReader.readXML("/src/core/XML/exampleTower.xml");
-			//templateTowers = TowerXMLReader.readXML("/home/jqtran/course/cs032/cs32final/src/core/XML/exampleTower.xml");
 			templateTowers = TowerXMLReader.readXML(FilePaths.xmlPath + "towerConfig.xml");
 		}
 		

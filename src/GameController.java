@@ -6,6 +6,7 @@ import src.core.Game;
 import src.core.Tower;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
+import src.ui.side.Sidebar;
 
 /**
  * Manages the interaction between the GUI and the backend.
@@ -13,6 +14,7 @@ import src.ui.IDrawableTower;
 public class GameController {
 	private Game game;
 	private Tower placingTower; // a tower pending purchase
+	private Sidebar side;
 	private boolean isPaused;
 	private boolean isDoubleTime;
 	
@@ -22,6 +24,14 @@ public class GameController {
 		isDoubleTime = false;
 	}
 	
+	public Sidebar getSide() {
+		return side;
+	}
+
+	public void setSide(Sidebar side) {
+		this.side = side;
+	}
+
 	public Game getGame() {
 		return game;
 	}
@@ -86,10 +96,12 @@ public class GameController {
 	
 	public void beginPurchasingTower(Tower t) {
 		setPlacingTower(t);
+		side.showTowerPurchaseCancel();
 	}
 	
 	public void cancelTowerPurchase() {
 		setPlacingTower(null);
+		side.showTowerPurchase();
 	}
 	
 	public void finalizeTowerPurchase(int x, int y) {

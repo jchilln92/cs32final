@@ -1,5 +1,6 @@
 package src.ui.side;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -34,10 +35,12 @@ public class CancelPurchasePanel extends JPanel {
 		
 		purchaseLabel = new JLabel("Purchasing");
 		towerNameLabel = new JLabel();
-		if(gc.getPlacingTower() == null)
+		
+		if (gc.getPlacingTower() == null)
 			towerNameLabel.setText("Magical Tower:");
 		else
 			towerNameLabel.setText(gc.getPlacingTower().getType() + ":");
+
 		tipLabel = new JLabel(tipText);
 		
 		cancelButton = new JButton("Cancel Purchase");
@@ -66,7 +69,17 @@ public class CancelPurchasePanel extends JPanel {
 		c.gridy = 3;
 		c.fill = GridBagConstraints.NONE;
 		add(tipLabel, c);
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		
-		
+		// make sure that when this view comes to the front and is redrawn, the name of the
+		// tower being placed is displayed
+		if (gc.getPlacingTower() == null)
+			towerNameLabel.setText("Magical Tower:");
+		else
+			towerNameLabel.setText(gc.getPlacingTower().getType() + ":");
 	}
 }
