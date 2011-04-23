@@ -5,12 +5,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.GameController;
+import src.core.Tower;
+import src.core.Upgrade;
 
 /**
  * A display area which presents the selected tower's statistics and upgrade options
@@ -27,10 +30,10 @@ public class TowerUpgradePanel extends JPanel {
 	private JButton sellTowerButton;
 	private JButton cancelButton;
 	private JButton[] upgradeButtons;
-	
+		
 	public TowerUpgradePanel(GameController gc) {
 		super(new GridBagLayout());
-		
+		upgradeButtons = new JButton[9];
 		controller = gc;
 		
 		towerStats = new TowerStatsPanel();
@@ -84,10 +87,10 @@ public class TowerUpgradePanel extends JPanel {
 					controller.applyTowerUpgrade(3, i);
 				}
 			});
-			
 			c.gridx = n + 1;
 			c.gridy = 2;
 			add(upgradeButton, c);
+			upgradeButtons[n] = upgradeButton;
 		}
 		
 		c.gridx = 0;
@@ -106,6 +109,7 @@ public class TowerUpgradePanel extends JPanel {
 			c.gridx = n + 1;
 			c.gridy = 3;
 			add(upgradeButton, c);
+			upgradeButtons[n+3] = upgradeButton;
 		}
 		
 		c.gridx = 0;
@@ -124,6 +128,8 @@ public class TowerUpgradePanel extends JPanel {
 			c.gridx = n + 1;
 			c.gridy = 4;
 			add(upgradeButton, c);
+			upgradeButtons[n+6] = upgradeButton;
+
 		}
 		
 		c.gridx = 0;
@@ -131,8 +137,40 @@ public class TowerUpgradePanel extends JPanel {
 		add(sellTowerButton, c);
 	}
 	
+	private void updateClickableButtons(){
+		Tower tower = controller.getSelectedTower();
+
+		if (tower != null){
+			
+			//First check our tower's upgrade level
+			for (int x = 0; x< upgradeButtons.length;x++) {
+				if (tower.getUpgradeLevel() == 3){
+					upgradeButtons[x].setEnabled(false);
+				}else if (upgradeButtons[x].getText().equals("up1")) {
+					if (tower.getUpgradeLevel() != 0)
+						upgradeButtons[x].setEnabled(false);
+					else
+						upgradeButtons[x].setEnabled(true);
+				}else if (upgradeButtons[x].getText().equals("up2")) {
+					if (tower.getUpgradeLevel() != 1)
+						upgradeButtons[x].setEnabled(false);
+					else
+						upgradeButtons[x].setEnabled(true);
+				}else if (upgradeButtons[x].getText().equals("up3")) {
+					if (tower.getUpgradeLevel() != 2)
+						upgradeButtons[x].setEnabled(false);
+					else
+						upgradeButtons[x].setEnabled(true);
+				}
+				
+			}
+
+		}
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		towerStats.setTower(controller.getSelectedTower());	
+		updateClickableButtons();
 	}
 }
