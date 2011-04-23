@@ -43,6 +43,13 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		});
 		
+		sellTowerButton = new JButton("Sell");
+		sellTowerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.sellTower();
+			}
+		});
+		
 		levelOneLabel = new JLabel("1");
 		levelTwoLabel = new JLabel("2");
 		levelThreeLabel = new JLabel("3");
@@ -52,13 +59,18 @@ public class TowerUpgradePanel extends JPanel {
 		// lay out components
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.gridx = 0;
+		c.gridx = 1;
+		c.gridwidth = 2;
 		c.gridy = 0;
+		c.anchor = GridBagConstraints.CENTER;
 		add(towerStats, c);
+		c.gridwidth = 1;
 		
-		c.gridx = 0;
+		c.gridx = 1;
+		c.gridwidth = 2;
 		c.gridy = 1;
 		add(cancelButton, c);
+		c.gridwidth = 1;
 		
 		c.gridx = 0;
 		c.gridy = 2;
@@ -113,6 +125,10 @@ public class TowerUpgradePanel extends JPanel {
 			c.gridy = 4;
 			add(upgradeButton, c);
 		}
+		
+		c.gridx = 0;
+		c.gridy = 5;
+		add(sellTowerButton, c);
 	}
 	
 	public void paintComponent(Graphics g) {

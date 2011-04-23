@@ -3,6 +3,7 @@ package src;
 import java.util.Collection;
 
 import src.core.Game;
+import src.core.Player;
 import src.core.Tower;
 import src.core.Upgrade;
 import src.ui.IDrawableCreep;
@@ -114,6 +115,7 @@ public class GameController {
 			
 			if (seenAtLevel - 1 == idx) {
 				selectedTower.applyUpgrade(u);
+				selectedTower.addInvestment(u);
 				game.getPlayer().purchase(u);
 				return;
 			}
@@ -137,6 +139,19 @@ public class GameController {
 	public void unselectTower() {
 		selectedTower = null;
 		side.showTowerPurchase();
+	}
+	
+	/**
+	 * Sells the currently selected tower, if any
+	 */
+	public void sellTower() {
+		if (selectedTower == null) return;
+		
+		Player p = game.getPlayer();
+		p.setGold(p.getGold() + selectedTower.getInvestment() * .75);
+		
+		game.getTowers().remove(selectedTower);
+		unselectTower();
 	}
 
 	/*

@@ -61,6 +61,7 @@ public class Tower implements IDrawableTower, IPurchasable {
 		tower.setPrice(template.getPrice());
 		tower.setRadius(template.getRadius());
 		tower.upgrades = template.getUpgrades();
+		tower.setInvestment(tower.getPrice());
 		tower.setType(t);
 		
 		return tower;
@@ -138,6 +139,10 @@ public class Tower implements IDrawableTower, IPurchasable {
 
 	public double getInvestment() {
 		return investment;
+	}
+	
+	public void addInvestment(IPurchasable item) {
+		investment += item.getPrice();
 	}
 
 	// Applies an upgrade u onto this tower, modifying its Damage,
