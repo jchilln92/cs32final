@@ -4,7 +4,6 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 /**
- * 
  * The upgrade class holds all of the changes a tower upgrade can apply onto a
  * tower.
  */

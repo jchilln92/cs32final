@@ -1,10 +1,10 @@
 package src.core;
 
-import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 
 /**
- * Represents the damage done by a tower
+ * Represents the damage done by a tower.  Various damage attributes, such as duration 
+ * and period for time-based damage, can be stored by this class, in addition to plain damage.
  */
 public class Damage {
 	@Element

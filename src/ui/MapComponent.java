@@ -86,6 +86,14 @@ public class MapComponent extends JComponent {
 	}
 
 	@Override
+	/**
+	 * Paints the map and everything on it.  For details on how the map is drawn, see
+	 * comments inside.
+	 * 
+	 * @see TowerDrawer
+	 * @see CreepDrawer
+	 * @see TileDrawer
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 

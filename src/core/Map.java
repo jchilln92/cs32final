@@ -3,12 +3,18 @@ package src.core;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+/**
+ * Represents all of the tiles in a map, as well as the path(s) that creeps can take along that map.
+ */
 public class Map {
 	private int width;
 	private int height;
 	private TileType tiles[][];
 	private CreepPath path;
 
+	/**
+	 * @return A hard-coded demo map
+	 */
 	public static Map demoMap() {
 		Map demo = new Map(15, 15);
 
@@ -99,12 +105,25 @@ public class Map {
 		tiles = new TileType[width][height];
 	}
 
+	/**
+	 * Returns the type of the tile at the given position.
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 * @return The type of the tile in question
+	 */
 	public TileType getTileType(int x, int y) {
 		assert !(x >= width) && !(y >= height) : "Out of bounds";
 
 		return tiles[x][y];
 	}
 
+	/**
+	 * Determines whether a given tile is a terrain tile (i.e. it is water or rock)
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 * @return A boolean indicating whether the tile in question is
+	 * 			a terrain tile.
+	 */
 	public boolean isTerrain(int x, int y) {
 		switch (getTileType(x, y)) {
 			case ROCK:
@@ -115,6 +134,10 @@ public class Map {
 		}
 	}
 	
+	/**
+	 * Determines whether a given tile is path of the path.
+	 * @see isTerrain
+	 */
 	public boolean isPath(int x, int y) {
 		if (getTileType(x, y) == TileType.PATH) return true;
 		

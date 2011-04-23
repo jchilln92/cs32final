@@ -18,6 +18,10 @@ public class Creep implements IDrawableCreep {
 
 	private double price;
 
+	public double getPrice() {
+		return price;
+	}
+
 	public enum Type {
 		GENERIC
 	}

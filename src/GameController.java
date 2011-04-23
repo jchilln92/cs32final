@@ -11,7 +11,8 @@ import src.ui.IDrawableTower;
 import src.ui.side.Sidebar;
 
 /**
- * Manages the interaction between the GUI and the backend.
+ * Manages the interaction between the GUI and the backend.  Most GUI calls end up here,
+ * and the controller manages the interaction with the backend.
  */
 public class GameController {
 	private Game game;
@@ -23,15 +24,12 @@ public class GameController {
 	
 	public GameController() {
 		placingTower = null;
+		selectedTower = null;
 		isPaused = false;
 		isDoubleTime = false;
 	}
 	
-	public Sidebar getSide() {
-		return side;
-	}
-
-	public void setSide(Sidebar side) {
+	public void setSidebar(Sidebar side) {
 		this.side = side;
 	}
 
@@ -45,6 +43,11 @@ public class GameController {
 	
 	/*
 	 * Time control methods
+	 */
+	
+	/**
+	 * Executes one game "tick", unless the game is paused.
+	 * If the game speed is in double time mode, ticks happen twice as fast/
 	 */
 	public void tick() {
 		if (!isPaused) {
@@ -64,6 +67,9 @@ public class GameController {
 		isDoubleTime = dt;
 	}
 	
+	/*
+	 * Useful drawing information
+	 */
 	public Collection<? extends IDrawableCreep> getDrawableCreeps() {
 		return game.getCreeps();
 	}
@@ -122,6 +128,13 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 * If the tower at the tile (x, y) is already selected, unselects this tower. 
+	 * Otherwise, selects the tower. This acts as a convenience method for the UI, and
+	 * in particular, MapCanvas.
+	 * @param x The x coordinate of the tower
+	 * @param y The y coordinate of the tower
+	 */
 	public void toggleTowerSelection(int x, int y) {
 		Tower t = getTowerAtTile(x, y);
 		
@@ -142,7 +155,8 @@ public class GameController {
 	}
 	
 	/**
-	 * Sells the currently selected tower, if any
+	 * Sells the currently selected tower, if any.  Refunds the user
+	 * a certain percentage of their total investment in the tower.
 	 */
 	public void sellTower() {
 		if (selectedTower == null) return;
@@ -169,16 +183,32 @@ public class GameController {
 		return placingTower;
 	}
 	
+	/**
+	 * Begins the potential sale of a tower.  The sale is not finalized until finalizeTowerPurchase
+	 * is called by the UI.
+	 * @param t The tower being considered for purchase.
+	 * @see cancelTowerPurchase
+	 * @see finalizeTowerPurchase
+	 */
 	public void beginPurchasingTower(Tower t) {
 		setPlacingTower(t);
 		side.showTowerPurchaseCancel();
 	}
 	
+	/**
+	 * Cancels the current tower purchase that is under consideration
+	 */
 	public void cancelTowerPurchase() {
 		setPlacingTower(null);
 		side.showTowerPurchase();
 	}
 	
+	/**
+	 * Finalizes the sale of the tower under consideration (in placingTower).  Performs appropriate
+	 * related actions, such as subtracting the correct amount of gold from the user's stash.
+	 * @param x The x coordinate of the map tile where this tower should be placed.
+	 * @param y The y coordinate of the map tile where this tower should be placed.
+	 */
 	public void finalizeTowerPurchase(int x, int y) {
 		placingTower.setX(x);
 		placingTower.setY(y);

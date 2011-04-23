@@ -10,7 +10,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import src.core.Creep;
-import src.core.Damage;
 import src.core.Game;
 import src.core.Map;
 import src.core.Player;
@@ -19,6 +18,9 @@ import src.ui.MapComponent;
 import src.ui.title.TitleScreen;
 import src.ui.side.Sidebar;
 
+/**
+ * The main entry point for the entire application.  Displays the main window.
+ */
 public class GameMain extends JFrame {
 	
 	private TitleScreen ts;
@@ -100,7 +102,7 @@ public class GameMain extends JFrame {
 		Sidebar s = new Sidebar(gc);
 		getContentPane().add(s, BorderLayout.LINE_END);
 		
-		gc.setSide(s);
+		gc.setSidebar(s);
 
 		Runner r = new Runner();
 		r.setGameController(gc);

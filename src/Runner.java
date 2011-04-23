@@ -1,15 +1,8 @@
 package src;
 
-import java.awt.geom.Point2D;
-import java.util.ArrayList;
-
-import src.core.Creep;
-import src.core.Game;
-import src.core.Tower;
-
 /**
- * This class will be replaced and/or heavily modified at some point. It is
- * currently in place so that other features may be tested.
+ * A class that runs on a separate thread, and whose only duty is to send a "tick"
+ * message at some predefined time interval.
  */
 public class Runner implements Runnable {
 	public static long tickDuration = 33; // how long each tick is, in milliseconds

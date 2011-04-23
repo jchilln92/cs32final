@@ -9,7 +9,8 @@ import org.simpleframework.xml.core.Persister;
 import src.core.Tower;
 
 /**
- * XML Reader for reading in information about towers
+ * XML Reader for reading in information about towers and their upgrades.
+ * The format for the XML is defined by annotations in the relevant classes.
  */
 public class TowerXMLReader {	
 	//Reads in an XML Document inputFile and returns a HashMap of Towers keyed to Tower.Type

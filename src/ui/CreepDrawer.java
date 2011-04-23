@@ -7,6 +7,9 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 public class CreepDrawer {
+	/**
+	 * Draws a creep into the the appropriate area in the graphics context g.
+	 */
 	public static void drawCreep(IDrawableCreep c, double tileHeight,
 			double tileWidth, Graphics2D g) {
 		// TODO: This is just a stub / test method

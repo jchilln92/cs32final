@@ -28,6 +28,11 @@ public class Game {
 		creepQueue = new LinkedList<Creep>();
 	}
 	
+	/**
+	 * Performs all of the actions associated with one "tick" during the game.
+	 * This includes updating creep positions and applying damage to creeps,
+	 * among other things.
+	 */
 	public void tick() {
 		elapsedTime++;
 		
@@ -53,9 +58,14 @@ public class Game {
 
 		// do a bunch of stuff to update the state of the game
 		stepCreeps();
-		doTowers();
+		doTowerAttacks();
 	}
 
+	/**
+	 * Moves each of the creeps on the board along their specified CreepPath.  When creeps
+	 * are destroyed, a reward is issued to the player.  When creeps reach the end of the
+	 * path unchecked, the player's health is reduced.
+	 */
 	private void stepCreeps() {
 		double speed = .05; // tiles per tick
 
@@ -91,7 +101,10 @@ public class Game {
 		}
 	}
 
-	private void doTowers() {
+	/**
+	 * Sets the creeps targeted by each tower, and 
+	 */
+	private void doTowerAttacks() {
 		for (Tower t : towers) {
 			for (Creep c : creeps) {
 				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius()) {
@@ -102,6 +115,11 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Adds creeps to the creep queue.  As time goes on, creeps are released
+	 * from the map queue one by one onto the map, at some fixed spacing interval.
+	 * @param wave A collection of creeps to add to the creep queue.
+	 */
 	public void sendWave(Collection<Creep> wave) {
 		wavesSent++;
 		
@@ -110,6 +128,9 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * @return The number of "ticks" until the next wave will be released.
+	 */
 	public int getTicksUntilNextWave() {
 		return waveTime - (elapsedTime - lastWaveTime);
 	}
