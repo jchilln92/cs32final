@@ -19,6 +19,13 @@ public class WaveGenerator {
 			creeps.add(c);
 		}
 		
+		// make some flying creeps too
+		for (int i = 0; i < n; i++) {
+			Creep c = new Creep();
+			c.setFlying(true);
+			creeps.add(c);
+		}
+		
 		return creeps;
 	}
 }

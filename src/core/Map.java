@@ -11,6 +11,7 @@ public class Map {
 	private int height;
 	private TileType tiles[][];
 	private CreepPath path;
+	private CreepPath flyingPath;
 
 	/**
 	 * @return A hard-coded demo map
@@ -35,8 +36,12 @@ public class Map {
 		path.add(new Point2D.Double(11.5, 12.5));
 		path.add(new Point2D.Double(12.5, 12.5));
 		path.add(new Point2D.Double(12.5, 15));
-
 		demo.path = new CreepPath(path);
+		
+		ArrayList<Point2D.Double> flyingPath = new ArrayList<Point2D.Double>();
+		flyingPath.add(new Point2D.Double(1.5, 0));
+		flyingPath.add(new Point2D.Double(12.5, 15));
+		demo.flyingPath = new CreepPath(flyingPath);
 
 		demo.tiles[0][7] = TileType.WATER;
 		demo.tiles[1][0] = TileType.PATH;
@@ -146,6 +151,10 @@ public class Map {
 
 	public CreepPath getPath() {
 		return path;
+	}
+	
+	public CreepPath getFlyingPath() {
+		return flyingPath;
 	}
 
 	public int getWidth() {

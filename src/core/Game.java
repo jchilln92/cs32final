@@ -48,8 +48,12 @@ public class Game {
 			lastCreepTime = elapsedTime;
 			
 			Creep toSend = creepQueue.poll();
-			toSend.setPath(map.getPath());
-			toSend.setPosition(map.getPath().getPoint(0));
+			CreepPath path = toSend.isFlying() ? map.getFlyingPath() : map.getPath();
+			
+			toSend.setPath(path);
+			System.out.println(path);
+			toSend.setPosition(path.getPoint(0));
+			System.out.println(path.getPoint(0));
 			
 			synchronized (creeps) {
 				creeps.add(toSend);
@@ -107,7 +111,8 @@ public class Game {
 	private void doTowerAttacks() {
 		for (Tower t : towers) {
 			for (Creep c : creeps) {
-				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius()) {
+				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius() &&
+					(!c.isFlying() || t.getTargeting().isHitsFlying())) {
 					c.applyDamage(t.getDamage());
 					break;
 				}
