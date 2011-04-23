@@ -1,5 +1,6 @@
 package src.ui.side;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -33,7 +34,9 @@ public class TowerPurchasePanel extends JPanel {
 	
 	private JLabel purchaseTowersLabel;
 	private TowerStatsPanel towerStats;
-	private ArrayList<JButton> towerButtons;
+	private JButton[] towerButtons;
+	private Tower.Type[] buttonTypes = {Tower.Type.GUN, Tower.Type.ANTIAIR, Tower.Type.SLOWING, Tower.Type.MORTAR,
+			  							Tower.Type.FRIEND, Tower.Type.FLAME, Tower.Type.STASIS, Tower.Type.HTA};
 	
 	public TowerPurchasePanel(GameController controller) {
 		super(new GridBagLayout());
@@ -42,7 +45,7 @@ public class TowerPurchasePanel extends JPanel {
 		
 		purchaseTowersLabel = new JLabel(purchaseTowersText);
 		towerStats = new TowerStatsPanel();
-		towerButtons = new ArrayList<JButton>();
+		towerButtons = new JButton[8];
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -51,16 +54,14 @@ public class TowerPurchasePanel extends JPanel {
 		c.gridy = 0;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(purchaseTowersLabel, c);
-	
-		Tower.Type types[] = {Tower.Type.GUN, Tower.Type.ANTIAIR, Tower.Type.SLOWING, Tower.Type.MORTAR,
-							  Tower.Type.FRIEND, Tower.Type.FLAME, Tower.Type.STASIS, Tower.Type.HTA};
 		
 		for (int index = 0; index < 8; index++) {
 			String path = FilePaths.imgPath + "tower-icon1.png";
 			
 			ImageIcon towerIcon = new ImageIcon(path);
 			JButton towerButton = new JButton(towerIcon);
-			final Tower.Type type = types[index];
+			towerButtons[index] = towerButton;
+			final Tower.Type type = buttonTypes[index];
 			
 			towerButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -80,8 +81,6 @@ public class TowerPurchasePanel extends JPanel {
 				}
 			});
 			
-			towerButtons.add(towerButton);
-			
 			if(index == 7)
 				c.gridx = 2;
 			else
@@ -92,8 +91,29 @@ public class TowerPurchasePanel extends JPanel {
 			add(towerButton, c);
 		}
 		
+		updateAllowedButtons();
+		
 		c.gridx = 1;
 		c.gridy = 4;
 		add(towerStats, c);
+	}
+	
+	private void updateAllowedButtons() {
+		for (int i = 0; i < 8; i++) {
+			JButton b = towerButtons[i];
+			Tower.Type type = buttonTypes[i];
+			
+			Tower t = Tower.createTower(type);
+			
+			if (!gc.playerCanAfford(t)) {
+				b.setEnabled(false);
+			} else {
+				b.setEnabled(true);
+			}
+		}
+	}
+	
+	public void paintComponent(Graphics g) {
+		updateAllowedButtons();
 	}
 }

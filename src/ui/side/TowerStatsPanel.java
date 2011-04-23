@@ -75,7 +75,7 @@ public class TowerStatsPanel extends JPanel {
 			damageLabel.setText("Damage: " + tower.getDamage().getInstantDamage());
 			rangeLabel.setText("Range: " + Double.toString(tower.getRadius()));
 			abilitiesLabel.setText("Abilities: ");
-			costLabel.setText("Cost: ");
+			costLabel.setText("Cost: " + Double.toString(tower.getPrice()));
 		}
 	}
 }
