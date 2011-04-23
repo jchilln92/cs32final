@@ -39,6 +39,10 @@ public class Tower implements IDrawableTower, IPurchasable {
 	@ElementList(required=false)
 	private ArrayList<Upgrade> upgrades;
 	
+	public ArrayList<Upgrade> getUpgrades() {
+		return upgrades;
+	}
+
 	private int x, y;
 	private double investment;
 	
@@ -54,6 +58,7 @@ public class Tower implements IDrawableTower, IPurchasable {
 		tower.setFireRate(template.getFireRate());
 		tower.setPrice(template.getPrice());
 		tower.setRadius(template.getRadius());
+		tower.upgrades = template.getUpgrades();
 		tower.setType(t);
 		
 		return tower;

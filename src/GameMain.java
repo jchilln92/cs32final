@@ -75,14 +75,8 @@ public class GameMain extends JFrame {
 		Creep c = new Creep();
 		c.setPath(m.getPath());
 		c.setPosition(m.getPath().getPoint(0));
-
-		// single tower
-		Tower t = Tower.createTower(Tower.Type.GUN);
-		t.setX(7);
-		t.setY(8);
 		
 		ArrayList<Tower> towers = new ArrayList<Tower>();
-		towers.add(t);
 
 		// a player
 		Player p = new Player();

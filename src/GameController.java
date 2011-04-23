@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import src.core.Game;
 import src.core.Tower;
+import src.core.Upgrade;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
 import src.ui.side.Sidebar;
@@ -86,7 +87,52 @@ public class GameController {
 	}
 	
 	/*
-	 * Tower purchase/upgrade handling methods
+	 * Tower upgrade handling methods
+	 */
+	public boolean isTowerSelected() {
+		return selectedTower != null;
+	}
+	
+	public Tower getSelectedTower() {
+		return selectedTower;
+	}
+
+	public void setSelectedTower(Tower selectedTower) {
+		this.selectedTower = selectedTower;
+	}
+	
+	public void applyTowerUpgrade(int level, int idx) {
+		// TODO: stub implementation
+		if (getSelectedTower().getUpgrades().size() == 0) {
+			return;
+		} else {
+			Upgrade u = getSelectedTower().getUpgrades().get(0);
+			getSelectedTower().applyUpgrade(u);
+			game.getPlayer().purchase(u);
+		}
+	}
+	
+	public void toggleTowerSelection(int x, int y) {
+		Tower t = getTowerAtTile(x, y);
+		
+		if (t == null || selectedTower == getTowerAtTile(x, y)) {
+			unselectTower();
+		} else {
+			selectedTower = t;
+			side.showTowerUpgrade();
+		}
+	}
+	
+	/**
+	 * Unselects the current tower, if any.
+	 */
+	public void unselectTower() {
+		selectedTower = null;
+		side.showTowerPurchase();
+	}
+
+	/*
+	 * Tower purchase handling methods
 	 */
 	public boolean isPlacingTower() {
 		return placingTower != null;
@@ -100,30 +146,6 @@ public class GameController {
 		return placingTower;
 	}
 	
-	public boolean isTowerSelected() {
-		return selectedTower != null;
-	}
-	
-	public Tower getSelectedTower() {
-		return selectedTower;
-	}
-
-	public void setSelectedTower(Tower selectedTower) {
-		this.selectedTower = selectedTower;
-	}
-	
-	public void toggleTowerSelection(int x, int y) {
-		Tower t = getTowerAtTile(x, y);
-		
-		if (t == null || selectedTower == getTowerAtTile(x, y)) {
-			selectedTower = null;
-			side.showTowerPurchase();
-		} else {
-			selectedTower = t;
-			side.showTowerUpgrade();
-		}
-	}
-
 	public void beginPurchasingTower(Tower t) {
 		setPlacingTower(t);
 		side.showTowerPurchaseCancel();

@@ -10,4 +10,6 @@ public interface IDrawableTower {
 	public double getOrientation();
 
 	public Tower.Type getType();
+	
+	public double getRadius();
 }

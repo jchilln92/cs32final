@@ -32,12 +32,7 @@ public class TowerPurchasePanel extends JPanel {
 	private static final String purchaseTowersText = "Purchase Towers:";
 	
 	private JLabel purchaseTowersLabel;
-	private JLabel towerInfoLabel;
-	private JLabel damageLabel;
-	private JLabel rangeLabel;
-	private JLabel abilitiesLabel;
-	private JLabel costLabel;
-	
+	private TowerStatsPanel towerStats;
 	private ArrayList<JButton> towerButtons;
 	
 	public TowerPurchasePanel(GameController controller) {
@@ -46,11 +41,7 @@ public class TowerPurchasePanel extends JPanel {
 		gc = controller;
 		
 		purchaseTowersLabel = new JLabel(purchaseTowersText);
-		towerInfoLabel = new JLabel(" ");
-		damageLabel = new JLabel(" ");
-		rangeLabel = new JLabel(" ");
-		abilitiesLabel = new JLabel(" ");
-		costLabel = new JLabel(" ");
+		towerStats = new TowerStatsPanel();
 		towerButtons = new ArrayList<JButton>();
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -80,21 +71,12 @@ public class TowerPurchasePanel extends JPanel {
 			towerButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					Tower t = Tower.createTower(type);
-					towerInfoLabel.setText("Info: ");
-					damageLabel.setText("Damage: ");
-					rangeLabel.setText("Range: " + Double.toString(t.getRadius()));
-					abilitiesLabel.setText("Abilities: ");
-					costLabel.setText("Cost: ");
+					towerStats.setTower(Tower.createTower(type));
 				}
 
 				@Override
 				public void mouseExited(MouseEvent e) {
-					towerInfoLabel.setText(" ");
-					damageLabel.setText(" ");
-					rangeLabel.setText(" ");
-					abilitiesLabel.setText(" ");
-					costLabel.setText(" ");
+					towerStats.setTower(null);
 				}
 			});
 			
@@ -112,18 +94,6 @@ public class TowerPurchasePanel extends JPanel {
 		
 		c.gridx = 1;
 		c.gridy = 4;
-		add(towerInfoLabel, c);
-		
-		c.gridy = 5;
-		add(damageLabel, c);
-		
-		c.gridy = 6;
-		add(rangeLabel, c);
-		
-		c.gridy = 7;
-		add(abilitiesLabel, c);
-		
-		c.gridy = 8;
-		add(costLabel, c);
+		add(towerStats, c);
 	}
 }

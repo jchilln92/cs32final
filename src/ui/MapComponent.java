@@ -122,16 +122,7 @@ public class MapComponent extends JComponent {
 				int y = mouse.y;
 
 				// draw the radius indicator for the tower
-				Arc2D.Double radiusIndicator = new Arc2D.Double();
-				radiusIndicator.setArcByCenter(x * tileWidth + tileWidth / 2, 
-											   y * tileHeight + tileHeight / 2, 
-											   gc.getPlacingTower().getRadius() * tileWidth, 
-											   0, 360, Arc2D.OPEN);
-				
-				gg.setColor(ColorConstants.radiusIndicatorColor);
-				gg.fill(radiusIndicator);
-				gg.setColor(ColorConstants.radiusIndicatorColor2);
-				gg.draw(radiusIndicator);
+				drawRadiusIndicator(gc.getPlacingTower(), gg);
 				
 				tile.setFrame(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 				
@@ -167,12 +158,14 @@ public class MapComponent extends JComponent {
 			}
 		}
 		
-		// show a tower as highlighted if it is currently selected
+		// show a tower as highlighted if it is currently selected, and show its radius
 		if (gc.isTowerSelected()) {
 			IDrawableTower t = gc.getSelectedTower();
 			tile.setFrame(t.getX() * tileWidth, t.getY() * tileHeight, tileWidth, tileHeight);
 			gg.setColor(ColorConstants.towerHighlightColor);
 			gg.draw(tile);
+			
+			drawRadiusIndicator(t, gg);
 		}
 
 		if (gc != null) {
@@ -186,6 +179,24 @@ public class MapComponent extends JComponent {
 				TowerDrawer.drawTower(t, tileHeight, tileWidth, gg);
 			}
 		}
+	}
+	
+	/**
+	 * Draws a radius indicator for a given tower
+	 * @param t The tower whose radius we should draw
+	 * @param g The graphics context into which the radius indicator should be drawn
+	 */
+	private void drawRadiusIndicator(IDrawableTower t, Graphics2D g) {
+		Arc2D.Double radiusIndicator = new Arc2D.Double();
+		radiusIndicator.setArcByCenter(t.getX() * getTileWidth() + getTileWidth() / 2, 
+									   t.getY() * getTileHeight() + getTileHeight() / 2, 
+									   t.getRadius() * getTileWidth(), 
+									   0, 360, Arc2D.OPEN);
+		
+		g.setColor(ColorConstants.radiusIndicatorColor);
+		g.fill(radiusIndicator);
+		g.setColor(ColorConstants.radiusIndicatorColor2);
+		g.draw(radiusIndicator);
 	}
 
 	@Override

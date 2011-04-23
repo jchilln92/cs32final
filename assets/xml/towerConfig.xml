@@ -12,7 +12,7 @@
 		</damage>
 		<upgrades>
 			<upgrade type="GUN" level="1" price="50">
-				<dInstantDamage>.5</dInstantDamage>
+				<dInstantDamage>1</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
