@@ -25,6 +25,7 @@ public class GameMain extends JFrame {
 	
 	private static Thread thread = new Thread();
 	private TitleScreen ts;
+	private GameSetup gs;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -111,5 +112,6 @@ public class GameMain extends JFrame {
 		thread.start();
 		
 		getContentPane().validate();
+
 	}
 }
