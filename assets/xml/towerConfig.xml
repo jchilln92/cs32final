@@ -21,6 +21,86 @@
 				<dFireRate>0</dFireRate>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
+			<upgrade type="GUN" level="1" price="50">
+				<dInstantDamage>0</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="GUN" level="1" price="50">
+				<dInstantDamage>0</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="GUN" level="2" price="50">
+				<dInstantDamage>0</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="GUN" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="GUN" level="2" price="50">
+				<dInstantDamage>0</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="GUN" level="3" price="50">
+				<dInstantDamage>0</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="GUN" level="3" price="50">
+				<dInstantDamage>0</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="GUN" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
 		</upgrades>
 	</tower>
 	<tower type="ANTIAIR">
@@ -34,6 +114,98 @@
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
 		</damage>
+		<upgrades>
+			<upgrade type="ANTIAIR" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="ANTIAIR" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="ANTIAIR" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="ANTIAIR" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="ANTIAIR" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="ANTIAIR" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="ANTIAIR" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="ANTIAIR" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="ANTIAIR" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+		</upgrades>
 	</tower>
 	<tower type="SLOWING">
 		<price>999</price>
@@ -46,6 +218,98 @@
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
 		</damage>
+		<upgrades>
+			<upgrade type="SLOWING" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="SLOWING" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="SLOWING" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="SLOWING" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="SLOWING" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="SLOWING" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="SLOWING" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="SLOWING" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="SLOWING" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+		</upgrades>
 	</tower>
 	<tower type="MORTAR">
 		<price>999</price>
@@ -58,6 +322,98 @@
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
 		</damage>
+		<upgrades>
+			<upgrade type="MORTAR" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="MORTAR" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="MORTAR" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="MORTAR" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="MORTAR" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="MORTAR" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="MORTAR" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="MORTAR" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="MORTAR" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+		</upgrades>
 	</tower>
 	<tower type="FRIEND">
 		<price>999</price>
@@ -70,6 +426,98 @@
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
 		</damage>
+		<upgrades>
+			<upgrade type="FRIEND" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FRIEND" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FRIEND" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FRIEND" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FRIEND" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FRIEND" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FRIEND" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FRIEND" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FRIEND" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+		</upgrades>
 	</tower>
 	<tower type="FLAME">
 		<price>999</price>
@@ -82,6 +530,98 @@
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
 		</damage>
+		<upgrades>
+			<upgrade type="FLAME" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FLAME" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FLAME" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FLAME" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FLAME" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FLAME" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FLAME" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FLAME" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="FLAME" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+		</upgrades>
 	</tower>
 	<tower type="STASIS">
 		<price>999</price>
@@ -94,6 +634,98 @@
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
 		</damage>
+		<upgrades>
+			<upgrade type="STASIS" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="STASIS" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="STASIS" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="STASIS" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="STASIS" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="STASIS" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="STASIS" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="STASIS" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="STASIS" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+		</upgrades>
 	</tower>
 	<tower type="HTA">
 		<price>999</price>
@@ -106,5 +738,97 @@
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
 		</damage>
+		<upgrades>
+			<upgrade type="HTA" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="HTA" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="HTA" level="1" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="HTA" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="HTA" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="HTA" level="2" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="HTA" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="HTA" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+			<upgrade type="HTA" level="3" price="50">
+				<dInstantDamage>1</dInstantDamage>
+				<dTimeDamage>0</dTimeDamage>
+				<dPeriod>0</dPeriod>
+				<dDuration>0</dDuration>
+				<dSpeedEffect>0</dSpeedEffect>
+				<dRadius>.3</dRadius>
+				<dFireRate>0</dFireRate>
+				<canHitFlying>false</canHitFlying>
+			</upgrade>
+		</upgrades>
 	</tower>
 </towers>

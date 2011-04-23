@@ -77,6 +77,8 @@ public class Upgrade implements IPurchasable {
 	public boolean getHitsFlyingChange() {
 		return canHitFlying;
 	}
+	
+	public int getLevel() { return level; }
 
 	@Override
 	public double getPrice() {

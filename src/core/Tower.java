@@ -39,6 +39,8 @@ public class Tower implements IDrawableTower, IPurchasable {
 	@ElementList(required=false)
 	private ArrayList<Upgrade> upgrades;
 	
+	private int upgradeLevel;
+	
 	public ArrayList<Upgrade> getUpgrades() {
 		return upgrades;
 	}
@@ -66,6 +68,7 @@ public class Tower implements IDrawableTower, IPurchasable {
 	
 	public Tower() {
 		targeting = new TargetingInfo();
+		upgradeLevel = 0;
 	}
 
 	public double getFireRate() {
@@ -140,9 +143,12 @@ public class Tower implements IDrawableTower, IPurchasable {
 	// Applies an upgrade u onto this tower, modifying its Damage,
 	// TargetingInfo, and self
 	public void applyUpgrade(Upgrade u) {
+		assert u.getLevel() == upgradeLevel + 1 : "Attempted to apply inappropriate update!";
+		
 		u.updateDamage(damage); // all damage modifications
 		u.updateTargeting(targeting); // canHitFlying
 		u.updateTower(this); // radius, rate of fire, investment
+		upgradeLevel++;
 	}
 	
 	public double getPrice() {
@@ -151,5 +157,9 @@ public class Tower implements IDrawableTower, IPurchasable {
 
 	public void setPrice(double p) {
 		price = p;
+	}
+	
+	public int getUpgradeLevel() {
+		return upgradeLevel;
 	}
 }

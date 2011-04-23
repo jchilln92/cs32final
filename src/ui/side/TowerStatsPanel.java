@@ -72,7 +72,7 @@ public class TowerStatsPanel extends JPanel {
 			costLabel.setText(" ");
 		} else {
 			towerNameLabel.setText("Type: " + tower.getType().toString());
-			damageLabel.setText("Damage: ");
+			damageLabel.setText("Damage: " + tower.getDamage().getInstantDamage());
 			rangeLabel.setText("Range: " + Double.toString(tower.getRadius()));
 			abilitiesLabel.setText("Abilities: ");
 			costLabel.setText("Cost: ");

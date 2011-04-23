@@ -101,14 +101,22 @@ public class GameController {
 		this.selectedTower = selectedTower;
 	}
 	
+	/**
+	 * Applies the appropriate upgrade to the currently selected tower.
+	 * @param level The upgrade level of the upgrade to be applied
+	 * @param idx Which upgrade in the given level to apply
+	 */
 	public void applyTowerUpgrade(int level, int idx) {
-		// TODO: stub implementation
-		if (getSelectedTower().getUpgrades().size() == 0) {
-			return;
-		} else {
-			Upgrade u = getSelectedTower().getUpgrades().get(0);
-			getSelectedTower().applyUpgrade(u);
-			game.getPlayer().purchase(u);
+		int seenAtLevel = 0;
+		
+		for (Upgrade u : selectedTower.getUpgrades()) {
+			if (u.getLevel() == level) seenAtLevel++;
+			
+			if (seenAtLevel - 1 == idx) {
+				selectedTower.applyUpgrade(u);
+				game.getPlayer().purchase(u);
+				return;
+			}
 		}
 	}
 	

@@ -26,7 +26,7 @@ public class TowerUpgradePanel extends JPanel {
 	
 	private JButton sellTowerButton;
 	private JButton cancelButton;
-	private JButton testUpgradeButton;
+	private JButton[] upgradeButtons;
 	
 	public TowerUpgradePanel(GameController gc) {
 		super(new GridBagLayout());
@@ -43,12 +43,11 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		});
 		
-		testUpgradeButton = new JButton("Test");
-		testUpgradeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controller.applyTowerUpgrade(1, 1);
-			}
-		});
+		levelOneLabel = new JLabel("1");
+		levelTwoLabel = new JLabel("2");
+		levelThreeLabel = new JLabel("3");
+		
+		upgradeButtons = new JButton[9];
 		
 		// lay out components
 		GridBagConstraints c = new GridBagConstraints();
@@ -63,11 +62,61 @@ public class TowerUpgradePanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 2;
-		add(testUpgradeButton, c);
+		add(levelThreeLabel, c);
+		
+		for (int n = 0; n < 3; n++) {
+			JButton upgradeButton = new JButton("up3");
+			final int i = n;
+			upgradeButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					controller.applyTowerUpgrade(3, i);
+				}
+			});
+			
+			c.gridx = n + 1;
+			c.gridy = 2;
+			add(upgradeButton, c);
+		}
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		add(levelTwoLabel, c);
+		
+		for (int n = 0; n < 3; n++) {
+			JButton upgradeButton = new JButton("up2");
+			final int i = n;
+			upgradeButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					controller.applyTowerUpgrade(2, i);
+				}
+			});
+			
+			c.gridx = n + 1;
+			c.gridy = 3;
+			add(upgradeButton, c);
+		}
+		
+		c.gridx = 0;
+		c.gridy = 4;
+		add(levelOneLabel, c);
+		
+		for (int n = 0; n < 3; n++) {
+			JButton upgradeButton = new JButton("up1");
+			final int i = n;
+			upgradeButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					controller.applyTowerUpgrade(1, i);
+				}
+			});
+			
+			c.gridx = n + 1;
+			c.gridy = 4;
+			add(upgradeButton, c);
+		}
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		towerStats.setTower(controller.getSelectedTower());
+		towerStats.setTower(controller.getSelectedTower());	
 	}
 }

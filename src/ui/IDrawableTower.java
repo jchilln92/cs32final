@@ -12,4 +12,6 @@ public interface IDrawableTower {
 	public Tower.Type getType();
 	
 	public double getRadius();
+	
+	public int getUpgradeLevel();
 }
