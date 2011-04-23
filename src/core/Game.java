@@ -51,9 +51,7 @@ public class Game {
 			CreepPath path = toSend.isFlying() ? map.getFlyingPath() : map.getPath();
 			
 			toSend.setPath(path);
-			System.out.println(path);
 			toSend.setPosition(path.getPoint(0));
-			System.out.println(path.getPoint(0));
 			
 			synchronized (creeps) {
 				creeps.add(toSend);
