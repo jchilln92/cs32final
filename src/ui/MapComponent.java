@@ -128,9 +128,6 @@ public class MapComponent extends JComponent {
 			if (mouse != null) {
 				int x = mouse.x;
 				int y = mouse.y;
-
-				// draw the radius indicator for the tower
-				drawRadiusIndicator(gc.getPlacingTower(), gg);
 				
 				tile.setFrame(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 				
@@ -147,6 +144,9 @@ public class MapComponent extends JComponent {
 					gc.getPlacingTower().setY(y);
 					
 					TowerDrawer.drawTower(gc.getPlacingTower(), tileHeight, tileWidth, gg);
+					
+					// draw the radius indicator for the tower
+					drawRadiusIndicator(gc.getPlacingTower(), gg);
 				}
 			}
 		} else {
