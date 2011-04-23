@@ -130,7 +130,6 @@ public class GameController {
 			
 			if (seenAtLevel - 1 == idx) {
 				selectedTower.applyUpgrade(u);
-				selectedTower.addInvestment(u);
 				game.getPlayer().purchase(u);
 				return;
 			}

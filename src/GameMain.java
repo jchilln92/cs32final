@@ -110,7 +110,6 @@ public class GameMain extends JFrame {
 		thread = new Thread(r);
 		thread.start();
 		
-		//getContentPane().validate();
-		
+		getContentPane().validate();
 	}
 }

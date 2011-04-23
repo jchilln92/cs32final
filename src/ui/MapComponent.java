@@ -177,14 +177,14 @@ public class MapComponent extends JComponent {
 		}
 
 		if (gc != null) {
+			for (IDrawableTower t : gc.getDrawableTowers()) {
+				TowerDrawer.drawTower(t, tileHeight, tileWidth, gg);
+			}
+			
 			synchronized (gc.getDrawableCreeps()) {
 				for (IDrawableCreep c : gc.getDrawableCreeps()) {
 					CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
 				}
-			}
-	
-			for (IDrawableTower t : gc.getDrawableTowers()) {
-				TowerDrawer.drawTower(t, tileHeight, tileWidth, gg);
 			}
 		}
 	}
