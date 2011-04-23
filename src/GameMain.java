@@ -23,6 +23,7 @@ import src.ui.side.Sidebar;
  */
 public class GameMain extends JFrame {
 	
+	private static Thread thread = new Thread();
 	private TitleScreen ts;
 	
 	private static final long serialVersionUID = 1L;
@@ -106,10 +107,10 @@ public class GameMain extends JFrame {
 
 		Runner r = new Runner();
 		r.setGameController(gc);
-		Thread thread = new Thread(r);
+		thread = new Thread(r);
 		thread.start();
 		
-		getContentPane().validate();
+		//getContentPane().validate();
 		
 	}
 }

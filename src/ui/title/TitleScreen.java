@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import src.GameMain;
 
 public class TitleScreen extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel titleLabel;
 	private JButton splayerButton;
 	private JButton mplayerButton;

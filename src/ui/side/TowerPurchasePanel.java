@@ -56,7 +56,7 @@ public class TowerPurchasePanel extends JPanel {
 		add(purchaseTowersLabel, c);
 		
 		for (int index = 0; index < 8; index++) {
-			String path = FilePaths.imgPath + "tower-icon1.png";
+			String path = FilePaths.imgPath + "tower-icon"+(index+1)+".png";
 			
 			ImageIcon towerIcon = new ImageIcon(path);
 			JButton towerButton = new JButton(towerIcon);
