@@ -3,6 +3,7 @@ package src;
 import java.util.Collection;
 
 import src.core.Game;
+import src.core.IPurchasable;
 import src.core.Player;
 import src.core.Tower;
 import src.core.Upgrade;
@@ -68,7 +69,7 @@ public class GameController {
 	}
 	
 	/*
-	 * Useful drawing information
+	 * Useful drawing/UI information
 	 */
 	public Collection<? extends IDrawableCreep> getDrawableCreeps() {
 		return game.getCreeps();
@@ -91,6 +92,14 @@ public class GameController {
 		}
 		
 		return null;
+	}
+	
+	public boolean playerCanAfford(IPurchasable item) {
+		if (game.getPlayer().getGold() >= item.getPrice()) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/*
