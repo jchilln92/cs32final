@@ -101,7 +101,8 @@ public class Tower implements IDrawableTower, IPurchasable {
 	}
 
 	public void setDamage(Damage damage) {
-		this.damage = damage;
+		//this.damage = damage;
+		this.damage = Damage.copyDamage(damage);
 	}
 
 	public double getOrientation() {
