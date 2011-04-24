@@ -11,11 +11,13 @@ import src.FilePaths;
 import src.core.xml.TowerXMLReader;
 import src.ui.IDrawableTower;
 
+import src.core.IAlignment;
+
 /**
  * Represents a tower and all of its attributes, including attack radius, which
  * creeps to attack first, damage done, and how fast to fire.
  */
-public class Tower implements IDrawableTower, IPurchasable {
+public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	private static HashMap<Type, Tower> templateTowers = null;
 	
 	@Attribute
@@ -38,6 +40,8 @@ public class Tower implements IDrawableTower, IPurchasable {
 	
 	@ElementList(required=false)
 	private ArrayList<Upgrade> upgrades;
+	
+	private IAlignment.Alignment alignment;
 	
 	private int upgradeLevel;
 	
@@ -169,4 +173,13 @@ public class Tower implements IDrawableTower, IPurchasable {
 		return upgradeLevel;
 	}
 
+	@Override
+	public Alignment getAlignment() {
+		return alignment;
+	}
+
+	@Override
+	public void setAlignment(Alignment alignment) {
+		this.alignment = alignment;
+	}
 }
