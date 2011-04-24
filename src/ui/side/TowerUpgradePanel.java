@@ -149,28 +149,28 @@ public class TowerUpgradePanel extends JPanel {
 	}
 	
 	//adds a MouseListener to the passed in button
-	private void setMouseListener(JButton button){
-		button.addMouseListener(new MouseAdapter(){
+	private void setMouseListener(JButton button) {
+		button.addMouseListener(new MouseAdapter() {
 			
 			//If an upgrade is hovered over, calls the setUpgrade method in
 			//the TowerStatsPanel with the appropriate upgrade
-			public void mouseEntered(MouseEvent e){
+			public void mouseEntered(MouseEvent e) {
 				curButton = (JButton) e.getSource();
 				
 				Tower tower = controller.getSelectedTower();
 				Upgrade potentialUpgrade = null;
-				if (tower.getUpgradeLevel() == 0){
-					for (int y = 0; y<3;y++){
+				if (tower.getUpgradeLevel() == 0) {
+					for (int y = 0; y < 3; y++){
 						if (upgradeButtons[6+y] == curButton)
 							potentialUpgrade = controller.getTowerUpgrade(1,y);
 					}
 				} else if (tower.getUpgradeLevel() == 1) {
-					for (int y = 0; y<3;y++){
+					for (int y = 0; y < 3; y++){
 						if (upgradeButtons[3+y] == curButton)
 							potentialUpgrade = controller.getTowerUpgrade(2,y);
 					}
 				} else if (tower.getUpgradeLevel() == 2) {
-					for (int y = 0; y<3;y++){
+					for (int y = 0; y < 3; y++) {
 						if (upgradeButtons[y] == curButton)
 							potentialUpgrade = controller.getTowerUpgrade(3,y);
 					}
@@ -188,49 +188,55 @@ public class TowerUpgradePanel extends JPanel {
 		}
 	
 
-	private void updateClickableButtons(){		
+	private void updateClickableButtons() {		
 		Tower tower = controller.getSelectedTower();
 
 		if (tower != null){
 			
 			//First only allow upgrades for the proper level
-			for (int x= 0; x<upgradeButtons.length; x++) {
+			for (int x = 0; x<upgradeButtons.length; x++) {
 				if (tower.getUpgradeLevel() == 3)
 					upgradeButtons[x].setEnabled(false);
 				if (tower.getUpgradeLevel() == 0) {
-					if(x>5)
+					if(x > 5)
 						upgradeButtons[x].setEnabled(true);
-					else upgradeButtons[x].setEnabled(false);
+					else 
+						upgradeButtons[x].setEnabled(false);
 				} else if (tower.getUpgradeLevel() == 1) {
-					if(x>2 && x<6)
+					if(x > 2 && x < 6)
 						upgradeButtons[x].setEnabled(true);
-					else upgradeButtons[x].setEnabled(false);
+					else 
+						upgradeButtons[x].setEnabled(false);
 				} else if (tower.getUpgradeLevel() == 2) {
-					if(x<3)
+					if(x < 3)
 						upgradeButtons[x].setEnabled(true);
-					else upgradeButtons[x].setEnabled(false);
+					else 
+						upgradeButtons[x].setEnabled(false);
 				}
 				
 			}
 			//Next check whether or not we can afford
 			for (int x= 0; x<upgradeButtons.length; x++) {
 				if (tower.getUpgradeLevel() == 0){
-					for (int y=0; y<3; y++){
+					for (int y = 0; y < 3; y++){
 						if (controller.playerCanAfford(controller.getTowerUpgrade(1,y)))
 							upgradeButtons[6+y].setEnabled(true);
-						else upgradeButtons[6+y].setEnabled(false);
+						else 
+							upgradeButtons[6+y].setEnabled(false);
 					}
 				} else if (tower.getUpgradeLevel() == 1) {
-					for (int y=0; y<3; y++){
+					for (int y = 0; y < 3; y++){
 						if (controller.playerCanAfford(controller.getTowerUpgrade(2,y)))
 							upgradeButtons[3+y].setEnabled(true);
-						else upgradeButtons[3+y].setEnabled(false);
+						else 
+							upgradeButtons[3+y].setEnabled(false);
 					}
 				} else if (tower.getUpgradeLevel() == 2) {
-					for (int y=0; y<3; y++){
+					for (int y = 0; y < 3; y++){
 						if (controller.playerCanAfford(controller.getTowerUpgrade(3,y)))
 							upgradeButtons[y].setEnabled(true);
-						else upgradeButtons[y].setEnabled(false);
+						else 
+							upgradeButtons[y].setEnabled(false);
 					}
 				}
 			}
