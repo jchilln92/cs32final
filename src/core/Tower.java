@@ -10,7 +10,6 @@ import org.simpleframework.xml.ElementList;
 import src.FilePaths;
 import src.core.xml.TowerXMLReader;
 import src.ui.IDrawableTower;
-
 /**
  * Represents a tower and all of its attributes, including attack radius, which
  * creeps to attack first, damage done, and how fast to fire.
@@ -40,6 +39,7 @@ public class Tower implements IDrawableTower, IPurchasable {
 	private ArrayList<Upgrade> upgrades;
 	
 	private int upgradeLevel;
+	
 	
 	public ArrayList<Upgrade> getUpgrades() {
 		return upgrades;
@@ -135,7 +135,7 @@ public class Tower implements IDrawableTower, IPurchasable {
 	}
 
 	public void setInvestment(double d) {
-		investment = d;
+		investment = d;Alignment
 	}
 
 	public double getInvestment() {
@@ -168,4 +168,5 @@ public class Tower implements IDrawableTower, IPurchasable {
 	public int getUpgradeLevel() {
 		return upgradeLevel;
 	}
+
 }
