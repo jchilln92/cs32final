@@ -32,7 +32,6 @@ public class TitleScreen extends JPanel {
 		titleLabel = new JLabel("Tower Defense");
 		titleLabel.setFont(new Font("Dialog.bold", 10, 64));
 		titleLabel.setForeground(Color.RED);
-		System.out.println(titleLabel.getFont().getStyle());
 		splayerButton = new JButton("Single Player Mode");
 		mplayerButton = new JButton("Multi-player Mode");
 		tutorialButton = new JButton("Look at an image to get help on how to play Tower Defense janx Mode");

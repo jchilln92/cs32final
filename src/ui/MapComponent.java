@@ -64,7 +64,12 @@ public class MapComponent extends JComponent {
 
 		return null;
 	}
-	
+	public Map getMap(){
+		return m;
+	}
+	public void setMap(Map m){
+		this.m = m;
+	}
 	private double getTileWidth() {
 		return getWidth() / m.getWidth();
 	}
@@ -122,7 +127,7 @@ public class MapComponent extends JComponent {
 			}
 		}
 
-		if (gc.isPlacingTower()) { // draw appropriate graphics if we are placing a tile
+		if (gc != null && gc.isPlacingTower()) { // draw appropriate graphics if we are placing a tile
 			Point mouse = getMouseTile();
 
 			if (mouse != null) {
@@ -156,7 +161,7 @@ public class MapComponent extends JComponent {
 				int x = mouse.x;
 				int y = mouse.y;
 				
-				if (gc.tileIsOccupied(x, y)) {
+				if (gc != null && gc.tileIsOccupied(x, y)) {
 					// draw a hover display over any towers we're hovering over
 					tile.setFrame(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 					
@@ -167,7 +172,7 @@ public class MapComponent extends JComponent {
 		}
 		
 		// show a tower as highlighted if it is currently selected, and show its radius
-		if (gc.isTowerSelected()) {
+		if (gc != null && gc.isTowerSelected()) {
 			IDrawableTower t = gc.getSelectedTower();
 			tile.setFrame(t.getX() * tileWidth, t.getY() * tileHeight, tileWidth, tileHeight);
 			gg.setColor(ColorConstants.towerHighlightColor);

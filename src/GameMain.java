@@ -17,6 +17,7 @@ import src.core.Tower;
 import src.ui.MapComponent;
 import src.ui.title.TitleScreen;
 import src.ui.side.Sidebar;
+import src.ui.gameSetup.GameSetup;
 
 /**
  * The main entry point for the entire application.  Displays the main window.
@@ -37,6 +38,7 @@ public class GameMain extends JFrame {
 		
 		// initialize the title screen
 		ts = new TitleScreen(this);
+		gs = new GameSetup();
 		getContentPane().add(ts);
 	}
 

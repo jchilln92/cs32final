@@ -69,9 +69,8 @@ public class TowerUpgradePanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 1;
-		c.gridwidth = 2;
+		c.gridwidth = 4;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.CENTER;
 		add(towerStats, c);
 		c.gridwidth = 1;
 		
