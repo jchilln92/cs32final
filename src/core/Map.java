@@ -12,12 +12,15 @@ public class Map {
 	private TileType tiles[][];
 	private CreepPath path;
 	private CreepPath flyingPath;
+	private String name;
 
 	/**
 	 * @return A hard-coded demo map
 	 */
 	public static Map demoMap() {
 		Map demo = new Map(15, 15);
+		
+		demo.name = "Magical Crap Farm";
 
 		for (int x = 0; x < 15; x++) {
 			for (int y = 0; y < 15; y++) {

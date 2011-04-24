@@ -17,6 +17,7 @@ import src.ui.side.Sidebar;
  */
 public class GameController {
 	private Game game;
+	private GameMain gameMain;
 	private Tower placingTower; // a tower pending purchase
 	private Tower selectedTower; // a tower that is selected
 	private Sidebar side;
@@ -40,6 +41,14 @@ public class GameController {
 	
 	public void setGame(Game g) {
 		game = g;
+	}
+	
+	public GameMain getGameMain() {
+		return gameMain;
+	}
+	
+	public void setGameMain(GameMain gm) {
+		gameMain = gm;
 	}
 	
 	/*

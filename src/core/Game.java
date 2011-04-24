@@ -38,9 +38,7 @@ public class Game {
 		
 		// time to send another wave
 		if (elapsedTime - lastWaveTime >= waveTime) {
-			lastWaveTime = elapsedTime;
-			
-			sendWave(WaveGenerator.generateWave(wavesSent + 1)); // wavesSent + 1 == wave number
+			sendNextWave();
 		}
 		
 		// time to send another creep, if there is one...
@@ -63,6 +61,14 @@ public class Game {
 		doTowerAttacks();
 	}
 
+	/**
+	 * Sends the next wave of creeps.
+	 */
+	public void sendNextWave(){
+		lastWaveTime = elapsedTime;
+		
+		sendWave(WaveGenerator.generateWave(wavesSent + 1)); // wavesSent + 1 == wave number	
+	}
 	/**
 	 * Moves each of the creeps on the board along their specified CreepPath.  When creeps
 	 * are destroyed, a reward is issued to the player.  When creeps reach the end of the
@@ -169,7 +175,12 @@ public class Game {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-
+	public int getLastWaveTime(){
+		return lastWaveTime;
+	}
+	public void setLastWaveTime(int lastWaveTime){
+		this.lastWaveTime = lastWaveTime;
+	}
 	public int getElapsedTime() {
 		return elapsedTime;
 	}

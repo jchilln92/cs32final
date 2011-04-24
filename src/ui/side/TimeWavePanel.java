@@ -50,7 +50,18 @@ public class TimeWavePanel extends JPanel {
 		elapsedLabel = new JLabel(elapsedText);
 		elapsedValueLabel = new JLabel();
 		
+		
+		//why are we using mouseadapters instead of actionlisteners in this instance?
 		nextWaveButton = new JButton(nextWaveButtonText);
+		nextWaveButton.addMouseListener(new MouseAdapter() {			
+			public void mousePressed(MouseEvent e) {
+				gc.getGame().sendNextWave();
+			}	
+			
+			public void mouseReleased(MouseEvent e) {
+				gc.toggleDoubleTime(false);
+			}
+		});
 		
 		fastForwardButton = new JButton(fastForwardButtonText);
 		fastForwardButton.addMouseListener(new MouseAdapter() {			

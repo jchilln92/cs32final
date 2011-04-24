@@ -1,15 +1,16 @@
 package src;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import src.core.Creep;
 import src.core.Game;
 import src.core.Map;
 import src.core.Player;
@@ -23,12 +24,18 @@ import src.ui.gameSetup.GameSetup;
  * The main entry point for the entire application.  Displays the main window.
  */
 public class GameMain extends JFrame {
+	private static final long serialVersionUID = 1L;	
 	
+	private JPanel mainPanel;
+
 	private static Thread thread = new Thread();
 	private TitleScreen ts;
 	private GameSetup gs;
+	private JPanel gamePanel;
 	
-	private static final long serialVersionUID = 1L;
+	private enum PanelID {
+		TITLE_SCREEN, GAME_SETUP, GAME_SCREEN, LOBBY;
+	}
 
 	public GameMain() {
 		// set up window
@@ -36,10 +43,18 @@ public class GameMain extends JFrame {
 		setSize(800, 600); // TODO: Figure out resize and/or move this to
 							// another file
 		
-		// initialize the title screen
 		ts = new TitleScreen(this);
-		gs = new GameSetup();
-		getContentPane().add(ts);
+		gs = new GameSetup(this);
+		gamePanel = new JPanel(); //gotta convert this into a class later probably
+		
+		
+		// initialize the card layout panel
+		mainPanel = new JPanel();
+		mainPanel.setLayout(new CardLayout());
+		mainPanel.add(ts, PanelID.TITLE_SCREEN.toString());
+
+		
+		getContentPane().add(mainPanel);
 	}
 
 	public static void main(String[] args) {
@@ -61,27 +76,45 @@ public class GameMain extends JFrame {
 			}
 		});
 	}
-	
-	public void showTitleScreen(){
-		getContentPane().removeAll();
-		getContentPane().add(ts);
+
+	public void showTitleScreen() {
+		CardLayout layout = (CardLayout) mainPanel.getLayout();
+		layout.show(mainPanel, PanelID.TITLE_SCREEN.toString());
 	}
 	
-	public void createGame(){
-		getContentPane().removeAll();
-		getContentPane().setLayout(new BorderLayout());
+	public void showGameSetup(boolean multiplayer) {
+		mainPanel.remove(gs);
+		if(multiplayer){
+			gs.createMultiplayerSetup();
+		}
+		else{
+			gs.createSinglePlayerSetup();			
+		}
+		mainPanel.add(gs, PanelID.GAME_SETUP.toString());
+		CardLayout layout = (CardLayout) mainPanel.getLayout();
+		layout.show(mainPanel, PanelID.GAME_SETUP.toString());
+	}
+	public void showGameScreen(){
+		mainPanel.add(gamePanel, PanelID.GAME_SCREEN.toString());
+		CardLayout layout = (CardLayout) mainPanel.getLayout();
+		layout.show(mainPanel, PanelID.GAME_SCREEN.toString());	
+	}
+	
+	public void createGame(Map selectedMap){
+		gamePanel = new JPanel();
+		gamePanel.setLayout(new BorderLayout());
 		
 		// set up some test data that will be run
-		Map m = Map.demoMap();
+		Map m = selectedMap;
 
 		// initialize a game
 		Game g = new Game();
 
 		// single creep
-		Creep c = new Creep();
+		/*Creep c = new Creep();
 		c.setPath(m.getPath());
 		c.setPosition(m.getPath().getPoint(0));
-		
+		*/
 		ArrayList<Tower> towers = new ArrayList<Tower>();
 
 		// a player
@@ -94,17 +127,18 @@ public class GameMain extends JFrame {
 		// set up a gamecontroller to mediate interaction between backend and frontend
 		GameController gc = new GameController();
 		gc.setGame(g);
+		gc.setGameMain(this);
 
 		// map component to draw everything
-		MapComponent mc = new MapComponent(Map.demoMap());
+		MapComponent mc = new MapComponent(m);
 		mc.setSize(600, 600);
 		mc.setGridOn(true);
 		mc.setGameController(gc);
-		getContentPane().add(mc, BorderLayout.CENTER);
+		gamePanel.add(mc, BorderLayout.CENTER);
 
 		// setup sidebar
 		Sidebar s = new Sidebar(gc);
-		getContentPane().add(s, BorderLayout.LINE_END);
+		gamePanel.add(s, BorderLayout.LINE_END);
 		
 		gc.setSidebar(s);
 
@@ -113,7 +147,14 @@ public class GameMain extends JFrame {
 		thread = new Thread(r);
 		thread.start();
 		
-		getContentPane().validate();
-
+		gamePanel.validate();
+	}
+	public void resetGame(){
+		mainPanel.remove(gamePanel);
+		gamePanel = new JPanel();
+		
+		thread.interrupt();
+		gamePanel.validate();
+		showTitleScreen();
 	}
 }
