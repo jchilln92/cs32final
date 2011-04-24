@@ -61,4 +61,15 @@ public class Damage {
 	public void setInstantDamage(double instantDamage) {
 		this.instantDamage = instantDamage;
 	}
+	
+	public static Damage copyDamage(Damage d){
+		Damage damage = new Damage();
+		damage.setInstantDamage(d.getInstantDamage());
+		damage.setEffectDuration(d.getEffectDuration());
+		damage.setPeriod(d.getPeriod());
+		damage.setSpeedChange(d.getSpeedChange());
+		damage.setTimeDamage(d.getTimeDamage());
+		
+		return damage;
+	}
 }
