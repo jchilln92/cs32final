@@ -136,6 +136,16 @@ public class GameController {
 		}
 	}
 	
+	public Upgrade getTowerUpgrade(int level, int idx){
+		int seenAtLevel = 0;
+		for (Upgrade u : selectedTower.getUpgrades()) {
+			if (u.getLevel() == level) seenAtLevel++;
+			
+			if (seenAtLevel - 1 == idx) 
+				return u;
+		}
+		return null;
+	}
 	/**
 	 * If the tower at the tile (x, y) is already selected, unselects this tower. 
 	 * Otherwise, selects the tower. This acts as a convenience method for the UI, and
