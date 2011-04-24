@@ -4,11 +4,12 @@
 		<radius>3</radius>
 		<fireRate>1.5</fireRate>
 		<damage>
-			<instantDamage>.2</instantDamage>
-			<timeDamage>1</timeDamage>
-			<period>0</period>
-			<effectDuration>0</effectDuration>
-			<speedChange>.1</speedChange>
+			<instantDamage>0</instantDamage>
+			<timeDamage>10</timeDamage>
+			<period>50</period>
+			<effectDuration>100</effectDuration>
+			<speedChange>-.5</speedChange>
+			<targetable>true</targetable>
 		</damage>
 		<upgrades>
 			<upgrade type="GUN" level="1" price="50">
@@ -113,6 +114,7 @@
 			<period>0</period>
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
+			<targetable>true</targetable>
 		</damage>
 		<upgrades>
 			<upgrade type="ANTIAIR" level="1" price="50">
@@ -217,6 +219,7 @@
 			<period>0</period>
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
+			<targetable>true</targetable>
 		</damage>
 		<upgrades>
 			<upgrade type="SLOWING" level="1" price="50">
@@ -321,6 +324,7 @@
 			<period>0</period>
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
+			<targetable>true</targetable>
 		</damage>
 		<upgrades>
 			<upgrade type="MORTAR" level="1" price="50">
@@ -425,6 +429,7 @@
 			<period>0</period>
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
+			<targetable>true</targetable>
 		</damage>
 		<upgrades>
 			<upgrade type="FRIEND" level="1" price="50">
@@ -529,6 +534,7 @@
 			<period>0</period>
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
+			<targetable>true</targetable>
 		</damage>
 		<upgrades>
 			<upgrade type="FLAME" level="1" price="50">
@@ -633,6 +639,7 @@
 			<period>0</period>
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
+			<targetable>true</targetable>
 		</damage>
 		<upgrades>
 			<upgrade type="STASIS" level="1" price="50">
@@ -737,6 +744,7 @@
 			<period>0</period>
 			<effectDuration>0</effectDuration>
 			<speedChange>.1</speedChange>
+			<targetable>true</targetable>
 		</damage>
 		<upgrades>
 			<upgrade type="HTA" level="1" price="50">

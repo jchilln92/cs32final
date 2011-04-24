@@ -1,15 +1,20 @@
 package src.core;
 
 import java.awt.geom.Point2D;
+import java.util.HashMap;
+
 import src.ui.IDrawableCreep;
 
 public class Creep implements IDrawableCreep {
 	private double baseHealth;
 	private double health;
 	private double reward;
+	private double speed; // the speed of this creep, as a percentage of normal speed
 	private Type type;
 	private boolean flying;
 	private double damageToBase;
+	
+	private HashMap<Tower, DamageApplication> damages;
 
 	private CreepPath path;
 	private int pathIndex;
@@ -27,11 +32,13 @@ public class Creep implements IDrawableCreep {
 	}
 
 	public Creep() {
+		damages = new HashMap<Tower, DamageApplication>();
 		pathIndex = 0;
 		baseHealth = 100;
 		reward = 100;
 		health = 100;
 		flying = false;
+		speed = 1;
 		type = Type.GENERIC;
 		damageToBase = 10;
 	}
@@ -72,8 +79,32 @@ public class Creep implements IDrawableCreep {
 		return damageToBase;
 	}
 
-	public void applyDamage(Damage d) {
+	public void applyDamage(Damage d, Tower t, int applicationTime) {
 		health -= d.getInstantDamage();
+		
+		// if there will be any timed effects, hold on to them
+		if (d.getEffectDuration() > 0 && !damages.containsKey(t)) {
+			speed *= 1 + d.getSpeedChange();
+			
+			DamageApplication da = new DamageApplication(d, applicationTime);
+			damages.put(t, da);
+		}
+		
+	}
+	
+	public void handleTimedDamage(int time) {
+		for (Tower t : damages.keySet()) {
+			if (t == null) damages.remove(t); // just to be safe
+			
+			DamageApplication da = damages.get(t);
+			
+			if (da.shouldUnattach(time)) {
+				damages.remove(t);
+				speed /= 1 + da.getDamage().getSpeedChange();
+			} else if (da.shouldDoTimeDamage(time)) {
+				health -= da.getDamage().getTimeDamage();
+			}
+		}
 	}
 
 	public CreepPath getPath() {
@@ -114,5 +145,13 @@ public class Creep implements IDrawableCreep {
 
 	public void setPosition(Point2D.Double p) {
 		position = p;
+	}
+
+	public double getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(double speed) {
+		this.speed = speed;
 	}
 }

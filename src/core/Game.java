@@ -103,9 +103,12 @@ public class Game {
 				continue;
 			}
 
-			c.setPosition(new Point2D.Double(direction.getX() * speed
-					+ c.getPosition().getX(), direction.getY() * speed
-					+ c.getPosition().getY()));
+			double realSpeed = speed * c.getSpeed();
+			c.setPosition(new Point2D.Double(
+					direction.getX() * realSpeed + c.getPosition().getX(), 
+					direction.getY() * realSpeed + c.getPosition().getY()));
+			
+			c.handleTimedDamage(elapsedTime);
 		}
 	}
 
@@ -117,7 +120,7 @@ public class Game {
 			for (Creep c : creeps) {
 				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius() &&
 					(!c.isFlying() || t.getTargeting().isHitsFlying())) {
-					c.applyDamage(t.getDamage());
+					c.applyDamage(t.getDamage(), t, elapsedTime);
 					break;
 				}
 			}

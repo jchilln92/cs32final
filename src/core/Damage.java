@@ -21,6 +21,9 @@ public class Damage {
 	
 	@Element
 	private double speedChange; // the change in movement speed caused by this damage
+	
+	@Element
+	private boolean targetable;
 
 	public double getInstantDamage() {
 		return instantDamage;
@@ -71,5 +74,13 @@ public class Damage {
 		damage.setTimeDamage(d.getTimeDamage());
 		
 		return damage;
+	}
+
+	public boolean isTargetable() {
+		return targetable;
+	}
+
+	public void setTargetable(boolean targetable) {
+		this.targetable = targetable;
 	}
 }
