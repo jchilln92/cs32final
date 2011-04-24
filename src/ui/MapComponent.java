@@ -24,8 +24,7 @@ public class MapComponent extends JComponent {
 	private GameController gc;
 	private boolean gridOn;
 
-	public MapComponent(Map m) {
-		this.m = m;
+	public MapComponent() {
 		setupMouseEvents();
 	}
 	
@@ -64,12 +63,15 @@ public class MapComponent extends JComponent {
 
 		return null;
 	}
+	
 	public Map getMap(){
 		return m;
 	}
+	
 	public void setMap(Map m){
 		this.m = m;
 	}
+	
 	private double getTileWidth() {
 		return getWidth() / m.getWidth();
 	}
@@ -101,6 +103,8 @@ public class MapComponent extends JComponent {
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		if (m == null) return;
 
 		// in swing, g is always actually an instance of the more advanced
 		// Graphics2D class

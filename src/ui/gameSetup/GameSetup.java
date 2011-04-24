@@ -6,9 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,13 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SingleSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import src.GameMain;
 import src.core.Map;
-import src.core.Tower;
 import src.ui.MapComponent;
 
 public class GameSetup extends JPanel {
@@ -43,17 +38,20 @@ public class GameSetup extends JPanel {
 	
 	private JScrollPane mapListPane;
 	private JList mapList;
-	
-	private ArrayList<Map> maps;
 
 	private MapComponent mc;
-	
 	private GameMain gm;
 	
 	
 	public GameSetup(GameMain gameMain) {
 		super(new GridBagLayout());
 		setSize(800, 600);
+		
+		this.gm = gameMain;
+		
+		mc = new MapComponent();
+		mc.setGridOn(true);
+		mc.setSize(400, 400);
 	
 		createGameLabel = new JLabel(createGameText);
 		createNameLabel = new JLabel(createNameText);
@@ -68,6 +66,7 @@ public class GameSetup extends JPanel {
 				gm.showGameScreen();
 			}
 		});
+		
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,36 +74,20 @@ public class GameSetup extends JPanel {
 			}
 		});
 		
-		maps = new ArrayList<Map>();
-		for(int x = 0; x < 10; x++){
-			if(x % 2 == 0)
-				maps.add(Map.demoMap());
-			else
-				maps.add(Map.demoMap2());
-		}
-		String mapNames[] = {"Sandy Shores", "Crap Map", "Magical Cow Farm", "Parkling Lot", "Mall", "Mountains", "Gateway", "Beach", "Frest", "Coffee Shap"};
-		mapList = new JList(mapNames);		
-		mapList.setSelectedIndex(0); 
+		Object mapNames[] = Map.getMapNames().toArray();
+		mapList = new JList(mapNames);
+		mapList.setSelectedIndex(0);
+		mc.setMap(Map.getMapByName((String)mapNames[0]));
 		mapList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		mapList.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				mc.setMap(maps.get(mapList.getSelectedIndex()));
-				
+				mc.setMap(Map.getMapByName((String)mapList.getSelectedValue()));
 			}
-
 		});
+		
 		mapListPane = new JScrollPane(mapList);
-		
-		mc = new MapComponent(Map.demoMap());
-		mc.setGridOn(true);
-		mc.setSize(400, 400);
-		
-		this.gm = gameMain;
-		
 		createSinglePlayerSetup();
-
 	}
 
 

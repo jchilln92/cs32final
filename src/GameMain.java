@@ -130,7 +130,8 @@ public class GameMain extends JFrame {
 		gc.setGameMain(this);
 
 		// map component to draw everything
-		MapComponent mc = new MapComponent(m);
+		MapComponent mc = new MapComponent();
+		mc.setMap(m);
 		mc.setSize(600, 600);
 		mc.setGridOn(true);
 		mc.setGameController(gc);
@@ -149,6 +150,7 @@ public class GameMain extends JFrame {
 		
 		gamePanel.validate();
 	}
+	
 	public void resetGame(){
 		mainPanel.remove(gamePanel);
 		gamePanel = new JPanel();

@@ -32,8 +32,6 @@ public class TowerUpgradePanel extends JPanel {
 	private JButton cancelButton;
 	private JButton[][] upgradeButtons;
 	
-	private JButton curButton;
-	
 	public TowerUpgradePanel(GameController gc) {
 		super(new GridBagLayout());
 		controller = gc;
