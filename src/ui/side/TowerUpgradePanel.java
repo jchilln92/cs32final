@@ -191,7 +191,6 @@ public class TowerUpgradePanel extends JPanel {
 	private void updateClickableButtons(){		
 		Tower tower = controller.getSelectedTower();
 
-		ArrayList<Upgrade> upgrades = tower.getUpgrades();
 		if (tower != null){
 			
 			//First only allow upgrades for the proper level
