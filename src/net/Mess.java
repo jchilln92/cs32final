@@ -1,4 +1,4 @@
-package src.kryonet;
+package src.net;
 
 public interface Mess {
 

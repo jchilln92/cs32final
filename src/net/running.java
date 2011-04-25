@@ -1,4 +1,4 @@
-package src.kryonet;
+package src.net;
 
 
 import java.io.IOException;

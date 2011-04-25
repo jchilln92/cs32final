@@ -1,4 +1,4 @@
-package src.kryonet;
+package src.net;
 
 public class RepMes implements Mess {
 
