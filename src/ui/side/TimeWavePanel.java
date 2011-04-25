@@ -121,6 +121,7 @@ public class TimeWavePanel extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		setPauseButton();
 		updateDisplay();
 	}
 	
@@ -155,5 +156,13 @@ public class TimeWavePanel extends JPanel {
 			secondsText = "0"+secondsText;
 		
 		return hoursText + ":" + minutesText + ":" + secondsText;
+	}
+	
+	//Check if there are creeps on the map, and if so, disables the pause button.
+	private void setPauseButton(){
+		if(gc.getGame().getCreeps().size() > 0)
+			nextWaveButton.setEnabled(false);
+		else if (!gc.getPaused())
+			nextWaveButton.setEnabled(true);
 	}
 }

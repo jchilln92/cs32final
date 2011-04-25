@@ -107,7 +107,7 @@ public class TowerPurchasePanel extends JPanel {
 			
 			if (!gc.playerCanAfford(t)) {
 				b.setEnabled(false);
-			} else {
+			} else if (!gc.getPaused()){
 				b.setEnabled(true);
 			}
 		}
@@ -115,5 +115,17 @@ public class TowerPurchasePanel extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		updateAllowedButtons();
+	}
+	
+	public void disableTowerPurchase(){
+		for (int x = 0; x< towerButtons.length; x++){
+			towerButtons[x].setEnabled(false);
+		}
+	}
+	
+	public void enableTowerPurchase(){
+		for (int x = 0; x< towerButtons.length; x++){
+			towerButtons[x].setEnabled(true);
+		}
 	}
 }

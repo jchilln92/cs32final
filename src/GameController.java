@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.Container;
 import java.util.Collection;
 
 import src.core.Game;
@@ -71,6 +72,15 @@ public class GameController {
 	
 	public void togglePause(boolean shouldPause) {
 		isPaused = shouldPause;
+		if (shouldPause) {
+			if (isPlacingTower())
+				cancelTowerPurchase();
+			
+			side.disableSidebar();
+		}
+		else {
+			side.enableSidebar();
+		}
 	}
 	
 	public void toggleDoubleTime(boolean dt) {
@@ -245,5 +255,9 @@ public class GameController {
 		placingTower = null;
 		
 		side.showTowerPurchase();
+	}
+	
+	public boolean getPaused(){
+		return isPaused;
 	}
 }

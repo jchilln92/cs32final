@@ -102,7 +102,8 @@ public class TowerUpgradePanel extends JPanel {
 				
 				upgradeButton.addMouseListener(new MouseAdapter() {
 					public void mouseEntered(MouseEvent e) {
-						towerStats.setUpgrade(controller.getTowerUpgrade(level, idx));
+						if (e.getComponent().isEnabled())
+							towerStats.setUpgrade(controller.getTowerUpgrade(level, idx));
 					}
 					
 					public void mouseExited(MouseEvent e) {
@@ -132,7 +133,7 @@ public class TowerUpgradePanel extends JPanel {
 				Upgrade potentialUpgrade = controller.getTowerUpgrade(l + 1, n);
 				
 				// only allow upgrades at the proper level and that the player can afford
-				if (l == tower.getUpgradeLevel() && controller.playerCanAfford(potentialUpgrade)) {
+				if (l == tower.getUpgradeLevel() && controller.playerCanAfford(potentialUpgrade) && controller.getPaused() == false) {
 					upgradeButton.setEnabled(true);
 				} else {
 					upgradeButton.setEnabled(false);
@@ -147,5 +148,27 @@ public class TowerUpgradePanel extends JPanel {
 		
 		towerStats.setTower(controller.getSelectedTower());	
 		updateClickableButtons();
+	}
+	
+	public void disableTowerUpgrade() {
+		for (int x = 0; x < upgradeButtons.length; x++){
+			for (int y = 0; y < upgradeButtons[x].length; y++){
+				upgradeButtons[x][y].setEnabled(false);
+			}
+		}
+		
+		sellTowerButton.setEnabled(false);
+		cancelButton.setEnabled(false);
+	}
+	
+	public void enableTowerUpgrade() {
+		for (int x = 0; x < upgradeButtons.length; x++){
+			for (int y = 0; y < upgradeButtons[x].length; y++){
+				upgradeButtons[x][y].setEnabled(true);
+			}
+		}
+		
+		sellTowerButton.setEnabled(true);
+		cancelButton.setEnabled(true);
 	}
 }

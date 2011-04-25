@@ -51,4 +51,23 @@ public class TowerCardPanel extends JPanel {
 		CardLayout layout = (CardLayout) getLayout();
 		layout.show(this, PanelID.STATS_UPGRADE.toString());
 	}
+	
+	public void disableCardPanel() {
+		for (int x = 0; x < cpPanel.getComponentCount(); x++){
+			cpPanel.getComponent(x).setEnabled(false);
+		}
+		
+		tpPanel.disableTowerPurchase();
+		tuPanel.disableTowerUpgrade();
+	}
+	
+	public void enableCardPanel() {
+		for (int x = 0; x < cpPanel.getComponentCount(); x++){
+			cpPanel.getComponent(x).setEnabled(true);
+		}	
+		
+		tpPanel.enableTowerPurchase();
+		tuPanel.enableTowerUpgrade();
+
+	}
 }

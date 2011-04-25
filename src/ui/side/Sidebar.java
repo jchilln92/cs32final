@@ -18,6 +18,10 @@ public class Sidebar extends JPanel {
 	private GameController controller;
 	private TowerCardPanel towerPanel;
 	
+	private PlayerStatsPanel playerStats;
+	private TimeWavePanel timeWave;
+	private PauseQuitPanel pauseQuit;
+	
 	public Sidebar(GameController gc) {
 		controller = gc;
 
@@ -25,13 +29,13 @@ public class Sidebar extends JPanel {
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.PAGE_AXIS);
 		setLayout(layoutManager);
 		
-		PlayerStatsPanel playerStats = new PlayerStatsPanel(controller.getGame().getPlayer());
-		TimeWavePanel timeWave = new TimeWavePanel(controller);
+		playerStats = new PlayerStatsPanel(controller.getGame().getPlayer());
+		timeWave = new TimeWavePanel(controller);
 		
 		towerPanel = new TowerCardPanel(controller);
 		towerPanel.showPurchasePanel(); // by default, show the tower purchase panel
 
-		PauseQuitPanel pauseQuit = new PauseQuitPanel(controller);
+		pauseQuit = new PauseQuitPanel(controller);
 
 		playerStats.setBorder(borderLine);
 		timeWave.setBorder(borderLine);
@@ -54,5 +58,25 @@ public class Sidebar extends JPanel {
 
 	public void showTowerUpgrade() {
 		towerPanel.showUpgradePanel();
+	}
+	
+	public void disableSidebar(){
+		for (int x = 0; x < playerStats.getComponentCount(); x++){
+			playerStats.getComponent(x).setEnabled(false);
+		}
+		for (int x = 0; x < timeWave.getComponentCount(); x++){
+			timeWave.getComponent(x).setEnabled(false);
+		}
+		towerPanel.disableCardPanel();
+	}
+	
+	public void enableSidebar(){
+		for (int x = 0; x < playerStats.getComponentCount(); x++){
+			playerStats.getComponent(x).setEnabled(true);
+		}
+		for (int x = 0; x < timeWave.getComponentCount(); x++){
+			timeWave.getComponent(x).setEnabled(true);
+		}
+		towerPanel.enableCardPanel();
 	}
 } 
