@@ -50,7 +50,6 @@ public class PauseQuitPanel extends JPanel {
 		
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gc.togglePause(true);
 				makePopup();
 			}
 		});
@@ -69,6 +68,11 @@ public class PauseQuitPanel extends JPanel {
 	}
 	
 	public void makePopup(){
+		boolean check = false;
+		if(gc.getPaused()){
+			check = true;
+		}
+		gc.togglePause(true);
 		Object[] options = {"That is SO Raven.", "Totes inapropro, Raven!"};
 		int n = JOptionPane.showOptionDialog(this, //we need to replace this with the main panel
 		"Are you sure you want to quit current game?",
@@ -82,7 +86,8 @@ public class PauseQuitPanel extends JPanel {
 		if(n == 0){ //quitting the game
 			gc.getGameMain().resetGame();
 		} else{ //not quitting the game
-			gc.togglePause(false);
+			if(!check)
+				gc.togglePause(false);
 		}
 	}
 	

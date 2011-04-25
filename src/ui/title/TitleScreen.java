@@ -45,7 +45,7 @@ public class TitleScreen extends JPanel {
 		});
 		mplayerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gm.showGameSetup(true);
+				gm.showLobby();
 			}
 		});
 		tutorialButton.addActionListener(new ActionListener() {

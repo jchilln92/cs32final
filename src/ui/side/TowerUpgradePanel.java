@@ -3,6 +3,7 @@ package src.ui.side;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,9 +21,12 @@ import src.core.Upgrade;
  * A display area which presents the selected tower's statistics and upgrade options
  */
 public class TowerUpgradePanel extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private GameController controller;
 	
 	private TowerStatsPanel towerStats;
+	
+	private ElementalUpgradePanel elementalUpgrade;
 	
 	private JLabel levelOneLabel;
 	private JLabel levelTwoLabel;
@@ -31,6 +35,8 @@ public class TowerUpgradePanel extends JPanel {
 	private JButton sellTowerButton;
 	private JButton cancelButton;
 	private JButton[][] upgradeButtons;
+	private JButton buyUpgradeButton;
+
 	
 	public TowerUpgradePanel(GameController gc) {
 		super(new GridBagLayout());
@@ -53,6 +59,8 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		});
 		
+		elementalUpgrade = new ElementalUpgradePanel();
+		
 		levelOneLabel = new JLabel("1");
 		levelTwoLabel = new JLabel("2");
 		levelThreeLabel = new JLabel("3");
@@ -62,28 +70,40 @@ public class TowerUpgradePanel extends JPanel {
 		// lay out components
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.gridx = 1;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.insets = new Insets(0, 80, 0, 0);	
+		c.gridx = 0;
 		c.gridwidth = 4;
 		c.gridy = 0;
 		add(towerStats, c);
 		c.gridwidth = 1;
 		
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets = new Insets(10, 0, 10, 0);	
+		c.gridx = 0;
+		c.gridwidth = 4;
+		c.gridy = 1;
+		add(elementalUpgrade, c);
+		c.gridwidth = 1;
+
+		c.insets = new Insets(0, 0, 0, 0);	
 		c.gridx = 1;
 		c.gridwidth = 2;
-		c.gridy = 1;
+		c.gridy = 2;
 		add(cancelButton, c);
 		c.gridwidth = 1;
-		
-		c.gridx = 0;
-		c.gridy = 2;
-		add(levelThreeLabel, c);
+	
 		
 		c.gridx = 0;
 		c.gridy = 3;
-		add(levelTwoLabel, c);
+		add(levelThreeLabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 4;
+		add(levelTwoLabel, c);
+		
+		c.gridx = 0;
+		c.gridy = 5;
 		add(levelOneLabel, c);
 		
 		// initialize and lay out each of the upgrade buttons
@@ -112,7 +132,7 @@ public class TowerUpgradePanel extends JPanel {
 				});
 				
 				c.gridx = idx + 1;
-				c.gridy = 4 - level + 1;
+				c.gridy = 5 - level + 1;
 				add(upgradeButton, c);
 				
 				upgradeButtons[l][n] = upgradeButton;
@@ -120,7 +140,7 @@ public class TowerUpgradePanel extends JPanel {
 		}
 		
 		c.gridx = 0;
-		c.gridy = 5;
+		c.gridy = 6;
 		add(sellTowerButton, c);
 	}
 	

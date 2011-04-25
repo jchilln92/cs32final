@@ -139,47 +139,6 @@ public class GameSetup extends JPanel {
 		c.insets = new Insets(0,0,0,0);
 		c.anchor = GridBagConstraints.LINE_END;
 		add(playButton,c);
-		/*c.gridx = 2;
-		c.gridy = 0;
-		c.gridwidth = 2;
-		c.ipady = 20;
-		c.fill = GridBagConstraints.NONE;
-		c.anchor = GridBagConstraints.LINE_END;
-		add(cancelButton,c);
-		
-		c.insets = new Insets(0,0,0,0);
-		c.gridx = 0;
-		c.gridy = 1;
-		c.gridwidth = 1;
-		c.ipady = 0;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.CENTER;
-		add(mapLabel,c);
-		
-		c.gridx = 0;
-		c.gridy = 2;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.PAGE_START;
-		add(mapListPane,c);
-		
-		c.gridx = 1;
-		c.gridy = 2;
-		c.gridwidth = 3;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0,20,0,0);
-		mc.setPreferredSize(new Dimension(400, 400));
-		add(mc,c);
-		
-		c.gridx = 0;
-		c.gridy = 3;
-		c.gridwidth = 5;
-		c.ipady = 20;
-		c.insets = new Insets(0,0,0,0);
-		c.fill = GridBagConstraints.HORIZONTAL;
-		add(playButton,c);
-		
-		validate();*/
 	}
 	//i might move this to a different class because the button functions are somewhat different! :D
 	public void createMultiplayerSetup(){

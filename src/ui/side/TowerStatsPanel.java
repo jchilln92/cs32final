@@ -50,7 +50,7 @@ public class TowerStatsPanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.LINE_START;
 		//c.fill = GridBagConstraints.HORIZONTAL;
 		add(towerNameLabel, c);
 		

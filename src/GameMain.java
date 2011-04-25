@@ -19,6 +19,7 @@ import src.ui.MapComponent;
 import src.ui.title.TitleScreen;
 import src.ui.side.Sidebar;
 import src.ui.gameSetup.GameSetup;
+import src.ui.lobby.Lobby;
 
 /**
  * The main entry point for the entire application.  Displays the main window.
@@ -31,6 +32,7 @@ public class GameMain extends JFrame {
 	private static Thread thread = new Thread();
 	private TitleScreen ts;
 	private GameSetup gs;
+	private Lobby lobby;
 	private JPanel gamePanel;
 	
 	private enum PanelID {
@@ -45,6 +47,7 @@ public class GameMain extends JFrame {
 		
 		ts = new TitleScreen(this);
 		gs = new GameSetup(this);
+		lobby = new Lobby(this);
 		gamePanel = new JPanel(); //gotta convert this into a class later probably
 		
 		
@@ -52,7 +55,7 @@ public class GameMain extends JFrame {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new CardLayout());
 		mainPanel.add(ts, PanelID.TITLE_SCREEN.toString());
-
+		mainPanel.add(lobby, PanelID.LOBBY.toString());
 		
 		getContentPane().add(mainPanel);
 	}
@@ -98,6 +101,10 @@ public class GameMain extends JFrame {
 		mainPanel.add(gamePanel, PanelID.GAME_SCREEN.toString());
 		CardLayout layout = (CardLayout) mainPanel.getLayout();
 		layout.show(mainPanel, PanelID.GAME_SCREEN.toString());	
+	}
+	public void showLobby(){
+		CardLayout layout = (CardLayout) mainPanel.getLayout();
+		layout.show(mainPanel, PanelID.LOBBY.toString());	
 	}
 	
 	public void createGame(Map selectedMap){

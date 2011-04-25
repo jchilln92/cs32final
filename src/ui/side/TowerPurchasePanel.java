@@ -85,14 +85,13 @@ public class TowerPurchasePanel extends JPanel {
 				c.gridx = 2;
 			else
 				c.gridx = 0 + index % 3;
-			
+
 			c.gridy = 1 + index / 3;
 			c.fill = GridBagConstraints.NONE;
 			add(towerButton, c);
-		}
-		
+		}	
 		updateAllowedButtons();
-		
+
 		c.gridx = 1;
 		c.gridy = 4;
 		add(towerStats, c);
