@@ -2,6 +2,7 @@ package src.core;
 
 import java.awt.geom.Point2D;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import src.ui.IDrawableCreep;
 
@@ -89,17 +90,22 @@ public class Creep implements IDrawableCreep {
 			DamageApplication da = new DamageApplication(d, applicationTime);
 			damages.put(t, da);
 		}
-		
 	}
 	
 	public void handleTimedDamage(int time) {
-		for (Tower t : damages.keySet()) {
-			if (t == null) damages.remove(t); // just to be safe
+		Iterator it = damages.keySet().iterator();
+		while (it.hasNext()) {
+			Tower t = (Tower) it.next();
+			
+			if (t == null) { // just to be safe
+				it.remove();
+				continue;
+			}
 			
 			DamageApplication da = damages.get(t);
 			
 			if (da.shouldUnattach(time)) {
-				damages.remove(t);
+				it.remove();
 				speed /= 1 + da.getDamage().getSpeedChange();
 			} else if (da.shouldDoTimeDamage(time)) {
 				health -= da.getDamage().getTimeDamage();

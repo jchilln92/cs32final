@@ -145,7 +145,7 @@ public class GameMain extends JFrame {
 
 		Runner r = new Runner();
 		r.setGameController(gc);
-		thread = new Thread(r);
+		thread = new Thread(r, "Runner Thread");
 		thread.start();
 		
 		gamePanel.validate();

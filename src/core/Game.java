@@ -178,12 +178,15 @@ public class Game {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
+	
 	public int getLastWaveTime(){
 		return lastWaveTime;
 	}
-	public void setLastWaveTime(int lastWaveTime){
+	
+	public void setLastWaveTime(int lastWaveTime) {
 		this.lastWaveTime = lastWaveTime;
 	}
+	
 	public int getElapsedTime() {
 		return elapsedTime;
 	}
