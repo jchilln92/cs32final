@@ -199,4 +199,8 @@ public class Game {
 	public int getWavesSent() {
 		return wavesSent;
 	}
+	
+	public LinkedList<Creep> getCreepQueue(){
+		return creepQueue;
+	}
 }

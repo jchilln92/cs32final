@@ -160,9 +160,10 @@ public class TimeWavePanel extends JPanel {
 	
 	//Check if there are creeps on the map, and if so, disables the pause button.
 	private void setPauseButton(){
-		if(gc.getGame().getCreeps().size() > 0)
+		if (gc.getGame().getCreepQueue().size() > 0 || gc.getGame().getCreeps().size() > 0)
 			nextWaveButton.setEnabled(false);
 		else if (!gc.getPaused())
 			nextWaveButton.setEnabled(true);
 	}
+	
 }
