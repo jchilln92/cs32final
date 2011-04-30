@@ -10,8 +10,6 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
-import com.esotericsoftware.kryonet.rmi.ObjectSpace;
-import com.esotericsoftware.kryonet.rmi.RemoteObject;
 
 public class LobbyManager {
 	NetworkPlayer localPlayer;
@@ -42,7 +40,7 @@ public class LobbyManager {
 		NetworkConstants.registerKryoClasses(client.getKryo());
 		client.start();
 		
-
+		initializeClientListener();
 	}
 	
 	public void createServer(){
@@ -56,9 +54,10 @@ public class LobbyManager {
 			e.printStackTrace();
 		}
 		
-		initializeListeners();
+		initializeServerListener();
 	}
-	private void initializeListeners() {
+	
+	private void initializeServerListener() {
 		server.addListener(new Listener() {
 			public void received(Connection connection, Object object) {
 				if (object instanceof GameNegotiationMessage) {
@@ -104,7 +103,9 @@ public class LobbyManager {
 				}
 			}
 		});
-		
+	}
+	
+	private void initializeClientListener() {
 		client.addListener(new Listener() {
 			public void received(Connection connection, Object object) {
 				if (object instanceof GameNegotiationMessage) {

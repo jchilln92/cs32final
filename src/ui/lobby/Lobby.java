@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -18,17 +19,20 @@ import javax.swing.event.ListSelectionListener;
 
 import src.GameMain;
 import src.core.Map;
+import src.net.AvailableGame;
 import src.net.LobbyManager;
 
 public class Lobby extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final String lobbyText = "Multiplayer Lobby";
+	private static final String[] columnHeaders = {"Game Name", "Host", "Map Name", "Time Waiting"};
+	
 	private JLabel lobbyLabel;
 	private JLabel usernameLabel;
 	
 	private JTextField usernameField;
-	
-	private JScrollPane gameListPane;
+	private JScrollPane gameTableScrollPane;
+	private JTable gameTable;
 	
 	private JButton refreshButton;
 	private JButton exitButton;
@@ -49,13 +53,11 @@ public class Lobby extends JPanel {
 		usernameLabel = new JLabel("Username: ");
 		
 		usernameField = new JTextField(13);
-		
 		updateGameListPane();
 		
 		refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lm.createServer();
 				lm.refreshGameList();
 				updateGameListPane();
 			}
@@ -74,9 +76,9 @@ public class Lobby extends JPanel {
 				gm.showGameSetup(true);
 			}
 		});
-		joinButton = new  JButton("Join Game");
-		joinButton.setEnabled(false);		
 		
+		joinButton = new JButton("Join Game");
+		joinButton.setEnabled(false);		
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(20, 0, 0, 0);	
@@ -112,7 +114,7 @@ public class Lobby extends JPanel {
 		c.insets = new Insets(20, 0, 0, 0);	
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.NONE;
-		add(gameListPane, c);
+		add(gameTableScrollPane, c);
 		
 		c.gridx = 0;
 		c.gridy = 3;
@@ -137,15 +139,20 @@ public class Lobby extends JPanel {
 		add(joinButton, c);	
 	}
 	
-	private void updateGameListPane(){
-		Object games[] = lm.getAvailableGames().toArray();
-		Object gameNames[] = new String[games.length];
-		for(int gameIndex = 0; gameIndex < games.length; gameIndex++){
-			gameNames[gameIndex] = "a";//games[gameIndex].getGameName();
-		}
-		JList gameList = new JList(gameNames);
-
+	private void updateGameListPane() {
+		String[][] data = new String[lm.getAvailableGames().size()][4];
 		
+		int i = 0;
+		for (AvailableGame ag : lm.getAvailableGames()) {
+			data[i][0] = ag.getGameName();
+			data[i][1] = ag.getHostName();
+			data[i][2] = ag.getMapName();
+			data[i][3] = Long.toString(ag.getSecondsWaiting());
+			i++;
+		}
+		
+		gameTable = new JTable(data, columnHeaders);
+		gameTableScrollPane = new JScrollPane(gameTable);
 		/*gameList.setSelectedIndex(-1);
 		gameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		gameList.addListSelectionListener(new ListSelectionListener() {
@@ -158,15 +165,14 @@ public class Lobby extends JPanel {
 			}
 		});
 		*/
-		String categories[] = {"A              \n    \tA\tA\t"};
-		Object mapNames[] = Map.getMapNames().toArray();
+		/*String categories[] = {"A              \n    \tA\tA\t"};
+		String mapNames[] = (String[]) Map.getMapNames().toArray();
 		JList mapList = new JList(categories);
-		
 		JList mapList2 = new JList(mapNames);
 		JPanel lists = new JPanel();
 		lists.add(gameList);
 		lists.add(mapList);
 		lists.add(mapList2);
-		gameListPane = new JScrollPane(lists);
+		gameListPane = new JScrollPane(lists);*/
 	}
 }
