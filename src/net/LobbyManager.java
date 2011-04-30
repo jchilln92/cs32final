@@ -11,6 +11,7 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.kryonet.rmi.ObjectSpace;
+import com.esotericsoftware.kryonet.rmi.RemoteObject;
 
 public class LobbyManager {
 	NetworkPlayer localPlayer;
@@ -21,9 +22,11 @@ public class LobbyManager {
 	Server server;
 	
 	TestData t;
+	Boolean receivedJoinResponse;
 	
 	public LobbyManager() {
 		// testing hack
+		receivedJoinResponse = Boolean.FALSE;
 		t = new TestData();
 		t.message = "Hello, World!";
 		localPlayer = new NetworkPlayer();
@@ -127,15 +130,15 @@ public class LobbyManager {
 							
 							break;
 						case ATTEMPT_TO_JOIN_RESPONSE:
-							boolean booted = (Boolean) m.data;
+							boolean booted = !((Boolean) m.data);
 							
 							if (booted) {
 								System.out.println("You've been kicked");
 								client.close();
-							} else {
-								ITestData t = ObjectSpace.getRemoteObject(connection, 0, ITestData.class);
-								System.out.println("Got test message:" + t.getMessage());
-								t.setMessage("Poop");
+							}
+							
+							synchronized (receivedJoinResponse) {
+								receivedJoinResponse = true;
 							}
 					}
 				}
@@ -186,6 +189,28 @@ public class LobbyManager {
 		GameNegotiationMessage joinMessage = new GameNegotiationMessage();
 		joinMessage.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN;
 		joinMessage.data = localPlayer.getUsername();
+		
+		synchronized (receivedJoinResponse) {
+			receivedJoinResponse = false;
+		}
+		
 		client.sendTCP(joinMessage);
+		
+		while (true) {
+			synchronized (receivedJoinResponse) {
+				if (receivedJoinResponse) break;
+			}
+		}
+		
+		if (client.isConnected()) {
+			ITestData t = ObjectSpace.getRemoteObject(client, 0, ITestData.class);
+			
+			RemoteObject remoteObject = (RemoteObject)t;
+			
+			System.out.println("Got test message:" + t.getMessage());
+			
+			remoteObject.setNonBlocking(true, true);
+			t.setMessage("Poop");
+		}
 	}
 }
