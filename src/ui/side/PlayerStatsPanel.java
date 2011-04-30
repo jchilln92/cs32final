@@ -74,7 +74,7 @@ public class PlayerStatsPanel extends JPanel {
 	}
 
 	public void updateDisplay() {
-		goldValueLabel.setText(Double.toString(player.getGold()));
-		healthValueLabel.setText(Double.toString(player.getHealth()));
+		goldValueLabel.setText(Integer.toString((int)player.getGold()));
+		healthValueLabel.setText(Integer.toString((int)player.getHealth()));
 	}
 }

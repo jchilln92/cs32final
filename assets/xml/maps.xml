@@ -189,4 +189,101 @@
 			</column>
 		</tiles>
 	</map>
+	<map name="Dom's Crazy Loops" width="15" height="15">
+		<creepPath>
+			<point x="0" y="4.5" />
+			<point x="10.5" y="4.5" />
+			<point x="10.5" y="1.5" />
+			<point x="6.5" y="1.5" />
+			<point x="6.5" y="10.5" />
+			<point x="12.5" y="10.5" />
+			<point x="12.5" y="7.5" />
+			<point x="9.5" y="7.5" />
+			<point x="9.5" y="15" />
+		</creepPath>
+		<flyingCreepPath>
+			<point x="0" y="4.5" />
+			<point x="11.5" y="8.5" />
+			<point x="7.5" y="5.5" />
+			<point x="4.5" y="12.5" />
+			<point x="9.5" y="15" />
+		</flyingCreepPath>
+		<tiles length="15">
+			<column>
+				GRASS, GRASS, GRASS, GRASS, PATH, 
+				GRASS, GRASS, GRASS, GRASS, GRASS, 
+				GRASS, GRASS, WATER, WATER, WATER
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, PATH, 
+				GRASS, GRASS, GRASS, ROCK, GRASS, 
+				GRASS, WATER, WATER, WATER, WATER
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, PATH,
+				GRASS, GRASS, ROCK, ROCK, ROCK, 
+				GRASS, GRASS, WATER, WATER, WATER
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, PATH, 
+				GRASS, GRASS, GRASS, ROCK, GRASS, 
+				GRASS, GRASS, GRASS, WATER, GRASS
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, PATH, 
+				GRASS, GRASS, GRASS, GRASS, GRASS, 
+				GRASS, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, PATH, 
+				GRASS, GRASS, GRASS, GRASS, GRASS, 
+				GRASS, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, PATH, PATH, PATH, PATH, 
+				PATH, PATH, PATH, PATH, PATH, 
+				PATH, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, PATH, GRASS, GRASS, PATH, 
+				GRASS, GRASS, GRASS, GRASS, GRASS, 
+				PATH, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, PATH, GRASS, GRASS, PATH, 
+				GRASS, GRASS, GRASS, GRASS, GRASS, 
+				PATH, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, PATH, GRASS, GRASS, PATH, 
+				GRASS, GRASS, PATH, PATH, PATH, 
+				PATH, PATH, PATH, PATH, PATH
+			</column>
+			<column>
+				GRASS, PATH, PATH, PATH, PATH, 
+				GRASS, GRASS, PATH, GRASS, GRASS, 
+				PATH, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, GRASS,
+				GRASS, GRASS, PATH, GRASS, GRASS, 
+				PATH, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, GRASS, 
+				GRASS, GRASS, PATH, PATH, PATH, 
+				PATH, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, GRASS,
+				GRASS, GRASS, GRASS, GRASS, GRASS, 
+				GRASS, GRASS, GRASS, GRASS, GRASS
+			</column>
+			<column>
+				GRASS, GRASS, GRASS, GRASS, GRASS,
+				GRASS, GRASS, GRASS, GRASS, GRASS, 
+				GRASS, GRASS, GRASS, GRASS, GRASS
+			</column>
+		</tiles>
+	</map>
 </maps>

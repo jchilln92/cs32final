@@ -8,11 +8,11 @@
 			<hitsFlying>false</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>1</instantDamage>
+			<instantDamage>.75</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>
-			<speedChange>-.5</speedChange>
+			<speedChange>0</speedChange>
 			<targetable>true</targetable>
 		</damage>
 		<upgrades>
@@ -226,7 +226,7 @@
 			<hitsFlying>false</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>.05</instantDamage>
+			<instantDamage>0</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>10</effectDuration>
@@ -705,8 +705,8 @@
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
-				<dSpeedEffect>0</dSpeedEffect>
-				<dRadius>.3</dRadius>
+				<dSpeedEffect>0</dSpeedEffect>   
+				<dRadius>.3</dRadius> 
 				<dFireRate>0</dFireRate>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
@@ -765,7 +765,7 @@
 	<tower type="HTA">
 		<price>5000</price>
 		<radius>8</radius>
-		<fireRate>5</fireRate>
+		<fireRate>4</fireRate>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>true</hitsFlying>
