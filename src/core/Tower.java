@@ -35,7 +35,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	@Element
 	private double price;
 	
-	@Element(required=false)
+	@Element
 	private TargetingInfo targeting;
 	
 	@ElementList(required=false)
@@ -66,6 +66,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 		tower.setRadius(template.getRadius());
 		tower.upgrades = template.getUpgrades();
 		tower.setInvestment(tower.getPrice());
+		tower.setTargetingInfo(template.getTargeting());
 		tower.setType(t);
 		
 		return tower;
@@ -86,6 +87,10 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 
 	public TargetingInfo getTargeting() {
 		return targeting;
+	}
+	
+	public void setTargetingInfo(TargetingInfo tInfo) {
+		this.targeting = tInfo;
 	}
 
 	public double getRadius() {

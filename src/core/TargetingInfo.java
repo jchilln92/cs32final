@@ -1,10 +1,15 @@
 package src.core;
 
+import org.simpleframework.xml.Element;
+
 /**
  * Encapsulates information about how a tower will target creeps.
  */
 public class TargetingInfo {
+	@Element
 	private Strategy strategy;
+	
+	@Element
 	private boolean hitsFlying;
 
 	public enum Strategy {

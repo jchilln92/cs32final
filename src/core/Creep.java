@@ -4,15 +4,53 @@ import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
+import src.FilePaths;
+import src.core.xml.CreepXMLReader;
 import src.ui.IDrawableCreep;
 
 public class Creep implements IDrawableCreep {
+	private static HashMap<Creep.Type, Creep> templateCreeps;
+	
+	public static Creep createCreep(Type t) {
+		if (templateCreeps == null) { 
+			templateCreeps = CreepXMLReader.readXML(FilePaths.xmlPath + "creeps.xml");
+		}
+		
+		Creep templateCreep = templateCreeps.get(t);
+		Creep newCreep = new Creep();
+		newCreep.setBaseHealth(templateCreep.getBaseHealth());
+		newCreep.setHealth(templateCreep.getBaseHealth());
+		newCreep.setFlying(templateCreep.isFlying());
+		newCreep.setDamageToBase(templateCreep.getDamageToBase());
+		newCreep.setPrice(templateCreep.getPrice());
+		newCreep.setReward(templateCreep.getReward());
+		newCreep.setSpeed(templateCreep.getSpeed());
+		newCreep.setType(t);
+		
+		return newCreep;
+	}
+	
+	@Element
 	private double baseHealth;
+	
 	private double health;
+	
+	@Element
 	private double reward;
+	
+	@Element
 	private double speed; // the speed of this creep, as a percentage of normal speed
+	
+	@Attribute
 	private Type type;
+	
+	@Element
 	private boolean flying;
+	
+	@Element
 	private double damageToBase;
 	
 	private HashMap<Tower, DamageApplication> damages;
@@ -22,6 +60,7 @@ public class Creep implements IDrawableCreep {
 
 	private Point2D.Double position;
 
+	@Element
 	private double price;
 
 	public double getPrice() {
@@ -29,25 +68,19 @@ public class Creep implements IDrawableCreep {
 	}
 
 	public enum Type {
-		GENERIC
+		GENERIC,
+		BIG_GUY,
+		ASSASSIN,
+		FLYING,
+		FAST
 	}
 
 	public Creep() {
 		damages = new HashMap<Tower, DamageApplication>();
 		pathIndex = 0;
-		baseHealth = 100;
-		reward = 100;
-		health = 100;
-		flying = false;
-		speed = 1;
-		type = Type.GENERIC;
-		damageToBase = 10;
+		health = baseHealth;
 	}
-
-	public double getReward() {
-		return reward;
-	}
-
+	
 	/**
 	 * Determines the direction this creep is moving in.
 	 * 
@@ -159,5 +192,41 @@ public class Creep implements IDrawableCreep {
 
 	public void setSpeed(double speed) {
 		this.speed = speed;
+	}
+	
+	public double getReward() {
+		return reward;
+	}
+
+	public double getBaseHealth() {
+		return baseHealth;
+	}
+
+	public double getHealth() {
+		return health;
+	}
+
+	public void setHealth(double health) {
+		this.health = health;
+	}
+
+	public void setBaseHealth(double baseHealth) {
+		this.baseHealth = baseHealth;
+	}
+
+	public void setReward(double reward) {
+		this.reward = reward;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public void setDamageToBase(double damageToBase) {
+		this.damageToBase = damageToBase;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }

@@ -19,10 +19,10 @@ public class NetworkGameController extends GameController {
 	}
 	
 	public Collection<? extends IDrawableCreep> getDrawableCreeps() {
-		return game.getCreeps();
+		return game.getOpponentCreeps();
 	}
 	
 	public Collection<? extends IDrawableTower> getDrawableTowers() {
-		return game.getTowers();
+		return game.getOpponentTowers();
 	}
 }
