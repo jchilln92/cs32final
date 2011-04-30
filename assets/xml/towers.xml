@@ -662,11 +662,11 @@
 			<hitsFlying>false</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>.1</instantDamage>
-			<timeDamage>1</timeDamage>
+			<instantDamage>0</instantDamage>
+			<timeDamage>0</timeDamage>
 			<period>0</period>
-			<effectDuration>0</effectDuration>
-			<speedChange>.1</speedChange>
+			<effectDuration>200</effectDuration>
+			<speedChange>-1</speedChange>
 			<targetable>false</targetable>
 		</damage>
 		<upgrades>
@@ -772,10 +772,10 @@
 		</targeting>
 		<damage>
 			<instantDamage>3</instantDamage>
-			<timeDamage>1</timeDamage>
+			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>
-			<speedChange>.1</speedChange>
+			<speedChange>0</speedChange>
 			<targetable>true</targetable>
 		</damage>
 		<upgrades>
