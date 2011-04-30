@@ -42,6 +42,10 @@ public class LobbyManager {
 		NetworkConstants.registerKryoClasses(client.getKryo());
 		client.start();
 		
+
+	}
+	
+	public void createServer(){
 		server = new Server();
 		NetworkConstants.registerKryoClasses(server.getKryo());
 		server.start();
@@ -54,7 +58,6 @@ public class LobbyManager {
 		
 		initializeListeners();
 	}
-	
 	private void initializeListeners() {
 		server.addListener(new Listener() {
 			public void received(Connection connection, Object object) {
@@ -179,5 +182,9 @@ public class LobbyManager {
 		
 
 		client.sendTCP(joinMessage);
+	}
+	
+	public ArrayList<AvailableGame> getAvailableGames(){
+		return availableGames;
 	}
 }

@@ -73,7 +73,7 @@ public class PauseQuitPanel extends JPanel {
 			check = true;
 		}
 		gc.togglePause(true);
-		Object[] options = {"That is SO Raven.", "Totes inapropro, Raven!"};
+		Object[] options = {"I want to quit.", "I don't want to quit."};
 		int n = JOptionPane.showOptionDialog(this, //we need to replace this with the main panel
 		"Are you sure you want to quit current game?",
 		"There is racism in the world.",
