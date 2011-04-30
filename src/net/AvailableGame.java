@@ -1,11 +1,9 @@
 package src.net;
 
-import java.net.InetAddress;
-
 public class AvailableGame {
 	private String gameName;
 	private String mapName;
-	private InetAddress hostAddress;
+	private String hostAddress;
 	private long secondsWaiting;
 	
 	public String getGameName() {
@@ -24,11 +22,11 @@ public class AvailableGame {
 		this.mapName = mapName;
 	}
 	
-	public InetAddress getHostAddress() {
+	public String getHostAddress() {
 		return hostAddress;
 	}
 	
-	public void setHostAddress(InetAddress hostAddress) {
+	public void setHostAddress(String hostAddress) {
 		this.hostAddress = hostAddress;
 	}
 	

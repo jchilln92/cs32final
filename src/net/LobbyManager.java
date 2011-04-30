@@ -24,7 +24,6 @@ public class LobbyManager {
 		
 		try {
 			testAddresses.add(InetAddress.getByName("cslab8h"));
-			testAddresses.add(InetAddress.getByName("cslab8f"));
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,9 +33,11 @@ public class LobbyManager {
 		
 		client = new Client();
 		NetworkConstants.registerKryoClasses(client.getKryo());
+		client.start();
 		
 		server = new Server();
 		NetworkConstants.registerKryoClasses(server.getKryo());
+		server.start();
 		try {
 			server.bind(NetworkConstants.tcpPort, NetworkConstants.udpPort);
 		} catch (IOException e) {
@@ -60,7 +61,7 @@ public class LobbyManager {
 						mock.setSecondsWaiting(10);
 						
 						try {
-							mock.setHostAddress(InetAddress.getLocalHost());
+							mock.setHostAddress(InetAddress.getLocalHost().getCanonicalHostName());
 						} catch (UnknownHostException e) {
 							// pretty sure localhost always exists
 						}
@@ -90,7 +91,7 @@ public class LobbyManager {
 		
 		for (InetAddress addr : testAddresses) {
 			try {
-				client.connect(1000, addr, NetworkConstants.tcpPort);
+				client.connect(1000, addr, NetworkConstants.tcpPort, NetworkConstants.udpPort);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

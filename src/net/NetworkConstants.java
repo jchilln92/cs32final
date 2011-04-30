@@ -8,6 +8,7 @@ public class NetworkConstants {
 	
 	public static void registerKryoClasses(Kryo k) {
 		k.register(GameNegotiationMessage.class);
+		k.register(GameNegotiationMessage.Type.class);
 		k.register(AvailableGame.class);
 	}
 }
