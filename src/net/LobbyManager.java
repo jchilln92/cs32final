@@ -21,14 +21,7 @@ public class LobbyManager {
 	Client client;
 	Server server;
 	
-	TestData t;
-	Boolean receivedJoinResponse;
-	
 	public LobbyManager() {
-		// testing hack
-		receivedJoinResponse = Boolean.FALSE;
-		t = new TestData();
-		t.message = "Hello, World!";
 		localPlayer = new NetworkPlayer();
 		localPlayer.setUsername("joel");
 		
@@ -66,10 +59,9 @@ public class LobbyManager {
 		server.addListener(new Listener() {
 			public void received(Connection connection, Object object) {
 				if (object instanceof GameNegotiationMessage) {
-					System.out.println("My message is: " + t.message);
 					GameNegotiationMessage m = (GameNegotiationMessage)object;
-					
 					GameNegotiationMessage response = new GameNegotiationMessage();
+					
 					switch (m.type) {
 						case GAME_DISCOVER:
 							AvailableGame mock = new AvailableGame();
@@ -100,10 +92,6 @@ public class LobbyManager {
 							if (shouldBoot) {
 								response.data = false;
 							} else {
-								ObjectSpace objSpace = new ObjectSpace();
-								objSpace.register(0, t);
-								objSpace.addConnection(connection);
-								
 								response.data = true;
 							}
 							
@@ -136,10 +124,6 @@ public class LobbyManager {
 								System.out.println("You've been kicked");
 								client.close();
 							}
-							
-							synchronized (receivedJoinResponse) {
-								receivedJoinResponse = true;
-							}
 					}
 				}
 			}
@@ -151,7 +135,7 @@ public class LobbyManager {
 		
 		for (InetAddress addr : testAddresses) {
 			try {
-				client.connect(1000, addr, NetworkConstants.tcpPort, NetworkConstants.udpPort);
+				client.connect(NetworkConstants.gameDisoveryTimeout, addr, NetworkConstants.tcpPort, NetworkConstants.udpPort);
 				
 				// send query to server
 				GameNegotiationMessage discoveryMessage = new GameNegotiationMessage();
@@ -177,7 +161,10 @@ public class LobbyManager {
 	
 	public void joinGame(AvailableGame ag) {
 		try {
-			client.connect(4000, InetAddress.getByName(ag.getHostAddress()), NetworkConstants.tcpPort, NetworkConstants.udpPort);
+			client.connect(NetworkConstants.gameConnectTimeout, 
+						   InetAddress.getByName(ag.getHostAddress()), 
+						   NetworkConstants.tcpPort, 
+						   NetworkConstants.udpPort);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -190,27 +177,7 @@ public class LobbyManager {
 		joinMessage.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN;
 		joinMessage.data = localPlayer.getUsername();
 		
-		synchronized (receivedJoinResponse) {
-			receivedJoinResponse = false;
-		}
-		
+
 		client.sendTCP(joinMessage);
-		
-		while (true) {
-			synchronized (receivedJoinResponse) {
-				if (receivedJoinResponse) break;
-			}
-		}
-		
-		if (client.isConnected()) {
-			ITestData t = ObjectSpace.getRemoteObject(client, 0, ITestData.class);
-			
-			RemoteObject remoteObject = (RemoteObject)t;
-			
-			System.out.println("Got test message:" + t.getMessage());
-			
-			remoteObject.setNonBlocking(true, true);
-			t.setMessage("Poop");
-		}
 	}
 }

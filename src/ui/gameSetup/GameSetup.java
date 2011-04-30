@@ -49,7 +49,7 @@ public class GameSetup extends JPanel {
 		
 		this.gm = gameMain;
 		
-		mc = new MapComponent();
+		mc = new MapComponent(true);
 		mc.setGridOn(true);
 		mc.setSize(400, 400);
 	

@@ -138,7 +138,7 @@ public class GameMain extends JFrame {
 		gc.setGameMain(this);
 
 		// map component to draw everything
-		MapComponent mc = new MapComponent();
+		MapComponent mc = new MapComponent(false);
 		mc.setMap(m);
 		mc.setSize(600, 600);
 		mc.setGridOn(true);

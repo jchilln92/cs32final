@@ -69,6 +69,7 @@ public class Game {
 		
 		sendWave(WaveGenerator.generateWave(wavesSent + 1)); // wavesSent + 1 == wave number	
 	}
+	
 	/**
 	 * Moves each of the creeps on the board along their specified CreepPath.  When creeps
 	 * are destroyed, a reward is issued to the player.  When creeps reach the end of the

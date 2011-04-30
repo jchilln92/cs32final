@@ -23,9 +23,13 @@ public class MapComponent extends JComponent {
 	private Map m;
 	private GameController gc;
 	private boolean gridOn;
+	private boolean readOnly;
 
-	public MapComponent() {
-		setupMouseEvents();
+	public MapComponent(boolean readOnly) {
+		this.readOnly = readOnly;
+		
+		if (!readOnly)
+			setupMouseEvents();
 	}
 	
 	private void setupMouseEvents() {
@@ -229,5 +233,9 @@ public class MapComponent extends JComponent {
 	@Override
 	public Dimension getMaximumSize() {
 		return getPreferredSize();
+	}
+
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
 	}
 }
