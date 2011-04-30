@@ -2,7 +2,7 @@
 	<tower type="GUN">
 		<price>150</price>
 		<radius>3</radius>
-		<fireRate>1.5</fireRate>
+		<firePeriod>1</firePeriod>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -23,7 +23,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="1" price="50">
@@ -33,7 +33,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="1" price="50">
@@ -43,7 +43,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="2" price="50">
@@ -53,7 +53,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="2" price="50">
@@ -63,7 +63,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="2" price="50">
@@ -73,7 +73,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="3" price="50">
@@ -83,7 +83,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="3" price="50">
@@ -93,7 +93,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="3" price="50">
@@ -103,7 +103,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 		</upgrades>
@@ -111,7 +111,7 @@
 	<tower type="ANTIAIR">
 		<price>250</price>
 		<radius>3</radius>
-		<fireRate>1.5</fireRate>
+		<firePeriod>1</firePeriod>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>true</hitsFlying>
@@ -132,7 +132,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="ANTIAIR" level="1" price="50">
@@ -142,7 +142,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="ANTIAIR" level="1" price="50">
@@ -152,7 +152,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="ANTIAIR" level="2" price="50">
@@ -162,7 +162,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="ANTIAIR" level="2" price="50">
@@ -172,7 +172,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="ANTIAIR" level="2" price="50">
@@ -182,7 +182,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="ANTIAIR" level="3" price="50">
@@ -192,7 +192,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="ANTIAIR" level="3" price="50">
@@ -202,7 +202,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="ANTIAIR" level="3" price="50">
@@ -212,7 +212,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 		</upgrades>
@@ -220,7 +220,7 @@
 	<tower type="SLOWING">
 		<price>500</price>
 		<radius>3</radius>
-		<fireRate>.75</fireRate>
+		<firePeriod>2</firePeriod>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -241,7 +241,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="SLOWING" level="1" price="50">
@@ -251,7 +251,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="SLOWING" level="1" price="50">
@@ -261,7 +261,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="SLOWING" level="2" price="50">
@@ -271,7 +271,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="SLOWING" level="2" price="50">
@@ -281,7 +281,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="SLOWING" level="2" price="50">
@@ -291,7 +291,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="SLOWING" level="3" price="50">
@@ -301,7 +301,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="SLOWING" level="3" price="50">
@@ -311,7 +311,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="SLOWING" level="3" price="50">
@@ -321,7 +321,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 		</upgrades>
@@ -329,13 +329,13 @@
 	<tower type="MORTAR">
 		<price>750</price>
 		<radius>6</radius>
-		<fireRate>.5</fireRate>
+		<firePeriod>40</firePeriod>
 		<targeting>
 			<strategy>FURTHEST</strategy>
 			<hitsFlying>false</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>.75</instantDamage>
+			<instantDamage>25</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>
@@ -350,7 +350,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="MORTAR" level="1" price="50">
@@ -360,7 +360,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="MORTAR" level="1" price="50">
@@ -370,7 +370,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="MORTAR" level="2" price="50">
@@ -380,7 +380,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="MORTAR" level="2" price="50">
@@ -390,7 +390,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="MORTAR" level="2" price="50">
@@ -400,7 +400,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="MORTAR" level="3" price="50">
@@ -410,7 +410,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="MORTAR" level="3" price="50">
@@ -420,7 +420,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="MORTAR" level="3" price="50">
@@ -430,7 +430,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 		</upgrades>
@@ -438,7 +438,7 @@
 	<tower type="FRIEND">
 		<price>1250</price>
 		<radius>3</radius>
-		<fireRate>1.5</fireRate>
+		<firePeriod>1.5</firePeriod>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -459,7 +459,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FRIEND" level="1" price="50">
@@ -469,7 +469,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FRIEND" level="1" price="50">
@@ -479,7 +479,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FRIEND" level="2" price="50">
@@ -489,7 +489,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FRIEND" level="2" price="50">
@@ -499,7 +499,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FRIEND" level="2" price="50">
@@ -509,7 +509,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FRIEND" level="3" price="50">
@@ -519,7 +519,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FRIEND" level="3" price="50">
@@ -529,7 +529,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FRIEND" level="3" price="50">
@@ -539,7 +539,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 		</upgrades>
@@ -547,7 +547,7 @@
 	<tower type="FLAME">
 		<price>750</price>
 		<radius>2</radius>
-		<fireRate>1.5</fireRate>
+		<firePeriod>1.5</firePeriod>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -568,7 +568,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FLAME" level="1" price="50">
@@ -578,7 +578,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FLAME" level="1" price="50">
@@ -588,7 +588,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FLAME" level="2" price="50">
@@ -598,7 +598,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FLAME" level="2" price="50">
@@ -608,7 +608,7 @@
 				<dDuration>0</dDuration>false
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FLAME" level="2" price="50">
@@ -618,7 +618,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>false
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FLAME" level="3" price="50">
@@ -628,7 +628,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FLAME" level="3" price="50">
@@ -638,7 +638,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="FLAME" level="3" price="50">
@@ -648,7 +648,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 		</upgrades>
@@ -656,7 +656,7 @@
 	<tower type="STASIS">
 		<price>200</price>
 		<radius>3</radius>
-		<fireRate>.25</fireRate>
+		<firePeriod>.25</firePeriod>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -677,7 +677,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="STASIS" level="1" price="50">
@@ -687,7 +687,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="STASIS" level="1" price="50">
@@ -697,7 +697,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="STASIS" level="2" price="50">
@@ -707,7 +707,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>   
 				<dRadius>.3</dRadius> 
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="STASIS" level="2" price="50">
@@ -717,7 +717,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="STASIS" level="2" price="50">
@@ -727,7 +727,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="STASIS" level="3" price="50">
@@ -737,7 +737,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="STASIS" level="3" price="50">
@@ -747,7 +747,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="STASIS" level="3" price="50">
@@ -757,7 +757,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 		</upgrades>
@@ -765,7 +765,7 @@
 	<tower type="HTA">
 		<price>5000</price>
 		<radius>8</radius>
-		<fireRate>4</fireRate>
+		<firePeriod>4</firePeriod>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>true</hitsFlying>
@@ -786,7 +786,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="HTA" level="1" price="50">
@@ -796,7 +796,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="HTA" level="1" price="50">
@@ -806,7 +806,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="HTA" level="2" price="50">
@@ -816,7 +816,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="HTA" level="2" price="50">
@@ -826,7 +826,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="HTA" level="2" price="50">
@@ -836,7 +836,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="HTA" level="3" price="50">
@@ -846,7 +846,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="HTA" level="3" price="50">
@@ -856,7 +856,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="HTA" level="3" price="50">
@@ -866,7 +866,7 @@
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFireRate>0</dFireRate>
+				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 		</upgrades>

@@ -117,11 +117,22 @@ public class Game {
 	 * Sets the creeps targeted by each tower, and 
 	 */
 	private void doTowerAttacks() {
+		// find towers eligible to attack
+		ArrayList<Tower> eligibleTowers = new ArrayList<Tower>();
 		for (Tower t : towers) {
+			if (t.canFire(elapsedTime)) {
+				eligibleTowers.add(t);
+			}
+		}
+		
+		// find and attack the first creep the tower can attack
+		for (Tower t : eligibleTowers) {
 			for (Creep c : creeps) {
-				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius() &&
-					(!c.isFlying() || t.getTargeting().isHitsFlying())) {
+				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius() && // creep in range
+					(!c.isFlying() || t.getTargeting().isHitsFlying()) && // this tower must be flying if creep is
+					c.towerCanApplyDamage(t)) {
 					c.applyDamage(t.getDamage(), t, elapsedTime);
+					t.didFireAtTime(elapsedTime);
 					break;
 				}
 			}

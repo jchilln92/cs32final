@@ -30,7 +30,8 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	private double radius;
 	
 	@Element
-	private double fireRate;
+	private double firePeriod;
+	private int lastFireTime;
 	
 	@Element
 	private double price;
@@ -42,12 +43,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	private ArrayList<Upgrade> upgrades;
 	
 	private IAlignment.Alignment alignment;
-	
 	private int upgradeLevel;
-	
-	public ArrayList<Upgrade> getUpgrades() {
-		return upgrades;
-	}
 
 	private int x, y;
 	private double investment;
@@ -61,7 +57,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 		Tower tower = new Tower();
 		
 		tower.setDamage(template.getDamage());
-		tower.setFireRate(template.getFireRate());
+		tower.setFirePeriod(template.getFirePeriod());
 		tower.setPrice(template.getPrice());
 		tower.setRadius(template.getRadius());
 		tower.upgrades = template.getUpgrades();
@@ -75,14 +71,31 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	public Tower() {
 		targeting = new TargetingInfo();
 		upgradeLevel = 0;
+		lastFireTime = 0;
+	}
+	
+	public enum Type {
+		GUN, ANTIAIR, SLOWING, MORTAR, FRIEND, FLAME, STASIS, HTA;
 	}
 
-	public double getFireRate() {
-		return fireRate;
+	public boolean canFire(int time) {
+		if (time >= lastFireTime + firePeriod) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public void didFireAtTime(int time) {
+		lastFireTime = time;
+	}
+	
+	public double getFirePeriod() {
+		return firePeriod;
 	}
 
-	public void setFireRate(double fireRate) {
-		this.fireRate = fireRate;
+	public void setFirePeriod(double firePeriod) {
+		this.firePeriod = firePeriod;
 	}
 
 	public TargetingInfo getTargeting() {
@@ -101,16 +114,11 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 		this.radius = radius;
 	}
 
-	public enum Type {
-		GUN, ANTIAIR, SLOWING, MORTAR, FRIEND, FLAME, STASIS, HTA;
-	}
-
 	public Damage getDamage() {
 		return damage;
 	}
 
 	public void setDamage(Damage damage) {
-		//this.damage = damage;
 		this.damage = Damage.copyDamage(damage);
 	}
 
@@ -176,6 +184,10 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	
 	public int getUpgradeLevel() {
 		return upgradeLevel;
+	}
+	
+	public ArrayList<Upgrade> getUpgrades() {
+		return upgrades;
 	}
 
 	@Override

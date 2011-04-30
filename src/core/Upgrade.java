@@ -30,8 +30,8 @@ public class Upgrade implements IPurchasable {
 	@Element(name="dRadius")
 	private double radiusChange;
 	
-	@Element(name="dFireRate")
-	private double fireRateChange;
+	@Element(name="dFirePeriod")
+	private double firePeriodChange;
 	
 	@Element
 	private boolean canHitFlying;
@@ -69,8 +69,8 @@ public class Upgrade implements IPurchasable {
 		return radiusChange;
 	}
 
-	public double getFireRateChange() {
-		return fireRateChange;
+	public double getFirePeriodChange() {
+		return firePeriodChange;
 	}
 
 	public boolean getHitsFlyingChange() {
@@ -111,11 +111,11 @@ public class Upgrade implements IPurchasable {
 	}
 
 	public void updateTower(Tower t) {
-		double curFireRate = t.getFireRate();
+		double curFirePeriod = t.getFirePeriod();
 		double curRadius = t.getRadius();
 		double curInvestment = t.getInvestment();
 
-		t.setFireRate(curFireRate + curFireRate * getFireRateChange());
+		t.setFirePeriod(curFirePeriod + curFirePeriod * getFirePeriodChange());
 		t.setRadius(curRadius + curRadius * getRadiusChange());
 		t.setInvestment(curInvestment + getPrice());
 	}

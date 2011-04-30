@@ -113,6 +113,28 @@ public class Creep implements IDrawableCreep {
 		return damageToBase;
 	}
 
+	/**
+	 * Every tower is only allowed to apply time-based damage to each creep once at a time.
+	 * 
+	 * For example, a tower that slows down a creep by 10 percent for 10 seconds may not attach
+	 * this damage modifier to the same creep over and over again.
+	 * 
+	 * @note This method returning true does not necessarily mean that the tower can attack.
+	 * 		 There are other factors, such as whether or not the tower is in range, which are
+	 * 		 checked elsewhere.
+	 * 
+	 * @param t A tower
+	 * @return A boolean indicating whether or not the provided tower is allowed to damage to
+	 * 		   this creep.
+	 */
+	public boolean towerCanApplyDamage(Tower t) {
+		if (!damages.containsKey(t) /* && targetable */) { // TODO: fix this
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public void applyDamage(Damage d, Tower t, int applicationTime) {
 		health -= d.getInstantDamage();
 		
