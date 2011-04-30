@@ -49,16 +49,18 @@ public class Lobby extends JPanel {
 		lm = new LobbyManager();
 		gm = gameMain;
 		
+		gameTableScrollPane = new JScrollPane();
+		
 		lobbyLabel = new JLabel(lobbyText);
 		usernameLabel = new JLabel("Username: ");
 		
 		usernameField = new JTextField(13);
+		
 		updateGameListPane();
 		
 		refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lm.refreshGameList();
 				updateGameListPane();
 			}
 		});
@@ -97,7 +99,7 @@ public class Lobby extends JPanel {
 		c.gridy = 1;
 		c.gridwidth = 1;
 		c.insets = new Insets(20, -20, 0, 0);	
-		c.fill = GridBagConstraints.NONE;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		add(usernameField, c);
 		
 		c.gridx = 3;
@@ -109,11 +111,11 @@ public class Lobby extends JPanel {
 		c.gridx = 0;
 		c.gridy = 2;
 		c.gridwidth = 6;
-		c.ipadx = 140;
+		c.ipadx = 100;
 		c.ipady = 60;
 		c.insets = new Insets(20, 0, 0, 0);	
 		c.anchor = GridBagConstraints.LINE_START;
-		c.fill = GridBagConstraints.NONE;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		add(gameTableScrollPane, c);
 		
 		c.gridx = 0;
@@ -140,6 +142,9 @@ public class Lobby extends JPanel {
 	}
 	
 	private void updateGameListPane() {
+		lm.refreshGameList();
+		
+		System.out.println(lm.getAvailableGames().size());
 		String[][] data = new String[lm.getAvailableGames().size()][4];
 		
 		int i = 0;
@@ -152,27 +157,8 @@ public class Lobby extends JPanel {
 		}
 		
 		gameTable = new JTable(data, columnHeaders);
-		gameTableScrollPane = new JScrollPane(gameTable);
-		/*gameList.setSelectedIndex(-1);
-		gameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		gameList.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-			if(gameList.getSelectedIndex() == -1)
-				joinButton.setEnabled(false);
-			else
-				joinButton.setEnabled(true);
-			}
-		});
-		*/
-		/*String categories[] = {"A              \n    \tA\tA\t"};
-		String mapNames[] = (String[]) Map.getMapNames().toArray();
-		JList mapList = new JList(categories);
-		JList mapList2 = new JList(mapNames);
-		JPanel lists = new JPanel();
-		lists.add(gameList);
-		lists.add(mapList);
-		lists.add(mapList2);
-		gameListPane = new JScrollPane(lists);*/
+		gameTable.getTableHeader().setReorderingAllowed(false);
+		gameTableScrollPane.setViewportView(gameTable);
+		gameTable.setFillsViewportHeight(true);
 	}
 }

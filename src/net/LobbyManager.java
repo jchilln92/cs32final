@@ -156,11 +156,6 @@ public class LobbyManager {
 				e.printStackTrace();
 			}
 		}
-		
-		System.out.println("Available Games:");
-		for (AvailableGame ag : availableGames) {
-			System.out.println(ag.getGameName());
-		}
 	}
 	
 	public void joinGame(AvailableGame ag) {
