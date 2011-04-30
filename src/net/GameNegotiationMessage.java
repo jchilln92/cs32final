@@ -8,7 +8,6 @@ public class GameNegotiationMessage {
 		GAME_DISCOVER,
 		GAME_DISCOVER_RESPONSE,
 		ATTEMPT_TO_JOIN,
-		START_GAME,
-		BOOT
+		ATTEMPT_TO_JOIN_RESPONSE
 	}
 }

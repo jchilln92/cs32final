@@ -10,5 +10,6 @@ public class NetworkConstants {
 		k.register(GameNegotiationMessage.class);
 		k.register(GameNegotiationMessage.Type.class);
 		k.register(AvailableGame.class);
+		k.register(TestData.class);
 	}
 }
