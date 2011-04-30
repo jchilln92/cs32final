@@ -16,9 +16,7 @@ public class Runner implements Runnable {
 			try {
 				Thread.sleep(tickDuration);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				//should we remove this? we probably should, but i want to double check.
-				e.printStackTrace();
+				// ignore interruption, we will only ever do it on purpose
 			}
 		}
 	}

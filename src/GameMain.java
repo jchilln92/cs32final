@@ -50,7 +50,6 @@ public class GameMain extends JFrame {
 		lobby = new Lobby(this);
 		gamePanel = new JPanel(); //gotta convert this into a class later probably
 		
-		
 		// initialize the card layout panel
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new CardLayout());
@@ -97,11 +96,13 @@ public class GameMain extends JFrame {
 		CardLayout layout = (CardLayout) mainPanel.getLayout();
 		layout.show(mainPanel, PanelID.GAME_SETUP.toString());
 	}
+	
 	public void showGameScreen(){
 		mainPanel.add(gamePanel, PanelID.GAME_SCREEN.toString());
 		CardLayout layout = (CardLayout) mainPanel.getLayout();
 		layout.show(mainPanel, PanelID.GAME_SCREEN.toString());	
 	}
+	
 	public void showLobby(){
 		CardLayout layout = (CardLayout) mainPanel.getLayout();
 		layout.show(mainPanel, PanelID.LOBBY.toString());	
@@ -162,7 +163,12 @@ public class GameMain extends JFrame {
 		mainPanel.remove(gamePanel);
 		gamePanel = new JPanel();
 		
-		thread.interrupt();
+		try {
+			thread.interrupt();
+		} catch (Exception e) {
+			
+		}
+		
 		gamePanel.validate();
 		showTitleScreen();
 	}
