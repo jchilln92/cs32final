@@ -8,4 +8,8 @@ public class NetworkPlayer extends Player {
 	public String getUsername() {
 		return username;
 	}
+	
+	public void setUsername(String uname) {
+		username = uname;
+	}
 }

@@ -26,13 +26,15 @@ public class LobbyManager {
 		// testing hack
 		t = new TestData();
 		t.message = "Hello, World!";
+		localPlayer = new NetworkPlayer();
+		localPlayer.setUsername("joel");
 		
 		// hack for testing, make a list of hosts to test
 		testAddresses = new ArrayList<InetAddress>();
 		
 		try {
 			testAddresses.add(InetAddress.getByName("cslab8h"));
-			testAddresses.add(InetAddress.getByName("cslab8f"));
+			//testAddresses.add(InetAddress.getByName("cslab8f"));
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,6 +103,9 @@ public class LobbyManager {
 								
 								response.data = true;
 							}
+							
+							connection.sendTCP(response);
+							break;
 					}
 				}
 			}
@@ -128,8 +133,8 @@ public class LobbyManager {
 								System.out.println("You've been kicked");
 								client.close();
 							} else {
-								TestData t = ObjectSpace.getRemoteObject(connection, 0, TestData.class);
-								System.out.println("Got test message:" + t.message);
+								ITestData t = ObjectSpace.getRemoteObject(connection, 0, ITestData.class);
+								System.out.println("Got test message:" + t.getMessage());
 								t.setMessage("Poop");
 							}
 					}
