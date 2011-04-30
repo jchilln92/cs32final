@@ -17,6 +17,7 @@ public class NetworkGame extends Game {
 	private Connection remoteConnection; // the connection with our opponent
 	private ArrayList<Creep> opponentCreeps; // the creeps on the opponent's map
 	private ArrayList<Tower> opponentTowers; // the towers on the opponent's map
+	private NetworkPlayer opponent;
 
 	public NetworkGame(Connection opponent) {
 		remoteConnection = opponent;
@@ -83,5 +84,13 @@ public class NetworkGame extends Game {
 
 		remoteConnection.sendTCP(creepMessage);
 		remoteConnection.sendTCP(towerMessage);
+	}
+	
+	public ArrayList<Creep> getOpponentCreeps() {
+		return opponentCreeps;
+	}
+	
+	public ArrayList<Tower> getOpponentTowers() {
+		return opponentTowers;
 	}
 }
