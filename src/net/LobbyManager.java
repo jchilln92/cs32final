@@ -127,6 +127,7 @@ public class LobbyManager {
 							
 							break;
 						case ATTEMPT_TO_JOIN_RESPONSE:
+							System.out.println("response");
 							boolean booted = !((Boolean) m.data);
 							
 							if (booted) {
@@ -179,7 +180,6 @@ public class LobbyManager {
 		GameNegotiationMessage joinMessage = new GameNegotiationMessage();
 		joinMessage.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN;
 		joinMessage.data = localPlayer.getUsername();
-		
 
 		client.sendTCP(joinMessage);
 	}

@@ -50,6 +50,10 @@ public class MultiplayerController {
 		gameMain.showScreen(waitScreen);
 	}
 	
+	public void joinGame(int selectedRow) {
+		lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
+	}
+	
 	public void playerAttemptedToJoin(String name) {
 		waitScreen.setPotentialOpponent(name);
 	}

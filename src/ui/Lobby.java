@@ -88,7 +88,12 @@ public class Lobby extends JPanel {
 		});
 		
 		joinButton = new JButton("Join Game");
-		joinButton.setEnabled(false);		
+		//joinButton.setEnabled(false);
+		joinButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.joinGame(gameTable.getSelectedRow());
+			}
+		});
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(20, 0, 0, 0);	
