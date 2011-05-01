@@ -18,10 +18,10 @@ public class MultiplayerController {
 	public MultiplayerController(GameMain gameMain) {
 		this.gameMain = gameMain;
 		
-		lobbyManager = new LobbyManager();
+		lobbyManager = new LobbyManager(this);
 		lobby = new Lobby(this);
 		gameSetup = new MultiplayerGameSetup(this);
-		waitScreen = new MultiplayerWaitScreen();
+		waitScreen = new MultiplayerWaitScreen(this);
 	}
 	
 	public void showLobby() {
@@ -50,13 +50,12 @@ public class MultiplayerController {
 		gameMain.showScreen(waitScreen);
 	}
 	
-	public void hostNewGame() {
-		AvailableGame newGame = new AvailableGame();
-		newGame.setGameName(gameSetup.getGameName());
-		newGame.setMapName(gameSetup.getMapName());
-		
-		lobbyManager.hostNewGame(newGame);
-		gameMain.showScreen(waitScreen);
+	public void playerAttemptedToJoin(String name) {
+		waitScreen.setPotentialOpponent(name);
+	}
+	
+	public void bootPotentialOpponent() {
+		lobbyManager.boot();
 	}
 	
 	public void setUsername(String uname) {

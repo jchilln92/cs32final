@@ -6,21 +6,27 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.ui.controller.MultiplayerController;
+
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
 public class LobbyManager {
-	NetworkPlayer localPlayer;
-	ArrayList<AvailableGame> availableGames;
-	ArrayList<InetAddress> testAddresses; // part of hack, see below
-	Client client;
+	private NetworkPlayer localPlayer;
+	private ArrayList<AvailableGame> availableGames;
+	private ArrayList<InetAddress> testAddresses; // part of hack, see below
+	private Client client;
 	
-	AvailableGame hostedGame;
-	Server server;
+	private AvailableGame hostedGame;
+	private Server server;
 	
-	public LobbyManager() {
+	private MultiplayerController controller;
+	
+	public LobbyManager(MultiplayerController multiController) {
+		this.controller = multiController;
+		
 		localPlayer = new NetworkPlayer();
 		
 		// hack for testing, make a list of hosts to test
@@ -88,26 +94,20 @@ public class LobbyManager {
 							connection.sendTCP(response);
 							break;
 						case ATTEMPT_TO_JOIN:
-							System.out.println("Username " + (String)m.data + "is trying to join");
-							System.out.println("Boot?");
-							
-							Scanner scan = new Scanner(System.in);
-							String answer = scan.nextLine();
-							boolean shouldBoot = Boolean.parseBoolean(answer);
-							
-							response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
-							if (shouldBoot) {
-								response.data = false;
-							} else {
-								response.data = true;
-							}
-							
-							connection.sendTCP(response);
+							controller.playerAttemptedToJoin((String) m.data);
 							break;
 					}
 				}
 			}
 		});
+	}
+	
+	public void boot() {
+		GameNegotiationMessage response = new GameNegotiationMessage();
+		response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
+		response.data = false;
+		
+		server.sendToAllTCP(response);
 	}
 	
 	private void initializeClientListener() {

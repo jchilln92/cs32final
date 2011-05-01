@@ -1,10 +1,14 @@
 package src.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.net.LobbyManager;
+import src.ui.controller.MultiplayerController;
 
 public class MultiplayerWaitScreen extends JPanel {
 	private JButton startGameButton;
@@ -15,9 +19,11 @@ public class MultiplayerWaitScreen extends JPanel {
 	private JLabel opponentLabel;
 	private JLabel opponentNameLabel;
 	
-	private LobbyManager lm;
+	private MultiplayerController controller;
 	
-	public MultiplayerWaitScreen() {
+	public MultiplayerWaitScreen(MultiplayerController multiController) {
+		this.controller = multiController;
+		
 		startGameButton = new JButton("Start Game");
 		cancelButton = new JButton("Cancel");
 		bootButton = new JButton("Boot");
@@ -34,7 +40,15 @@ public class MultiplayerWaitScreen extends JPanel {
 		add(opponentNameLabel);
 	}
 	
-	public void setLobbyManager(LobbyManager lm) {
-		this.lm = lm;
+	public void setupButtonHandlers() {
+		bootButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.bootPotentialOpponent();
+			}
+		});
+	}
+	
+	public void setPotentialOpponent(String name) {
+		opponentNameLabel.setText(name);
 	}
 }
