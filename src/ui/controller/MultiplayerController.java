@@ -6,6 +6,7 @@ import src.net.LobbyManager;
 import src.ui.Lobby;
 import src.ui.MultiplayerGameSetup;
 import src.ui.MultiplayerWaitScreen;
+import src.ui.TitleScreen;
 
 public class MultiplayerController {
 	private GameMain gameMain;
@@ -27,13 +28,34 @@ public class MultiplayerController {
 		gameMain.showScreen(lobby);
 	}
 	
+	public void exitLobby() {
+		TitleScreen title = new TitleScreen(gameMain);
+		gameMain.showScreen(title);
+	}
+	
+	public void beginGameCreation() {
+		gameMain.showScreen(gameSetup);
+	}
+	
+	public void cancelGameCreation() {
+		gameMain.showScreen(lobby);
+	}
+	
+	public void completeGameCreation() {
+		AvailableGame newHostedGame = new AvailableGame();
+		newHostedGame.setGameName(gameSetup.getGameName());
+		newHostedGame.setMapName(gameSetup.getMapName());
+		lobbyManager.hostNewGame(newHostedGame);
+		
+		gameMain.showScreen(waitScreen);
+	}
+	
 	public void hostNewGame() {
 		AvailableGame newGame = new AvailableGame();
 		newGame.setGameName(gameSetup.getGameName());
 		newGame.setMapName(gameSetup.getMapName());
 		
 		lobbyManager.hostNewGame(newGame);
-		
 		gameMain.showScreen(waitScreen);
 	}
 	

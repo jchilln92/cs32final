@@ -76,14 +76,14 @@ public class Lobby extends JPanel {
 		exitButton = new JButton("Go back"); 
 		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//gm.showTitleScreen();
+				controller.exitLobby();
 			}
 		});
 		
 		createGameButton = new  JButton("Create Game");
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//gm.showGameSetup(lm);
+				controller.beginGameCreation();
 			}
 		});
 		

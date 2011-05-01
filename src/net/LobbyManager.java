@@ -6,8 +6,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import src.ui.MultiplayerWaitScreen;
-
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -21,7 +19,6 @@ public class LobbyManager {
 	
 	AvailableGame hostedGame;
 	Server server;
-	MultiplayerWaitScreen ws;
 	
 	public LobbyManager() {
 		localPlayer = new NetworkPlayer();
@@ -52,10 +49,11 @@ public class LobbyManager {
 	
 	public void hostNewGame(AvailableGame game) {
 		hostedGame = game;
+		game.setHostName(localPlayer.getUsername());
 		createServer();
 	}
 	
-	public void createServer(){
+	private void createServer(){
 		server = new Server();
 		NetworkConstants.registerKryoClasses(server.getKryo());
 		server.start();
