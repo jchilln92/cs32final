@@ -11,7 +11,7 @@ import src.FilePaths;
 import src.core.xml.CreepXMLReader;
 import src.ui.IDrawableCreep;
 
-public class Creep implements IDrawableCreep {
+public class Creep implements IDrawableCreep, IAlignment {
 	private static HashMap<Creep.Type, Creep> templateCreeps;
 	
 	public static Creep createCreep(Type t) {
@@ -67,6 +67,8 @@ public class Creep implements IDrawableCreep {
 		return price;
 	}
 
+	private IAlignment.Alignment alignment;
+	
 	public enum Type {
 		GENERIC,
 		BIG_GUY,
@@ -250,5 +252,13 @@ public class Creep implements IDrawableCreep {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public Alignment getAlignment() {
+		return alignment;
+	}
+
+	public void setAlignment(Alignment alignment) {
+		this.alignment = alignment;
 	}
 }

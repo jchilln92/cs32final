@@ -7,6 +7,13 @@ public class ColorConstants {
 	public static final Color grassColor = Color.decode("#93C47D");
 	public static final Color rockColor = Color.decode("#8B847A");
 	public static final Color waterColor = Color.decode("#3D85C6");
+	
+	// alignment colors
+	public static final Color neutralColor = Color.GRAY;
+	public static final Color redColor = Color.RED;
+	public static final Color greenColor = Color.GREEN;
+	public static final Color blueColor = Color.BLUE;
+	public static final Color yellowColor = Color.YELLOW;
 
 	public static final Color invalidTowerPlacementColor = new Color(255, 0, 0, 150);
 	public static final Color invalidTowerPlacementColor2 = new Color(255, 0, 0);

@@ -8,6 +8,8 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import src.ui.ColorConstants;
+
 
 public class ElementalUpgradePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -22,19 +24,19 @@ public class ElementalUpgradePanel extends JPanel {
 		super(new GridBagLayout());
 		
 		neutralButton = new JButton();
-		neutralButton.setBackground(Color.GRAY);
+		neutralButton.setBackground(ColorConstants.neutralColor);
 		
 		redButton = new JButton();
-		redButton.setBackground(Color.RED);
+		redButton.setBackground(ColorConstants.redColor);
 		
 		greenButton = new JButton();
-		greenButton.setBackground(Color.GREEN);
+		greenButton.setBackground(ColorConstants.greenColor);
 		
 		blueButton = new JButton();
-		blueButton.setBackground(Color.BLUE);
+		blueButton.setBackground(ColorConstants.blueColor);
 		
 		yellowButton = new JButton();
-		yellowButton.setBackground(Color.YELLOW);
+		yellowButton.setBackground(ColorConstants.yellowColor);
 		
 		GridBagConstraints c = new GridBagConstraints();
 		

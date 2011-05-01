@@ -35,7 +35,6 @@ public class TowerUpgradePanel extends JPanel {
 	private JButton sellTowerButton;
 	private JButton cancelButton;
 	private JButton[][] upgradeButtons;
-	private JButton buyUpgradeButton;
 
 	
 	public TowerUpgradePanel(GameController gc) {
@@ -93,7 +92,6 @@ public class TowerUpgradePanel extends JPanel {
 		add(cancelButton, c);
 		c.gridwidth = 1;
 	
-		
 		c.gridx = 0;
 		c.gridy = 3;
 		add(levelThreeLabel, c);

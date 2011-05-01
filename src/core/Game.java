@@ -3,6 +3,7 @@ package src.core;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -20,12 +21,17 @@ public class Game {
 	private int wavesSent; // the total number of waves sent
 	private int lastWaveTime; // the elapsedTime when the last wave was sent
 	
+	private DistanceFromTowerComparator tdComparator;
+	private HealthComparator hComparator;
+	
 	private LinkedList<Creep> creepQueue; // the creeps that are waiting to be sent out onto the map
 	private int lastCreepTime; // the time the last creep was sent
 
 	public Game() {
 		creeps = new ArrayList<Creep>();
 		creepQueue = new LinkedList<Creep>();
+		tdComparator = new DistanceFromTowerComparator();
+		hComparator = new HealthComparator();
 	}
 	
 	/**
@@ -127,6 +133,24 @@ public class Game {
 		
 		// find and attack the first creep the tower can attack
 		for (Tower t : eligibleTowers) {
+			tdComparator.setTower(t);
+			
+			// order the creeps correctly for the tower's targeting strategy
+			switch (t.getTargeting().getStrategy()) {
+				case CLOSEST:
+					Collections.sort(creeps, tdComparator);
+					break;
+				case FURTHEST:
+					Collections.sort(creeps, Collections.reverseOrder(tdComparator));
+					break;
+				case STRONGEST:
+					Collections.sort(creeps, Collections.reverseOrder(hComparator));
+					break;
+				case WEAKEST:
+					Collections.sort(creeps, hComparator);
+					break;
+			}
+			
 			for (Creep c : creeps) {
 				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius() && // creep in range
 					(!c.isFlying() || t.getTargeting().isHitsFlying()) && // this tower must be flying if creep is
