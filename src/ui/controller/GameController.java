@@ -1,4 +1,4 @@
-package src;
+package src.ui.controller;
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -10,6 +10,8 @@ import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import src.GameMain;
+import src.Runner;
 import src.core.Game;
 import src.core.IPurchasable;
 import src.core.Player;
@@ -29,6 +31,7 @@ public class GameController {
 	private Tower placingTower; // a tower pending purchase
 	private Tower selectedTower; // a tower that is selected
 	private Sidebar side;
+	private Thread runnerThread;
 	private boolean isPaused;
 	private boolean isDoubleTime;
 	
@@ -66,6 +69,13 @@ public class GameController {
 		};
 		
 		escAction.setEnabled(false);
+	}
+	
+	public void start() {
+		Runner r = new Runner();
+		r.setGameController(this);
+		runnerThread = new Thread(r, "Game Runner Thread");
+		runnerThread.start();
 	}
 	
 	public void setSidebar(Sidebar side) {

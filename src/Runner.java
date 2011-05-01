@@ -1,5 +1,7 @@
 package src;
 
+import src.ui.controller.GameController;
+
 /**
  * A class that runs on a separate thread, and whose only duty is to send a "tick"
  * message at some predefined time interval.

@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.GameController;
 import src.Runner;
+import src.ui.controller.GameController;
 
 public class TimeWavePanel extends JPanel {
 	private static final long serialVersionUID = 1L;

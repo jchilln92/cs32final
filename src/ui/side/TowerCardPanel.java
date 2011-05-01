@@ -4,7 +4,7 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
-import src.GameController;
+import src.ui.controller.GameController;
 
 /**
  * A display component that uses CardLayout to display various UI's for different aspects

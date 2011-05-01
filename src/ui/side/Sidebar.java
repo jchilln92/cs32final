@@ -10,7 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
 
-import src.GameController;
+import src.ui.controller.GameController;
 
 public class Sidebar extends JPanel {
 	private static final long serialVersionUID = 1L;

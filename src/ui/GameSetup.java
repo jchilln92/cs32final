@@ -1,4 +1,4 @@
-package src.ui.gameSetup;
+package src.ui;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -18,14 +18,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import src.GameMain;
+import src.core.Game;
 import src.core.Map;
-import src.net.AvailableGame;
-import src.net.LobbyManager;
-import src.ui.MapComponent;
+import src.ui.controller.GameController;
 
 public class GameSetup extends JPanel {
 	private static final long serialVersionUID = 1L;
-	
 	private static final String createGameText = "Create your game:";
 	private static final String createNameText = "Game name:";
 
@@ -35,20 +33,20 @@ public class GameSetup extends JPanel {
 	
 	private JTextField createNameField;
 	
-	private JButton playButton;
-	private JButton cancelButton;
+	protected JButton playButton;
+	protected JButton cancelButton;
 	
 	private JScrollPane mapListPane;
 	private JList mapList;
 
 	private MapComponent mc;
-	private GameMain gm;
+	protected GameMain gameMain;
 	
 	public GameSetup(GameMain gameMain) {
 		super(new GridBagLayout());
 		setSize(800, 600);
 		
-		this.gm = gameMain;
+		this.gameMain = gameMain;
 		
 		mc = new MapComponent(true);
 		mc.setGridOn(true);
@@ -59,13 +57,8 @@ public class GameSetup extends JPanel {
 		mapLabel = new JLabel("Map:");
 		
 		createNameField = new JTextField("");
-		
 		cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gm.showTitleScreen();
-			}
-		});
+		playButton = new JButton("Begin Game");
 		
 		Object mapNames[] = Map.getMapNames().toArray();
 		mapList = new JList(mapNames);
@@ -80,41 +73,32 @@ public class GameSetup extends JPanel {
 		});
 		
 		mapListPane = new JScrollPane(mapList);
-		createSinglePlayerSetup();
+		
+		setupLayout();
+		setupButtonActions();
 	}
 
-
-	public void createSinglePlayerSetup(){
-		removeAll();
-		
-		playButton = new JButton("Begin Game");
-		playButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gm.createGame(mc.getMap());
-				gm.showGameScreen();
-			}
-		});
-		
+	public void setupLayout(){
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(0,0,10,0);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.LINE_START;
-		add(createGameLabel,c);
+		add(createGameLabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
-		add(mapLabel,c);
+		add(mapLabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 2;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.PAGE_START;
-		add(mapListPane,c);
+		add(mapListPane, c);
 		
 		c.gridx = 1;
 		c.gridy = 2;
@@ -123,7 +107,7 @@ public class GameSetup extends JPanel {
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(0,20,0,0);
 		mc.setPreferredSize(new Dimension(400, 400));
-		add(mc,c);
+		add(mc, c);
 		
 		c.gridx = 0;
 		c.gridy = 3;
@@ -132,95 +116,47 @@ public class GameSetup extends JPanel {
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.LINE_START;
 		c.insets = new Insets(0,0,0,0);
-		add(cancelButton,c);
+		add(cancelButton, c);
 		
 		c.gridx = 3;
 		c.gridy = 3;
 		c.ipady = 20;
 		c.insets = new Insets(0,0,0,0);
 		c.anchor = GridBagConstraints.LINE_END;
-		add(playButton,c);
+		add(playButton, c);
 	}
 	
-	public void createMultiplayerSetup(LobbyManager lm){
-		removeAll();
-		
-		final LobbyManager lobbyManager = lm;
-		
-		playButton = new JButton("Create Game");
-		playButton.addActionListener(new ActionListener() {
+	public void setupButtonActions() {
+		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AvailableGame newGame = new AvailableGame();
-				newGame.setGameName(createNameField.getText());
-				newGame.setMapName((String)mapList.getSelectedValue());
-				
-				lobbyManager.hostNewGame(newGame);
+				TitleScreen titleScreen = new TitleScreen(gameMain);
+				gameMain.showScreen(titleScreen);
 			}
 		});
 		
-		cancelButton.setText("Cancel");
+		playButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Map m = Map.getMapByName(getMapName());
+				Game g = new Game();
+				g.setMap(m);
+				
+				GameController gc = new GameController();
+				gc.setGame(g);
+				gc.setGameMain(gameMain);
+				
+				SingleGamePanel gamePanel = new SingleGamePanel(gc);
+				
+				gameMain.showScreen(gamePanel);
+				gc.start();
+			}
+		});
+	}
 
-		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(0,0,20,0);
-		c.gridx = 0;
-		c.gridy = 0;
-		c.fill = GridBagConstraints.NONE;
-		c.anchor = GridBagConstraints.LINE_START;
-		add(createGameLabel,c);
-
-		c.insets = new Insets(0,0,0,0);
-		
-		c.gridx = 0;
-		c.gridy = 1;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.CENTER;
-		add(createNameLabel,c);
-		
-		c.gridx = 1;
-		c.gridy = 1;
-		c.gridwidth = 3;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.PAGE_START;
-		add(createNameField,c);
-		
-		c.gridx = 0;
-		c.gridy = 2;
-		c.gridwidth = 1;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.CENTER;
-		add(mapLabel,c);
-		
-		c.gridx = 0;
-		c.gridy = 3;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.PAGE_START;
-		add(mapListPane,c);
-		
-		c.gridx = 1;
-		c.gridy = 3;
-		c.gridwidth = 3;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0,20,0,0);
-		mc.setPreferredSize(new Dimension(400, 400));
-		add(mc,c);
-		
-		c.gridx = 0;
-		c.gridy = 4;
-		c.gridwidth = 1;
-		c.ipady = 20;
-		c.fill = GridBagConstraints.NONE;
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(0,0,0,0);
-		add(cancelButton,c);
-		
-		c.gridx = 3;
-		c.gridy = 4;
-		c.ipady = 20;
-		c.insets = new Insets(0,0,0,0);
-		c.anchor = GridBagConstraints.LINE_END;
-		add(playButton,c);
-		
-		validate();
+	public String getGameName() {
+		return createNameField.getText();
+	}
+	
+	public String getMapName() {
+		return (String) mapList.getSelectedValue();
 	}
 }

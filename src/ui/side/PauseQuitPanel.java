@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import src.GameController;
+import src.ui.controller.GameController;
 
 /**
  * This is a panel that displays information on a player's gold and health,

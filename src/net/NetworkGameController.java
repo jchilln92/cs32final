@@ -2,9 +2,9 @@ package src.net;
 
 import java.util.Collection;
 
-import src.GameController;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
+import src.ui.controller.GameController;
 
 /**
  * Manages the representation of a remote game.  NetworkGameController

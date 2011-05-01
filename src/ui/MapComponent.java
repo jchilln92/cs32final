@@ -13,9 +13,9 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 
-import src.GameController;
 import src.core.Map;
 import src.core.TileType;
+import src.ui.controller.GameController;
 
 public class MapComponent extends JComponent {
 	private static final long serialVersionUID = 1L;

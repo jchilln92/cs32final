@@ -13,9 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.GameController;
 import src.core.Tower;
 import src.core.Upgrade;
+import src.ui.controller.GameController;
 
 /**
  * A display area which presents the selected tower's statistics and upgrade options

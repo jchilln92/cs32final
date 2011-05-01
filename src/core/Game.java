@@ -28,6 +28,8 @@ public class Game {
 	private int lastCreepTime; // the time the last creep was sent
 
 	public Game() {
+		player = new Player();
+		towers = new ArrayList<Tower>();
 		creeps = new ArrayList<Creep>();
 		creepQueue = new LinkedList<Creep>();
 		tdComparator = new DistanceFromTowerComparator();

@@ -1,4 +1,4 @@
-package src.ui.title;
+package src.ui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,50 +13,60 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.GameMain;
+import src.ui.controller.MultiplayerController;
 
 public class TitleScreen extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel titleLabel;
-	private JButton splayerButton;
-	private JButton mplayerButton;
+	private JButton singlePlayerButton;
+	private JButton multiPlayerButton;
 	private JButton tutorialButton;
 	private JButton quitButton;
 	
-	private GameMain gm;
+	private GameMain gameMain;
 	
 	public TitleScreen(GameMain gameMain) {
 		super(new GridBagLayout());
 		setSize(800, 600);
 	
-		gm = gameMain;
+		this.gameMain = gameMain;
 		titleLabel = new JLabel("Tower Defense");
 		titleLabel.setFont(new Font("Dialog.bold", 10, 64));
 		titleLabel.setForeground(Color.RED);
-		splayerButton = new JButton("Single Player Mode");
-		mplayerButton = new JButton("Multi-player Mode");
+		
+		singlePlayerButton = new JButton("Single Player Mode");
+		multiPlayerButton = new JButton("Multi-player Mode");
 		tutorialButton = new JButton("Look at an image to get help on how to play Tower Defense janx Mode");
 		quitButton = new JButton("Quitter Mode");
 
-		splayerButton.addActionListener(new ActionListener() {
+		final GameMain main = this.gameMain;
+		
+		singlePlayerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gm.showGameSetup();
+				GameSetup gameSetup = new GameSetup(main);
+				main.showScreen(gameSetup);
 			}
 		});
-		mplayerButton.addActionListener(new ActionListener() {
+		
+		multiPlayerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gm.showLobby();
+				MultiplayerController controller = new MultiplayerController(main);
+				controller.showLobby();
 			}
 		});
+		
 		tutorialButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
+		
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;		
@@ -70,11 +80,11 @@ public class TitleScreen extends JPanel {
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(20,0,20,0);
-		add(splayerButton, c);
+		add(singlePlayerButton, c);
 
 		c.gridy = 2;
 		c.fill = GridBagConstraints.NONE;
-		add(mplayerButton, c);	
+		add(multiPlayerButton, c);	
 		
 		c.gridy = 3;
 		c.fill = GridBagConstraints.NONE;

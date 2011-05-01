@@ -1,4 +1,4 @@
-package src.ui.lobby;
+package src.ui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,23 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
-import src.GameMain;
-import src.core.Map;
 import src.net.AvailableGame;
 import src.net.LobbyManager;
+import src.ui.controller.MultiplayerController;
 
 public class Lobby extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -42,15 +36,13 @@ public class Lobby extends JPanel {
 	private JButton createGameButton;
 	private JButton joinButton;
 	
-	private LobbyManager lm;
-	private GameMain gm;
+	private MultiplayerController controller;
 
-	public Lobby(GameMain gameMain){
+	public Lobby(MultiplayerController multiController) {
 		super(new GridBagLayout());
 		setSize(800, 600);
 		
-		lm = new LobbyManager();
-		gm = gameMain;
+		this.controller = multiController;
 		
 		gameTableScrollPane = new JScrollPane();
 		
@@ -65,9 +57,9 @@ public class Lobby extends JPanel {
 
 				int code = e.getKeyCode();
 				if (code == KeyEvent.VK_BACK_SPACE) {
-					lm.setPlayerName(field.getText().substring(0, field.getText().length()));
+					controller.setUsername(field.getText().substring(0, field.getText().length()));
 				} else {
-					lm.setPlayerName(field.getText() + e.getKeyChar());
+					controller.setUsername(field.getText() + e.getKeyChar());
 				}
 			}
 		});
@@ -84,14 +76,14 @@ public class Lobby extends JPanel {
 		exitButton = new JButton("Go back"); 
 		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gm.showTitleScreen();
+				//gm.showTitleScreen();
 			}
 		});
 		
 		createGameButton = new  JButton("Create Game");
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gm.showGameSetup(lm);
+				//gm.showGameSetup(lm);
 			}
 		});
 		
@@ -158,6 +150,8 @@ public class Lobby extends JPanel {
 	}
 	
 	private void updateGameListPane() {
+		LobbyManager lm = controller.getLobbyManager();
+		
 		lm.refreshGameList();
 		
 		System.out.println(lm.getAvailableGames().size());

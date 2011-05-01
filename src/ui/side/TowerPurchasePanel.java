@@ -22,9 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import src.FilePaths;
-import src.GameController;
 import src.core.Damage;
 import src.core.Tower;
+import src.ui.controller.GameController;
 
 /**
  * Panel displaying buttons that allow the user to purchase a tower.

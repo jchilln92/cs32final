@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.GameController;
+import src.ui.controller.GameController;
 
 /**
  * Panel displaying buttons that allow the user to purchase a tower.
