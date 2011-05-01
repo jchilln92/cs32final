@@ -12,10 +12,14 @@ import java.awt.event.MouseListener;
 
 import java.util.ArrayList;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import src.FilePaths;
 import src.GameController;
@@ -35,8 +39,14 @@ public class TowerPurchasePanel extends JPanel {
 	private JLabel purchaseTowersLabel;
 	private TowerStatsPanel towerStats;
 	private JButton[] towerButtons;
+	private Action[] towerButtonActions;
 	private Tower.Type[] buttonTypes = {Tower.Type.GUN, Tower.Type.ANTIAIR, Tower.Type.SLOWING, Tower.Type.MORTAR,
 			  							Tower.Type.FRIEND, Tower.Type.FLAME, Tower.Type.STASIS, Tower.Type.HTA};
+	
+	// keybindings bound to this panel
+	private enum KeyBinding {
+		
+	}
 	
 	public TowerPurchasePanel(GameController controller) {
 		super(new GridBagLayout());
@@ -46,6 +56,7 @@ public class TowerPurchasePanel extends JPanel {
 		purchaseTowersLabel = new JLabel(purchaseTowersText);
 		towerStats = new TowerStatsPanel();
 		towerButtons = new JButton[8];
+		towerButtonActions = new Action[8];
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -55,20 +66,30 @@ public class TowerPurchasePanel extends JPanel {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(purchaseTowersLabel, c);
 		
+		// initialize a purchase button for each of the towers
 		for (int index = 0; index < 8; index++) {
 			String path = FilePaths.imgPath + "tower-icon"+(index+1)+".png";
 			
 			ImageIcon towerIcon = new ImageIcon(path);
 			JButton towerButton = new JButton(towerIcon);
 			towerButtons[index] = towerButton;
-			final Tower.Type type = buttonTypes[index];
 			
-			towerButton.addActionListener(new ActionListener() {
+			final Tower.Type type = buttonTypes[index];
+			towerButtonActions[index] = new AbstractAction() {
 				public void actionPerformed(ActionEvent e) {
 					gc.beginPurchasingTower(Tower.createTower(type));
 				}
-			});
+			};
 			
+			// set up buttons
+			towerButton.addActionListener(towerButtonActions[index]);
+			
+			// set up equivalent key bindings
+			Integer idx = index;
+			this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(Character.forDigit(index + 1, 10)), idx);
+			this.getActionMap().put(idx, towerButtonActions[index]);
+			
+			// set up mouse hover on buttons
 			towerButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
@@ -89,7 +110,8 @@ public class TowerPurchasePanel extends JPanel {
 			c.gridy = 1 + index / 3;
 			c.fill = GridBagConstraints.NONE;
 			add(towerButton, c);
-		}	
+		}
+		
 		updateAllowedButtons();
 
 		c.gridx = 1;
@@ -100,14 +122,17 @@ public class TowerPurchasePanel extends JPanel {
 	private void updateAllowedButtons() {
 		for (int i = 0; i < 8; i++) {
 			JButton b = towerButtons[i];
+			Action a = towerButtonActions[i];
 			Tower.Type type = buttonTypes[i];
 			
 			Tower t = Tower.createTower(type);
 			
 			if (!gc.playerCanAfford(t)) {
 				b.setEnabled(false);
+				a.setEnabled(false);
 			} else if (!gc.getPaused()){
 				b.setEnabled(true);
+				a.setEnabled(true);
 			}
 		}
 	}
@@ -119,12 +144,14 @@ public class TowerPurchasePanel extends JPanel {
 	public void disableTowerPurchase(){
 		for (int x = 0; x< towerButtons.length; x++){
 			towerButtons[x].setEnabled(false);
+			towerButtonActions[x].setEnabled(false);
 		}
 	}
 	
 	public void enableTowerPurchase(){
 		for (int x = 0; x< towerButtons.length; x++){
 			towerButtons[x].setEnabled(true);
+			towerButtonActions[x].setEnabled(true);
 		}
 	}
 }

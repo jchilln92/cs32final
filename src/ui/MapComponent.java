@@ -1,22 +1,17 @@
 package src.ui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 
 import src.GameController;
 import src.core.Map;
@@ -67,6 +62,12 @@ public class MapComponent extends JComponent {
 		if (mouse != null) {
 			int x = (int) (mouse.getX() / getTileWidth());
 			int y = (int) (mouse.getY() / getTileHeight());
+			
+			// due to small rounding errors in the drawing, sometimes we might calculate
+			// an index that is technically inside the frame, but is outside where we've drawn
+			// just count the mouse as not in the frame in these areas
+			if (x > 14 || y > 14) return null;
+			
 			return new Point(x, y);
 		}
 

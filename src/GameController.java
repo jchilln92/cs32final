@@ -1,7 +1,14 @@
 package src;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.Collection;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 import src.core.Game;
 import src.core.IPurchasable;
@@ -25,15 +32,50 @@ public class GameController {
 	private boolean isPaused;
 	private boolean isDoubleTime;
 	
+	// key handling info
+	private enum KeyBinding {
+		ESC_PRESSED,
+		T_ONE,
+		T_TWO,
+		T_THREE,
+		T_FOUR,
+		T_FIVE,
+		T_SIX,
+		T_SEVEN,
+		T_EIGHT
+	}
+	
+	private Action escAction;
+	
 	public GameController() {
 		placingTower = null;
 		selectedTower = null;
 		isPaused = false;
 		isDoubleTime = false;
+		
+		// initialize the esc key action
+		final GameController gc = this;
+		escAction = new AbstractAction() {
+			public void actionPerformed(ActionEvent e) {
+				if (gc.isPlacingTower()) {
+					gc.cancelTowerPurchase();
+				} else if (gc.isTowerSelected()) {
+					gc.unselectTower();
+				}
+			}
+		};
+		
+		escAction.setEnabled(false);
 	}
 	
 	public void setSidebar(Sidebar side) {
 		this.side = side;
+		
+		// this is a bit silly - we want this event to be global, because it appears in multiple contexts
+		// unfortunately, bindings need to be attached to components, and this is the only component we have.
+		// it ends up working great though, so it's all good
+		side.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), KeyBinding.ESC_PRESSED);
+		side.getActionMap().put(KeyBinding.ESC_PRESSED, escAction);
 	}
 
 	public Game getGame() {
@@ -76,9 +118,12 @@ public class GameController {
 			if (isPlacingTower())
 				cancelTowerPurchase();
 			
+			escAction.setEnabled(false);
 			side.disableSidebar();
 		}
 		else {
+			if (isPlacingTower() || isTowerSelected()) escAction.setEnabled(true);
+			
 			side.enableSidebar();
 		}
 	}
@@ -165,6 +210,7 @@ public class GameController {
 		}
 		return null;
 	}
+	
 	/**
 	 * If the tower at the tile (x, y) is already selected, unselects this tower. 
 	 * Otherwise, selects the tower. This acts as a convenience method for the UI, and
@@ -177,9 +223,11 @@ public class GameController {
 		
 		if (t == null || selectedTower == getTowerAtTile(x, y)) {
 			unselectTower();
+			escAction.setEnabled(false);
 		} else {
 			selectedTower = t;
 			side.showTowerUpgrade();
+			escAction.setEnabled(true);
 		}
 	}
 	
@@ -229,6 +277,7 @@ public class GameController {
 	 */
 	public void beginPurchasingTower(Tower t) {
 		setPlacingTower(t);
+		escAction.setEnabled(true);
 		side.showTowerPurchaseCancel();
 	}
 	
@@ -237,6 +286,7 @@ public class GameController {
 	 */
 	public void cancelTowerPurchase() {
 		setPlacingTower(null);
+		escAction.setEnabled(false);
 		side.showTowerPurchase();
 	}
 	
@@ -254,6 +304,7 @@ public class GameController {
 		game.getTowers().add(placingTower);
 		placingTower = null;
 		
+		escAction.setEnabled(false);
 		side.showTowerPurchase();
 	}
 	
