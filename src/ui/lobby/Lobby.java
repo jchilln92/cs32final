@@ -5,6 +5,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -55,6 +58,19 @@ public class Lobby extends JPanel {
 		usernameLabel = new JLabel("Username: ");
 		
 		usernameField = new JTextField(13);
+		usernameField.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				// kind of hacky code
+				JTextField field = (JTextField) e.getSource();
+
+				int code = e.getKeyCode();
+				if (code == KeyEvent.VK_BACK_SPACE) {
+					lm.setPlayerName(field.getText().substring(0, field.getText().length()));
+				} else {
+					lm.setPlayerName(field.getText() + e.getKeyChar());
+				}
+			}
+		});
 		
 		updateGameListPane();
 		
@@ -75,7 +91,7 @@ public class Lobby extends JPanel {
 		createGameButton = new  JButton("Create Game");
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gm.showGameSetup(true);
+				gm.showGameSetup(lm);
 			}
 		});
 		

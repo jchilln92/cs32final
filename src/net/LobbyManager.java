@@ -15,13 +15,13 @@ public class LobbyManager {
 	NetworkPlayer localPlayer;
 	ArrayList<AvailableGame> availableGames;
 	ArrayList<InetAddress> testAddresses; // part of hack, see below
-	
 	Client client;
+	
+	AvailableGame hostedGame;
 	Server server;
 	
 	public LobbyManager() {
 		localPlayer = new NetworkPlayer();
-		localPlayer.setUsername("joel");
 		
 		// hack for testing, make a list of hosts to test
 		testAddresses = new ArrayList<InetAddress>();
@@ -41,6 +41,17 @@ public class LobbyManager {
 		client.start();
 		
 		initializeClientListener();
+	}
+	
+	public void setPlayerName(String name) {
+		localPlayer.setUsername(name);
+		System.out.println(localPlayer.getUsername());
+	}
+	
+	public void hostNewGame(AvailableGame game) {
+		hostedGame = game;
+		hostedGame.setHostName(localPlayer.getUsername());
+		createServer();
 	}
 	
 	public void createServer(){
@@ -66,19 +77,14 @@ public class LobbyManager {
 					
 					switch (m.type) {
 						case GAME_DISCOVER:
-							AvailableGame mock = new AvailableGame();
-							mock.setGameName("This is a test game");
-							mock.setMapName("Sandy Shores");
-							mock.setSecondsWaiting(10);
-							
 							try {
-								mock.setHostAddress(InetAddress.getLocalHost().getCanonicalHostName());
+								hostedGame.setHostAddress(InetAddress.getLocalHost().getCanonicalHostName());
 							} catch (UnknownHostException e) {
 								// pretty sure localhost always exists
 							}
 							
 							response.type = GameNegotiationMessage.Type.GAME_DISCOVER_RESPONSE;
-							response.data = mock;
+							response.data = hostedGame;
 							
 							connection.sendTCP(response);
 							break;

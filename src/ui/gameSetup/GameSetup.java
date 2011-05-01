@@ -19,6 +19,8 @@ import javax.swing.event.ListSelectionListener;
 
 import src.GameMain;
 import src.core.Map;
+import src.net.AvailableGame;
+import src.net.LobbyManager;
 import src.ui.MapComponent;
 
 public class GameSetup extends JPanel {
@@ -42,7 +44,6 @@ public class GameSetup extends JPanel {
 	private MapComponent mc;
 	private GameMain gm;
 	
-	
 	public GameSetup(GameMain gameMain) {
 		super(new GridBagLayout());
 		setSize(800, 600);
@@ -58,14 +59,6 @@ public class GameSetup extends JPanel {
 		mapLabel = new JLabel("Map:");
 		
 		createNameField = new JTextField("");
-		
-		playButton = new JButton("Begin Game");
-		playButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gm.createGame(mc.getMap());
-				gm.showGameScreen();
-			}
-		});
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
@@ -93,6 +86,14 @@ public class GameSetup extends JPanel {
 
 	public void createSinglePlayerSetup(){
 		removeAll();
+		
+		playButton = new JButton("Begin Game");
+		playButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gm.createGame(mc.getMap());
+				gm.showGameScreen();
+			}
+		});
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(0,0,10,0);
@@ -140,13 +141,24 @@ public class GameSetup extends JPanel {
 		c.anchor = GridBagConstraints.LINE_END;
 		add(playButton,c);
 	}
-	//i might move this to a different class because the button functions are somewhat different! :D
-	public void createMultiplayerSetup(){
+	
+	public void createMultiplayerSetup(LobbyManager lm){
 		removeAll();
 		
-		playButton.setText("Create Game");
-		cancelButton.setText("Cancel");
+		final LobbyManager lobbyManager = lm;
 		
+		playButton = new JButton("Create Game");
+		playButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AvailableGame newGame = new AvailableGame();
+				newGame.setGameName(createNameField.getText());
+				newGame.setMapName((String)mapList.getSelectedValue());
+				
+				lobbyManager.hostNewGame(newGame);
+			}
+		});
+		
+		cancelButton.setText("Cancel");
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(0,0,20,0);
@@ -155,7 +167,6 @@ public class GameSetup extends JPanel {
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.LINE_START;
 		add(createGameLabel,c);
-		
 
 		c.insets = new Insets(0,0,0,0);
 		
@@ -209,7 +220,6 @@ public class GameSetup extends JPanel {
 		c.insets = new Insets(0,0,0,0);
 		c.anchor = GridBagConstraints.LINE_END;
 		add(playButton,c);
-		
 		
 		validate();
 	}

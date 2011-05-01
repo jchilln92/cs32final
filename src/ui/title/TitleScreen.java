@@ -40,7 +40,7 @@ public class TitleScreen extends JPanel {
 
 		splayerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gm.showGameSetup(false);
+				gm.showGameSetup();
 			}
 		});
 		mplayerButton.addActionListener(new ActionListener() {

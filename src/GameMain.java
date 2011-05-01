@@ -15,6 +15,7 @@ import src.core.Game;
 import src.core.Map;
 import src.core.Player;
 import src.core.Tower;
+import src.net.LobbyManager;
 import src.ui.MapComponent;
 import src.ui.title.TitleScreen;
 import src.ui.side.Sidebar;
@@ -84,14 +85,17 @@ public class GameMain extends JFrame {
 		layout.show(mainPanel, PanelID.TITLE_SCREEN.toString());
 	}
 	
-	public void showGameSetup(boolean multiplayer) {
+	public void showGameSetup() {
 		mainPanel.remove(gs);
-		if(multiplayer){
-			gs.createMultiplayerSetup();
-		}
-		else{
-			gs.createSinglePlayerSetup();			
-		}
+		gs.createSinglePlayerSetup();
+		mainPanel.add(gs, PanelID.GAME_SETUP.toString());
+		CardLayout layout = (CardLayout) mainPanel.getLayout();
+		layout.show(mainPanel, PanelID.GAME_SETUP.toString());
+	}
+	
+	public void showGameSetup(LobbyManager lm) {
+		mainPanel.remove(gs);
+		gs.createMultiplayerSetup(lm);
 		mainPanel.add(gs, PanelID.GAME_SETUP.toString());
 		CardLayout layout = (CardLayout) mainPanel.getLayout();
 		layout.show(mainPanel, PanelID.GAME_SETUP.toString());
