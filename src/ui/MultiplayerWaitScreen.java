@@ -83,21 +83,20 @@ public class MultiplayerWaitScreen extends JPanel {
 
 		c.gridy = 1;
 		gridPanel.add(gameLabel, c);
-		
-		
-		c.gridx = 2;
+			
+		c.gridx = 3;
 		c.gridy = 2;
-		c.insets = new Insets(0, 0, 0, 0);
+	
+		c.insets = new Insets(0, 150, 0, 0);
 		c.gridwidth = 1;
 		gridPanel.add(mapNameLabel, c);
-
+		c.insets = new Insets(0, 0, 0, 0);
 		c.anchor = GridBagConstraints.LINE_START;
 		c.gridx = 2;
 		c.gridy = 3;
 		c.gridwidth = 3;
 		c.gridheight = 2;
 		gridPanel.add(mc, c);
-		
 		c.insets = new Insets(30, 0, 0, 0);
 		c.gridx = 0;
 		c.gridy = 3;

@@ -50,7 +50,7 @@ public class MultiplayerController {
 		newHostedGame.setMapName(gameSetup.getMapName());
 		lobbyManager.hostNewGame(newHostedGame);
 	
-		new MultiplayerWaitScreen(gameSetup.getGameName(), gameSetup.getMapName(), this);
+		waitScreen = new MultiplayerWaitScreen(gameSetup.getGameName(), gameSetup.getMapName(), this);
 		gameMain.showScreen(waitScreen);
 	}
 	
