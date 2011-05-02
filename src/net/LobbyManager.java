@@ -116,7 +116,7 @@ public class LobbyManager {
 	public void boot() {
 		GameNegotiationMessage response = new GameNegotiationMessage();
 		response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
-		response.data = false;
+		response.data = null;
 		
 		server.sendToAllTCP(response);
 	}
@@ -124,7 +124,7 @@ public class LobbyManager {
 	public NetworkGame acceptPlayer() {
 		GameNegotiationMessage response = new GameNegotiationMessage();
 		response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
-		response.data = true;
+		response.data = hostedGame.getMapName();
 		
 		NetworkGame ng = new NetworkGame(server.getConnections()[0]);
 		ng.setMap(Map.getMapByName(hostedGame.getMapName()));
@@ -152,14 +152,14 @@ public class LobbyManager {
 							break;
 						case ATTEMPT_TO_JOIN_RESPONSE:
 							System.out.println("response");
-							boolean booted = !((Boolean) m.data);
+							String mapName = (String) m.data;
 							
-							if (booted) {
+							if (mapName == null) {
 								System.out.println("You've been kicked");
 								client.close();
 							} else {
 								NetworkGame game = new NetworkGame(connection);
-								game.setMap(Map.getMapByName(hostedGame.getMapName()));
+								game.setMap(Map.getMapByName(mapName));
 								controller.startNetworkGame(game);
 							}
 					}
