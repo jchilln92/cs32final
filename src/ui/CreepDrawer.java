@@ -7,19 +7,19 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 public class CreepDrawer {
-	
 	private static boolean drawHealthBar = true; 
-	/**
-	 * Draws a creep into the the appropriate area in the graphics context g.
-	 */
-	
+
 	public static void toggleDrawHealthBar(boolean shouldDraw){
 		drawHealthBar = shouldDraw;
-		
 	}
+
 	public static boolean getDrawHealthBar(){
 		return drawHealthBar;
 	}
+
+	/**
+	 * Draws a creep into the the appropriate area in the graphics context g.
+	 */
 	public static void drawCreep(IDrawableCreep c, double tileHeight,
 			double tileWidth, Graphics2D g) {
 		// TODO: This is just a stub / test method
