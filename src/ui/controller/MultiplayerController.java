@@ -85,8 +85,11 @@ public class MultiplayerController {
 	}
 
 	public void startNetworkGame() {
+		startNetworkGame(lobbyManager.acceptPlayer());
+	}
+	
+	public void startNetworkGame(NetworkGame ng) {
 		MultiplayerGamePanel mgp = new MultiplayerGamePanel();
-		NetworkGame ng = lobbyManager.acceptPlayer();
 		NetworkGameController ngc = new NetworkGameController(ng);
 		GameController gc = new GameController();
 		gc.setGame(ng);

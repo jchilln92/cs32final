@@ -158,6 +158,8 @@ public class LobbyManager {
 							if (booted) {
 								System.out.println("You've been kicked");
 								client.close();
+							} else {
+								controller.joinAccepted();
 							}
 					}
 				}

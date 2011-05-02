@@ -1,8 +1,11 @@
 package src.net;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import src.core.Creep;
+import src.core.CreepPath;
 import src.core.Damage;
 import src.core.IAlignment;
 import src.core.TargetingInfo;
@@ -31,5 +34,9 @@ public class NetworkConstants {
 		k.register(IAlignment.Alignment.class);
 		k.register(Creep.class);
 		k.register(Upgrade.class);
+		k.register(HashMap.class);
+		k.register(CreepPath.class);
+		k.register(Point2D.Double.class);
+		k.register(Creep.Type.class);
 	}
 }
