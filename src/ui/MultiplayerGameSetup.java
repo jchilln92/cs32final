@@ -1,6 +1,7 @@
 package src.ui;
 
 import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,6 +30,7 @@ public class MultiplayerGameSetup extends GameSetup {
 		c.anchor = GridBagConstraints.CENTER;
 		add(createNameLabel, c);
 		
+		c.insets = new Insets(10, 0, 10, 0);
 		c.gridx = 1;
 		c.gridy = 1;
 		c.gridwidth = 3;

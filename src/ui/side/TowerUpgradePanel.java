@@ -58,7 +58,7 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		});
 		
-		elementalUpgrade = new ElementalUpgradePanel();
+		elementalUpgrade = new ElementalUpgradePanel(gc);
 		
 		levelOneLabel = new JLabel("1");
 		levelTwoLabel = new JLabel("2");
@@ -136,10 +136,14 @@ public class TowerUpgradePanel extends JPanel {
 				upgradeButtons[l][n] = upgradeButton;
 			}
 		}
-		
+
+		c.insets = new Insets(20, 0, 0, 0);	
 		c.gridx = 0;
 		c.gridy = 6;
+		c.fill=GridBagConstraints.HORIZONTAL;
 		add(sellTowerButton, c);
+		
+
 	}
 	
 	private void updateClickableButtons() {

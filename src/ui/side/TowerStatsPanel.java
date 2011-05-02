@@ -94,10 +94,14 @@ public class TowerStatsPanel extends JPanel {
 			costLabel.setText(" ");
 		} else {
 			towerNameLabel.setText("Type: " + tower.getType().toString());
-			damageLabel.setText("Damage: " + tower.getDamage().getInstantDamage());
-			rangeLabel.setText("Range: " + Double.toString(tower.getRadius()));
+			double damage = tower.getDamage().getInstantDamage();
+			String damageText = (int)(damage) + "." + (int)((damage - (int)damage)*10) + (int)((damage*10 - (int)(damage*10))*10);
+			damageLabel.setText("Damage: " + damageText);
+			double radius = tower.getRadius();
+			String radiusText = (int)(radius) + "." + (int)((radius - (int)radius)*10) + (int)((radius*10 - (int)(radius*10))*10);
+			rangeLabel.setText("Range: " + radiusText);
 			abilitiesLabel.setText("Abilities: ");
-			costLabel.setText("Cost: " + Double.toString(tower.getPrice()));
+			costLabel.setText("Cost: " + (int)tower.getPrice());//Double.toString(tower.getPrice()));
 		}
 	}
 	
@@ -114,20 +118,20 @@ public class TowerStatsPanel extends JPanel {
 			
 			if (upgrade.getInstantDamageChange() > 0) {
 				damageChangeLabel.setForeground(Color.GREEN);
-				modifier = "+";
+				modifier = " +";
 			} else {
 				damageChangeLabel.setForeground(Color.RED);
-				modifier = "-";
+				modifier = " -";
 			}
 			
 			damageChangeLabel.setText(modifier + Double.toString(upgrade.getInstantDamageChange() * 100) + "%");
 			
 			if (upgrade.getRadiusChange() > 0) {
 				rangeChangeLabel.setForeground(Color.GREEN);
-				modifier = "+";
+				modifier = " +";
 			} else {
 				rangeChangeLabel.setForeground(Color.RED);
-				modifier = "-";
+				modifier = " -";
 			}
 			
 			rangeChangeLabel.setText(modifier + Double.toString(upgrade.getRadiusChange() * 100) + "%");

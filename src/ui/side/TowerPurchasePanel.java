@@ -3,6 +3,7 @@ package src.ui.side;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,6 +68,7 @@ public class TowerPurchasePanel extends JPanel {
 		add(purchaseTowersLabel, c);
 		
 		// initialize a purchase button for each of the towers
+
 		for (int index = 0; index < 8; index++) {
 			String path = FilePaths.imgPath + "tower-icon"+(index+1)+".png";
 			
@@ -114,8 +116,10 @@ public class TowerPurchasePanel extends JPanel {
 		
 		updateAllowedButtons();
 
+		c.insets = new Insets(20, 0, 0, 0);
 		c.gridx = 1;
 		c.gridy = 4;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(towerStats, c);
 	}
 	

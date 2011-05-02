@@ -9,20 +9,23 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import src.ui.ColorConstants;
+import src.ui.controller.GameController;
 
 
 public class ElementalUpgradePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
+	private GameController controller;
 	private JButton neutralButton;
 	private JButton redButton;
 	private JButton greenButton;
 	private JButton blueButton;
 	private JButton yellowButton;
 	
-	public ElementalUpgradePanel(){
+	public ElementalUpgradePanel(GameController gc){
 		super(new GridBagLayout());
 		
+		controller = gc;
 		neutralButton = new JButton();
 		neutralButton.setBackground(ColorConstants.neutralColor);
 		

@@ -92,20 +92,20 @@ public class GameSetup extends JPanel {
 		add(createGameLabel, c);
 		
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 2;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
 		add(mapLabel, c);
 		
 		c.gridx = 0;
-		c.gridy = 2;
+		c.gridy = 3;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.PAGE_START;
 		add(mapListPane, c);
 		
 		c.gridx = 1;
-		c.gridy = 2;
+		c.gridy = 3;
 		c.gridwidth = 3;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
@@ -114,7 +114,7 @@ public class GameSetup extends JPanel {
 		add(mc, c);
 		
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 4;
 		c.gridwidth = 1;
 		c.ipady = 20;
 		c.fill = GridBagConstraints.NONE;
@@ -123,7 +123,7 @@ public class GameSetup extends JPanel {
 		add(cancelButton, c);
 		
 		c.gridx = 3;
-		c.gridy = 3;
+		c.gridy = 4;
 		c.ipady = 20;
 		c.insets = new Insets(0,0,0,0);
 		c.anchor = GridBagConstraints.LINE_END;

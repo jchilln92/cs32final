@@ -18,7 +18,7 @@ public class GameMain extends JFrame {
 	private static final long serialVersionUID = 1L;	
 	
 	private JPanel mainPanel;
-
+	private static final GameMain main = new GameMain();
 	private static Thread thread = new Thread();
 	private JPanel gamePanel;
 
@@ -37,7 +37,7 @@ public class GameMain extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				final GameMain main = new GameMain();
+
 				
 				TitleScreen title = new TitleScreen(main);
 				main.showScreen(title);
@@ -63,8 +63,7 @@ public class GameMain extends JFrame {
 	}
 	
 	public void resetGame(){
-		mainPanel.remove(gamePanel);
-		gamePanel = new JPanel();
+		showScreen(new TitleScreen(main));
 		
 		try {
 			thread.interrupt();
@@ -72,6 +71,6 @@ public class GameMain extends JFrame {
 			
 		}
 		
-		gamePanel.validate();
+		mainPanel.validate();
 	}
 }
