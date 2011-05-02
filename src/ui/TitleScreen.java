@@ -37,7 +37,7 @@ public class TitleScreen extends JPanel {
 		
 		singlePlayerButton = new JButton("Single Player Mode");
 		multiPlayerButton = new JButton("Multi-player Mode");
-		tutorialButton = new JButton("Look at an image to get help on how to play Tower Defense janx Mode");
+		tutorialButton = new JButton("Tutorial Mode");
 		quitButton = new JButton("Quitter Mode");
 
 		final GameMain main = this.gameMain;
@@ -73,27 +73,24 @@ public class TitleScreen extends JPanel {
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.PAGE_START;
-		c.insets = new Insets(40,0,40,0);
+		c.insets = new Insets(30,0,60,0);
 		add(titleLabel, c);
 
 		c.gridy = 1;
 		c.ipadx = 40;
 		c.ipady = 40;
-		c.fill = GridBagConstraints.NONE;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(20,0,20,0);
+		c.insets = new Insets(0,0,30,0);
 		add(singlePlayerButton, c);
 
 		c.gridy = 2;
-		c.fill = GridBagConstraints.NONE;
 		add(multiPlayerButton, c);	
 		
 		c.gridy = 3;
-		c.fill = GridBagConstraints.NONE;
 		add(tutorialButton, c);	
 		
 		c.gridy = 4;
-		c.fill = GridBagConstraints.NONE;
 		add(quitButton, c);	
 		
 	}

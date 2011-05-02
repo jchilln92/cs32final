@@ -57,13 +57,13 @@ public class MultiplayerWaitScreen extends JPanel {
 		
 		mc = new MapComponent(true);
 		mc.setGridOn(true);
-		mc.setSize(200, 200);
+		mc.setSize(400, 400);
 		mc.setMap(Map.getMapByName(Map.getMapNames().get(0)));
 		
 		gridPanel = new JPanel();
 		gridPanel.setLayout(new GridBagLayout());
 		gameLabel = new JLabel("Game Name");
-		//gameLabel.setFont(new Font("Dialog.bold", 10, 32));
+		gameLabel.setFont(new Font("Dialog.bold", 10, 32));
 		mapNameLabel = new JLabel("Map Name");
 		//mapNameLabel.setFont(new Font("Dialog.bold", 10, 32));
 		opponentLabel = new JLabel("Your opponent: ");
@@ -71,35 +71,45 @@ public class MultiplayerWaitScreen extends JPanel {
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.insets = new Insets(0, 0, 20, 0);
+		c.insets = new Insets(0, 0, 30, 0);
 		c.gridx = 0;
 		c.gridy = 0;
 	
-		c.anchor = GridBagConstraints.LINE_START;
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.CENTER;
+		//c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridwidth = 3;
+
 		c.gridy = 1;
 		gridPanel.add(gameLabel, c);
-		c.gridy = 2;
-		gridPanel.add(mapNameLabel, c);
 		
 		c.gridx = 2;
+		c.gridy = 2;
+		c.insets = new Insets(0, 0, 0, 0);
+		c.gridwidth = 1;
+		gridPanel.add(mapNameLabel, c);
+
+		c.anchor = GridBagConstraints.LINE_START;
+		c.gridx = 2;
 		c.gridy = 3;
-		c.gridheight = 4;
+		c.gridheight = 2;
 		gridPanel.add(mc, c);
 		
 		c.insets = new Insets(0, 0, 0, 0);
 		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 1;
+		c.gridheight = 1;
 		gridPanel.add(opponentLabel, c);
 		c.gridx = 0;
-		c.gridy = 5;
+		c.gridy = 4;
+		c.insets = new Insets(30, 0, 0, 0);
 		gridPanel.add(opponentNameLabel, c);
-		c.gridy = 7;
+		c.gridy = 4;
 		c.gridx = 0;
+		c.insets = new Insets(80, 0, 0, 0);
 		gridPanel.add(bootButton, c);
-		c.gridy = 7;
+		c.insets = new Insets(0, 0, 0, 0);
+		c.gridy = 5;
 		c.gridx = 0;
 		gridPanel.add(cancelButton, c);
 		c.gridx = 2;
