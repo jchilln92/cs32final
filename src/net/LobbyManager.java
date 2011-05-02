@@ -160,6 +160,7 @@ public class LobbyManager {
 								client.close();
 							} else {
 								NetworkGame game = new NetworkGame(connection);
+								game.setMap(Map.getMapByName(hostedGame.getMapName()));
 								controller.startNetworkGame(game);
 							}
 					}
