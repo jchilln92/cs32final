@@ -40,9 +40,12 @@ public class MultiplayerWaitScreen extends JPanel {
 	
 	private MultiplayerController controller;
 	
-	public MultiplayerWaitScreen(MultiplayerController multiController) {
+	public MultiplayerWaitScreen(String gameName, String mapName, MultiplayerController multiController) {
 		super(new BorderLayout());
 		this.controller = multiController;
+		
+		//LobbyManager lm = controller.getLobbyManager();
+		
 		startGameButton = new JButton("Start Game");
 		cancelButton = new JButton("Cancel");
 		bootButton = new JButton("Boot");
@@ -62,9 +65,9 @@ public class MultiplayerWaitScreen extends JPanel {
 		
 		gridPanel = new JPanel();
 		gridPanel.setLayout(new GridBagLayout());
-		gameLabel = new JLabel("Game Name");
+		gameLabel = new JLabel(gameName);
 		gameLabel.setFont(new Font("Dialog.bold", 10, 32));
-		mapNameLabel = new JLabel("Map Name");
+		mapNameLabel = new JLabel(mapName);
 		//mapNameLabel.setFont(new Font("Dialog.bold", 10, 32));
 		opponentLabel = new JLabel("Your opponent: ");
 		opponentNameLabel = new JLabel("No opponent");
@@ -72,15 +75,15 @@ public class MultiplayerWaitScreen extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.insets = new Insets(0, 0, 30, 0);
-		c.gridx = 0;
+		c.gridx = 1;
 		c.gridy = 0;
 	
 		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridwidth = 3;
 
 		c.gridy = 1;
 		gridPanel.add(gameLabel, c);
+		
 		
 		c.gridx = 2;
 		c.gridy = 2;
@@ -91,26 +94,28 @@ public class MultiplayerWaitScreen extends JPanel {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.gridx = 2;
 		c.gridy = 3;
+		c.gridwidth = 3;
 		c.gridheight = 2;
 		gridPanel.add(mc, c);
 		
-		c.insets = new Insets(0, 0, 0, 0);
+		c.insets = new Insets(30, 0, 0, 0);
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 3;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		gridPanel.add(opponentLabel, c);
 		c.gridx = 0;
-		c.gridy = 4;
-		c.insets = new Insets(30, 0, 0, 0);
+		c.gridy = 3;
+		c.insets = new Insets(60, 0, 0, 0);
 		gridPanel.add(opponentNameLabel, c);
 		c.gridy = 4;
 		c.gridx = 0;
-		c.insets = new Insets(80, 0, 0, 0);
+		c.insets = new Insets(90, 0, 0, 0);
 		gridPanel.add(bootButton, c);
 		c.insets = new Insets(0, 0, 0, 0);
 		c.gridy = 5;
 		c.gridx = 0;
+		c.gridwidth = 2;
 		gridPanel.add(cancelButton, c);
 		c.gridx = 2;
 		gridPanel.add(startGameButton, c);
@@ -141,6 +146,11 @@ public class MultiplayerWaitScreen extends JPanel {
 		});
 	}
 	
+	public void setGameName(String name){
+		gameLabel.setText(name);
+		System.out.println("okay");
+		
+	}
 	public void setPotentialOpponent(String name) {
 		opponentNameLabel.setText(name);
 	}

@@ -32,7 +32,7 @@ public class SingleGamePanel extends JPanel {
 		add(s, BorderLayout.LINE_END);
 		gameController.setSidebar(s);
 		
-		CreepSideBar cs = new CreepSideBar();
-		add(cs, BorderLayout.PAGE_END);
+		//CreepSideBar cs = new CreepSideBar();
+		//add(cs, BorderLayout.PAGE_END);
 	}
 }

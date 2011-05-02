@@ -24,7 +24,7 @@ public class MultiplayerController {
 		lobbyManager = new LobbyManager(this);
 		lobby = new Lobby(this);
 		gameSetup = new MultiplayerGameSetup(this);
-		waitScreen = new MultiplayerWaitScreen(this);
+		waitScreen = new MultiplayerWaitScreen("","",this);
 	}
 	
 	public void showLobby() {
@@ -49,7 +49,8 @@ public class MultiplayerController {
 		newHostedGame.setGameName(gameSetup.getGameName());
 		newHostedGame.setMapName(gameSetup.getMapName());
 		lobbyManager.hostNewGame(newHostedGame);
-		
+	
+		new MultiplayerWaitScreen(gameSetup.getGameName(), gameSetup.getMapName(), this);
 		gameMain.showScreen(waitScreen);
 	}
 	
