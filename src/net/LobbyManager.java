@@ -16,7 +16,6 @@ import com.esotericsoftware.kryonet.Server;
 public class LobbyManager {
 	private NetworkPlayer localPlayer;
 	private ArrayList<AvailableGame> availableGames;
-	private ArrayList<InetAddress> testAddresses; // part of hack, see below
 	private Client client;
 	
 	private AvailableGame hostedGame;
@@ -28,18 +27,6 @@ public class LobbyManager {
 		this.controller = multiController;
 		
 		localPlayer = new NetworkPlayer();
-		
-		// hack for testing, make a list of hosts to test
-		testAddresses = new ArrayList<InetAddress>();
-		
-		try {
-			testAddresses.add(InetAddress.getByName("cslab8h"));
-			//testAddresses.add(InetAddress.getByName("cslab8f"));
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		availableGames = new ArrayList<AvailableGame>();
 		
 		client = new Client(NetworkConstants.bufferSize, NetworkConstants.bufferSize);
@@ -171,9 +158,9 @@ public class LobbyManager {
 	public void refreshGameList() {
 		availableGames.clear();
 		
-		for (InetAddress addr : testAddresses) {
+		for (InetAddress addr : SunlabAutodiscoverHack.getSunlabAddresses()) {
 			try {
-				client.connect(NetworkConstants.gameDisoveryTimeout, addr, NetworkConstants.tcpPort, NetworkConstants.udpPort);
+				client.connect(20, addr, NetworkConstants.tcpPort, NetworkConstants.udpPort);
 				
 				// send query to server
 				GameNegotiationMessage discoveryMessage = new GameNegotiationMessage();
