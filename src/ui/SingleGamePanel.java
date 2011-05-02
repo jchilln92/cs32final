@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+import src.net.NetworkGameController;
 import src.ui.controller.GameController;
+import src.ui.creepside.CreepSideBar;
 import src.ui.side.Sidebar;
 
 public class SingleGamePanel extends JPanel {
@@ -27,5 +29,8 @@ public class SingleGamePanel extends JPanel {
 		Sidebar s = new Sidebar(gameController);
 		add(s, BorderLayout.LINE_END);
 		gameController.setSidebar(s);
+		
+		CreepSideBar cs = new CreepSideBar();
+		add(cs, BorderLayout.PAGE_END);
 	}
 }
