@@ -159,7 +159,8 @@ public class LobbyManager {
 								System.out.println("You've been kicked");
 								client.close();
 							} else {
-								controller.joinAccepted();
+								NetworkGame game = new NetworkGame(connection);
+								controller.startNetworkGame(game);
 							}
 					}
 				}
