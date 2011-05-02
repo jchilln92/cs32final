@@ -3,10 +3,14 @@ package src.ui.controller;
 import src.GameMain;
 import src.net.AvailableGame;
 import src.net.LobbyManager;
+import src.net.NetworkGame;
+import src.net.NetworkGameController;
 import src.ui.Lobby;
+import src.ui.MultiplayerGamePanel;
 import src.ui.MultiplayerGameSetup;
 import src.ui.MultiplayerWaitScreen;
 import src.ui.TitleScreen;
+import src.ui.side.Sidebar;
 
 public class MultiplayerController {
 	private GameMain gameMain;
@@ -72,5 +76,33 @@ public class MultiplayerController {
 	
 	public GameMain getGameMain() {
 		return gameMain;
+	}
+
+	public void stopHostingGame() {
+		lobbyManager.stopHostingGame();
+		lobby.updateGameListPane();
+		gameMain.showScreen(lobby);
+	}
+
+	public void startNetworkGame() {
+		MultiplayerGamePanel mgp = new MultiplayerGamePanel();
+		NetworkGame ng = lobbyManager.acceptPlayer();
+		NetworkGameController ngc = new NetworkGameController(ng);
+		GameController gc = new GameController();
+		gc.setGame(ng);
+		
+		mgp.opponentMap.setGameController(ngc);
+		mgp.opponentMap.setMap(ng.getMap());
+		
+		mgp.localMap.setGameController(gc);
+		mgp.localMap.setMap(ng.getMap());
+		
+		mgp.sb = new Sidebar(gc);
+		gc.setSidebar(mgp.sb);
+		mgp.add(mgp.sb);
+		
+		gc.start();
+		
+		gameMain.showScreen(mgp);
 	}
 }

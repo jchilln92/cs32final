@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import src.net.AvailableGame;
 import src.net.LobbyManager;
@@ -88,7 +89,6 @@ public class Lobby extends JPanel {
 		});
 		
 		joinButton = new JButton("Join Game");
-		//joinButton.setEnabled(false);
 		joinButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.joinGame(gameTable.getSelectedRow());
@@ -154,7 +154,7 @@ public class Lobby extends JPanel {
 		add(joinButton, c);	
 	}
 	
-	private void updateGameListPane() {
+	public void updateGameListPane() {
 		LobbyManager lm = controller.getLobbyManager();
 		
 		lm.refreshGameList();
@@ -171,7 +171,13 @@ public class Lobby extends JPanel {
 			i++;
 		}
 		
-		gameTable = new JTable(data, columnHeaders);
+		gameTable = new JTable(data, columnHeaders) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+
+		gameTable.setColumnSelectionAllowed(false);
 		gameTable.getTableHeader().setReorderingAllowed(false);
 		gameTableScrollPane.setViewportView(gameTable);
 		gameTable.setFillsViewportHeight(true);

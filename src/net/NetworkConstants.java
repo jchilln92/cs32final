@@ -3,7 +3,11 @@ package src.net;
 import java.util.ArrayList;
 
 import src.core.Creep;
+import src.core.Damage;
+import src.core.IAlignment;
+import src.core.TargetingInfo;
 import src.core.Tower;
+import src.core.Upgrade;
 
 import com.esotericsoftware.kryo.Kryo;
 
@@ -20,6 +24,12 @@ public class NetworkConstants {
 		k.register(AvailableGame.class);
 		k.register(ArrayList.class);
 		k.register(Tower.class);
+		k.register(Tower.Type.class);
+		k.register(TargetingInfo.class);
+		k.register(TargetingInfo.Strategy.class);
+		k.register(Damage.class);
+		k.register(IAlignment.Alignment.class);
 		k.register(Creep.class);
+		k.register(Upgrade.class);
 	}
 }

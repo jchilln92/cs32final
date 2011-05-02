@@ -1,5 +1,6 @@
 package src.ui;
 
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,8 +11,30 @@ public class MultiplayerGameSetup extends GameSetup {
 	private MultiplayerController controller;
 	
 	public MultiplayerGameSetup(MultiplayerController multiController) {
-		super(multiController.getGameMain());
 		this.controller = multiController;
+		
+		setupLayout();
+		setupButtonActions();
+	}
+	
+	@Override
+	public void setupLayout() {
+		super.setupLayout();
+		
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.CENTER;
+		add(createNameLabel, c);
+		
+		c.gridx = 1;
+		c.gridy = 1;
+		c.gridwidth = 3;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.PAGE_START;
+		add(createNameField, c);
 	}
 	
 	@Override
@@ -28,5 +51,9 @@ public class MultiplayerGameSetup extends GameSetup {
 				controller.completeGameCreation();
 			}
 		});
+	}
+	
+	public String getGameName() {
+		return createNameField.getText();
 	}
 }

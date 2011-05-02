@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.core.Map;
 import src.ui.controller.MultiplayerController;
 
 import com.esotericsoftware.kryonet.Client;
@@ -59,7 +60,12 @@ public class LobbyManager {
 		createServer();
 	}
 	
-	private void createServer(){
+	public void stopHostingGame() {
+		hostedGame = null;
+		shutdownServer();
+	}
+	
+	private void createServer() {
 		server = new Server();
 		NetworkConstants.registerKryoClasses(server.getKryo());
 		server.start();
@@ -71,6 +77,12 @@ public class LobbyManager {
 		}
 		
 		initializeServerListener();
+	}
+	
+	private void shutdownServer() {
+		boot();
+		server.close();
+		server = null;
 	}
 	
 	private void initializeServerListener() {
@@ -108,6 +120,19 @@ public class LobbyManager {
 		response.data = false;
 		
 		server.sendToAllTCP(response);
+	}
+	
+	public NetworkGame acceptPlayer() {
+		GameNegotiationMessage response = new GameNegotiationMessage();
+		response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
+		response.data = true;
+		
+		NetworkGame ng = new NetworkGame(server.getConnections()[0]);
+		ng.setMap(Map.getMapByName(hostedGame.getMapName()));
+		
+		server.sendToAllTCP(response);
+		
+		return ng;
 	}
 	
 	private void initializeClientListener() {

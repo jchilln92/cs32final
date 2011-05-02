@@ -30,7 +30,7 @@ public class MultiplayerWaitScreen extends JPanel {
 		
 		waitingLabel = new JLabel("Waiting for opponents...");
 		opponentLabel = new JLabel("Your opponent: ");
-		opponentNameLabel = new JLabel("alkjasdf");
+		opponentNameLabel = new JLabel("No opponent");
 		
 		add(startGameButton);
 		add(cancelButton);
@@ -43,6 +43,18 @@ public class MultiplayerWaitScreen extends JPanel {
 	}
 	
 	public void setupButtonHandlers() {
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.stopHostingGame();
+			}
+		});
+		
+		startGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.startNetworkGame();
+			}
+		});
+		
 		bootButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.bootPotentialOpponent();

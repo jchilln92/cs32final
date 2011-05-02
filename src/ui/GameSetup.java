@@ -28,35 +28,34 @@ public class GameSetup extends JPanel {
 	private static final String createNameText = "Game name:";
 
 	private JLabel createGameLabel;
-	private JLabel createNameLabel;
 	private JLabel mapLabel;
-	
-	private JTextField createNameField;
 	
 	protected JButton playButton;
 	protected JButton cancelButton;
+	
+	protected JLabel createNameLabel;
+	protected JTextField createNameField;
 	
 	private JScrollPane mapListPane;
 	private JList mapList;
 
 	private MapComponent mc;
 	protected GameMain gameMain;
-	
-	public GameSetup(GameMain gameMain) {
+
+	public GameSetup() {
 		super(new GridBagLayout());
 		setSize(800, 600);
-		
-		this.gameMain = gameMain;
 		
 		mc = new MapComponent(true);
 		mc.setGridOn(true);
 		mc.setSize(400, 400);
 	
 		createGameLabel = new JLabel(createGameText);
-		createNameLabel = new JLabel(createNameText);
 		mapLabel = new JLabel("Map:");
 		
+		createNameLabel = new JLabel(createNameText);
 		createNameField = new JTextField("");
+		
 		cancelButton = new JButton("Cancel");
 		playButton = new JButton("Begin Game");
 		
@@ -73,6 +72,11 @@ public class GameSetup extends JPanel {
 		});
 		
 		mapListPane = new JScrollPane(mapList);
+	}
+	
+	public GameSetup(GameMain gameMain) {
+		this();
+		this.gameMain = gameMain;
 		
 		setupLayout();
 		setupButtonActions();
@@ -150,10 +154,6 @@ public class GameSetup extends JPanel {
 				gc.start();
 			}
 		});
-	}
-
-	public String getGameName() {
-		return createNameField.getText();
 	}
 	
 	public String getMapName() {
