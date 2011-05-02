@@ -64,6 +64,13 @@ public class MultiplayerController {
 	
 	public void bootPotentialOpponent() {
 		lobbyManager.boot();
+		waitScreen.setPotentialOpponent(null);
+	}
+
+	public void clientDisconnected() {
+		if (lobbyManager.getHostedGame() != null) {
+			waitScreen.setPotentialOpponent(null);
+		}
 	}
 	
 	public void setUsername(String uname) {

@@ -35,22 +35,22 @@ public class LobbyManager {
 		
 		initializeClientListener();
 	}
-	
+
 	public void setPlayerName(String name) {
 		localPlayer.setUsername(name);
 	}
-	
+
 	public void hostNewGame(AvailableGame game) {
 		hostedGame = game;
 		game.setHostName(localPlayer.getUsername());
 		createServer();
 	}
-	
+
 	public void stopHostingGame() {
 		hostedGame = null;
 		shutdownServer();
 	}
-	
+
 	private void createServer() {
 		server = new Server(NetworkConstants.bufferSize, NetworkConstants.bufferSize);
 		NetworkConstants.registerKryoClasses(server.getKryo());
@@ -64,20 +64,20 @@ public class LobbyManager {
 		
 		initializeServerListener();
 	}
-	
+
 	private void shutdownServer() {
 		boot();
 		server.close();
 		server = null;
 	}
-	
+
 	private void initializeServerListener() {
 		server.addListener(new Listener() {
 			public void received(Connection connection, Object object) {
 				if (object instanceof GameNegotiationMessage) {
 					GameNegotiationMessage m = (GameNegotiationMessage)object;
 					GameNegotiationMessage response = new GameNegotiationMessage();
-					
+
 					switch (m.type) {
 						case GAME_DISCOVER:
 							try {
@@ -96,6 +96,10 @@ public class LobbyManager {
 							break;
 					}
 				}
+			}
+
+			public void disconnected(Connection c) {
+				controller.clientDisconnected();
 			}
 		});
 	}
@@ -202,7 +206,12 @@ public class LobbyManager {
 	public ArrayList<AvailableGame> getAvailableGames(){
 		return availableGames;
 	}
-	public Server getServer(){
+
+	public Server getServer() {
 		return server;
+	}
+
+	public AvailableGame getHostedGame() {
+		return hostedGame;
 	}
 }
