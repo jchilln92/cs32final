@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
 
 import src.net.AvailableGame;
 import src.net.LobbyManager;
@@ -57,11 +58,16 @@ public class Lobby extends JPanel {
 				JTextField field = (JTextField) e.getSource();
 
 				int code = e.getKeyCode();
+				String uname = "";
 				if (code == KeyEvent.VK_BACK_SPACE) {
-					controller.setUsername(field.getText().substring(0, field.getText().length()));
+					uname = field.getText().substring(0, field.getText().length()-1);
 				} else {
-					controller.setUsername(field.getText() + e.getKeyChar());
+					uname = field.getText() + e.getKeyChar();
 				}
+
+				controller.setUsername(uname);
+				
+				updateAllowedButtons(uname);
 			}
 		});
 		
@@ -82,6 +88,7 @@ public class Lobby extends JPanel {
 		});
 		
 		createGameButton = new  JButton("Create Game");
+		createGameButton.setEnabled(false);
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.beginGameCreation();
@@ -89,6 +96,7 @@ public class Lobby extends JPanel {
 		});
 		
 		joinButton = new JButton("Join Game");
+		joinButton.setEnabled(false);
 		joinButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.joinGame(gameTable.getSelectedRow());
@@ -154,6 +162,20 @@ public class Lobby extends JPanel {
 		add(joinButton, c);	
 	}
 	
+	private void updateAllowedButtons(String username) {
+		if (gameTable.getSelectedRow() < 0 || username.trim().length() == 0) {
+			joinButton.setEnabled(false);
+		} else {
+			joinButton.setEnabled(true);
+		}
+		
+		if (username.trim().length() == 0) {
+			createGameButton.setEnabled(false);
+		} else {
+			createGameButton.setEnabled(true);
+		}
+	}
+	
 	public void updateGameListPane() {
 		LobbyManager lm = controller.getLobbyManager();
 		
@@ -175,8 +197,12 @@ public class Lobby extends JPanel {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
+			
+			public void valueChanged(ListSelectionEvent e) {
+				updateAllowedButtons(usernameField.getText());
+			}
 		};
-
+		
 		gameTable.setColumnSelectionAllowed(false);
 		gameTable.getTableHeader().setReorderingAllowed(false);
 		gameTableScrollPane.setViewportView(gameTable);

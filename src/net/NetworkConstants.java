@@ -7,6 +7,7 @@ import java.util.HashMap;
 import src.core.Creep;
 import src.core.CreepPath;
 import src.core.Damage;
+import src.core.DamageApplication;
 import src.core.IAlignment;
 import src.core.TargetingInfo;
 import src.core.Tower;
@@ -40,5 +41,6 @@ public class NetworkConstants {
 		k.register(CreepPath.class);
 		k.register(Point2D.Double.class);
 		k.register(Creep.Type.class);
+		k.register(DamageApplication.class);
 	}
 }
