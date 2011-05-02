@@ -18,9 +18,8 @@ import src.ui.side.TowerStatsPanel;
 
 public class CreepInfoPurchasePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-
 	
-
+	private Creep c;
 	
 	private JButton neutralButton;
 	private JButton redButton;
@@ -90,6 +89,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 1;
+		c.gridwidth = 5;
 		c.gridheight = 3;
 		add(buyButton, c);
 	}

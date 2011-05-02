@@ -3,6 +3,8 @@ package src.ui.creepside;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -36,6 +38,7 @@ public class CreepSideBar extends JPanel {
 		creepInfoPurchase.setBorder(borderLine);
 		creepQueue.setBorder(borderLine);
 		this.setBorder(borderLine);
+
 		add(creepSelection, BorderLayout.LINE_START);
 		add(creepInfoPurchase, BorderLayout.LINE_START);
 		add(creepQueue, BorderLayout.LINE_START);

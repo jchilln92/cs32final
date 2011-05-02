@@ -5,10 +5,13 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import src.FilePaths;
+import src.ui.CreepDrawer;
 import src.ui.controller.GameController;
 
 /**
@@ -20,6 +23,7 @@ public class PauseQuitPanel extends JPanel {
 
 	private GameController gc;
 	
+	private JButton heartButton;
 	private JButton pauseButton;
 	private JButton quitButton;
 	
@@ -29,7 +33,17 @@ public class PauseQuitPanel extends JPanel {
 		super(new GridBagLayout());
 		
 		this.gc = controller;
-	
+
+		String path = FilePaths.imgPath + "tower-icon"+1+".png";
+		
+		ImageIcon heartIcon = new ImageIcon(path);
+		heartButton = new JButton(heartIcon);
+		heartButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreepDrawer.toggleDrawHealthBar(!CreepDrawer.getDrawHealthBar());
+			}
+		});		
+		
 		pauseButton = new JButton("Pause");
 		pauseButton.setActionCommand("pause");
 		pauseButton.addActionListener(new ActionListener() {
@@ -59,12 +73,15 @@ public class PauseQuitPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
-		add(pauseButton, c);
-
+		add(heartButton, c);
+		
 		c.gridx = 1;
 		c.gridy = 0;
-		c.fill = GridBagConstraints.NONE;
+		add(pauseButton, c);
+		c.gridx = 2;
+		c.gridy = 0;
 		add(quitButton, c);
+		
 	}
 	
 	public void makePopup(){

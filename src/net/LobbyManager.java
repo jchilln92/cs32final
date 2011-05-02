@@ -215,4 +215,7 @@ public class LobbyManager {
 	public ArrayList<AvailableGame> getAvailableGames(){
 		return availableGames;
 	}
+	public Server getServer(){
+		return server;
+	}
 }

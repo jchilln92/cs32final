@@ -1,5 +1,6 @@
 package src.ui.creepside;
 
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -17,6 +18,34 @@ public class CreepStatsPanel extends JPanel{
 	
 	public CreepStatsPanel() {
 		super(new GridBagLayout());
+		creepNameLabel = new JLabel(" ");
+		healthLabel = new JLabel(" ");
+		damageLabel = new JLabel(" ");
+		abilitiesLabel = new JLabel(" ");
+		costLabel = new JLabel(" ");
+
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		c.anchor = GridBagConstraints.CENTER;
+		//c.fill = GridBagConstraints.HORIZONTAL;
+		add(creepNameLabel, c);
+		
+		c.gridy = 1;
+		add(healthLabel, c);
+		
+		c.gridy = 2;
+		add(damageLabel, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		add(abilitiesLabel, c);
+				
+		c.gridx = 0;
+		c.gridy = 4;
+		add(costLabel, c);
+		
 	}
 	public void setCreep(Creep c) {
 		creep = c;

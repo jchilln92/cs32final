@@ -73,10 +73,12 @@ public class TitleScreen extends JPanel {
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.PAGE_START;
-		c.insets = new Insets(50,0,200,0);
+		c.insets = new Insets(40,0,40,0);
 		add(titleLabel, c);
 
 		c.gridy = 1;
+		c.ipadx = 40;
+		c.ipady = 40;
 		c.fill = GridBagConstraints.NONE;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(20,0,20,0);

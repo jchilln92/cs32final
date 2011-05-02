@@ -7,9 +7,19 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 public class CreepDrawer {
+	
+	private static boolean drawHealthBar = true; 
 	/**
 	 * Draws a creep into the the appropriate area in the graphics context g.
 	 */
+	
+	public static void toggleDrawHealthBar(boolean shouldDraw){
+		drawHealthBar = shouldDraw;
+		
+	}
+	public static boolean getDrawHealthBar(){
+		return drawHealthBar;
+	}
 	public static void drawCreep(IDrawableCreep c, double tileHeight,
 			double tileWidth, Graphics2D g) {
 		// TODO: This is just a stub / test method
@@ -23,23 +33,26 @@ public class CreepDrawer {
 				creepRadius, 0, 360, Arc2D.PIE);
 		g.setColor(Color.BLUE);
 		g.fill(creep);
+		
+		if(drawHealthBar){
+			// draw a health bar over the creep
+			Rectangle2D.Double backgroundBar = new Rectangle2D.Double(creepCenter
+					.getX()
+					- creepRadius, creepCenter.getY() - creepRadius - 5,
+					2 * creepRadius, 3);
+	
+			g.setColor(Color.RED);
+			g.fill(backgroundBar);
 
-		// draw a health bar over the creep
-		Rectangle2D.Double backgroundBar = new Rectangle2D.Double(creepCenter
-				.getX()
-				- creepRadius, creepCenter.getY() - creepRadius - 5,
-				2 * creepRadius, 3);
 
-		g.setColor(Color.RED);
-		g.fill(backgroundBar);
-
-		Rectangle2D.Double healthBar = new Rectangle2D.Double(creepCenter
+			Rectangle2D.Double healthBar = new Rectangle2D.Double(creepCenter
 				.getX()
 				- creepRadius, creepCenter.getY() - creepRadius - 5, c
 				.getHealthFraction()
 				* 2 * creepRadius, 3);
 
-		g.setColor(Color.GREEN);
-		g.fill(healthBar);
+			g.setColor(Color.GREEN);
+			g.fill(healthBar);
+		}
 	}
 }
