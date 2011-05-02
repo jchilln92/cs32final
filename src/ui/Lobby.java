@@ -59,7 +59,7 @@ public class Lobby extends JPanel {
 
 				int code = e.getKeyCode();
 				String uname = "";
-				if (code == KeyEvent.VK_BACK_SPACE) {
+				if (code == KeyEvent.VK_BACK_SPACE && field.getText().length() > 0) {
 					uname = field.getText().substring(0, field.getText().length()-1);
 				} else {
 					uname = field.getText() + e.getKeyChar();
