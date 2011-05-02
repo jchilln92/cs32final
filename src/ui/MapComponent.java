@@ -83,11 +83,11 @@ public class MapComponent extends JComponent {
 	}
 	
 	private double getTileWidth() {
-		return getWidth() / m.getWidth();
+		return getWidth() / (double) m.getWidth();
 	}
 	
 	private double getTileHeight() {
-		return getHeight() / m.getHeight();
+		return getHeight() / (double) m.getHeight();
 	}
 
 	public void setGameController(GameController gc) {
