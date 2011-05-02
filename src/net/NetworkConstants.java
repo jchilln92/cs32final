@@ -18,6 +18,8 @@ public class NetworkConstants {
 	public static final int tcpPort = 9999;
 	public static final int udpPort = 10000;
 	
+	public static final int bufferSize = 128 * 1024; // in bytes
+	
 	public static final int gameDisoveryTimeout = 1000;
 	public static final int gameConnectTimeout = 4000;
 	

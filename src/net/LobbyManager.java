@@ -43,7 +43,7 @@ public class LobbyManager {
 		
 		availableGames = new ArrayList<AvailableGame>();
 		
-		client = new Client();
+		client = new Client(NetworkConstants.bufferSize, NetworkConstants.bufferSize);
 		NetworkConstants.registerKryoClasses(client.getKryo());
 		client.start();
 		
@@ -66,7 +66,7 @@ public class LobbyManager {
 	}
 	
 	private void createServer() {
-		server = new Server();
+		server = new Server(NetworkConstants.bufferSize, NetworkConstants.bufferSize);
 		NetworkConstants.registerKryoClasses(server.getKryo());
 		server.start();
 		try {

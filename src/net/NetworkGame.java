@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.minlog.Log;
+
 import src.core.Creep;
 import src.core.Game;
 import src.core.Tower;
@@ -27,6 +29,8 @@ public class NetworkGame extends Game {
 	}
 	
 	private void initializeGameListeners() {
+		Log.set(Log.LEVEL_TRACE);
+		
 		remoteConnection.addListener(new Listener() {
 			public void received(Connection c, Object object) {
 				if (object instanceof GameNegotiationMessage) {
@@ -37,13 +41,18 @@ public class NetworkGame extends Game {
 							synchronized (opponentCreeps) {
 								opponentCreeps = (ArrayList<Creep>) m.data;
 							}
+							
+							break;
 						case TOWERS_UPDATE:
 							synchronized (opponentTowers) {
 								opponentTowers = (ArrayList<Tower>) m.data;
 							}
+							
+							break;
 						case WAVE:
 							ArrayList<Creep> wave = (ArrayList<Creep>) m.data;
 							sendWave(wave);
+							break;
 					}
 				}
 			}
@@ -77,15 +86,20 @@ public class NetworkGame extends Game {
 		GameNegotiationMessage towerMessage = new GameNegotiationMessage();
 		
 		// TODO: determine whether these need to be synchronized
-		
+		System.out.println("good 1");
 		creepMessage.type = GameNegotiationMessage.Type.CREEPS_UPDATE;
 		creepMessage.data = getCreeps();
 		
+		System.out.println("good 2");
 		towerMessage.type = GameNegotiationMessage.Type.TOWERS_UPDATE;
 		towerMessage.data = getTowers();
 
+		System.out.println("good 3");
 		remoteConnection.sendTCP(creepMessage);
+		
+		System.out.println("good 4");
 		remoteConnection.sendTCP(towerMessage);
+		System.out.println("good 5");
 	}
 	
 	public ArrayList<Creep> getOpponentCreeps() {
