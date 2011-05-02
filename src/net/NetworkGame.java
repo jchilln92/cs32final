@@ -27,7 +27,7 @@ public class NetworkGame extends Game {
 		remoteConnection = opponent;
 		initializeGameListeners();
 	}
-	
+
 	private void initializeGameListeners() {
 		remoteConnection.addListener(new Listener() {
 			public void received(Connection c, Object object) {
@@ -56,13 +56,13 @@ public class NetworkGame extends Game {
 			}
 		});
 	}
-	
+
 	@Override
 	public void tick() {
 		super.tick();
 		provideInformation();
 	}
-	
+
 	/**
 	 * Sends a given wave to an opponent to be added to that opponent's map
 	 */
@@ -74,7 +74,7 @@ public class NetworkGame extends Game {
 		
 		remoteConnection.sendTCP(message);
 	}
-	
+
 	/**
 	 * Sends the opponent data about the current state of our map,
 	 * including the creeps and the towers.
@@ -90,14 +90,19 @@ public class NetworkGame extends Game {
 		towerMessage.type = GameNegotiationMessage.Type.TOWERS_UPDATE;
 		towerMessage.data = getTowers();
 
-		remoteConnection.sendTCP(creepMessage);
-		remoteConnection.sendTCP(towerMessage);
+		synchronized (getCreeps()) {
+			remoteConnection.sendTCP(creepMessage);
+		}
+
+		synchronized (getTowers()) {
+			remoteConnection.sendTCP(towerMessage);
+		}
 	}
-	
+
 	public ArrayList<Creep> getOpponentCreeps() {
 		return opponentCreeps;
 	}
-	
+
 	public ArrayList<Tower> getOpponentTowers() {
 		return opponentTowers;
 	}

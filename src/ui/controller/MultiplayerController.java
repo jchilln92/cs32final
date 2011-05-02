@@ -10,7 +10,6 @@ import src.ui.MultiplayerGamePanel;
 import src.ui.MultiplayerGameSetup;
 import src.ui.MultiplayerWaitScreen;
 import src.ui.TitleScreen;
-import src.ui.side.Sidebar;
 
 public class MultiplayerController {
 	private GameMain gameMain;
@@ -89,23 +88,17 @@ public class MultiplayerController {
 	}
 	
 	public void startNetworkGame(NetworkGame ng) {
-		MultiplayerGamePanel mgp = new MultiplayerGamePanel();
-		NetworkGameController ngc = new NetworkGameController(ng);
-		GameController gc = new GameController();
-		gc.setGame(ng);
+		// controls drawing the opponent's map
+		NetworkGameController networkController = new NetworkGameController(ng);
 		
-		mgp.opponentMap.setGameController(ngc);
-		mgp.opponentMap.setMap(ng.getMap());
+		// controls drawing our map
+		GameController localController = new GameController();
 		
-		mgp.localMap.setGameController(gc);
-		mgp.localMap.setMap(ng.getMap());
+		MultiplayerGamePanel gamePanel = new MultiplayerGamePanel(localController,
+				networkController, ng, this);
 		
-		mgp.sb = new Sidebar(gc);
-		gc.setSidebar(mgp.sb);
-		mgp.add(mgp.sb);
+		localController.start();
 		
-		gc.start();
-		
-		gameMain.showScreen(mgp);
+		gameMain.showScreen(gamePanel);
 	}
 }
