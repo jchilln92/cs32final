@@ -73,6 +73,7 @@ public class PlayerStatsPanel extends JPanel {
 		this.opponent = opponent;
 		
 		opponentHealthLabel = new JLabel(opponentHealthText);
+		opponentHealthLabel.setForeground(Color.RED);
 		opponentHealthValueLabel = new JLabel("0");
 		
 		GridBagConstraints c = new GridBagConstraints();
