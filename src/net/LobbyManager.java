@@ -61,6 +61,7 @@ public class LobbyManager {
 		
 		if (server != null) {
 			server.sendToAllTCP(quitMessage);
+			stopHostingGame();
 		}
 	}
 	

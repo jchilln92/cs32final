@@ -74,6 +74,10 @@ public class MultiplayerController {
 	public void opponentDisconnected() {
 		if (lobbyManager.getHostedGame() != null) {
 			waitScreen.setPotentialOpponent(null);
+			
+			if (gameInProgress) {
+				quitNetworkGame();
+			}
 		}
 	}
 	
@@ -100,6 +104,8 @@ public class MultiplayerController {
 	}
 	
 	public void startNetworkGame(NetworkGame ng) {
+		gameInProgress = true;
+		
 		// controls drawing the opponent's map
 		NetworkGameController networkController = new NetworkGameController(ng);
 		
@@ -115,7 +121,9 @@ public class MultiplayerController {
 	}
 
 	public void quitNetworkGame() {
+		gameInProgress = false;
 		lobbyManager.quit();
+		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
 	}
 }
