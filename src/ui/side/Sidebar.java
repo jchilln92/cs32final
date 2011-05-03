@@ -36,7 +36,7 @@ public class Sidebar extends JPanel {
 			NetworkGame ng = (NetworkGame) controller.getGame();
 			playerStats = new PlayerStatsPanel(controller.getGame().getPlayer(), ng.getOpponent());
 		}
-		
+
 		timeWave = new TimeWavePanel(controller, isMultiplayer);
 		
 		towerPanel = new TowerCardPanel(controller);

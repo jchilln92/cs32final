@@ -70,6 +70,8 @@ public class PlayerStatsPanel extends JPanel {
 	public PlayerStatsPanel(Player localPlayer, Player opponent) {
 		this(localPlayer);
 		
+		this.opponent = opponent;
+		
 		opponentHealthLabel = new JLabel(opponentHealthText);
 		opponentHealthValueLabel = new JLabel("0");
 		
@@ -91,6 +93,8 @@ public class PlayerStatsPanel extends JPanel {
 	public void updateDisplay() {
 		goldValueLabel.setText(Integer.toString((int)player.getGold()));
 		healthValueLabel.setText(Integer.toString((int)player.getHealth()));
-		opponentHealthValueLabel.setText(Integer.toString((int)opponent.getHealth()));
+		
+		if (opponentHealthValueLabel != null)
+			opponentHealthValueLabel.setText(Integer.toString((int)opponent.getHealth()));
 	}
 }

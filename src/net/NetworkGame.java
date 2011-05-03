@@ -19,10 +19,11 @@ public class NetworkGame extends Game {
 	private ArrayList<Tower> opponentTowers; // the towers on the opponent's map
 	private NetworkPlayer opponent; // the opponent
 
-	public NetworkGame(Connection opponent) {
+	public NetworkGame(Connection opponentConnection) {
+		opponent = new NetworkPlayer();
 		opponentCreeps = new ArrayList<Creep>();
 		opponentTowers = new ArrayList<Tower>();
-		remoteConnection = opponent;
+		remoteConnection = opponentConnection;
 		initializeGameListeners();
 	}
 
