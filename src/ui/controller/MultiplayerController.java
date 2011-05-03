@@ -74,10 +74,10 @@ public class MultiplayerController {
 	public void opponentDisconnected() {
 		if (lobbyManager.getHostedGame() != null) {
 			waitScreen.setPotentialOpponent(null);
-			
-			if (gameInProgress) {
-				quitNetworkGame();
-			}
+		}
+		
+		if (gameInProgress) {
+			quitNetworkGame();
 		}
 	}
 	
@@ -95,7 +95,6 @@ public class MultiplayerController {
 
 	public void stopHostingGame() {
 		lobbyManager.stopHostingGame();
-		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
 	}
 
@@ -123,7 +122,6 @@ public class MultiplayerController {
 	public void quitNetworkGame() {
 		gameInProgress = false;
 		lobbyManager.quit();
-		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
 	}
 }
