@@ -18,13 +18,16 @@ public class MultiplayerController {
 	private MultiplayerGameSetup gameSetup;
 	private MultiplayerWaitScreen waitScreen;
 	
+	private boolean gameInProgress;
+	
 	public MultiplayerController(GameMain gameMain) {
 		this.gameMain = gameMain;
 		
 		lobbyManager = new LobbyManager(this);
 		lobby = new Lobby(this);
 		gameSetup = new MultiplayerGameSetup(this);
-		waitScreen = new MultiplayerWaitScreen("","",this);
+		waitScreen = new MultiplayerWaitScreen("", "", this);
+		gameInProgress = false;
 	}
 	
 	public void showLobby() {
@@ -68,7 +71,7 @@ public class MultiplayerController {
 		waitScreen.setPotentialOpponent(null);
 	}
 
-	public void clientDisconnected() {
+	public void opponentDisconnected() {
 		if (lobbyManager.getHostedGame() != null) {
 			waitScreen.setPotentialOpponent(null);
 		}
@@ -109,5 +112,10 @@ public class MultiplayerController {
 		localController.start();
 		
 		gameMain.showScreen(gamePanel);
+	}
+
+	public void quitNetworkGame() {
+		lobbyManager.quit();
+		gameMain.showScreen(lobby);
 	}
 }

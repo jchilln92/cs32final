@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import src.FilePaths;
 import src.ui.CreepDrawer;
 import src.ui.controller.GameController;
+import src.ui.controller.MultiplayerController;
 
 /**
  * This is a panel that displays information on a player's gold and health,
@@ -22,12 +23,17 @@ public class PauseQuitPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private GameController gc;
+	private MultiplayerController multiController;
 	
 	private JButton heartButton;
 	private JButton pauseButton;
 	private JButton quitButton;
 	
 	private JOptionPane quitPopup;
+	
+	public PauseQuitPanel(GameController controller) {
+		this(controller, false);
+	}
 	
 	public PauseQuitPanel(GameController controller, boolean isMultiplayer) {
 		super(new GridBagLayout());
@@ -97,27 +103,34 @@ public class PauseQuitPanel extends JPanel {
 		
 	}
 	
+	public PauseQuitPanel(GameController gc, MultiplayerController multiController) {
+		this(gc, true);
+		this.multiController = multiController;
+	}
+	
 	public void makePopup(){
-		boolean check = false;
-		if(gc.getPaused()){
-			check = true;
-		}
-		gc.togglePause(true);
 		Object[] options = {"I want to quit.", "I don't want to quit."};
-		int n = JOptionPane.showOptionDialog(this, //we need to replace this with the main panel
-		"Are you sure you want to quit current game?",
-		"Quit?",
-		JOptionPane.YES_NO_CANCEL_OPTION,
-		JOptionPane.QUESTION_MESSAGE,
-		null,
-		options,
-		options[1]);
+		int n = JOptionPane.showOptionDialog(this, 
+											"Are you sure you want to quit current game?",
+											"Quit?",
+											JOptionPane.YES_NO_CANCEL_OPTION,
+											JOptionPane.QUESTION_MESSAGE,
+											null,
+											options,
+											options[1]);
 		
-		if(n == 0){ //quitting the game
-			gc.getGameMain().resetGame();
-		} else{ //not quitting the game
-			if(!check)
-				gc.togglePause(false);
+		if (multiController == null) {
+			boolean pauseCheck = gc.getPaused();
+			gc.togglePause(true);
+			
+			if (n == 0) { //quitting the game
+				gc.getGameMain().resetGame();
+			} else{ //not quitting the game
+				if (!pauseCheck)
+					gc.togglePause(false);
+			}
+		} else if (n == 0) {
+			multiController.quitNetworkGame();
 		}
 	}
 	

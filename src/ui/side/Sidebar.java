@@ -12,6 +12,7 @@ import javax.swing.border.Border;
 
 import src.net.NetworkGame;
 import src.ui.controller.GameController;
+import src.ui.controller.MultiplayerController;
 
 public class Sidebar extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -23,9 +24,10 @@ public class Sidebar extends JPanel {
 	private TimeWavePanel timeWave;
 	private PauseQuitPanel pauseQuit;
 	
-	public Sidebar(GameController gc, boolean isMultiplayer) {
+	public Sidebar(GameController gc, MultiplayerController mc) {
 		controller = gc;
-
+		boolean isMultiplayer = mc != null;
+		
 		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.PAGE_AXIS);
 		setLayout(layoutManager);
@@ -42,7 +44,11 @@ public class Sidebar extends JPanel {
 		towerPanel = new TowerCardPanel(controller);
 		towerPanel.showPurchasePanel(); // by default, show the tower purchase panel
 
-		pauseQuit = new PauseQuitPanel(controller, isMultiplayer);
+		if (isMultiplayer) {
+			pauseQuit = new PauseQuitPanel(controller, mc);
+		} else {
+			pauseQuit = new PauseQuitPanel(controller);
+		}
 
 		playerStats.setBorder(borderLine);
 		timeWave.setBorder(borderLine);

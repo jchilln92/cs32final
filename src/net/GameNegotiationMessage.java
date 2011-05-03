@@ -12,6 +12,7 @@ public class GameNegotiationMessage {
 		CREEPS_UPDATE,
 		TOWERS_UPDATE,
 		HEALTH_UPDATE,
-		WAVE
+		WAVE,
+		QUIT_GAME
 	}
 }

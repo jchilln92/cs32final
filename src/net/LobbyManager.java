@@ -45,12 +45,25 @@ public class LobbyManager {
 		game.setHostName(localPlayer.getUsername());
 		createServer();
 	}
-
+	
 	public void stopHostingGame() {
 		hostedGame = null;
 		shutdownServer();
 	}
-
+	
+	public void quit() {
+		GameNegotiationMessage quitMessage = new GameNegotiationMessage();
+		quitMessage.type = GameNegotiationMessage.Type.QUIT_GAME;
+		
+		if (client.isConnected()) {
+			client.sendTCP(quitMessage);
+		}
+		
+		if (server != null) {
+			server.sendToAllTCP(quitMessage);
+		}
+	}
+	
 	private void createServer() {
 		server = new Server(NetworkConstants.bufferSize, NetworkConstants.bufferSize);
 		NetworkConstants.registerKryoClasses(server.getKryo());
@@ -66,9 +79,11 @@ public class LobbyManager {
 	}
 
 	private void shutdownServer() {
-		boot();
-		server.close();
-		server = null;
+		if (server != null) {
+			boot();
+			server.close();
+			server = null;
+		}
 	}
 
 	private void initializeServerListener() {
@@ -94,12 +109,16 @@ public class LobbyManager {
 						case ATTEMPT_TO_JOIN:
 							controller.playerAttemptedToJoin((String) m.data);
 							break;
+						case QUIT_GAME:
+							connection.close();
+							controller.opponentDisconnected();
+							break;
 					}
 				}
 			}
 
 			public void disconnected(Connection c) {
-				controller.clientDisconnected();
+				controller.opponentDisconnected();
 			}
 		});
 	}
@@ -142,7 +161,6 @@ public class LobbyManager {
 							
 							break;
 						case ATTEMPT_TO_JOIN_RESPONSE:
-							System.out.println("response");
 							String mapName = (String) m.data;
 							
 							if (mapName == null) {
@@ -153,6 +171,9 @@ public class LobbyManager {
 								game.setMap(Map.getMapByName(mapName));
 								controller.startNetworkGame(game);
 							}
+						case QUIT_GAME:
+							client.close();
+							controller.opponentDisconnected();
 					}
 				}
 			}
