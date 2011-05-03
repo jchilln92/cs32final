@@ -172,6 +172,7 @@ public class LobbyManager {
 								game.setMap(Map.getMapByName(mapName));
 								controller.startNetworkGame(game);
 							}
+							break;
 						case QUIT_GAME:
 							client.close();
 							controller.opponentDisconnected();
