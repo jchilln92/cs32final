@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 
 import src.net.AvailableGame;
@@ -73,11 +74,7 @@ public class Lobby extends JPanel {
 			}
 		});
 		
-		addComponentListener(new ComponentAdapter() {
-			public void componentShown(ComponentEvent e) {
-				updateGameListPane();
-			}
-		});
+		updateGameListPane();
 		
 		refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(new ActionListener() {
@@ -183,35 +180,43 @@ public class Lobby extends JPanel {
 	}
 	
 	public void updateGameListPane() {
-		LobbyManager lm = controller.getLobbyManager();
+		final LobbyManager lm = controller.getLobbyManager();
 		
-		lm.refreshGameList();
-		
-		System.out.println(lm.getAvailableGames().size());
-		String[][] data = new String[lm.getAvailableGames().size()][4];
-		
-		int i = 0;
-		for (AvailableGame ag : lm.getAvailableGames()) {
-			data[i][0] = ag.getGameName();
-			data[i][1] = ag.getHostName();
-			data[i][2] = ag.getMapName();
-			data[i][3] = Long.toString(ag.getSecondsWaiting());
-			i++;
-		}
-		
-		gameTable = new JTable(data, columnHeaders) {
-			public boolean isCellEditable(int row, int column) {
-				return false;
+		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+			public Void doInBackground() {
+				lm.refreshGameList();
+				return null;
 			}
 			
-			public void valueChanged(ListSelectionEvent e) {
-				updateAllowedButtons(usernameField.getText());
+			protected void done() {
+				String[][] data = new String[lm.getAvailableGames().size()][4];
+				
+				int i = 0;
+				for (AvailableGame ag : lm.getAvailableGames()) {
+					data[i][0] = ag.getGameName();
+					data[i][1] = ag.getHostName();
+					data[i][2] = ag.getMapName();
+					data[i][3] = Long.toString(ag.getSecondsWaiting());
+					i++;
+				}
+				
+				gameTable = new JTable(data, columnHeaders) {
+					public boolean isCellEditable(int row, int column) {
+						return false;
+					}
+					
+					public void valueChanged(ListSelectionEvent e) {
+						updateAllowedButtons(usernameField.getText());
+					}
+				};
+				
+				gameTable.setColumnSelectionAllowed(false);
+				gameTable.getTableHeader().setReorderingAllowed(false);
+				gameTableScrollPane.setViewportView(gameTable);
+				gameTable.setFillsViewportHeight(true);
 			}
 		};
 		
-		gameTable.setColumnSelectionAllowed(false);
-		gameTable.getTableHeader().setReorderingAllowed(false);
-		gameTableScrollPane.setViewportView(gameTable);
-		gameTable.setFillsViewportHeight(true);
+		worker.execute();
 	}
 }

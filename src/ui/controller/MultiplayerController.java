@@ -95,6 +95,7 @@ public class MultiplayerController {
 
 	public void stopHostingGame() {
 		lobbyManager.stopHostingGame();
+		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
 	}
 
@@ -122,6 +123,7 @@ public class MultiplayerController {
 	public void quitNetworkGame() {
 		gameInProgress = false;
 		lobbyManager.quit();
+		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
 	}
 }
