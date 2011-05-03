@@ -5,8 +5,6 @@ import java.util.Collection;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import com.esotericsoftware.minlog.Log;
-
 import src.core.Creep;
 import src.core.Game;
 import src.core.Tower;
@@ -19,7 +17,7 @@ public class NetworkGame extends Game {
 	private Connection remoteConnection; // the connection with our opponent
 	private ArrayList<Creep> opponentCreeps; // the creeps on the opponent's map
 	private ArrayList<Tower> opponentTowers; // the towers on the opponent's map
-	//private NetworkPlayer opponent;
+	private NetworkPlayer opponent; // the opponent
 
 	public NetworkGame(Connection opponent) {
 		opponentCreeps = new ArrayList<Creep>();
@@ -46,6 +44,9 @@ public class NetworkGame extends Game {
 								opponentTowers = (ArrayList<Tower>) m.data;
 							}
 							
+							break;
+						case HEALTH_UPDATE:
+							opponent.setHealth((Double) m.data);
 							break;
 						case WAVE:
 							ArrayList<Creep> wave = (ArrayList<Creep>) m.data;
@@ -82,13 +83,16 @@ public class NetworkGame extends Game {
 	private void provideInformation() {
 		GameNegotiationMessage creepMessage = new GameNegotiationMessage();
 		GameNegotiationMessage towerMessage = new GameNegotiationMessage();
+		GameNegotiationMessage healthMessage = new GameNegotiationMessage();
 		
-		// TODO: determine whether these need to be synchronized
 		creepMessage.type = GameNegotiationMessage.Type.CREEPS_UPDATE;
 		creepMessage.data = getCreeps();
 		
 		towerMessage.type = GameNegotiationMessage.Type.TOWERS_UPDATE;
 		towerMessage.data = getTowers();
+		
+		healthMessage.type = GameNegotiationMessage.Type.HEALTH_UPDATE;
+		healthMessage.data = (Double) getPlayer().getHealth();
 
 		synchronized (getCreeps()) {
 			remoteConnection.sendTCP(creepMessage);
@@ -97,6 +101,8 @@ public class NetworkGame extends Game {
 		synchronized (getTowers()) {
 			remoteConnection.sendTCP(towerMessage);
 		}
+		
+		remoteConnection.sendTCP(healthMessage);
 	}
 
 	public ArrayList<Creep> getOpponentCreeps() {
@@ -105,5 +111,9 @@ public class NetworkGame extends Game {
 
 	public ArrayList<Tower> getOpponentTowers() {
 		return opponentTowers;
+	}
+	
+	public NetworkPlayer getOpponent() {
+		return opponent;
 	}
 }

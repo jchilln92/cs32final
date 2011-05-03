@@ -36,7 +36,7 @@ public class TimeWavePanel extends JPanel {
 	private JButton nextWaveButton;
 	private JButton fastForwardButton;
 
-	public TimeWavePanel(GameController controller) {
+	public TimeWavePanel(GameController controller, boolean isMultiplayer) {
 		super(new GridBagLayout());
 		
 		this.gc = controller;
@@ -50,8 +50,6 @@ public class TimeWavePanel extends JPanel {
 		elapsedLabel = new JLabel(elapsedText);
 		elapsedValueLabel = new JLabel();
 		
-		
-		//why are we using mouseadapters instead of actionlisteners in this instance?
 		nextWaveButton = new JButton(nextWaveButtonText);
 		nextWaveButton.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
@@ -107,16 +105,17 @@ public class TimeWavePanel extends JPanel {
 		c.fill = GridBagConstraints.NONE;
 		add(elapsedValueLabel, c);				
 
-		c.gridx = 0;
-		c.gridy = 3;
-		c.fill = GridBagConstraints.NONE;
-		add(nextWaveButton, c);
-		
-		c.gridx = 1;
-		c.gridy = 3;
-		c.fill = GridBagConstraints.NONE;
-		add(fastForwardButton, c);		
+		if (!isMultiplayer) {
+			c.gridx = 0;
+			c.gridy = 3;
+			c.fill = GridBagConstraints.NONE;
+			add(nextWaveButton, c);
 
+			c.gridx = 1;
+			c.gridy = 3;
+			c.fill = GridBagConstraints.NONE;
+			add(fastForwardButton, c);
+		}
 	}
 	
 	public void paintComponent(Graphics g) {

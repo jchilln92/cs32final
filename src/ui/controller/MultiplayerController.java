@@ -41,6 +41,7 @@ public class MultiplayerController {
 	}
 	
 	public void cancelGameCreation() {
+		gameSetup.reset();
 		gameMain.showScreen(lobby);
 	}
 	

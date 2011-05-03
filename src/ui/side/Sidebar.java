@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
 
+import src.net.NetworkGame;
 import src.ui.controller.GameController;
 
 public class Sidebar extends JPanel {
@@ -22,20 +23,26 @@ public class Sidebar extends JPanel {
 	private TimeWavePanel timeWave;
 	private PauseQuitPanel pauseQuit;
 	
-	public Sidebar(GameController gc) {
+	public Sidebar(GameController gc, boolean isMultiplayer) {
 		controller = gc;
 
 		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.PAGE_AXIS);
 		setLayout(layoutManager);
 		
-		playerStats = new PlayerStatsPanel(controller.getGame().getPlayer());
-		timeWave = new TimeWavePanel(controller);
+		if (!isMultiplayer) {
+			playerStats = new PlayerStatsPanel(controller.getGame().getPlayer());
+		} else {
+			NetworkGame ng = (NetworkGame) controller.getGame();
+			playerStats = new PlayerStatsPanel(controller.getGame().getPlayer(), ng.getOpponent());
+		}
+		
+		timeWave = new TimeWavePanel(controller, isMultiplayer);
 		
 		towerPanel = new TowerCardPanel(controller);
 		towerPanel.showPurchasePanel(); // by default, show the tower purchase panel
 
-		pauseQuit = new PauseQuitPanel(controller);
+		pauseQuit = new PauseQuitPanel(controller, isMultiplayer);
 
 		playerStats.setBorder(borderLine);
 		timeWave.setBorder(borderLine);

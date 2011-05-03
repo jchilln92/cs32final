@@ -37,7 +37,7 @@ public class GameSetup extends JPanel {
 	protected JTextField createNameField;
 	
 	private JScrollPane mapListPane;
-	private JList mapList;
+	protected JList mapList;
 
 	private MapComponent mc;
 	protected GameMain gameMain;

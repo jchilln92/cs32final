@@ -11,6 +11,7 @@ public class GameNegotiationMessage {
 		ATTEMPT_TO_JOIN_RESPONSE,
 		CREEPS_UPDATE,
 		TOWERS_UPDATE,
+		HEALTH_UPDATE,
 		WAVE
 	}
 }

@@ -29,7 +29,7 @@ public class PauseQuitPanel extends JPanel {
 	
 	private JOptionPane quitPopup;
 	
-	public PauseQuitPanel(GameController controller) {
+	public PauseQuitPanel(GameController controller, boolean isMultiplayer) {
 		super(new GridBagLayout());
 		
 		this.gc = controller;
@@ -69,18 +69,31 @@ public class PauseQuitPanel extends JPanel {
 		});
 		
 		GridBagConstraints c = new GridBagConstraints();
-		c.weightx = 1;
-		c.gridx = 0;
-		c.gridy = 0;
-		c.fill = GridBagConstraints.NONE;
-		add(heartButton, c);
-		
-		c.gridx = 1;
-		c.gridy = 0;
-		add(pauseButton, c);
-		c.gridx = 2;
-		c.gridy = 0;
-		add(quitButton, c);
+		if (!isMultiplayer) {
+			c.weightx = 1;
+			c.gridx = 0;
+			c.gridy = 0;
+			c.fill = GridBagConstraints.NONE;
+			add(heartButton, c);
+			
+			c.gridx = 1;
+			c.gridy = 0;
+			add(pauseButton, c);
+			
+			c.gridx = 2;
+			c.gridy = 0;
+			add(quitButton, c);
+		} else {
+			c.weightx = 1;
+			c.gridx = 0;
+			c.gridy = 0;
+			c.fill = GridBagConstraints.NONE;
+			add(heartButton, c);
+			
+			c.gridx = 1;
+			c.gridy = 0;
+			add(quitButton, c);
+		}
 		
 	}
 	
@@ -93,7 +106,7 @@ public class PauseQuitPanel extends JPanel {
 		Object[] options = {"I want to quit.", "I don't want to quit."};
 		int n = JOptionPane.showOptionDialog(this, //we need to replace this with the main panel
 		"Are you sure you want to quit current game?",
-		"There is racism in the world.",
+		"Quit?",
 		JOptionPane.YES_NO_CANCEL_OPTION,
 		JOptionPane.QUESTION_MESSAGE,
 		null,

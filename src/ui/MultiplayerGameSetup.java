@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JTextField;
 
@@ -22,6 +24,13 @@ public class MultiplayerGameSetup extends GameSetup {
 		
 		setupLayout();
 		setupButtonActions();
+		reset();
+	}
+	
+	public void reset() {
+		playButton.setEnabled(false);
+		nameField.setText("");
+		mapList.setSelectedIndex(0);
 	}
 	
 	@Override
@@ -36,15 +45,28 @@ public class MultiplayerGameSetup extends GameSetup {
 		add(createNameLabel, c);
 		
 		nameField = new JTextField();
-		nameField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*if (nameField.getText().trim().length() == 0) {
+		nameField.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				// kind of hacky code
+				JTextField field = (JTextField) e.getSource();
+
+				int code = e.getKeyCode();
+				int length = field.getText().length();
+				
+				if (length > 0 && code == KeyEvent.VK_BACK_SPACE) {
+					length--;
+				} else {
+					length++;
+				}
+				
+				if (length <= 0) {
 					playButton.setEnabled(false);
 				} else {
 					playButton.setEnabled(true);
-				}*/
+				}
 			}
 		});
+		
 		c.insets = new Insets(10, 0, 10, 0);
 		c.gridx = 1;
 		c.gridy = 1;
