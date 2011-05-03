@@ -109,7 +109,7 @@ public class GameSetup extends JPanel {
 		c.gridwidth = 3;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0,20,0,0);
+		c.insets = new Insets(0,20,10,0);
 		mc.setPreferredSize(new Dimension(400, 400));
 		add(mc, c);
 		
