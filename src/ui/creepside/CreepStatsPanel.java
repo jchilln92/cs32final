@@ -15,6 +15,7 @@ public class CreepStatsPanel extends JPanel{
 	private JLabel damageLabel;
 	private JLabel abilitiesLabel;
 	private JLabel costLabel;
+	private JLabel spacingLabel;
 	
 	public CreepStatsPanel() {
 		super(new GridBagLayout());
@@ -23,11 +24,13 @@ public class CreepStatsPanel extends JPanel{
 		damageLabel = new JLabel(" ");
 		abilitiesLabel = new JLabel(" ");
 		costLabel = new JLabel(" ");
+		spacingLabel = new JLabel("                            ");
 
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
 		c.gridy = 0;
+		//c.ipadx = 100;
 		c.anchor = GridBagConstraints.CENTER;
 		//c.fill = GridBagConstraints.HORIZONTAL;
 		add(creepNameLabel, c);
@@ -46,6 +49,12 @@ public class CreepStatsPanel extends JPanel{
 		c.gridy = 4;
 		add(costLabel, c);
 		
+		c.gridx = 0;
+		c.gridy = 5;
+		add(spacingLabel, c);
+		
+		
+		
 	}
 	public void setCreep(Creep c) {
 		creep = c;
@@ -56,6 +65,13 @@ public class CreepStatsPanel extends JPanel{
 			damageLabel.setText(" ");
 			abilitiesLabel.setText(" ");
 			costLabel.setText(" ");
+			spacingLabel.setText("                            ");
+			/*creepNameLabel.setVisible(false);
+			healthLabel.setVisible(false);
+			damageLabel.setVisible(false);
+			abilitiesLabel.setVisible(false);
+			costLabel.setVisible(false);
+			spacingLabel.setVisible(false);*/
 		} else {
 			creepNameLabel.setText("Type: " + creep.getType().toString());
 			healthLabel.setText("Health: " + (int)creep.getHealth());
@@ -64,6 +80,12 @@ public class CreepStatsPanel extends JPanel{
 			damageLabel.setText("Damage: " + damageText);
 			abilitiesLabel.setText("Abilities: ");
 			costLabel.setText("Cost: " + (int)creep.getPrice());
+			
+			/*creepNameLabel.setVisible(true);
+			healthLabel.setVisible(true);
+			damageLabel.setVisible(true);
+			abilitiesLabel.setVisible(true);
+			costLabel.setVisible(true);*/
 		}
 	}
 }

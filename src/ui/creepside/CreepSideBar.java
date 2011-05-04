@@ -28,10 +28,10 @@ public class CreepSideBar extends JPanel {
 
 		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.LINE_AXIS);
-		setLayout(layoutManager);
+		setLayout(new BorderLayout());
 		
-		creepSelection = new CreepSelectionPanel();
 		creepInfoPurchase = new CreepInfoPurchasePanel();
+		creepSelection = new CreepSelectionPanel(creepInfoPurchase);
 		creepQueue = new CreepQueuePanel();
 
 		creepSelection.setBorder(borderLine);
@@ -40,8 +40,8 @@ public class CreepSideBar extends JPanel {
 		this.setBorder(borderLine);
 
 		add(creepSelection, BorderLayout.LINE_START);
-		add(creepInfoPurchase, BorderLayout.LINE_START);
-		add(creepQueue, BorderLayout.LINE_START);
+		add(creepInfoPurchase, BorderLayout.CENTER);
+		add(creepQueue, BorderLayout.PAGE_END);
 	}
 	
 	

@@ -7,10 +7,12 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.FilePaths;
 import src.core.Creep;
 import src.core.IAlignment;
 import src.ui.ColorConstants;
@@ -19,7 +21,9 @@ import src.ui.side.TowerStatsPanel;
 public class CreepInfoPurchasePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private Creep c;
+	private Creep cr;
+	private ImageIcon creepIcon;
+	private JLabel iconLabel;
 	
 	private JButton neutralButton;
 	private JButton redButton;
@@ -27,6 +31,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 	private JButton blueButton;
 	private JButton yellowButton;
 	private JButton buyButton;
+	private JButton cancelButton;
 
 	
 	public CreepInfoPurchasePanel() {
@@ -72,11 +77,21 @@ public class CreepInfoPurchasePanel extends JPanel {
 		buyButton = new JButton("Buy");
 		buyButton.setBackground(Color.ORANGE);
 		
+		cancelButton = new JButton("Cancel");
+		cancelButton.setBackground(Color.WHITE);
+		
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.insets = new Insets(0, 5, 0, 0);
-		c.gridx = 0;
+		String path = FilePaths.imgPath + "blank.png";
+		creepIcon = new ImageIcon(path);
+		iconLabel = new JLabel(creepIcon);
+		
+		c.insets = new Insets(0, 5, 5, 0);
+		c.gridx = 2;
 		c.gridy = 0;
+		add(iconLabel, c);
+		c.gridx = 0;
+		c.gridy = 1;
 		add(neutralButton, c);
 		c.gridx = 1;
 		add(redButton, c);
@@ -87,11 +102,34 @@ public class CreepInfoPurchasePanel extends JPanel {
 		c.gridx = 4;
 		add(yellowButton, c);
 		
-		c.gridx = 0;
-		c.gridy = 1;
-		c.gridwidth = 5;
+		c.insets = new Insets(0, 5, 5, 0);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 1;
+		c.gridy = 2;
+		c.gridwidth = 3;
 		c.gridheight = 3;
 		add(buyButton, c);
+		c.gridy = 5;
+		add(cancelButton, c);
+
+	}
+	
+	public void setCreep(Creep c){
+		cr = c;
+		if(cr == null){
+			String path = FilePaths.imgPath + "blank.png";
+			creepIcon = new ImageIcon(path);
+			iconLabel = new JLabel(creepIcon);
+			
+			validate();	
+		}
+		else{
+			String path = FilePaths.imgPath + "tower-icon1"+".png";
+			creepIcon = new ImageIcon(path);
+			iconLabel = new JLabel(creepIcon);
+			validate();
+		}
+
 	}
 	
 	
