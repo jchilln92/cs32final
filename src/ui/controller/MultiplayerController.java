@@ -71,7 +71,7 @@ public class MultiplayerController {
 		lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
 	}
 	
-	public void playerAttemptedToJoin(String name) {
+	public void playerAttemptedToJoin(String name) {	
 		waitScreen.setPotentialOpponent(name);
 	}
 	

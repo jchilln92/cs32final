@@ -92,7 +92,7 @@ public class LobbyManager {
 
 	private void shutdownServer() {
 		if (server != null) {
-			boot();
+			boot(opponentConnection);
 			server.close();
 			server = null;
 		}
@@ -107,6 +107,14 @@ public class LobbyManager {
 
 					switch (m.type) {
 						case GAME_DISCOVER:
+							if (opponentConnection != null) {
+								response.type = GameNegotiationMessage.Type.GAME_DISCOVER_RESPONSE;
+								response.data = null;
+								
+								connection.sendTCP(response);
+								break;
+							}
+							
 							try {
 								hostedGame.setHostAddress(InetAddress.getLocalHost().getCanonicalHostName());
 							} catch (UnknownHostException e) {
@@ -119,6 +127,12 @@ public class LobbyManager {
 							connection.sendTCP(response);
 							break;
 						case ATTEMPT_TO_JOIN:
+							if (opponentConnection == null) {
+								opponentConnection = connection;
+							} else {
+								boot(connection);
+							}
+								
 							controller.playerAttemptedToJoin((String) m.data);
 							break;
 						case QUIT_GAME:
@@ -136,12 +150,18 @@ public class LobbyManager {
 		});
 	}
 	
-	public void boot() {
+	private void boot(Connection c) {
+		if (c == null) return;
+		
 		GameNegotiationMessage response = new GameNegotiationMessage();
 		response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
 		response.data = null;
 		
-		server.sendToAllTCP(response);
+		c.sendTCP(response);
+	}
+	
+	public void boot() {
+		boot(opponentConnection);
 	}
 	
 	public NetworkGame acceptPlayer() {
@@ -170,7 +190,9 @@ public class LobbyManager {
 					switch (m.type) {
 						case GAME_DISCOVER_RESPONSE:
 							AvailableGame ag = (AvailableGame) m.data;
-							availableGames.add(ag);
+							
+							if (ag != null)
+								availableGames.add(ag);
 							
 							synchronized (client) {
 								client.close();
