@@ -76,6 +76,7 @@ public class CreepSelectionPanel extends JPanel {
 			creepButtonActions[index] = new AbstractAction() {
 				public void actionPerformed(ActionEvent e) {
 					//gc.beginPurchasingTower(Tower.createTower(type));
+					creepInfoPurchase.setCreep(Creep.createCreep(type));
 				}
 			};
 			
@@ -99,6 +100,7 @@ public class CreepSelectionPanel extends JPanel {
 					creepStats.setCreep(null);
 				}
 			});
+			
 			
 
 			c.gridx = index;
@@ -126,9 +128,9 @@ public class CreepSelectionPanel extends JPanel {
 			Action a = creepButtonActions[i];
 			Creep.Type type = buttonTypes[i];
 			
-		/*	Tower t = Tower.createTower(type);
+			Creep c = Creep.createCreep(type);
 			
-			if (!gc.playerCanAfford(t)) {
+			/*if (!gc.playerCanAfford(c)) {
 				b.setEnabled(false);
 				a.setEnabled(false);
 			} else if (!gc.getPaused()){
