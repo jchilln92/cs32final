@@ -13,6 +13,10 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
+/**
+ * Handles all network communications related to setting up / managing a game.
+ * Is capable of producing NetworkGame objects, which can then be played.
+ */
 public class LobbyManager {
 	private NetworkPlayer localPlayer;
 	private ArrayList<AvailableGame> availableGames;
@@ -36,19 +40,9 @@ public class LobbyManager {
 		initializeClientListener();
 	}
 
+	// Set the public name of our player (the local player)
 	public void setPlayerName(String name) {
 		localPlayer.setUsername(name);
-	}
-
-	public void hostNewGame(AvailableGame game) {
-		hostedGame = game;
-		game.setHostName(localPlayer.getUsername());
-		createServer();
-	}
-	
-	public void stopHostingGame() {
-		hostedGame = null;
-		shutdownServer();
 	}
 	
 	public void quit() {
@@ -63,6 +57,20 @@ public class LobbyManager {
 			server.sendToAllTCP(quitMessage);
 			stopHostingGame();
 		}
+	}
+	
+	/*
+	 * Methods related to functioning as a host
+	 */
+	public void hostNewGame(AvailableGame game) {
+		hostedGame = game;
+		game.setHostName(localPlayer.getUsername());
+		createServer();
+	}
+	
+	public void stopHostingGame() {
+		hostedGame = null;
+		shutdownServer();
 	}
 	
 	private void createServer() {
@@ -145,6 +153,9 @@ public class LobbyManager {
 		return ng;
 	}
 	
+	/*
+	 * Methods related to functioning as a client
+	 */
 	private void initializeClientListener() {
 		client.addListener(new Listener() {
 			public void received(Connection connection, Object object) {
