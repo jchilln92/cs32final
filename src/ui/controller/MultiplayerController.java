@@ -132,6 +132,10 @@ public class MultiplayerController {
 		return lobbyManager;
 	}
 	
+	public boolean isGameInProgress() {
+		return gameInProgress;
+	}
+	
 	public GameMain getGameMain() {
 		return gameMain;
 	}

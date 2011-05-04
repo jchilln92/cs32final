@@ -22,6 +22,9 @@ public class LobbyManager {
 	private ArrayList<AvailableGame> availableGames;
 	private Client client;
 	
+	// if we're currently playing with someone this is the connection over which we're doing it
+	private Connection opponentConnection;
+	
 	private AvailableGame hostedGame;
 	private Server server;
 	
@@ -127,7 +130,8 @@ public class LobbyManager {
 			}
 
 			public void disconnected(Connection c) {
-				controller.opponentDisconnected();
+				if (c.getID() == opponentConnection.getID())
+					controller.opponentDisconnected();
 			}
 		});
 	}
@@ -148,6 +152,7 @@ public class LobbyManager {
 		NetworkGame ng = new NetworkGame(server.getConnections()[0]);
 		ng.setMap(Map.getMapByName(hostedGame.getMapName()));
 		
+		opponentConnection = server.getConnections()[0];
 		server.sendToAllTCP(response);
 		
 		return ng;
