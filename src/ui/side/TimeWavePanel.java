@@ -53,7 +53,8 @@ public class TimeWavePanel extends JPanel {
 		nextWaveButton = new JButton(nextWaveButtonText);
 		nextWaveButton.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
-				gc.getGame().sendNextWave();
+				if(nextWaveButton.isEnabled())
+					gc.getGame().sendNextWave();
 			}	
 			
 			public void mouseReleased(MouseEvent e) {
