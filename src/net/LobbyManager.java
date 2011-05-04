@@ -130,7 +130,7 @@ public class LobbyManager {
 			}
 
 			public void disconnected(Connection c) {
-				if (c.getID() == opponentConnection.getID())
+				if (opponentConnection != null && c.getID() == opponentConnection.getID())
 					controller.opponentDisconnected();
 			}
 		});

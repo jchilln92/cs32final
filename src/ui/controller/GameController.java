@@ -120,7 +120,6 @@ public class GameController {
 	 * If the game speed is in double time mode, ticks happen twice as fast/
 	 */
 	public void tick() {
-		System.out.println("did it");
 		if (!isPaused) {
 			game.tick();
 			
