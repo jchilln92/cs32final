@@ -64,13 +64,6 @@ public class GameMain extends JFrame {
 	
 	public void resetGame(){
 		showScreen(new TitleScreen(main));
-		
-		try {
-			thread.interrupt();
-		} catch (Exception e) {
-			
-		}
-		
 		mainPanel.validate();
 	}
 }

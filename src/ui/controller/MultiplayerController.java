@@ -30,6 +30,9 @@ public class MultiplayerController {
 		gameInProgress = false;
 	}
 	
+	/*
+	 * Lobby control methods
+	 */
 	public void showLobby() {
 		gameMain.showScreen(lobby);
 	}
@@ -39,6 +42,9 @@ public class MultiplayerController {
 		gameMain.showScreen(title);
 	}
 	
+	/*
+	 * Game creation
+	 */
 	public void beginGameCreation() {
 		gameMain.showScreen(gameSetup);
 	}
@@ -58,6 +64,9 @@ public class MultiplayerController {
 		gameMain.showScreen(waitScreen);
 	}
 	
+	/*
+	 * Joining / exiting games
+	 */
 	public void joinGame(int selectedRow) {
 		lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
 	}
@@ -70,35 +79,7 @@ public class MultiplayerController {
 		lobbyManager.boot();
 		waitScreen.setPotentialOpponent(null);
 	}
-
-	public void opponentDisconnected() {
-		if (lobbyManager.getHostedGame() != null) {
-			waitScreen.setPotentialOpponent(null);
-		}
-		
-		if (gameInProgress) {
-			quitNetworkGame();
-		}
-	}
 	
-	public void setUsername(String uname) {
-		lobbyManager.setPlayerName(uname);
-	}
-	
-	public LobbyManager getLobbyManager() {
-		return lobbyManager;
-	}
-	
-	public GameMain getGameMain() {
-		return gameMain;
-	}
-
-	public void stopHostingGame() {
-		lobbyManager.stopHostingGame();
-		lobby.updateGameListPane();
-		gameMain.showScreen(lobby);
-	}
-
 	public void startNetworkGame() {
 		startNetworkGame(lobbyManager.acceptPlayer());
 	}
@@ -125,5 +106,37 @@ public class MultiplayerController {
 		lobbyManager.quit();
 		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
+	}
+
+	public void opponentDisconnected() {
+		if (lobbyManager.getHostedGame() != null) {
+			waitScreen.setPotentialOpponent(null);
+		}
+		
+		if (gameInProgress) {
+			quitNetworkGame();
+		}
+	}
+	
+	public void stopHostingGame() {
+		lobbyManager.stopHostingGame();
+		lobby.updateGameListPane();
+		gameMain.showScreen(lobby);
+	}
+	
+	public void setUsername(String uname) {
+		lobbyManager.setPlayerName(uname);
+	}
+	
+	public LobbyManager getLobbyManager() {
+		return lobbyManager;
+	}
+	
+	public boolean isGameInProgress() {
+		return gameInProgress;
+	}
+	
+	public GameMain getGameMain() {
+		return gameMain;
 	}
 }

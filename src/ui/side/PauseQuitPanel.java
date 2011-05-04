@@ -124,7 +124,7 @@ public class PauseQuitPanel extends JPanel {
 			gc.togglePause(true);
 			
 			if (n == 0) { //quitting the game
-				gc.getGameMain().resetGame();
+				gc.quit();
 			} else{ //not quitting the game
 				if (!pauseCheck)
 					gc.togglePause(false);
