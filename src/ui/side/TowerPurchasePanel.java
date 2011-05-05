@@ -96,9 +96,7 @@ public class TowerPurchasePanel extends JPanel {
 				@Override
 				public void mouseEntered(MouseEvent e) {
 					towerStats.setTower(Tower.createTower(type));
-					if (towerButton.isEnabled()) {
 						gc.getSideBar().getPlayerStatsPanel().setGoldChange(" -" + Tower.createTower(type).getPrice());
-					}
 				}
 
 				@Override

@@ -14,6 +14,7 @@ import src.Runner;
 import src.core.Tower;
 import src.core.Upgrade;
 import src.core.IAlignment.Alignment;
+import src.ui.controller.GameController;
 
 /**
  * A reusable panel that is used to display the stats of a given tower.
@@ -23,12 +24,11 @@ import src.core.IAlignment.Alignment;
 public class TowerStatsPanel extends JPanel {
 	private Tower tower; // the tower we are currently displaying
 	private Upgrade upgrade; // an upgrade that should be applied to the tower's stats before showing them
-	
+	GameController controller;
 	private JLabel towerNameLabel;
 	private JLabel damageLabel;
 	private JLabel rangeLabel;
 	private JLabel abilitiesLabel;
-	private JLabel costLabel;
 	private JLabel fireRateLabel;
 	
 	private JLabel damageChangeLabel;
@@ -36,8 +36,10 @@ public class TowerStatsPanel extends JPanel {
 	private JLabel rateChangeLabel;
 	private JLabel abilitiesChangeLabel;
 	
-	public TowerStatsPanel() {
+	public TowerStatsPanel(GameController gc) {
 		super(new GridBagLayout());
+		
+		controller = gc;
 		
 		tower = null;
 		upgrade = null;
@@ -46,7 +48,6 @@ public class TowerStatsPanel extends JPanel {
 		damageLabel = new JLabel(" ");
 		rangeLabel = new JLabel(" ");
 		abilitiesLabel = new JLabel(" ");
-		costLabel = new JLabel(" ");
 		fireRateLabel = new JLabel(" ");
 		
 		damageChangeLabel = new JLabel(" ");
@@ -94,9 +95,6 @@ public class TowerStatsPanel extends JPanel {
 		c.gridy = 4;
 		add(abilitiesChangeLabel, c);
 		
-		c.gridx = 0;
-		c.gridy = 5;
-		add(costLabel, c);
 	}
 	
 	public void setTower(Tower t) {
@@ -108,7 +106,6 @@ public class TowerStatsPanel extends JPanel {
 			rangeLabel.setText(" ");
 			fireRateLabel.setText(" ");
 			abilitiesLabel.setText(" ");
-			costLabel.setText(" ");
 		} else {
 			towerNameLabel.setText("Type: " + tower.getType().toString());
 			
@@ -118,7 +115,6 @@ public class TowerStatsPanel extends JPanel {
 			fireRateLabel.setText("Fire Rate: " + NumberFormat.getInstance().format(1/tower.getFirePeriod() * 1000/Runner.tickDuration) + " / s");
 			
 			abilitiesLabel.setText("Abilities: ");
-			costLabel.setText("Cost: " + (int)tower.getPrice());
 		}
 	}
 	
@@ -130,8 +126,12 @@ public class TowerStatsPanel extends JPanel {
 			rangeChangeLabel.setText(" ");
 			rateChangeLabel.setText(" ");
 			abilitiesChangeLabel.setText(" ");
+			controller.getSideBar().getPlayerStatsPanel().setGoldChange("");
+
 		} else {
 			String modifier = "";
+			
+			controller.getSideBar().getPlayerStatsPanel().setGoldChange(" -" + u.getPrice());
 			
 			// damage change
 			if (upgrade.getInstantDamageChange() > 0) {
