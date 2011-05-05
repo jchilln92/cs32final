@@ -30,7 +30,6 @@ public class TowerStatsPanel extends JPanel {
 	private JLabel abilitiesLabel;
 	private JLabel costLabel;
 	private JLabel fireRateLabel;
-	private JTextArea descriptionArea;
 	
 	private JLabel damageChangeLabel;
 	private JLabel rangeChangeLabel;
@@ -48,7 +47,6 @@ public class TowerStatsPanel extends JPanel {
 		rangeLabel = new JLabel(" ");
 		abilitiesLabel = new JLabel(" ");
 		costLabel = new JLabel(" ");
-		descriptionArea = new JTextArea("This is an epic test of testaroni");
 		fireRateLabel = new JLabel(" ");
 		
 		damageChangeLabel = new JLabel(" ");
@@ -99,10 +97,6 @@ public class TowerStatsPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 5;
 		add(costLabel, c);
-		
-		c.gridx = 0;
-		c.gridy = 6;
-		add(descriptionArea, c);
 	}
 	
 	public void setTower(Tower t) {
@@ -115,7 +109,6 @@ public class TowerStatsPanel extends JPanel {
 			fireRateLabel.setText(" ");
 			abilitiesLabel.setText(" ");
 			costLabel.setText(" ");
-			descriptionArea.setText(" ");
 		} else {
 			towerNameLabel.setText("Type: " + tower.getType().toString());
 			
@@ -126,7 +119,6 @@ public class TowerStatsPanel extends JPanel {
 			
 			abilitiesLabel.setText("Abilities: ");
 			costLabel.setText("Cost: " + (int)tower.getPrice());
-			descriptionArea.setText(tower.getDescription());
 		}
 	}
 	
