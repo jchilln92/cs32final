@@ -68,8 +68,8 @@ public class TowerUpgradePanel extends JPanel {
 		// lay out components
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(0, 80, 0, 0);	
+		c.anchor = GridBagConstraints.CENTER;	
+		c.insets.set(10, 0, 0, 0);
 		c.gridx = 0;
 		c.gridwidth = 4;
 		c.gridy = 0;
@@ -79,18 +79,21 @@ public class TowerUpgradePanel extends JPanel {
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(10, 0, 10, 0);	
 		c.gridx = 0;
-		c.gridwidth = 4;
 		c.gridy = 1;
+		c.gridwidth = 4;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		add(elementalUpgrade, c);
 		c.gridwidth = 1;
 
-		c.insets = new Insets(0, 0, 0, 0);	
-		c.gridx = 1;
-		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		c.insets.set(0, 0, 10, 0);	
+		c.gridx = 0;
+		c.gridwidth = 4;
 		c.gridy = 2;
 		add(cancelButton, c);
 		c.gridwidth = 1;
 	
+		c.insets.set(0, 10, 0, 10);
 		c.gridx = 0;
 		c.gridy = 3;
 		add(levelThreeLabel, c);
@@ -102,6 +105,7 @@ public class TowerUpgradePanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 5;
 		add(levelOneLabel, c);
+		c.insets.set(0, 0, 0, 0);
 		
 		// initialize and lay out each of the upgrade buttons
 		for (int l = 0; l < 3; l++) { // there are 3 levels
@@ -136,10 +140,11 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		}
 
-		c.insets = new Insets(20, 0, 0, 0);	
+		c.insets = new Insets(10, 0, 10, 0);	
 		c.gridx = 0;
 		c.gridy = 6;
-		c.fill=GridBagConstraints.HORIZONTAL;
+		c.gridwidth = 4;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		add(sellTowerButton, c);
 		
 
