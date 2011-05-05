@@ -29,6 +29,7 @@ public class Creep implements IDrawableCreep, IAlignment {
 		newCreep.setReward(templateCreep.getReward());
 		newCreep.setSpeed(templateCreep.getSpeed());
 		newCreep.setType(t);
+		newCreep.setAlignment(Alignment.NEUTRAL);
 		
 		return newCreep;
 	}
@@ -52,6 +53,9 @@ public class Creep implements IDrawableCreep, IAlignment {
 	
 	@Element
 	private double damageToBase;
+	
+	private double dmgIncrease = 1.2;
+	private double dmgDecrease = 0.8;
 	
 	private HashMap<Tower, DamageApplication> damages;
 
@@ -138,7 +142,15 @@ public class Creep implements IDrawableCreep, IAlignment {
 	}
 	
 	public void applyDamage(Damage d, Tower t, int applicationTime) {
-		health -= d.getInstantDamage();
+		//factor in increases or decreases of damage due to alignment
+		double dam = d.getInstantDamage();
+		if(this.alignment != IAlignment.Alignment.NEUTRAL) {
+			if(t.getAlignment() == this.alignment.getWeakTo())
+				dam *= dmgIncrease;
+			else if(t.getAlignment() == this.alignment.getStrength())
+				dam *= dmgDecrease;
+		}
+		health -= dam;
 		
 		// if there will be any timed effects, hold on to them
 		if (d.getEffectDuration() > 0 && !damages.containsKey(t)) {

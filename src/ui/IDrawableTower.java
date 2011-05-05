@@ -1,6 +1,7 @@
 package src.ui;
 
 import src.core.Tower;
+import src.core.IAlignment.Alignment;
 
 public interface IDrawableTower {
 	public int getX();
@@ -14,4 +15,6 @@ public interface IDrawableTower {
 	public double getRadius();
 	
 	public int getUpgradeLevel();
+	
+	public Alignment getAlignment();
 }

@@ -42,6 +42,9 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	@ElementList(required=false)
 	private ArrayList<Upgrade> upgrades;
 	
+	@Element
+	private String description;
+	
 	private IAlignment.Alignment alignment;
 	private int upgradeLevel;
 
@@ -63,6 +66,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 		tower.upgrades = template.getUpgrades();
 		tower.setInvestment(tower.getPrice());
 		tower.setTargetingInfo(template.getTargeting());
+		tower.setAlignment(Alignment.NEUTRAL);
 		tower.setType(t);
 		
 		return tower;
@@ -104,6 +108,14 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	
 	public void setTargetingInfo(TargetingInfo tInfo) {
 		this.targeting = tInfo;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String desc) {
+		this.description = desc;
 	}
 
 	public double getRadius() {
