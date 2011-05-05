@@ -249,7 +249,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 
 		}
 		else{
-			this.cr = Creep.createCreep(creepTypes[index]);
+			this.cr = Creep.createCreep(creepTypes[index], gc.getGame().getWavesSent());
 			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
 			creepIcon = new ImageIcon(path);
 			
