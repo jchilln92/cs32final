@@ -35,7 +35,7 @@ public class CreepSelectionPanel extends JPanel {
 	
 	private JButton[] creepButtons;	
 	private Action[] creepButtonActions;
-	private Creep.Type[] buttonTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.GENERIC}; 
+	private Creep.Type[] buttonTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST}; 
 			//Creep.Type.ASSASSIN, Creep.Type.FLYING,	Creep.Type.FAST};
 	
 	
@@ -66,17 +66,18 @@ public class CreepSelectionPanel extends JPanel {
 		// initialize a purchase button for each of the towers
 
 		for (int index = 0; index < 5; index++) {
-			String path = FilePaths.imgPath + "tower-icon"+(index+1)+".png";
+			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
 			
 			ImageIcon towerIcon = new ImageIcon(path);
 			JButton creepButton = new JButton(towerIcon);
 			creepButtons[index] = creepButton;
 			
 			final Creep.Type type = buttonTypes[index];
+			final int setIndex = index;
 			creepButtonActions[index] = new AbstractAction() {
 				public void actionPerformed(ActionEvent e) {
 					//gc.beginPurchasingTower(Tower.createTower(type));
-					creepInfoPurchase.setCreep(Creep.createCreep(type));
+					creepInfoPurchase.setCreepByIndex(setIndex);
 				}
 			};
 			

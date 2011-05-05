@@ -35,6 +35,8 @@ public class CreepInfoPurchasePanel extends JPanel {
 	private JButton yellowButton;
 	private JButton buyButton;
 	private JButton cancelButton;
+	
+	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 
 	
 	public CreepInfoPurchasePanel() {
@@ -84,7 +86,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 		cancelButton.setBackground(Color.WHITE);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setCreep(null);
+				setCreepByIndex(-1);
 			}
 		});	
 		
@@ -132,43 +134,32 @@ public class CreepInfoPurchasePanel extends JPanel {
 
 	}
 	
-	public void setCreep(Creep cr){
-		this.cr = cr;
-		if(cr == null){
-			String path = FilePaths.imgPath + "tower-icon2"+".png";
+	public void setCreepByIndex(int index){
+
+		if(index == -1){
+			this.cr = null;
+			String path = FilePaths.imgPath + "blank.png";
 			creepIcon = new ImageIcon(path);
 			
 			Image i = creepIcon.getImage();
 			i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
 			creepIcon = new ImageIcon(i);  
-			iconLabel = new JLabel(creepIcon);
+			iconLabel.setIcon(creepIcon);
 			
-			GridBagConstraints c = new GridBagConstraints();
-					
-			c.insets = new Insets(0, 5, 5, 0);
-			c.gridx = 2;
-			c.gridy = 0;
-			remove(iconLabel);
-			add(iconLabel, c);
-			validate();
+			
+
 		}
 		else{
-			String path = FilePaths.imgPath + "tower-icon1"+".png";
+			this.cr = Creep.createCreep(creepTypes[index]);
+			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
 			creepIcon = new ImageIcon(path);
 			
 			Image i = creepIcon.getImage();
 			i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
 			creepIcon = new ImageIcon(i);  
-			iconLabel = new JLabel(creepIcon);
+			iconLabel.setIcon(creepIcon);
 			
-			GridBagConstraints c = new GridBagConstraints();
-					
-			c.insets = new Insets(0, 5, 5, 0);
-			c.gridx = 2;
-			c.gridy = 0;
-			remove(iconLabel);
-			add(iconLabel, c);
-			validate();
+
 		}
 
 	}
