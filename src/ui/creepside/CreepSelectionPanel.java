@@ -1,6 +1,5 @@
 package src.ui.creepside;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -20,7 +19,6 @@ import javax.swing.KeyStroke;
 
 import src.FilePaths;
 import src.core.Creep;
-import src.core.Tower;
 import src.core.Upgrade;
 import src.ui.controller.GameController;
 import src.ui.creepside.CreepStatsPanel;
@@ -103,8 +101,6 @@ public class CreepSelectionPanel extends JPanel {
 					creepStats.setCreep(null);
 				}
 			});
-			
-			
 
 			c.gridx = index;
 			c.gridy = 1;
