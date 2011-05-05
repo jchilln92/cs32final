@@ -18,8 +18,10 @@ import src.core.Player;
 import src.core.Tower;
 import src.core.Upgrade;
 import src.core.IAlignment.Alignment;
+import src.ui.GameOverPanel;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
+import src.ui.TitleScreen;
 import src.ui.side.Sidebar;
 
 /**
@@ -79,6 +81,11 @@ public class GameController {
 		runnerThread.start();
 	}
 	
+	public void quit() {
+		runnerThread.stop(); // this is technically not safe, if it causes problems, we should change it
+		gameMain.showScreen(new TitleScreen(gameMain));
+	}
+	
 	public void setSidebar(Sidebar side) {
 		this.side = side;
 		
@@ -119,6 +126,11 @@ public class GameController {
 			
 			if (isDoubleTime) {
 				game.tick();
+			}
+			
+			if (game.isOver()) {
+				gameMain.showScreen(new GameOverPanel(this));
+				runnerThread.stop();
 			}
 		}
 	}

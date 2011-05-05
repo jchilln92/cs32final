@@ -13,10 +13,17 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
+/**
+ * Handles all network communications related to setting up / managing a game.
+ * Is capable of producing NetworkGame objects, which can then be played.
+ */
 public class LobbyManager {
 	private NetworkPlayer localPlayer;
 	private ArrayList<AvailableGame> availableGames;
 	private Client client;
+	
+	// if we're currently playing with someone this is the connection over which we're doing it
+	private Connection opponentConnection;
 	
 	private AvailableGame hostedGame;
 	private Server server;
@@ -36,19 +43,9 @@ public class LobbyManager {
 		initializeClientListener();
 	}
 
+	// Set the public name of our player (the local player)
 	public void setPlayerName(String name) {
 		localPlayer.setUsername(name);
-	}
-
-	public void hostNewGame(AvailableGame game) {
-		hostedGame = game;
-		game.setHostName(localPlayer.getUsername());
-		createServer();
-	}
-	
-	public void stopHostingGame() {
-		hostedGame = null;
-		shutdownServer();
 	}
 	
 	public void quit() {
@@ -63,6 +60,20 @@ public class LobbyManager {
 			server.sendToAllTCP(quitMessage);
 			stopHostingGame();
 		}
+	}
+	
+	/*
+	 * Methods related to functioning as a host
+	 */
+	public void hostNewGame(AvailableGame game) {
+		hostedGame = game;
+		game.setHostName(localPlayer.getUsername());
+		createServer();
+	}
+	
+	public void stopHostingGame() {
+		hostedGame = null;
+		shutdownServer();
 	}
 	
 	private void createServer() {
@@ -81,7 +92,7 @@ public class LobbyManager {
 
 	private void shutdownServer() {
 		if (server != null) {
-			boot();
+			boot(opponentConnection);
 			server.close();
 			server = null;
 		}
@@ -96,6 +107,14 @@ public class LobbyManager {
 
 					switch (m.type) {
 						case GAME_DISCOVER:
+							if (opponentConnection != null) {
+								response.type = GameNegotiationMessage.Type.GAME_DISCOVER_RESPONSE;
+								response.data = null;
+								
+								connection.sendTCP(response);
+								break;
+							}
+							
 							try {
 								hostedGame.setHostAddress(InetAddress.getLocalHost().getCanonicalHostName());
 							} catch (UnknownHostException e) {
@@ -108,6 +127,12 @@ public class LobbyManager {
 							connection.sendTCP(response);
 							break;
 						case ATTEMPT_TO_JOIN:
+							if (opponentConnection == null) {
+								opponentConnection = connection;
+							} else {
+								boot(connection);
+							}
+								
 							controller.playerAttemptedToJoin((String) m.data);
 							break;
 						case QUIT_GAME:
@@ -119,17 +144,24 @@ public class LobbyManager {
 			}
 
 			public void disconnected(Connection c) {
-				controller.opponentDisconnected();
+				if (opponentConnection != null && c.getID() == opponentConnection.getID())
+					controller.opponentDisconnected();
 			}
 		});
 	}
 	
-	public void boot() {
+	private void boot(Connection c) {
+		if (c == null) return;
+		
 		GameNegotiationMessage response = new GameNegotiationMessage();
 		response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
 		response.data = null;
 		
-		server.sendToAllTCP(response);
+		c.sendTCP(response);
+	}
+	
+	public void boot() {
+		boot(opponentConnection);
 	}
 	
 	public NetworkGame acceptPlayer() {
@@ -140,11 +172,15 @@ public class LobbyManager {
 		NetworkGame ng = new NetworkGame(server.getConnections()[0]);
 		ng.setMap(Map.getMapByName(hostedGame.getMapName()));
 		
+		opponentConnection = server.getConnections()[0];
 		server.sendToAllTCP(response);
 		
 		return ng;
 	}
 	
+	/*
+	 * Methods related to functioning as a client
+	 */
 	private void initializeClientListener() {
 		client.addListener(new Listener() {
 			public void received(Connection connection, Object object) {
@@ -154,7 +190,9 @@ public class LobbyManager {
 					switch (m.type) {
 						case GAME_DISCOVER_RESPONSE:
 							AvailableGame ag = (AvailableGame) m.data;
-							availableGames.add(ag);
+							
+							if (ag != null)
+								availableGames.add(ag);
 							
 							synchronized (client) {
 								client.close();

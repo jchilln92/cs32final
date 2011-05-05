@@ -31,17 +31,19 @@ public class CreepSelectionPanel extends JPanel {
 	private static final String purchaseCreepsText = "Purchase Creeps:";
 	private JLabel purchaseCreepsLabel;
 	private CreepStatsPanel creepStats;
+	private CreepInfoPurchasePanel creepInfoPurchase;
 	
 	private JButton[] creepButtons;	
 	private Action[] creepButtonActions;
-	private Creep.Type[] buttonTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.GENERIC}; 
+	private Creep.Type[] buttonTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST}; 
 			//Creep.Type.ASSASSIN, Creep.Type.FLYING,	Creep.Type.FAST};
 	
 	
-	public CreepSelectionPanel(){
+	public CreepSelectionPanel(CreepInfoPurchasePanel cip){
 		
 		super(new GridBagLayout());
-
+		
+		this.creepInfoPurchase = cip;
 		purchaseCreepsLabel = new JLabel(purchaseCreepsText);
 		creepButtons = new JButton[8];
 		creepButtonActions = new Action[8];
@@ -51,7 +53,7 @@ public class CreepSelectionPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(0,0,20,0);
+		c.insets = new Insets(20,20,0,-20);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 5;
@@ -59,20 +61,23 @@ public class CreepSelectionPanel extends JPanel {
 
 		add(purchaseCreepsLabel, c);
 		
+		c.insets = new Insets(-20,20,0,-15);
 		c.gridwidth = 1;
 		// initialize a purchase button for each of the towers
 
 		for (int index = 0; index < 5; index++) {
-			String path = FilePaths.imgPath + "tower-icon"+(index+1)+".png";
+			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
 			
 			ImageIcon towerIcon = new ImageIcon(path);
 			JButton creepButton = new JButton(towerIcon);
 			creepButtons[index] = creepButton;
 			
 			final Creep.Type type = buttonTypes[index];
+			final int setIndex = index;
 			creepButtonActions[index] = new AbstractAction() {
 				public void actionPerformed(ActionEvent e) {
 					//gc.beginPurchasingTower(Tower.createTower(type));
+					creepInfoPurchase.setCreepByIndex(setIndex);
 				}
 			};
 			
@@ -97,6 +102,7 @@ public class CreepSelectionPanel extends JPanel {
 				}
 			});
 			
+			
 
 			c.gridx = index;
 			c.gridy = 1;
@@ -107,10 +113,12 @@ public class CreepSelectionPanel extends JPanel {
 		
 		updateAllowedButtons();
 
+		c.anchor = GridBagConstraints.LINE_START;
 		c.insets = new Insets(20, 20, 0, 0);
 		c.gridx = 6;
 		c.gridy = 0;
 		c.gridheight = 2;
+		c.ipadx = 100;
 		c.anchor = GridBagConstraints.LINE_END;
 		add(creepStats, c);
 	}
@@ -121,9 +129,9 @@ public class CreepSelectionPanel extends JPanel {
 			Action a = creepButtonActions[i];
 			Creep.Type type = buttonTypes[i];
 			
-		/*	Tower t = Tower.createTower(type);
+			Creep c = Creep.createCreep(type);
 			
-			if (!gc.playerCanAfford(t)) {
+			/*if (!gc.playerCanAfford(c)) {
 				b.setEnabled(false);
 				a.setEnabled(false);
 			} else if (!gc.getPaused()){
