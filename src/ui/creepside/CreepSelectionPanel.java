@@ -36,7 +36,6 @@ public class CreepSelectionPanel extends JPanel {
 	private JButton[] creepButtons;	
 	private Action[] creepButtonActions;
 	private Creep.Type[] buttonTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST}; 
-			//Creep.Type.ASSASSIN, Creep.Type.FLYING,	Creep.Type.FAST};
 	
 	
 	public CreepSelectionPanel(CreepInfoPurchasePanel cip){
@@ -53,7 +52,7 @@ public class CreepSelectionPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(20,20,0,-20);
+		c.insets = new Insets(0,20,0,-20);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 5;
