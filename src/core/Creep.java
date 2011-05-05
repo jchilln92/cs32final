@@ -143,14 +143,14 @@ public class Creep implements IDrawableCreep, IAlignment {
 	
 	public void applyDamage(Damage d, Tower t, int applicationTime) {
 		//factor in increases or decreases of damage due to alignment
-		double dam = d.getInstantDamage();
+		double damage = d.getInstantDamage();
 		if(this.alignment != IAlignment.Alignment.NEUTRAL) {
 			if(t.getAlignment() == this.alignment.getWeakTo())
-				dam *= dmgIncrease;
+				damage *= dmgIncrease;
 			else if(t.getAlignment() == this.alignment.getStrength())
-				dam *= dmgDecrease;
+				damage *= dmgDecrease;
 		}
-		health -= dam;
+		health -= damage;
 		
 		// if there will be any timed effects, hold on to them
 		if (d.getEffectDuration() > 0 && !damages.containsKey(t)) {

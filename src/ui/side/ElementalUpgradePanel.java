@@ -25,12 +25,16 @@ public class ElementalUpgradePanel extends JPanel {
 	private JButton greenButton;
 	private JButton blueButton;
 	private JButton yellowButton;
-	private JButton[] buttonList;
 	
 	private JButton[] eButtons;
+	//private boolean[] elementBooleans;
 	
 	public ElementalUpgradePanel(GameController gc){
 		super(new GridBagLayout());
+		
+	//	elementBooleans = new boolean[5];
+	//	for (int x = 0; x < elementBooleans.length; x++)
+		//	elementBooleans[x] = false;
 		
 		controller = gc;
 		neutralButton = new JButton();
@@ -39,7 +43,6 @@ public class ElementalUpgradePanel extends JPanel {
 		neutralButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.NEUTRAL);
-				disableButton(0);
 			}
 		});
 		
@@ -49,7 +52,6 @@ public class ElementalUpgradePanel extends JPanel {
 		redButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.RED);
-				disableButton(1);
 			}
 		});
 		
@@ -59,7 +61,6 @@ public class ElementalUpgradePanel extends JPanel {
 		greenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.GREEN);
-				disableButton(2);
 			}
 		});
 		
@@ -69,7 +70,6 @@ public class ElementalUpgradePanel extends JPanel {
 		blueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.BLUE);
-				disableButton(3);
 			}
 		});
 		
@@ -79,7 +79,6 @@ public class ElementalUpgradePanel extends JPanel {
 		yellowButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.YELLOW);
-				disableButton(4);
 			}
 		});
 
@@ -89,6 +88,9 @@ public class ElementalUpgradePanel extends JPanel {
 		eButtons[2] = greenButton;
 		eButtons[3] = blueButton;
 		eButtons[4] = yellowButton;
+		
+
+		
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
@@ -104,14 +106,6 @@ public class ElementalUpgradePanel extends JPanel {
 		add(blueButton, c);
 		c.gridx = 4;
 		add(yellowButton, c);
-		
-		
-		buttonList = new JButton[5];
-		buttonList[0] = neutralButton;
-		buttonList[1] = redButton;
-		buttonList[2] = greenButton;
-		buttonList[3] = blueButton;
-		buttonList[4] = yellowButton;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -121,27 +115,41 @@ public class ElementalUpgradePanel extends JPanel {
 	private void setCanPurchaseAlignment() {
 		//create a dummy alignment to check if player can afford as all alignments are of same cost
 		Alignment temporaryAlignment = Alignment.NEUTRAL;
+		Alignment currentAlignment = controller.getSelectedTower().getAlignment();
+	
+		int currentAlignmentIndex = 0;
+		
+		switch (currentAlignment) {
+			case NEUTRAL:
+				currentAlignmentIndex = 0;
+				break;
+			case RED:
+				currentAlignmentIndex = 1;
+				break;
+			case GREEN:
+				currentAlignmentIndex = 2;
+				break;
+			case BLUE:
+				currentAlignmentIndex = 3;
+				break;
+			case YELLOW:
+				currentAlignmentIndex = 4;
+				break;
+		}
 		
 		if (controller.playerCanAfford(temporaryAlignment)) {
-			for (int x = 0 ; x < buttonList.length ; x++) {
-				buttonList[x].setEnabled(true);
-				//redButton.setEnabled(true);
+			for (int x = 0; x < eButtons.length; x++) {
+				if (currentAlignmentIndex != x)
+					eButtons[x].setEnabled(true);
+				else
+					eButtons[x].setEnabled(false);
 			}
 		} else {
-			for (int x = 0 ; x < buttonList.length ; x++) {
-				buttonList[x].setEnabled(false);
-				//redButton.setEnabled(f);
+			for (int x = 0; x < eButtons.length; x++) {
+				eButtons[x].setEnabled(false);
 			}
 		}
 
 	}
 	
-	public void disableButton(int index){
-		for(int x = 0; x < eButtons.length; x++){
-			if(x != index)
-				eButtons[x].setEnabled(true);
-			else
-				eButtons[x].setEnabled(false);
-		}
-	}
 }

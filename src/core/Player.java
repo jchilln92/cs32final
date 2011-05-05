@@ -7,7 +7,7 @@ public class Player {
 	public Player() {
 		// TODO: stub
 		health = 100;
-		gold = 100000;
+		gold = 500;
 	}
 
 	public double getGold() {
