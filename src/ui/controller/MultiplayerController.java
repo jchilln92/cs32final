@@ -119,6 +119,7 @@ public class MultiplayerController {
 	}
 	
 	public void stopHostingGame() {
+		gameSetup.reset();
 		lobbyManager.stopHostingGame();
 		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
