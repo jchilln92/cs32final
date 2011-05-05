@@ -136,7 +136,8 @@ public class TowerStatsPanel extends JPanel {
 
 			} else if (tower.getDamage().getTimeDamage() != 0) {
 				extraDamageLabel.setText("Damage over Time: " + NumberFormat.getInstance().format(tower.getDamage().getTimeDamage()));		
-			}
+			} else
+				extraDamageLabel.setText(" ");
 			
 		}
 	}
