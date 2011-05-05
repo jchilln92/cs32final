@@ -40,7 +40,7 @@ public class TowerUpgradePanel extends JPanel {
 		super(new GridBagLayout());
 		controller = gc;
 		
-		towerStats = new TowerStatsPanel();
+		towerStats = new TowerStatsPanel(controller);
 		towerStats.setTower(controller.getSelectedTower());
 		
 		cancelButton = new JButton("Cancel");

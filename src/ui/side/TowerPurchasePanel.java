@@ -55,7 +55,7 @@ public class TowerPurchasePanel extends JPanel {
 		gc = controller;
 		
 		purchaseTowersLabel = new JLabel(purchaseTowersText);
-		towerStats = new TowerStatsPanel();
+		towerStats = new TowerStatsPanel(gc);
 		towerButtons = new JButton[8];
 		towerButtonActions = new Action[8];
 		
@@ -73,7 +73,7 @@ public class TowerPurchasePanel extends JPanel {
 			String path = FilePaths.imgPath + "tower-icon"+(index+1)+".png";
 			
 			ImageIcon towerIcon = new ImageIcon(path);
-			JButton towerButton = new JButton(towerIcon);
+			final JButton towerButton = new JButton(towerIcon);
 			towerButtons[index] = towerButton;
 			
 			final Tower.Type type = buttonTypes[index];
@@ -96,11 +96,15 @@ public class TowerPurchasePanel extends JPanel {
 				@Override
 				public void mouseEntered(MouseEvent e) {
 					towerStats.setTower(Tower.createTower(type));
+					if (towerButton.isEnabled()) {
+						gc.getSideBar().getPlayerStatsPanel().setGoldChange(" -" + Tower.createTower(type).getPrice());
+					}
 				}
 
 				@Override
 				public void mouseExited(MouseEvent e) {
 					towerStats.setTower(null);
+					gc.getSideBar().getPlayerStatsPanel().setGoldChange("");
 				}
 			});
 			

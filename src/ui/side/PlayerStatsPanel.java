@@ -30,7 +30,8 @@ public class PlayerStatsPanel extends JPanel {
 	private JLabel goldValueLabel;
 	private JLabel healthValueLabel;
 	private JLabel opponentHealthValueLabel;
-
+	private JLabel goldChangeLabel;
+	
 	public PlayerStatsPanel(Player p) {
 		super(new GridBagLayout());
 		
@@ -42,6 +43,7 @@ public class PlayerStatsPanel extends JPanel {
 		healthLabel.setForeground(Color.RED);
 		goldValueLabel = new JLabel("0");
 		healthValueLabel = new JLabel("0");
+		goldChangeLabel = new JLabel("");
 		
 		updateDisplay();
 
@@ -54,8 +56,14 @@ public class PlayerStatsPanel extends JPanel {
 
 		c.gridx = 1;
 		c.gridy = 0;
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.NONE;
 		add(goldValueLabel, c);
+		
+		c.gridx = 2;
+		c.gridy = 0;
+		c.insets.set(0, 10, 0, 0);
+		add(goldChangeLabel, c);
+		c.insets.set(0, 0, 0, 0);
 
 		c.gridx = 0;
 		c.gridy = 1;
@@ -97,5 +105,10 @@ public class PlayerStatsPanel extends JPanel {
 		
 		if (opponentHealthValueLabel != null)
 			opponentHealthValueLabel.setText(Integer.toString((int)opponent.getHealth()));
+	}
+	
+	public void setGoldChange(String change) {
+		goldChangeLabel.setForeground(Color.RED);
+		goldChangeLabel.setText(change);
 	}
 }

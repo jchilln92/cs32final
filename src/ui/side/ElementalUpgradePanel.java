@@ -27,14 +27,9 @@ public class ElementalUpgradePanel extends JPanel {
 	private JButton yellowButton;
 	
 	private JButton[] eButtons;
-	//private boolean[] elementBooleans;
 	
 	public ElementalUpgradePanel(GameController gc){
 		super(new GridBagLayout());
-		
-	//	elementBooleans = new boolean[5];
-	//	for (int x = 0; x < elementBooleans.length; x++)
-		//	elementBooleans[x] = false;
 		
 		controller = gc;
 		neutralButton = new JButton();

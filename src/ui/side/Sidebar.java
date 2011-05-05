@@ -92,4 +92,8 @@ public class Sidebar extends JPanel {
 		}
 		towerPanel.enableCardPanel();
 	}
+	
+	public PlayerStatsPanel getPlayerStatsPanel() {
+		return playerStats;
+	}
 } 
