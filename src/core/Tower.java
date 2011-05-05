@@ -141,7 +141,8 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	}
 	
 	public void setTargetingInfo(TargetingInfo tInfo) {
-		this.targeting = tInfo;
+		//this.targeting = tInfo;
+		this.targeting = TargetingInfo.copyTargetingInfo(tInfo);
 	}
 	
 	public String getDescription() {

@@ -45,7 +45,7 @@
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
 				<dFirePeriod>0</dFirePeriod>
-				<canHitFlying>false</canHitFlying>
+				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="2" price="50">
 				<dInstantDamage>0</dInstantDamage>
