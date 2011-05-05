@@ -31,7 +31,7 @@ public class ElementalUpgradePanel extends JPanel {
 		super(new GridBagLayout());
 		
 		controller = gc;
-		neutralButton = new JButton("    ");
+		neutralButton = new JButton();
 		neutralButton.setBackground(ColorConstants.neutralColor);
 		
 		neutralButton.addActionListener(new ActionListener() {
