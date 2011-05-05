@@ -8,6 +8,7 @@ import java.text.NumberFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import src.Runner;
 import src.core.Tower;
@@ -28,11 +29,12 @@ public class TowerStatsPanel extends JPanel {
 	private JLabel rangeLabel;
 	private JLabel abilitiesLabel;
 	private JLabel costLabel;
-//	private JLabel descriptionLabel;
 	private JLabel fireRateLabel;
+	private JTextArea descriptionArea;
 	
 	private JLabel damageChangeLabel;
 	private JLabel rangeChangeLabel;
+	private JLabel rateChangeLabel;
 	private JLabel abilitiesChangeLabel;
 	
 	public TowerStatsPanel() {
@@ -46,11 +48,12 @@ public class TowerStatsPanel extends JPanel {
 		rangeLabel = new JLabel(" ");
 		abilitiesLabel = new JLabel(" ");
 		costLabel = new JLabel(" ");
-//		descriptionLabel = new JLabel(" ");
+		descriptionArea = new JTextArea("This is an epic test of testaroni");
 		fireRateLabel = new JLabel(" ");
 		
 		damageChangeLabel = new JLabel(" ");
 		rangeChangeLabel = new JLabel(" ");
+		rateChangeLabel = new JLabel(" ");
 		abilitiesChangeLabel = new JLabel(" ");
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -81,6 +84,10 @@ public class TowerStatsPanel extends JPanel {
 		c.gridy = 3;
 		add(fireRateLabel, c);
 		
+		c.gridx = 1;
+		c.gridy = 3;
+		add(rateChangeLabel, c);
+		
 		c.gridx = 0;
 		c.gridy = 4;
 		add(abilitiesLabel, c);
@@ -92,6 +99,10 @@ public class TowerStatsPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 5;
 		add(costLabel, c);
+		
+		c.gridx = 0;
+		c.gridy = 6;
+		add(descriptionArea, c);
 	}
 	
 	public void setTower(Tower t) {
@@ -104,7 +115,7 @@ public class TowerStatsPanel extends JPanel {
 			fireRateLabel.setText(" ");
 			abilitiesLabel.setText(" ");
 			costLabel.setText(" ");
-//			descriptionLabel.setText(" ");
+			descriptionArea.setText(" ");
 		} else {
 			towerNameLabel.setText("Type: " + tower.getType().toString());
 			
@@ -115,21 +126,22 @@ public class TowerStatsPanel extends JPanel {
 			
 			abilitiesLabel.setText("Abilities: ");
 			costLabel.setText("Cost: " + (int)tower.getPrice());
-//			descriptionLabel.setText(tower.getDescription());
+			descriptionArea.setText(tower.getDescription());
 		}
 	}
 	
 	public void setUpgrade(Upgrade u) {
 		upgrade = u;
 		
-		// TODO: make this include more fields
 		if (upgrade == null) {
 			damageChangeLabel.setText(" ");
 			rangeChangeLabel.setText(" ");
+			rateChangeLabel.setText(" ");
 			abilitiesChangeLabel.setText(" ");
 		} else {
 			String modifier = "";
 			
+			// damage change
 			if (upgrade.getInstantDamageChange() > 0) {
 				damageChangeLabel.setForeground(Color.GREEN);
 				modifier = " +";
@@ -141,6 +153,7 @@ public class TowerStatsPanel extends JPanel {
 			if (upgrade.getInstantDamageChange() != 0)
 				damageChangeLabel.setText(modifier + Double.toString(upgrade.getInstantDamageChange() * 100) + "%");
 			
+			// range change
 			if (upgrade.getRadiusChange() > 0) {
 				rangeChangeLabel.setForeground(Color.GREEN);
 				modifier = " +";
@@ -151,6 +164,18 @@ public class TowerStatsPanel extends JPanel {
 			
 			if (upgrade.getRadiusChange() != 0)
 				rangeChangeLabel.setText(modifier + Double.toString(upgrade.getRadiusChange() * 100) + "%");
+			
+			// fire rate change
+			if (upgrade.getFirePeriodChange() > 0) {
+				rateChangeLabel.setForeground(Color.GREEN);
+				modifier = " +";
+			} else {
+				rateChangeLabel.setForeground(Color.RED);
+				modifier = " -";
+			}
+			
+			if (upgrade.getFirePeriodChange() != 0)
+				rateChangeLabel.setText(modifier + Double.toString(upgrade.getFirePeriodChange() * 100) + "%");
 		}
 	}
 }

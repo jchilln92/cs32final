@@ -36,7 +36,6 @@ public class TowerUpgradePanel extends JPanel {
 	private JButton cancelButton;
 	private JButton[][] upgradeButtons;
 
-	
 	public TowerUpgradePanel(GameController gc) {
 		super(new GridBagLayout());
 		controller = gc;
@@ -146,6 +145,10 @@ public class TowerUpgradePanel extends JPanel {
 
 	}
 	
+	private void updateSellButton() {
+		sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
+	}
+	
 	private void updateClickableButtons() {
 		Tower tower = controller.getSelectedTower();
 		
@@ -164,11 +167,11 @@ public class TowerUpgradePanel extends JPanel {
 		}
 	}
 	
-	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		towerStats.setTower(controller.getSelectedTower());	
+		towerStats.setTower(controller.getSelectedTower());
+		updateSellButton();
 		updateClickableButtons();
 	}
 	

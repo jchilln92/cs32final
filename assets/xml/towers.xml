@@ -17,14 +17,14 @@
 			<targetable>true</targetable>
 		</damage>
 		<upgrades>
-			<upgrade type="GUN" level="1" price="50">
+			<upgrade type="GUN" level="1" price="100">
 				<dInstantDamage>1</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
 				<dSpeedEffect>0</dSpeedEffect>
 				<dRadius>.3</dRadius>
-				<dFirePeriod>0</dFirePeriod>
+				<dFirePeriod>.3</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="1" price="50">

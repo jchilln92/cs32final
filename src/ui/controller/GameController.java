@@ -29,6 +29,8 @@ import src.ui.side.Sidebar;
  * and the controller manages the interaction with the backend.
  */
 public class GameController {
+	public static final double towerRefundPercentage = .75;
+	
 	private Game game;
 	private GameMain gameMain;
 	private Tower placingTower; // a tower pending purchase
@@ -274,7 +276,7 @@ public class GameController {
 		if (selectedTower == null) return;
 		
 		Player p = game.getPlayer();
-		p.setGold(p.getGold() + selectedTower.getInvestment() * .75);
+		p.setGold(p.getGold() + selectedTower.getInvestment() * towerRefundPercentage);
 		
 		game.getTowers().remove(selectedTower);
 		unselectTower();
