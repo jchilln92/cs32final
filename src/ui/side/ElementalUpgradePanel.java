@@ -27,6 +27,8 @@ public class ElementalUpgradePanel extends JPanel {
 	private JButton yellowButton;
 	private JButton[] buttonList;
 	
+	private JButton[] eButtons;
+	
 	public ElementalUpgradePanel(GameController gc){
 		super(new GridBagLayout());
 		
@@ -37,6 +39,7 @@ public class ElementalUpgradePanel extends JPanel {
 		neutralButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.NEUTRAL);
+				disableButton(0);
 			}
 		});
 		
@@ -46,6 +49,7 @@ public class ElementalUpgradePanel extends JPanel {
 		redButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.RED);
+				disableButton(1);
 			}
 		});
 		
@@ -55,6 +59,7 @@ public class ElementalUpgradePanel extends JPanel {
 		greenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.GREEN);
+				disableButton(2);
 			}
 		});
 		
@@ -64,6 +69,7 @@ public class ElementalUpgradePanel extends JPanel {
 		blueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.BLUE);
+				disableButton(3);
 			}
 		});
 		
@@ -73,9 +79,16 @@ public class ElementalUpgradePanel extends JPanel {
 		yellowButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.YELLOW);
+				disableButton(4);
 			}
 		});
-		
+
+		eButtons = new JButton[5];
+		eButtons[0] = neutralButton;
+		eButtons[1] = redButton;
+		eButtons[2] = greenButton;
+		eButtons[3] = blueButton;
+		eButtons[4] = yellowButton;
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
@@ -121,5 +134,14 @@ public class ElementalUpgradePanel extends JPanel {
 			}
 		}
 
+	}
+	
+	public void disableButton(int index){
+		for(int x = 0; x < eButtons.length; x++){
+			if(x != index)
+				eButtons[x].setEnabled(true);
+			else
+				eButtons[x].setEnabled(false);
+		}
 	}
 }
