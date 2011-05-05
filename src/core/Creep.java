@@ -12,6 +12,9 @@ import src.core.xml.CreepXMLReader;
 import src.ui.IDrawableCreep;
 
 public class Creep implements IDrawableCreep, IAlignment {
+	private static double WEAKNESS_MODIFIER = 1.2;
+	private static double STRENGTH_MODIFIER = 0.8;
+	
 	private static HashMap<Creep.Type, Creep> templateCreeps;
 	
 	public static Creep createCreep(Type t) {
@@ -53,9 +56,7 @@ public class Creep implements IDrawableCreep, IAlignment {
 	
 	@Element
 	private double damageToBase;
-	
-	private double dmgIncrease = 1.2;
-	private double dmgDecrease = 0.8;
+
 	
 	private HashMap<Tower, DamageApplication> damages;
 
@@ -145,10 +146,10 @@ public class Creep implements IDrawableCreep, IAlignment {
 		//factor in increases or decreases of damage due to alignment
 		double damage = d.getInstantDamage();
 		if(this.alignment != IAlignment.Alignment.NEUTRAL) {
-			if(t.getAlignment() == this.alignment.getWeakTo())
-				damage *= dmgIncrease;
-			else if(t.getAlignment() == this.alignment.getStrength())
-				damage *= dmgDecrease;
+			if(t.getAlignment() == this.alignment.getWeakTo()) //if this creep is weak to tower's element
+				damage *= WEAKNESS_MODIFIER;
+			else if(t.getAlignment() == this.alignment.getStrength()) // if this creep is strong to tower's element
+				damage *= STRENGTH_MODIFIER;
 		}
 		health -= damage;
 		
