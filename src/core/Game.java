@@ -77,14 +77,27 @@ public class Game {
 		}
 	}
 
+
 	/**
-	 * Sends the next wave of creeps.
+	 * Sends the next wave of creeps (simultaneously calls applyplayerIncomePerWave)
 	 */
 	public void sendNextWave(){
 		lastWaveTime = elapsedTime;
-		
+		applyPlayerIncomePerWave();
 		sendWave(WaveGenerator.generateWave(wavesSent + 1)); // wavesSent + 1 == wave number	
 	}
+	
+	/**
+	 * At the beginning of a new wave, increases the player's income per wave and gives the player gold equal to this income per wave
+	 * TODO: OVERRIDE FOR MULTIPLAYER (multiplayer version will not increase income per wave as that should be done on creep purchase)
+	 */
+	private void applyPlayerIncomePerWave() {
+		if (wavesSent != 0){
+			player.increaseIncomePerWave(5 * wavesSent);
+			player.reapReward(player.getIncomePerWave());		
+		}
+	}
+
 	
 	/**
 	 * Moves each of the creeps on the board along their specified CreepPath.  When creeps

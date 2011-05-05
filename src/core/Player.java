@@ -3,11 +3,13 @@ package src.core;
 public class Player {
 	private double gold;
 	private double health;
+	private double incomePerWave;
 
 	public Player() {
 		// TODO: stub
 		health = 100;
 		gold = 500;
+		incomePerWave = 50;
 	}
 
 	public double getGold() {
@@ -36,5 +38,13 @@ public class Player {
 	
 	public void reapReward(double reward) {
 		gold += reward;
+	}
+	
+	public void increaseIncomePerWave(double inc) {
+		incomePerWave = incomePerWave + inc;
+	}
+	
+	public double getIncomePerWave() {
+		return incomePerWave;
 	}
 }

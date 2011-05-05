@@ -137,9 +137,9 @@ public class ElementalUpgradePanel extends JPanel {
 				break;
 		}
 		
-		if (controller.playerCanAfford(temporaryAlignment)) {
+		if (controller.playerCanAfford(temporaryAlignment)) { //if can afford alignment
 			for (int x = 0; x < eButtons.length; x++) {
-				if (currentAlignmentIndex != x)
+				if (currentAlignmentIndex != x) //check if we haven't already purchased this alignment
 					eButtons[x].setEnabled(true);
 				else
 					eButtons[x].setEnabled(false);
@@ -149,7 +149,6 @@ public class ElementalUpgradePanel extends JPanel {
 				eButtons[x].setEnabled(false);
 			}
 		}
-
 	}
 	
 }
