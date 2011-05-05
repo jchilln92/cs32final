@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import src.core.Tower;
 import src.core.Upgrade;
+import src.core.IAlignment.Alignment;
 
 /**
  * A reusable panel that is used to display the stats of a given tower.
@@ -25,6 +26,8 @@ public class TowerStatsPanel extends JPanel {
 	private JLabel rangeLabel;
 	private JLabel abilitiesLabel;
 	private JLabel costLabel;
+//	private JLabel descriptionLabel;
+	private JLabel firePeriodLabel;
 	
 	private JLabel damageChangeLabel;
 	private JLabel rangeChangeLabel;
@@ -41,6 +44,8 @@ public class TowerStatsPanel extends JPanel {
 		rangeLabel = new JLabel(" ");
 		abilitiesLabel = new JLabel(" ");
 		costLabel = new JLabel(" ");
+//		descriptionLabel = new JLabel(" ");
+		firePeriodLabel = new JLabel(" ");
 		
 		damageChangeLabel = new JLabel(" ");
 		rangeChangeLabel = new JLabel(" ");
@@ -81,6 +86,11 @@ public class TowerStatsPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 4;
 		add(costLabel, c);
+		
+		c.gridx = 0;
+		c.gridy = 5;
+		add(firePeriodLabel, c);
+		
 	}
 	
 	public void setTower(Tower t) {
@@ -92,6 +102,8 @@ public class TowerStatsPanel extends JPanel {
 			rangeLabel.setText(" ");
 			abilitiesLabel.setText(" ");
 			costLabel.setText(" ");
+//			descriptionLabel.setText(" ");
+			firePeriodLabel.setText(" ");
 		} else {
 			towerNameLabel.setText("Type: " + tower.getType().toString());
 			double damage = tower.getDamage().getInstantDamage();
@@ -102,6 +114,8 @@ public class TowerStatsPanel extends JPanel {
 			rangeLabel.setText("Range: " + radiusText);
 			abilitiesLabel.setText("Abilities: ");
 			costLabel.setText("Cost: " + (int)tower.getPrice());//Double.toString(tower.getPrice()));
+//			descriptionLabel.setText(tower.getDescription());
+			firePeriodLabel.setText("Fire Period: " + tower.getFirePeriod());
 		}
 	}
 	

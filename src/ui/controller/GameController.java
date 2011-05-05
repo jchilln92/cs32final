@@ -17,6 +17,7 @@ import src.core.IPurchasable;
 import src.core.Player;
 import src.core.Tower;
 import src.core.Upgrade;
+import src.core.IAlignment.Alignment;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
 import src.ui.side.Sidebar;
@@ -219,6 +220,10 @@ public class GameController {
 				return u;
 		}
 		return null;
+	}
+	
+	public void applyAlignment(Alignment al) {
+		selectedTower.setAlignment(al);
 	}
 	
 	/**

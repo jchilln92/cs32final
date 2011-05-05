@@ -31,7 +31,25 @@ public class CreepDrawer {
 		Arc2D.Double creep = new Arc2D.Double();
 		creep.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
 				creepRadius, 0, 360, Arc2D.PIE);
-		g.setColor(Color.BLUE);
+		
+		Color creepColor = Color.GRAY;
+		switch(c.getAlignment()) {
+			case BLUE:
+				creepColor = Color.BLUE;
+				break;
+			case YELLOW:
+				creepColor = Color.YELLOW;
+				break;
+			case RED:
+				creepColor = Color.RED;
+				break;
+			case GREEN:
+				creepColor = Color.GREEN;
+				break;
+			default:
+				creepColor = Color.GRAY;
+		}
+		g.setColor(creepColor);
 		g.fill(creep);
 		
 		if(drawHealthBar){

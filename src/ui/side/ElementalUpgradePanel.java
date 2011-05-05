@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import src.core.IAlignment.Alignment;
 import src.ui.ColorConstants;
 import src.ui.controller.GameController;
 
@@ -29,17 +32,47 @@ public class ElementalUpgradePanel extends JPanel {
 		neutralButton = new JButton();
 		neutralButton.setBackground(ColorConstants.neutralColor);
 		
+		neutralButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.applyAlignment(Alignment.NEUTRAL);
+			}
+		});
+		
 		redButton = new JButton();
 		redButton.setBackground(ColorConstants.redColor);
+		
+		redButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.applyAlignment(Alignment.RED);
+			}
+		});
 		
 		greenButton = new JButton();
 		greenButton.setBackground(ColorConstants.greenColor);
 		
+		greenButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.applyAlignment(Alignment.GREEN);
+			}
+		});
+		
 		blueButton = new JButton();
 		blueButton.setBackground(ColorConstants.blueColor);
 		
+		blueButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.applyAlignment(Alignment.BLUE);
+			}
+		});
+		
 		yellowButton = new JButton();
 		yellowButton.setBackground(ColorConstants.yellowColor);
+		
+		yellowButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.applyAlignment(Alignment.YELLOW);
+			}
+		});
 		
 		GridBagConstraints c = new GridBagConstraints();
 		

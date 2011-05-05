@@ -3,6 +3,7 @@
 		<price>150</price>
 		<radius>3</radius>
 		<firePeriod>1</firePeriod>
+		<description>"The reliable basic tower."</description>
 		<targeting>
 			<strategy>WEAKEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -112,6 +113,7 @@
 		<price>250</price>
 		<radius>3</radius>
 		<firePeriod>1</firePeriod>
+		<description>"Specialized against flying creeps."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>true</hitsFlying>
@@ -221,6 +223,7 @@
 		<price>500</price>
 		<radius>3</radius>
 		<firePeriod>2</firePeriod>
+		<description>"Does no damage but slows creeps."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -330,6 +333,7 @@
 		<price>750</price>
 		<radius>6</radius>
 		<firePeriod>40</firePeriod>
+		<description>"Hits far and hard."</description>
 		<targeting>
 			<strategy>FURTHEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -439,6 +443,7 @@
 		<price>1250</price>
 		<radius>3</radius>
 		<firePeriod>1.5</firePeriod>
+		<description>"Helps your own towers."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -548,15 +553,16 @@
 		<price>750</price>
 		<radius>2</radius>
 		<firePeriod>1.5</firePeriod>
+		<description>"Deals damage over time."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>.1</instantDamage>
+			<instantDamage>.05</instantDamage>
 			<timeDamage>1</timeDamage>
 			<period>0</period>
-			<effectDuration>3</effectDuration>
+			<effectDuration>75</effectDuration>
 			<speedChange>.1</speedChange>
 			<targetable>true</targetable>
 		</damage>
@@ -657,6 +663,7 @@
 		<price>200</price>
 		<radius>3</radius>
 		<firePeriod>.25</firePeriod>
+		<description>"Completely stops creeps, but shields them from all damage."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>false</hitsFlying>
@@ -766,6 +773,7 @@
 		<price>5000</price>
 		<radius>8</radius>
 		<firePeriod>4</firePeriod>
+		<description>"Just plain unfair."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>true</hitsFlying>
