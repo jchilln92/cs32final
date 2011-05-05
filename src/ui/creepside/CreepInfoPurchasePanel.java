@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,10 +20,13 @@ import src.FilePaths;
 import src.core.Creep;
 import src.core.IAlignment;
 import src.ui.ColorConstants;
+import src.ui.controller.GameController;
 import src.ui.side.TowerStatsPanel;
 
 public class CreepInfoPurchasePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
+	private GameController gc;
 	
 	private CreepQueuePanel creepQueue;
 	private Creep cr;
@@ -42,9 +46,10 @@ public class CreepInfoPurchasePanel extends JPanel {
 	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 
 	
-	public CreepInfoPurchasePanel(CreepQueuePanel cq) {
+	public CreepInfoPurchasePanel(CreepQueuePanel cq, GameController controller) {
 	
 		super(new GridBagLayout());
+		gc = controller;
 		
 		creepQueue = cq;
 		creepIndex = -1;		
@@ -52,8 +57,8 @@ public class CreepInfoPurchasePanel extends JPanel {
 		neutralButton.setBackground(ColorConstants.neutralColor);
 		neutralButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//if(cr != null)
-				//	cr.setAlignment(IAlignment.Alignment.NEUTRAL);
+				if(cr != null)
+					cr.setAlignment(IAlignment.Alignment.NEUTRAL);
 			}
 		});
 		
@@ -61,31 +66,38 @@ public class CreepInfoPurchasePanel extends JPanel {
 		redButton.setBackground(ColorConstants.redColor);
 		redButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(cr != null)
+					cr.setAlignment(IAlignment.Alignment.RED);
 			}
 		});		
 		greenButton = new JButton();
 		greenButton.setBackground(ColorConstants.greenColor);
 		greenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				if(cr != null)
+					cr.setAlignment(IAlignment.Alignment.GREEN);
 			}
 		});			
 		blueButton = new JButton();
 		blueButton.setBackground(ColorConstants.blueColor);
 		blueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				if(cr != null)
+					cr.setAlignment(IAlignment.Alignment.BLUE);
 			}
 		});			
 		yellowButton = new JButton();
 		yellowButton.setBackground(ColorConstants.yellowColor);
 		yellowButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				if(cr != null)
+					cr.setAlignment(IAlignment.Alignment.YELLOW);
 			}
 		});			
+		
 		buyButton = new JButton("Buy");
 		buyButton.setBackground(Color.ORANGE);
+		buyButton.setEnabled(false);
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				creepQueue.enqueue(cr, creepIndex);
@@ -94,6 +106,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.setBackground(Color.WHITE);
+		cancelButton.setEnabled(false);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCreepByIndex(-1);
@@ -119,6 +132,8 @@ public class CreepInfoPurchasePanel extends JPanel {
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.ipady = 0;
+		
+		
 		c.gridx = 0;
 		c.gridy = 1;
 		add(neutralButton, c);
@@ -131,6 +146,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 		c.gridx = 4;
 		add(yellowButton, c);
 		
+		updateAllowedButtons();
 		c.insets = new Insets(0, 5, 5, 0);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
@@ -142,6 +158,18 @@ public class CreepInfoPurchasePanel extends JPanel {
 		add(cancelButton, c);
 
 	}
+
+	private void updateAllowedButtons() {
+		if (cr != null && !gc.playerCanAfford(cr)) {
+			buyButton.setEnabled(false);
+			//cancelButton.setEnabled(true);
+		} 
+	}
+	
+	public void paintComponent(Graphics g) {
+		updateAllowedButtons();
+	}
+	
 	
 	public void setCreepByIndex(int index){
 		creepIndex = index;
@@ -154,6 +182,8 @@ public class CreepInfoPurchasePanel extends JPanel {
 			i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
 			creepIcon = new ImageIcon(i);  
 			iconLabel.setIcon(creepIcon);
+			buyButton.setEnabled(false);
+			cancelButton.setEnabled(false);
 			
 			
 
@@ -167,8 +197,8 @@ public class CreepInfoPurchasePanel extends JPanel {
 			i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
 			creepIcon = new ImageIcon(i);  
 			iconLabel.setIcon(creepIcon);
-			
-
+			buyButton.setEnabled(true);
+			cancelButton.setEnabled(true);
 		}
 	}
 }
