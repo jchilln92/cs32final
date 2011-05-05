@@ -25,6 +25,7 @@ public class CancelPurchasePanel extends JPanel {
 	private JLabel purchaseLabel;
 	private JLabel towerNameLabel;
 	private JLabel tipLabel;
+	private JLabel towerCostLabel;
 	
 	private JButton cancelButton;
 	
@@ -35,6 +36,7 @@ public class CancelPurchasePanel extends JPanel {
 		
 		purchaseLabel = new JLabel("Purchasing");
 		towerNameLabel = new JLabel();
+		towerCostLabel = new JLabel();
 		
 		if (gc.getPlacingTower() == null)
 			towerNameLabel.setText("Magical Tower:");
@@ -59,15 +61,18 @@ public class CancelPurchasePanel extends JPanel {
 		add(purchaseLabel, c);
 		
 		c.gridy = 1;
-		c.fill = GridBagConstraints.NONE;
 		add(towerNameLabel, c);
 		
 		c.gridy = 2;
-		c.fill = GridBagConstraints.NONE;
-		add(cancelButton, c);
-		
+		c.insets.set(20, 0, 0, 0);
+		add(towerCostLabel, c);
+
 		c.gridy = 3;
-		c.fill = GridBagConstraints.NONE;
+		c.insets.set(5, 0, 0, 0);
+		add(cancelButton,c);
+		
+		c.gridy = 5;
+		c.insets.set(40, 0, 0, 0);
 		add(tipLabel, c);
 	}
 	
@@ -77,9 +82,13 @@ public class CancelPurchasePanel extends JPanel {
 		
 		// make sure that when this view comes to the front and is redrawn, the name of the
 		// tower being placed is displayed
-		if (gc.getPlacingTower() == null)
+		if (gc.getPlacingTower() == null) {
 			towerNameLabel.setText("Magical Tower:");
-		else
+			towerCostLabel.setText("");
+		}
+		else {
 			towerNameLabel.setText(gc.getPlacingTower().getType() + ":");
+			towerCostLabel.setText("Price of tower: " + gc.getPlacingTower().getPrice());
+		}
 	}
 }

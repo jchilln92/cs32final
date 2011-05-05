@@ -1,6 +1,5 @@
 package src.ui.side;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -27,17 +26,12 @@ public class ElementalUpgradePanel extends JPanel {
 	private JButton yellowButton;
 	
 	private JButton[] eButtons;
-	//private boolean[] elementBooleans;
 	
 	public ElementalUpgradePanel(GameController gc){
 		super(new GridBagLayout());
 		
-	//	elementBooleans = new boolean[5];
-	//	for (int x = 0; x < elementBooleans.length; x++)
-		//	elementBooleans[x] = false;
-		
 		controller = gc;
-		neutralButton = new JButton();
+		neutralButton = new JButton("    ");
 		neutralButton.setBackground(ColorConstants.neutralColor);
 		
 		neutralButton.addActionListener(new ActionListener() {
@@ -89,8 +83,6 @@ public class ElementalUpgradePanel extends JPanel {
 		eButtons[3] = blueButton;
 		eButtons[4] = yellowButton;
 		
-
-		
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
@@ -109,10 +101,11 @@ public class ElementalUpgradePanel extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
-		setCanPurchaseAlignment();
+		updateAlignmentButtons();
 	}
 
-	private void setCanPurchaseAlignment() {
+	//Updates whether or not you can purchase an alignment
+	private void updateAlignmentButtons() {
 		//create a dummy alignment to check if player can afford as all alignments are of same cost
 		Alignment temporaryAlignment = Alignment.NEUTRAL;
 		Alignment currentAlignment = controller.getSelectedTower().getAlignment();
@@ -136,7 +129,7 @@ public class ElementalUpgradePanel extends JPanel {
 				currentAlignmentIndex = 4;
 				break;
 		}
-		
+				
 		if (controller.playerCanAfford(temporaryAlignment)) { //if can afford alignment
 			for (int x = 0; x < eButtons.length; x++) {
 				if (currentAlignmentIndex != x) //check if we haven't already purchased this alignment

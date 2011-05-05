@@ -343,7 +343,11 @@ public class GameController {
 		side.showTowerPurchase();
 	}
 	
-	public boolean getPaused(){
+	public boolean getPaused() {
 		return isPaused;
+	}
+	
+	public Sidebar getSideBar() {
+		return side;
 	}
 }

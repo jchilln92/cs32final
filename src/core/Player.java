@@ -41,7 +41,7 @@ public class Player {
 	}
 	
 	public void increaseIncomePerWave(double inc) {
-		incomePerWave = incomePerWave + inc;
+		incomePerWave += inc;
 	}
 	
 	public double getIncomePerWave() {
