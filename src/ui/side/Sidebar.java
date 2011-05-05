@@ -14,6 +14,9 @@ import src.net.NetworkGame;
 import src.ui.controller.GameController;
 import src.ui.controller.MultiplayerController;
 
+/**
+ * Contains and shows components and subpanels in the sidebar.
+ */
 public class Sidebar extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
