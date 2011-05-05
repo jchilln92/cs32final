@@ -46,6 +46,8 @@ public class MapComponent extends JComponent {
 					}
 				} else if (gc.tileIsOccupied(x, y)) {
 					gc.toggleTowerSelection(x, y);
+				} else if (gc.isTowerSelected()) {
+					gc.toggleTowerSelection(gc.getSelectedTower().getX(), gc.getSelectedTower().getY());
 				}
 			}
 		});

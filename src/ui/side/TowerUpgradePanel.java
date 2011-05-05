@@ -1,5 +1,7 @@
 package src.ui.side;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,10 +11,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.core.TargetingInfo;
 import src.core.Tower;
 import src.core.Upgrade;
 import src.ui.controller.GameController;
@@ -22,10 +26,11 @@ import src.ui.controller.GameController;
  */
 public class TowerUpgradePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
+	private Color defaultButtonBackground; // we need to store this because we change the colors of some buttons
+	
 	private GameController controller;
-	
 	private TowerStatsPanel towerStats;
-	
 	private ElementalUpgradePanel elementalUpgrade;
 	
 	private JLabel levelOneLabel;
@@ -33,7 +38,7 @@ public class TowerUpgradePanel extends JPanel {
 	private JLabel levelThreeLabel;
 	
 	private JButton sellTowerButton;
-	private JButton cancelButton;
+	private JButton strongestButton, weakestButton, closestButton, furthestButton;
 	private JButton[][] upgradeButtons;
 
 	public TowerUpgradePanel(GameController gc) {
@@ -43,10 +48,43 @@ public class TowerUpgradePanel extends JPanel {
 		towerStats = new TowerStatsPanel();
 		towerStats.setTower(controller.getSelectedTower());
 		
-		cancelButton = new JButton("Cancel");
-		cancelButton.addActionListener(new ActionListener() {
+		// set up the buttons to handle changing targeting strategy
+		Font targetingButtonFont = new Font("Default", Font.PLAIN, 8);
+		Insets targetingButtonInsets = new Insets(0, 5, 0, 5);
+		
+		strongestButton = new JButton("STRONG");
+		strongestButton.setFont(targetingButtonFont);
+		strongestButton.setMargin(targetingButtonInsets);
+		strongestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.unselectTower();
+				controller.setTowerStrategy(TargetingInfo.Strategy.STRONGEST);
+			}
+		});
+		
+		weakestButton = new JButton("WEAK");
+		weakestButton.setFont(targetingButtonFont);
+		weakestButton.setMargin(targetingButtonInsets);
+		weakestButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.setTowerStrategy(TargetingInfo.Strategy.WEAKEST);
+			}
+		});
+		
+		closestButton = new JButton("CLOSE");
+		closestButton.setFont(targetingButtonFont);
+		closestButton.setMargin(targetingButtonInsets);
+		closestButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.setTowerStrategy(TargetingInfo.Strategy.CLOSEST);
+			}
+		});
+		
+		furthestButton = new JButton("FAR");
+		furthestButton.setFont(targetingButtonFont);
+		furthestButton.setMargin(targetingButtonInsets);
+		furthestButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.setTowerStrategy(TargetingInfo.Strategy.FURTHEST);
 			}
 		});
 		
@@ -84,15 +122,30 @@ public class TowerUpgradePanel extends JPanel {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(elementalUpgrade, c);
 		c.gridwidth = 1;
-
-		c.anchor = GridBagConstraints.CENTER;
-		c.insets.set(0, 0, 10, 0);	
+		
+		// initialize a helper panel to hold the tower strategy buttons
+		// this makes laying them out nicely much easier
+		JPanel holder = new JPanel(new GridBagLayout());
 		c.gridx = 0;
-		c.gridwidth = 4;
+		c.insets.set(0, 5, 0, 5);
+		holder.add(strongestButton, c);
+		c.gridx = 1;
+		holder.add(weakestButton, c);
+		c.gridx = 2;
+		holder.add(closestButton, c);
+		c.gridx = 3;
+		c.insets.set(0, 5, 0, 0);
+		holder.add(furthestButton, c);
+		c.insets.set(0, 0, 0, 0);
+		
+		c.gridx = 0;
 		c.gridy = 2;
-		add(cancelButton, c);
+		c.gridwidth = 4;
+		c.insets.set(0, 0, 10, 0);
+		add(holder, c);
+		c.insets.set(0, 0, 0, 0);
 		c.gridwidth = 1;
-	
+		
 		c.insets.set(0, 10, 0, 10);
 		c.gridx = 0;
 		c.gridy = 3;
@@ -146,8 +199,30 @@ public class TowerUpgradePanel extends JPanel {
 		c.gridwidth = 4;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(sellTowerButton, c);
+	}
+	
+	private void updateTargetingButtonHighlight() {
+		// clear all highlights
+		strongestButton.setBackground(defaultButtonBackground);
+		weakestButton.setBackground(defaultButtonBackground);
+		furthestButton.setBackground(defaultButtonBackground);
+		closestButton.setBackground(defaultButtonBackground);
 		
-
+		// highlight the appropriate targeting strategy button
+		switch (controller.getSelectedTower().getTargeting().getStrategy()) {
+			case STRONGEST:
+				strongestButton.setBackground(Color.ORANGE);
+				break;
+			case WEAKEST:
+				weakestButton.setBackground(Color.ORANGE);
+				break;
+			case FURTHEST:
+				furthestButton.setBackground(Color.ORANGE);
+				break;
+			case CLOSEST:
+				closestButton.setBackground(Color.ORANGE);
+				break;
+		}
 	}
 	
 	private void updateSellButton() {
@@ -178,6 +253,7 @@ public class TowerUpgradePanel extends JPanel {
 		towerStats.setTower(controller.getSelectedTower());
 		updateSellButton();
 		updateClickableButtons();
+		updateTargetingButtonHighlight();
 	}
 	
 	public void disableTowerUpgrade() {
@@ -188,7 +264,6 @@ public class TowerUpgradePanel extends JPanel {
 		}
 		
 		sellTowerButton.setEnabled(false);
-		cancelButton.setEnabled(false);
 	}
 	
 	public void enableTowerUpgrade() {
@@ -199,6 +274,5 @@ public class TowerUpgradePanel extends JPanel {
 		}
 		
 		sellTowerButton.setEnabled(true);
-		cancelButton.setEnabled(true);
 	}
 }

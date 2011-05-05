@@ -15,6 +15,7 @@ import src.Runner;
 import src.core.Game;
 import src.core.IPurchasable;
 import src.core.Player;
+import src.core.TargetingInfo;
 import src.core.Tower;
 import src.core.Upgrade;
 import src.core.IAlignment.Alignment;
@@ -239,6 +240,10 @@ public class GameController {
 	public void applyAlignment(Alignment al) {
 		game.getPlayer().purchase(al);
 		selectedTower.setAlignment(al);
+	}
+	
+	public void setTowerStrategy(TargetingInfo.Strategy s) {
+		selectedTower.getTargeting().setStrategy(s);
 	}
 	
 	/**
