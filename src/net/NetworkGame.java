@@ -31,6 +31,12 @@ public class NetworkGame extends Game {
 		opponentTowers = new ArrayList<Tower>();
 		remoteConnection = opponentConnection;
 		initializeGameListeners();
+		yourCreeps = new ArrayList<Creep>();
+		int random = (int)(Math.random()*10);
+		for(int x = 0; x < random; x++){
+			yourCreeps.add(Creep.createCreep(Creep.Type.GENERIC));
+		
+		}
 	}
 
 	private void initializeGameListeners() {
@@ -75,7 +81,7 @@ public class NetworkGame extends Game {
 	public void sendNextWave(){
 		setLastWaveTime(getElapsedTime());
 		super.applyPlayerIncomePerWave();
-		sendWaveToOpponent(opponentCreeps);
+		sendWaveToOpponent(yourCreeps);
 		//sendWave(WaveGenerator.generateWave(wavesSent + 1)); // wavesSent + 1 == wave number		
 	}
 
