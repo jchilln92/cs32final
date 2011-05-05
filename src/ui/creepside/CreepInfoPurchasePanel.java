@@ -124,8 +124,49 @@ public class CreepInfoPurchasePanel extends JPanel {
 		iconLabel = new JLabel(creepIcon);
 		
 
-		c.insets = new Insets(0, 5, 5, 0);
+		c.insets = new Insets(0, 5, 0, 10);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+
+		add(iconLabel, c);
+		c.gridwidth = 1;
+		c.gridheight = 3;
+		c.ipady = 0;
+		
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.ipady = 10;
+		c.insets = new Insets(0, 5, 0, 0);
+		c.gridx = 1;
+		c.gridy = 0;
+		add(neutralButton, c);
 		c.gridx = 2;
+		add(redButton, c);
+		c.gridx = 3;
+		add(greenButton, c);
+		c.gridx = 4;
+		add(blueButton, c);
+		c.gridx = 5;
+		add(yellowButton, c);
+		
+		updateAllowedButtons();
+		c.insets = new Insets(0, 5, 0, 0);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.ipady = 0;
+		c.gridx = 1;
+		c.gridy = 1;
+		c.gridwidth = 5;
+		c.gridheight = 3;
+		add(buyButton, c);
+		c.gridy = 5;
+		add(cancelButton, c);
+		
+		
+		
+		/*
+		c.gridx = 2;
+		
 		c.gridy = 0;
 
 		add(iconLabel, c);
@@ -156,14 +197,32 @@ public class CreepInfoPurchasePanel extends JPanel {
 		add(buyButton, c);
 		c.gridy = 5;
 		add(cancelButton, c);
-
+ */
 	}
 
 	private void updateAllowedButtons() {
-		if (cr != null && !gc.playerCanAfford(cr)) {
+
+		if ( (cr != null && !gc.playerCanAfford(cr)) || creepQueue.getNumberOfCreeps() >= 30) {
 			buyButton.setEnabled(false);
-			//cancelButton.setEnabled(true);
 		} 
+		else{
+			buyButton.setEnabled(true);
+		}
+		
+		if(cr != null){
+			neutralButton.setEnabled(true);
+			redButton.setEnabled(true);
+			greenButton.setEnabled(true);
+			blueButton.setEnabled(true);
+			yellowButton.setEnabled(true);	
+		}
+		else{
+			neutralButton.setEnabled(false);
+			redButton.setEnabled(false);
+			greenButton.setEnabled(false);
+			blueButton.setEnabled(false);
+			yellowButton.setEnabled(false);			
+		}
 	}
 	
 	public void paintComponent(Graphics g) {
