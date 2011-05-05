@@ -2,6 +2,9 @@ package src.net;
 
 import src.core.Player;
 
+/**
+ * Represents a Player on the network with a username for identifiability purposes.
+ */
 public class NetworkPlayer extends Player {
 	private String username;
 	

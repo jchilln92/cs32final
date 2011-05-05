@@ -9,6 +9,9 @@ import java.util.LinkedList;
 
 import src.WaveGenerator;
 
+/**
+ * Represents a game and handles logic of creep movement and tower attacks.
+ */
 public class Game {
 	private static final int creepDelay = 25; // delay, in ticks, between creeps
 	private static final int waveTime = 1000; // number of ticks between each wave (about 30 seconds)

@@ -22,6 +22,9 @@ import src.core.Game;
 import src.core.Map;
 import src.ui.controller.GameController;
 
+/**
+ * Handles code for the layout and operations involved with creating a multiplayer game.
+ */
 public class GameSetup extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final String createGameText = "Create your game:";

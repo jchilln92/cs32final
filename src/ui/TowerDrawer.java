@@ -18,32 +18,15 @@ public class TowerDrawer {
 		
 		tower.setArcByCenter(centX, centY, tileWidth / 2 - 5, 0, 360,
 				Arc2D.PIE);
-		alignmentBack.setArcByCenter(centX, centY, tileWidth / 4 - 5, 0, 360, Arc2D.PIE);
-		alignmentShow.setArcByCenter(centX, centY, tileWidth / 4 - 6, 0, 360, Arc2D.PIE);
+		alignmentBack.setArcByCenter(centX, centY, tileWidth / 3 - 5, 0, 360, Arc2D.PIE);
+		alignmentShow.setArcByCenter(centX, centY, tileWidth / 3 - 6, 0, 360, Arc2D.PIE);
 		
 		g.setColor(t.getType().getColor());
 		
 		g.fill(tower);
 		g.setColor(Color.BLACK);
 		g.fill(alignmentBack);
-		Color alColor = Color.GRAY;
-		switch(t.getAlignment()) {
-		case BLUE:
-			alColor = Color.BLUE;
-			break;
-		case YELLOW:
-			alColor = Color.YELLOW;
-			break;
-		case RED:
-			alColor = Color.RED;
-			break;
-		case GREEN:
-			alColor = Color.GREEN;
-			break;
-		default:
-			alColor = Color.GRAY;
-		}
-		g.setColor(alColor);
+		g.setColor(t.getAlignment().getColor());
 		g.fill(alignmentShow);
 		
 		// draw an indicator of tower upgrade status

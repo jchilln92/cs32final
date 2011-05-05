@@ -1,5 +1,8 @@
 package src.core;
 
+/**
+ * Represents a player within the game.
+ */
 public class Player {
 	private double gold;
 	private double health;
