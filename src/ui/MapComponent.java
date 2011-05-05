@@ -144,7 +144,7 @@ public class MapComponent extends JComponent {
 					gg.draw(tile);
 				}
 			}
-		}
+		} 
 
 		if (gc != null && !readOnly && gc.isPlacingTower()) { // draw appropriate graphics if we are placing a tile
 			Point mouse = getMouseTile();

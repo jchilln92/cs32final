@@ -29,26 +29,10 @@ public class CreepDrawer {
 
 		double creepRadius = 5;
 
-		Color creepColor = Color.GRAY;
-		switch(c.getAlignment()) {
-			case BLUE:
-				creepColor = Color.BLUE;
-				break;
-			case YELLOW:
-				creepColor = Color.YELLOW;
-				break;
-			case RED:
-				creepColor = Color.RED;
-				break;
-			case GREEN:
-				creepColor = Color.GREEN;
-				break;
-			default:
-				creepColor = Color.GRAY;
-		}
+		//Creep color is determined by alignment		
+		g.setColor(c.getAlignment().getColor());
 		
-		g.setColor(creepColor);
-		
+		//Creep shape is determined by its type
 		switch(c.getType()) {
 			case BIG_GUY:
 				Arc2D.Double big = new Arc2D.Double();
@@ -67,9 +51,6 @@ public class CreepDrawer {
 					creepRadius, 0, 360, Arc2D.PIE);
 				g.fill(creep);
 		}
-		
-		
-		
 		
 		
 		if(drawHealthBar){

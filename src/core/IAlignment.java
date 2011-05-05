@@ -15,7 +15,6 @@ public interface IAlignment {
 
 		/**
 		 * Returns the Alignment that deals double damage against the current Alignment.
-		 * @return 
 		 */
 		public Alignment getWeakTo() {
 			Alignment counter = NEUTRAL;
@@ -38,7 +37,6 @@ public interface IAlignment {
 		
 		/**
 		 * Returns the Alignment that deals only half damage against the current Alignment.
-		 * @return
 		 */
 		public Alignment getStrength() {
 			Alignment defeats = NEUTRAL;
@@ -61,7 +59,6 @@ public interface IAlignment {
 		
 		/**
 		 * Returns the Color representing the Alignment.
-		 * @return
 		 */
 		public Color getColor() {
 			Color alColor = Color.GRAY;

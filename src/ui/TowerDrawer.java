@@ -10,7 +10,11 @@ public class TowerDrawer {
 			double tileWidth, Graphics2D g) {
 		// TODO: stub method
 		Arc2D.Double tower = new Arc2D.Double();
-		Arc2D.Double alignmentBack = new Arc2D.Double();
+		
+		//Allows player to distinguish between alignment color and tower color
+		Arc2D.Double alignmentBack = new Arc2D.Double(); 
+		
+		
 		Arc2D.Double alignmentShow = new Arc2D.Double();
 		
 		double centX = ((t.getX() * tileWidth) + (tileWidth / 2));

@@ -6,16 +6,18 @@ import java.util.ArrayList;
 import org.simpleframework.xml.ElementList;
 
 /**
- * A list of points that a creep visits on the board.
+ * An ordered list of points that a creep visits on the board.
  */
 public class CreepPath {
 	@ElementList(inline=true, entry="point", name="points")
 	private ArrayList<Point2D.Double> points;
 
-	// this no-arg constructor needs to be around so that xml
-	// serialization will work.  note that it is private, and
-	// not meant to be used other than by the xml framework,
-	// which can override the private-ness using reflection
+	/*
+	 * this no-arg constructor needs to be around so that xml
+	 * serialization will work.  note that it is private, and
+	 * not meant to be used other than by the xml framework,
+	 * which can override the private-ness using reflection
+	 */
 	@SuppressWarnings("unused")
 	private CreepPath() {}
 	
