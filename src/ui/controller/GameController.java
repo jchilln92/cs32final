@@ -12,6 +12,7 @@ import javax.swing.KeyStroke;
 
 import src.GameMain;
 import src.Runner;
+import src.core.Creep;
 import src.core.Game;
 import src.core.IPurchasable;
 import src.core.Player;
@@ -343,6 +344,9 @@ public class GameController {
 		side.showTowerPurchase();
 	}
 	
+	public void finalizeCreepPurchase(Creep c){
+		game.getYourCreeps().add(c);
+	}
 	public boolean getPaused() {
 		return isPaused;
 	}

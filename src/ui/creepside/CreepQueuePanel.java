@@ -1,5 +1,6 @@
 package src.ui.creepside;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -17,11 +18,14 @@ import javax.swing.JPanel;
 
 import src.FilePaths;
 import src.core.Creep;
+import src.ui.controller.GameController;
 
 public class CreepQueuePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<Creep> waitingCreeps;
+	private GameController gc;
+	
+	//private ArrayList<Creep> waitingCreeps;
 	private ArrayList<JLabel> displayNext;
 	
 	private JButton dequeueButton;
@@ -30,10 +34,12 @@ public class CreepQueuePanel extends JPanel {
 	
 	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 	
-	public CreepQueuePanel(){
+	public CreepQueuePanel(GameController controller){
 		super(new GridBagLayout());
 		
-		waitingCreeps = new ArrayList<Creep>();
+		gc = controller;
+		
+		//waitingCreeps = new ArrayList<Creep>();
 		displayNext = new ArrayList<JLabel>();
 		
 		String path = FilePaths.imgPath + "blank.png";
@@ -87,20 +93,32 @@ public class CreepQueuePanel extends JPanel {
 		c.gridx = 30;
 		add(dequeueButton, c);
 	}
+
+	public void paintComponent(Graphics g) {
+		if(getNumberOfCreeps() == 0){
+			for(int iconIndex = 0; iconIndex < 30; iconIndex++){
+				String path = FilePaths.imgPath + "blank.png";
+				ImageIcon blankIcon = new ImageIcon(path);
+				displayNext.get(iconIndex).setIcon(blankIcon);
+			}
+		}
+	}
 	
 	public void setInfoPurchase(CreepInfoPurchasePanel cip){
 		infoPurchase = cip;
 	}
 	public void enqueue(Creep c, int index){
+		ArrayList<Creep> waitingCreeps = gc.getGame().getYourCreeps();
 		if(waitingCreeps.size() <displayNext.size()){
 			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
 			displayNext.get(waitingCreeps.size()).setIcon(new ImageIcon(path));
-			waitingCreeps.add(c);
+			gc.getGame().getYourCreeps().add(c);
 		
 		}
 
 	}
 	public Creep dequeue(int index){
+		ArrayList<Creep> waitingCreeps = gc.getGame().getYourCreeps();
 		if(index < waitingCreeps.size()){
 			int nextIndex = 0;
 			for(nextIndex = index; nextIndex < waitingCreeps.size()-1; nextIndex++){
@@ -115,6 +133,6 @@ public class CreepQueuePanel extends JPanel {
 	}
 	
 	public int getNumberOfCreeps(){
-		return waitingCreeps.size();
+		return gc.getGame().getYourCreeps().size();
 	}
 }

@@ -201,8 +201,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 	}
 
 	private void updateAllowedButtons() {
-
-		if ( (cr != null && !gc.playerCanAfford(cr)) || creepQueue.getNumberOfCreeps() >= 30) {
+		if ( cr == null || (cr != null && !gc.playerCanAfford(cr)) || creepQueue.getNumberOfCreeps() >= 30) {
 			buyButton.setEnabled(false);
 		} 
 		else{
