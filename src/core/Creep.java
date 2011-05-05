@@ -11,13 +11,17 @@ import src.FilePaths;
 import src.core.xml.CreepXMLReader;
 import src.ui.IDrawableCreep;
 
+
+/**
+ * Represents an enemy in the game.
+ */
 public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	private static double WEAKNESS_MODIFIER = 1.2;
 	private static double STRENGTH_MODIFIER = 0.8;
 	
 	private static HashMap<Creep.Type, Creep> templateCreeps;
 	
-	public static Creep createCreep(Type t) {
+	private static Creep createCreep(Type t) {
 		if (templateCreeps == null) { 
 			templateCreeps = CreepXMLReader.readXML(FilePaths.xmlPath + "creeps.xml");
 		}
@@ -35,6 +39,16 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		newCreep.setAlignment(Alignment.NEUTRAL);
 		
 		return newCreep;
+	}
+	
+	public static Creep createCreep(Type t, int scalingFactor) {
+		Creep originalCreep = createCreep(t);
+		
+		originalCreep.setBaseHealth(originalCreep.getBaseHealth() + scalingFactor*50);
+		originalCreep.setHealth(originalCreep.getBaseHealth());
+		originalCreep.setPrice(originalCreep.getPrice() + scalingFactor);
+		
+		return originalCreep;
 	}
 	
 	@Element

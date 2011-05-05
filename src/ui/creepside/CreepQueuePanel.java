@@ -81,7 +81,7 @@ public class CreepQueuePanel extends JPanel {
 
 	public void enqueue(Creep c, int index){
 		gc.getGame().getYourCreeps().add(c);
-		
+
 		String path = FilePaths.imgPath + "creep-icon" + (index + 1) + ".png";
 		ImageIcon creepIcon = new ImageIcon(path);
 		JLabel creepLabel = new JLabel();
@@ -102,6 +102,7 @@ public class CreepQueuePanel extends JPanel {
 			
 			String path = FilePaths.imgPath + "blank.png";
 			displayNext.get(nextIndex).setIcon(new ImageIcon(path));
+			gc.getGame().getPlayer().setGold(gc.getGame().getPlayer().getGold() + waitingCreeps.get(index).getPrice());
 			return waitingCreeps.remove(index);
 		} else
 			return null;

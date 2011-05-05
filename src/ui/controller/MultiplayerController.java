@@ -11,6 +11,9 @@ import src.ui.MultiplayerGameSetup;
 import src.ui.MultiplayerWaitScreen;
 import src.ui.TitleScreen;
 
+/**
+ * Handles events occurring with the multiplayer lobby; enables creation, joining, dropping, and starting of games.
+ */
 public class MultiplayerController {
 	private GameMain gameMain;
 	private Lobby lobby;
@@ -84,6 +87,10 @@ public class MultiplayerController {
 		startNetworkGame(lobbyManager.acceptPlayer());
 	}
 	
+	/**
+	 * Begins a networked game between two players, given a NetworkGame object.
+	 * @param ng
+	 */
 	public void startNetworkGame(NetworkGame ng) {
 		gameInProgress = true;
 		
@@ -102,6 +109,9 @@ public class MultiplayerController {
 		//gameMain.setSize(1600, 600);
 	}
 
+	/**
+	 * Exits a game in progress and returns the player to the lobby.
+	 */
 	public void quitNetworkGame() {
 		gameInProgress = false;
 		lobbyManager.quit();
@@ -110,6 +120,11 @@ public class MultiplayerController {
 		gameMain.setSize(800, 600);
 	}
 
+	/**
+	 * On opponent disconnection, removes opponent from player's "potential opponent slot" 
+	 * if player is waiting to start game, or takes player back to the lobby if opponent
+	 * disconnected during a game.
+	 */
 	public void opponentDisconnected() {
 		if (lobbyManager.getHostedGame() != null) {
 			waitScreen.setPotentialOpponent(null);
@@ -120,6 +135,10 @@ public class MultiplayerController {
 		}
 	}
 	
+	/**
+	 * Handles appropriate operations for a player who discontinues hosting a game,
+	 * removing the game from the pool and returning the former host to the lobby.
+	 */
 	public void stopHostingGame() {
 		gameSetup.reset();
 		lobbyManager.stopHostingGame();

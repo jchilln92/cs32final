@@ -286,4 +286,92 @@
 			</column>
 		</tiles>
 	</map>
+		<map name="Straightaway" width="15" height="15">
+		<creepPath>
+			<point x="0" y="7.5" />
+			<point x="15" y="7.5" />
+		</creepPath>
+		<flyingCreepPath>
+			<point x="0" y="7.5" />
+			<point x="15" y="7.5" />
+		</flyingCreepPath>
+		<tiles length="15">
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			<column>
+				GRASS, WATER, WATER, GRASS, ROCK, 
+				ROCK, GRASS, PATH, GRASS, ROCK, 
+				ROCK, GRASS, WATER, WATER, GRASS
+			</column>
+			
+		</tiles>
+	</map>
 </maps>

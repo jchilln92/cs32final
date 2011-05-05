@@ -10,7 +10,11 @@ public class TowerDrawer {
 			double tileWidth, Graphics2D g) {
 		// TODO: stub method
 		Arc2D.Double tower = new Arc2D.Double();
-		Arc2D.Double alignmentBack = new Arc2D.Double();
+		
+		//Allows player to distinguish between alignment color and tower color
+		Arc2D.Double alignmentBack = new Arc2D.Double(); 
+		
+		
 		Arc2D.Double alignmentShow = new Arc2D.Double();
 		
 		double centX = ((t.getX() * tileWidth) + (tileWidth / 2));
@@ -18,32 +22,15 @@ public class TowerDrawer {
 		
 		tower.setArcByCenter(centX, centY, tileWidth / 2 - 5, 0, 360,
 				Arc2D.PIE);
-		alignmentBack.setArcByCenter(centX, centY, tileWidth / 4 - 5, 0, 360, Arc2D.PIE);
-		alignmentShow.setArcByCenter(centX, centY, tileWidth / 4 - 6, 0, 360, Arc2D.PIE);
+		alignmentBack.setArcByCenter(centX, centY, tileWidth / 3 - 5, 0, 360, Arc2D.PIE);
+		alignmentShow.setArcByCenter(centX, centY, tileWidth / 3 - 6, 0, 360, Arc2D.PIE);
 		
 		g.setColor(t.getType().getColor());
 		
 		g.fill(tower);
 		g.setColor(Color.BLACK);
 		g.fill(alignmentBack);
-		Color alColor = Color.GRAY;
-		switch(t.getAlignment()) {
-		case BLUE:
-			alColor = Color.BLUE;
-			break;
-		case YELLOW:
-			alColor = Color.YELLOW;
-			break;
-		case RED:
-			alColor = Color.RED;
-			break;
-		case GREEN:
-			alColor = Color.GREEN;
-			break;
-		default:
-			alColor = Color.GRAY;
-		}
-		g.setColor(alColor);
+		g.setColor(t.getAlignment().getColor());
 		g.fill(alignmentShow);
 		
 		// draw an indicator of tower upgrade status

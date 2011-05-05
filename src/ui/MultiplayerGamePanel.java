@@ -11,6 +11,9 @@ import src.ui.controller.MultiplayerController;
 import src.ui.creepside.CreepSideBar;
 import src.ui.side.Sidebar;
 
+/**
+ * Handles setup of multiplayer display components. 
+ */
 public class MultiplayerGamePanel extends JPanel {
 	private MultiplayerController controller; 
 	
@@ -29,11 +32,11 @@ public class MultiplayerGamePanel extends JPanel {
 		gamePanel = new JPanel();
 		opponentMap = new MapComponent(true);
 		opponentMap.setGridOn(true);
-		opponentMap.setSize(400, 400);
+		opponentMap.setSize(600, 600);
 		
 		localMap = new MapComponent(false);
 		localMap.setGridOn(true);
-		localMap.setSize(400, 400);
+		localMap.setSize(600, 600);
 		
 		localController.setGame(game);
 		networkController.setGame(game);

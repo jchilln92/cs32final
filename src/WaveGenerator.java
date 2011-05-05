@@ -15,13 +15,13 @@ public class WaveGenerator {
 		ArrayList<Creep> creeps = new ArrayList<Creep>();
 		
 		for (int i = 0; i < n * 5; i++) {
-			Creep c = Creep.createCreep(Creep.Type.GENERIC);
+			Creep c = Creep.createCreep(Creep.Type.GENERIC, n);
 			creeps.add(c);
 		}
 		
 		// make some flying creeps too
 		for (int i = 0; i < n; i++) {
-			Creep c = Creep.createCreep(Creep.Type.FLYING);
+			Creep c = Creep.createCreep(Creep.Type.FLYING, n);
 			creeps.add(c);
 		}
 		

@@ -93,7 +93,7 @@ public class CreepSelectionPanel extends JPanel {
 			creepButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					creepStats.setCreep(Creep.createCreep(type));
+					creepStats.setCreep(Creep.createCreep(type, controller.getGame().getWavesSent()));
 				}
 
 				@Override
@@ -127,7 +127,7 @@ public class CreepSelectionPanel extends JPanel {
 			Action a = creepButtonActions[i];
 			Creep.Type type = buttonTypes[i];
 			
-			Creep c = Creep.createCreep(type);
+			Creep c = Creep.createCreep(type, controller.getGame().getWavesSent());
 			if (!controller.playerCanAfford(c)) {
 				b.setEnabled(false);
 				a.setEnabled(false);

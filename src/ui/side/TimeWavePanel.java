@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import src.Runner;
 import src.ui.controller.GameController;
 
+/**
+ * Displays information about current wave and times and allows players to hasten wave sending or game pace.
+ * @author Team Boots and Cats and
+ */
 public class TimeWavePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
