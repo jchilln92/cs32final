@@ -235,6 +235,7 @@ public class GameController {
 	}
 	
 	public void applyAlignment(Alignment al) {
+		game.getPlayer().purchase(al);
 		selectedTower.setAlignment(al);
 	}
 	

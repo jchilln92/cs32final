@@ -1,6 +1,7 @@
 package src.ui.side;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -24,6 +25,7 @@ public class ElementalUpgradePanel extends JPanel {
 	private JButton greenButton;
 	private JButton blueButton;
 	private JButton yellowButton;
+	private JButton[] buttonList;
 	
 	public ElementalUpgradePanel(GameController gc){
 		super(new GridBagLayout());
@@ -89,5 +91,35 @@ public class ElementalUpgradePanel extends JPanel {
 		add(blueButton, c);
 		c.gridx = 4;
 		add(yellowButton, c);
+		
+		
+		buttonList = new JButton[5];
+		buttonList[0] = neutralButton;
+		buttonList[1] = redButton;
+		buttonList[2] = greenButton;
+		buttonList[3] = blueButton;
+		buttonList[4] = yellowButton;
+	}
+	
+	public void paintComponent(Graphics g) {
+		setCanPurchaseAlignment();
+	}
+
+	private void setCanPurchaseAlignment() {
+		//create a dummy alignment to check if player can afford as all alignments are of same cost
+		Alignment temporaryAlignment = Alignment.NEUTRAL;
+		
+		if (controller.playerCanAfford(temporaryAlignment)) {
+			for (int x = 0 ; x < buttonList.length ; x++) {
+				buttonList[x].setEnabled(true);
+				//redButton.setEnabled(true);
+			}
+		} else {
+			for (int x = 0 ; x < buttonList.length ; x++) {
+				buttonList[x].setEnabled(false);
+				//redButton.setEnabled(f);
+			}
+		}
+
 	}
 }
