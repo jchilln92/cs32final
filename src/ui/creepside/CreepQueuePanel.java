@@ -74,7 +74,7 @@ public class CreepQueuePanel extends JPanel {
 			add(displayNext.get(iconIndex), c);
 		}
 		
-		c.insets = new Insets(0, 150, 0, 0);
+		c.insets = new Insets(0, 160, 0, 0);
 		c.ipady = 0;
 		dequeueButton = new JButton("Cancel All");
 		dequeueButton.addActionListener(new ActionListener() {
@@ -96,9 +96,6 @@ public class CreepQueuePanel extends JPanel {
 			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
 			displayNext.get(waitingCreeps.size()).setIcon(new ImageIcon(path));
 			waitingCreeps.add(c);
-			if(waitingCreeps.size() == displayNext.size()){
-				
-			}
 		
 		}
 
@@ -115,30 +112,9 @@ public class CreepQueuePanel extends JPanel {
 		}
 		else
 			return null;
-		
-		/*if(waitingCreeps.size() > 0){
-			int nextIndex = 0;
-			if(waitingCreeps.size() > 10){
-
-				String path = FilePaths.imgPath + "blank.png";
-				for(nextIndex = 0; nextIndex < displayNext.size()-1; nextIndex++){
-					displayNext.get(nextIndex).setIcon(displayNext.get(nextIndex+1).getIcon());
-				}
-				displayNext.get(nextIndex).setIcon(new ImageIcon(path));
-			}
-			else if (displayNext.size() > waitingCreeps.size()){
-
-				for(nextIndex = 0; nextIndex < waitingCreeps.size(); nextIndex++){
-					displayNext.get(nextIndex).setIcon(displayNext.get(nextIndex+1).getIcon());				
-				}
-				for(nextIndex = nextIndex; nextIndex < displayNext.size(); nextIndex++){
-					String path = FilePaths.imgPath + "blank.png";
-					displayNext.get(nextIndex).setIcon(new ImageIcon(path));	
-				}
-			}
-			return waitingCreeps.remove(0);
-		}
-		else
-			return null;*/
+	}
+	
+	public int getNumberOfCreeps(){
+		return waitingCreeps.size();
 	}
 }
