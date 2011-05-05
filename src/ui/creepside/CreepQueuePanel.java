@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -53,27 +54,12 @@ public class CreepQueuePanel extends JPanel {
 			JLabel iconLabel = new JLabel(blankIcon);
 
 			final int index = iconIndex;
-			iconLabel.addMouseListener(new MouseListener() {
+			iconLabel.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					dequeue(index);
 				}
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-				}
-				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-				}
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-				}
+
 			});	
 			displayNext.add(iconLabel);
 			c.gridx = iconIndex;
@@ -109,10 +95,11 @@ public class CreepQueuePanel extends JPanel {
 	}
 	public void enqueue(Creep c, int index){
 		ArrayList<Creep> waitingCreeps = gc.getGame().getYourCreeps();
-		if(waitingCreeps.size() <displayNext.size()){
+		if(waitingCreeps.size() <displayNext.size()){			
 			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
 			displayNext.get(waitingCreeps.size()).setIcon(new ImageIcon(path));
 			gc.getGame().getYourCreeps().add(c);
+			
 		
 		}
 
@@ -126,6 +113,7 @@ public class CreepQueuePanel extends JPanel {
 			}
 			String path = FilePaths.imgPath + "blank.png";
 			displayNext.get(nextIndex).setIcon(new ImageIcon(path));
+			gc.getGame().getPlayer().setGold(gc.getGame().getPlayer().getGold() + waitingCreeps.get(index).getPrice());
 			return waitingCreeps.remove(index);
 		}
 		else

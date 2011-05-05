@@ -100,6 +100,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 		buyButton.setEnabled(false);
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gc.getGame().getPlayer().purchase(cr);
 				creepQueue.enqueue(cr, creepIndex);
 			}
 		});	
@@ -201,7 +202,8 @@ public class CreepInfoPurchasePanel extends JPanel {
 	}
 
 	private void updateAllowedButtons() {
-		if ( cr == null || (cr != null && !gc.playerCanAfford(cr)) || creepQueue.getNumberOfCreeps() >= 30) {
+		if ( cr == null || (cr != null && !gc.playerCanAfford(cr)) || creepQueue.getNumberOfCreeps() >= 30
+				|| !gc.playerCanAfford(cr)) {
 			buyButton.setEnabled(false);
 		} 
 		else{
