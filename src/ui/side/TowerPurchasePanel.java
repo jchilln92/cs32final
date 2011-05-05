@@ -44,11 +44,6 @@ public class TowerPurchasePanel extends JPanel {
 	private Tower.Type[] buttonTypes = {Tower.Type.GUN, Tower.Type.ANTIAIR, Tower.Type.SLOWING, Tower.Type.MORTAR,
 			  							Tower.Type.FRIEND, Tower.Type.FLAME, Tower.Type.STASIS, Tower.Type.HTA};
 	
-	// keybindings bound to this panel
-	private enum KeyBinding {
-		
-	}
-	
 	public TowerPurchasePanel(GameController controller) {
 		super(new GridBagLayout());
 		
@@ -64,11 +59,11 @@ public class TowerPurchasePanel extends JPanel {
 		c.weightx = 1;
 		c.gridx = 1;
 		c.gridy = 0;
+		c.insets.set(0, 0, 10, 0);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(purchaseTowersLabel, c);
 		
 		// initialize a purchase button for each of the towers
-
 		for (int index = 0; index < 8; index++) {
 			String path = FilePaths.imgPath + "tower-icon"+(index+1)+".png";
 			
@@ -112,6 +107,8 @@ public class TowerPurchasePanel extends JPanel {
 				c.gridx = 0 + index % 3;
 
 			c.gridy = 1 + index / 3;
+			c.ipadx = 4;
+			c.insets.set(0, 5, 0, 5);
 			c.fill = GridBagConstraints.NONE;
 			add(towerButton, c);
 		}
@@ -119,9 +116,10 @@ public class TowerPurchasePanel extends JPanel {
 		updateAllowedButtons();
 
 		c.insets = new Insets(20, 0, 0, 0);
-		c.gridx = 1;
+		c.gridx = 0;
 		c.gridy = 4;
-		c.anchor = GridBagConstraints.LINE_START;
+		c.gridwidth = 4;
+		c.anchor = GridBagConstraints.CENTER;
 		add(towerStats, c);
 	}
 	
