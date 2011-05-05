@@ -131,6 +131,7 @@ public class LobbyManager {
 								opponentConnection = connection;
 							} else {
 								boot(connection);
+								break;
 							}
 								
 							controller.playerAttemptedToJoin((String) m.data);
@@ -152,6 +153,7 @@ public class LobbyManager {
 	
 	private void boot(Connection c) {
 		if (c == null) return;
+		if (c.getID() == opponentConnection.getID()) opponentConnection = null;
 		
 		GameNegotiationMessage response = new GameNegotiationMessage();
 		response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
