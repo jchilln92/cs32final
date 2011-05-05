@@ -6,9 +6,10 @@ public interface IAlignment {
 	public IAlignment.Alignment getAlignment();
 	public void setAlignment(IAlignment.Alignment alignment);
 	
-	public enum Alignment {
+	public enum Alignment implements IPurchasable {
 		NEUTRAL, BLUE, RED, YELLOW, GREEN;
-		
+		private static double ALIGNMENT_COST = 5;
+
 		/**
 		 * Returns the Alignment that deals double damage against the current Alignment.
 		 * @return 
@@ -73,6 +74,17 @@ public interface IAlignment {
 				desc = "$_ALIGNMENT";
 			}
 			return desc;
+		}
+
+		@Override
+		public double getPrice() {
+			return ALIGNMENT_COST;
+		}
+		
+		//setPrice does nothing here as alignments always have a set price
+		@Override
+		public void setPrice(double p) {
+			
 		}
 	}	
 }
