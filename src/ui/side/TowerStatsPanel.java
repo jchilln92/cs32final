@@ -114,7 +114,7 @@ public class TowerStatsPanel extends JPanel {
 			rangeLabel.setText("Range: " + NumberFormat.getInstance().format(tower.getRadius()));
 			fireRateLabel.setText("Fire Rate: " + NumberFormat.getInstance().format(1/tower.getFirePeriod() * 1000/Runner.tickDuration) + " / s");
 			
-			abilitiesLabel.setText("Abilities: ");
+			setCurrentAbilities(tower);
 		}
 	}
 	
@@ -168,6 +168,44 @@ public class TowerStatsPanel extends JPanel {
 			
 			if (upgrade.getFirePeriodChange() != 0)
 				rateChangeLabel.setText(modifier + Double.toString(upgrade.getFirePeriodChange() * 100) + "%");
+			
+			
+			setCurrentAbilities(tower);
+			String newAbilities = "+ ";
+			
+			if (u.getHitsFlyingChange() && !tower.getTargeting().isHitsFlying())
+				newAbilities += "anti-air, ";
+			
+			//TODO: decide whether or not we want to add this in. As the game is built right now, it is
+			//		impossible for a tower to without damage over time or slowing to gain it as everything
+			//		is percentage based
+			
+			/*
+			if (u.getTimeDamageChange() != 0 && tower.getDamage().getTimeDamage() == 0)
+				newAbilities += "DoT, ";
+			if (u.speedEffectChange() != 0 && tower.getDamage().getSpeedChange() == 0)
+				newAbilities += "slowing, ";
+			*/
+			newAbilities = newAbilities.substring(0, newAbilities.length() -2);
+			abilitiesChangeLabel.setForeground(Color.GREEN);
+			abilitiesChangeLabel.setText(newAbilities);
 		}
+	}
+	
+	//Takes in a tower and sets it's abilitiesLabel 
+	public void setCurrentAbilities(Tower tower){
+		String abilitiesText = "";
+		if (tower.getTargeting().isHitsFlying())
+			abilitiesText += "anti-air, ";
+		if (tower.getDamage().getSpeedChange() != 0.0)
+			abilitiesText += "slowing, ";
+		if (tower.getDamage().getTimeDamage() != 0.0)
+			abilitiesText += "DoT, ";
+		
+		if (abilitiesText.length() > 0)
+			abilitiesText = abilitiesText.substring(0, abilitiesText.length() - 2);
+
+		
+		abilitiesLabel.setText("Abilities: " + abilitiesText);
 	}
 }

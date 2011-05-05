@@ -107,7 +107,8 @@ public class Upgrade implements IPurchasable {
 	}
 
 	public void updateTargeting(TargetingInfo t) {
-		t.setHitsFlying(getHitsFlyingChange());
+		if (!t.isHitsFlying())	//a tower that hits flying should not ever lose this ability
+			t.setHitsFlying(getHitsFlyingChange());
 	}
 
 	public void updateTower(Tower t) {
