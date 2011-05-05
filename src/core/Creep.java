@@ -11,10 +11,11 @@ import src.FilePaths;
 import src.core.xml.CreepXMLReader;
 import src.ui.IDrawableCreep;
 
+
 /**
  * Represents an enemy in the game.
  */
-public class Creep implements IDrawableCreep, IAlignment {
+public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	private static double WEAKNESS_MODIFIER = 1.2;
 	private static double STRENGTH_MODIFIER = 0.8;
 	

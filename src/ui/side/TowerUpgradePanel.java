@@ -37,6 +37,7 @@ public class TowerUpgradePanel extends JPanel {
 	private JLabel levelThreeLabel;
 	
 	private JButton sellTowerButton;
+	private JButton cancelButton;
 	private JButton strongestButton, weakestButton, closestButton, furthestButton;
 	private JButton[][] upgradeButtons;
 
@@ -91,6 +92,13 @@ public class TowerUpgradePanel extends JPanel {
 		sellTowerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.sellTower();
+			}
+		});
+		
+		cancelButton = new JButton("Cancel Upgrading");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.unselectTower();
 			}
 		});
 		
@@ -192,12 +200,15 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		}
 
-		c.insets = new Insets(10, 0, 10, 0);	
+		c.insets = new Insets(10, 0, 0, 0);	
 		c.gridx = 0;
 		c.gridy = 6;
 		c.gridwidth = 4;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(sellTowerButton, c);
+		c.insets = new Insets(0, 0, 10, 0);
+		c.gridy = 7;
+		add(cancelButton, c);
 	}
 	
 	private void updateTargetingButtonHighlight() {

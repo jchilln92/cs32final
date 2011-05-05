@@ -25,6 +25,8 @@ public class Game {
 	private int lastWaveTime; // the elapsedTime when the last wave was sent
 	private boolean over;
 	
+	private ArrayList<Creep> yourCreeps; //the creeps that you will be storing
+	
 	private DistanceFromTowerComparator tdComparator;
 	private HealthComparator hComparator;
 	
@@ -39,6 +41,10 @@ public class Game {
 		creepQueue = new LinkedList<Creep>();
 		tdComparator = new DistanceFromTowerComparator();
 		hComparator = new HealthComparator();
+		
+		
+
+		yourCreeps = new ArrayList<Creep>();
 	}
 	
 	/**
@@ -94,7 +100,7 @@ public class Game {
 	 * At the beginning of a new wave, increases the player's income per wave and gives the player gold equal to this income per wave
 	 * TODO: OVERRIDE FOR MULTIPLAYER (multiplayer version will not increase income per wave as that should be done on creep purchase)
 	 */
-	private void applyPlayerIncomePerWave() {
+	protected void applyPlayerIncomePerWave() {
 		if (wavesSent != 0){
 			player.increaseIncomePerWave(5 * wavesSent);
 			player.reapReward(player.getIncomePerWave());		
@@ -267,5 +273,8 @@ public class Game {
 	
 	public boolean isOver() {
 		return over;
+	}
+	public ArrayList<Creep> getYourCreeps(){
+		return yourCreeps;
 	}
 }

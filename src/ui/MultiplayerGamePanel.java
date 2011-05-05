@@ -1,11 +1,14 @@
 package src.ui;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 
 import src.net.NetworkGame;
 import src.net.NetworkGameController;
 import src.ui.controller.GameController;
 import src.ui.controller.MultiplayerController;
+import src.ui.creepside.CreepSideBar;
 import src.ui.side.Sidebar;
 
 /**
@@ -18,10 +21,15 @@ public class MultiplayerGamePanel extends JPanel {
 	private MapComponent localMap;
 	private Sidebar sidebar;
 	
+	private JPanel gamePanel;
+	
 	public MultiplayerGamePanel(GameController localController, 
 								NetworkGameController networkController,
 								NetworkGame game,
 								MultiplayerController multiController) {
+		
+		super(new BorderLayout());
+		gamePanel = new JPanel();
 		opponentMap = new MapComponent(true);
 		opponentMap.setGridOn(true);
 		opponentMap.setSize(600, 600);
@@ -41,8 +49,16 @@ public class MultiplayerGamePanel extends JPanel {
 		localMap.setGameController(localController);
 		localMap.setMap(game.getMap());
 		
-		add(opponentMap);
-		add(localMap);
-		add(sidebar);
+		gamePanel.add(opponentMap);
+		gamePanel.add(localMap);
+		gamePanel.add(sidebar);
+		
+		add(gamePanel, BorderLayout.CENTER);
+		// setup sidebar
+		CreepSideBar cs = new CreepSideBar(localController);
+		add(cs, BorderLayout.SOUTH);
+		
+		
+		
 	}
 }

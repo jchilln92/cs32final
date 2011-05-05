@@ -13,25 +13,28 @@ import javax.swing.border.Border;
 
 
 import src.net.NetworkGameController;
+import src.ui.controller.GameController;
 
 public class CreepSideBar extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private NetworkGameController controller;
+	private GameController controller;
 	
 	private CreepSelectionPanel creepSelection;
 	private CreepInfoPurchasePanel creepInfoPurchase;
 	private CreepQueuePanel creepQueue;
 	
-	public CreepSideBar() {
-		//controller = ngc;
+	public CreepSideBar(GameController gc) {
+		controller = gc;
 
 		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.LINE_AXIS);
 		setLayout(new BorderLayout());
-		creepQueue = new CreepQueuePanel();
-		creepInfoPurchase = new CreepInfoPurchasePanel(creepQueue);
-		creepSelection = new CreepSelectionPanel(creepInfoPurchase);
+		creepQueue = new CreepQueuePanel(controller);
+		creepInfoPurchase = new CreepInfoPurchasePanel(creepQueue, controller);
+		creepSelection = new CreepSelectionPanel(creepInfoPurchase, controller);
+		
+		creepQueue.setInfoPurchase(creepInfoPurchase);
 
 
 		creepSelection.setBorder(borderLine);

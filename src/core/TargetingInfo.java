@@ -31,4 +31,12 @@ public class TargetingInfo {
 	public void setHitsFlying(boolean hitsFlying) {
 		this.hitsFlying = hitsFlying;
 	}
+	
+	public static TargetingInfo copyTargetingInfo(TargetingInfo oldInfo) {
+		TargetingInfo targeting = new TargetingInfo();
+		targeting.setHitsFlying(oldInfo.isHitsFlying());
+		targeting.setStrategy(oldInfo.getStrategy());
+		
+		return targeting;
+	}
 }

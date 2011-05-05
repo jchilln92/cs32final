@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+
+import src.WaveGenerator;
 import src.core.Creep;
 import src.core.Game;
 import src.core.Tower;
@@ -18,6 +20,10 @@ public class NetworkGame extends Game {
 	private ArrayList<Creep> opponentCreeps; // the creeps on the opponent's map
 	private ArrayList<Tower> opponentTowers; // the towers on the opponent's map
 	private NetworkPlayer opponent; // the opponent
+	
+	
+	
+
 
 	public NetworkGame(Connection opponentConnection) {
 		opponent = new NetworkPlayer();
@@ -25,6 +31,11 @@ public class NetworkGame extends Game {
 		opponentTowers = new ArrayList<Tower>();
 		remoteConnection = opponentConnection;
 		initializeGameListeners();
+		/*int random = (int)(Math.random()*10);
+		for(int x = 0; x < random; x++){
+			getYourCreeps().add(Creep.createCreep(Creep.Type.GENERIC));
+		
+		}*/
 	}
 
 	private void initializeGameListeners() {
@@ -63,6 +74,15 @@ public class NetworkGame extends Game {
 	public void tick() {
 		super.tick();
 		provideInformation();
+	}
+	
+	@Override
+	public void sendNextWave(){
+		setLastWaveTime(getElapsedTime());
+		super.applyPlayerIncomePerWave();
+		sendWaveToOpponent(getYourCreeps());
+		getYourCreeps().clear();
+		//sendWave(WaveGenerator.generateWave(wavesSent + 1)); // wavesSent + 1 == wave number		
 	}
 
 	/**

@@ -106,6 +106,7 @@ public class MultiplayerController {
 		localController.start();
 		
 		gameMain.showScreen(gamePanel);
+		//gameMain.setSize(1600, 600);
 	}
 
 	/**
@@ -116,6 +117,7 @@ public class MultiplayerController {
 		lobbyManager.quit();
 		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
+		gameMain.setSize(800, 600);
 	}
 
 	/**

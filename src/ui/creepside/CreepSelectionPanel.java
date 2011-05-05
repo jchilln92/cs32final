@@ -1,6 +1,5 @@
 package src.ui.creepside;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -20,13 +19,15 @@ import javax.swing.KeyStroke;
 
 import src.FilePaths;
 import src.core.Creep;
-import src.core.Tower;
 import src.core.Upgrade;
+import src.ui.controller.GameController;
 import src.ui.creepside.CreepStatsPanel;
 
 
 public class CreepSelectionPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
+	private GameController controller;
 	
 	private static final String purchaseCreepsText = "Purchase Creeps:";
 	private JLabel purchaseCreepsLabel;
@@ -38,10 +39,10 @@ public class CreepSelectionPanel extends JPanel {
 	private Creep.Type[] buttonTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST}; 
 	
 	
-	public CreepSelectionPanel(CreepInfoPurchasePanel cip){
-		
+	public CreepSelectionPanel(CreepInfoPurchasePanel cip, GameController gc){
+
 		super(new GridBagLayout());
-		
+		controller = gc;
 		this.creepInfoPurchase = cip;
 		purchaseCreepsLabel = new JLabel(purchaseCreepsText);
 		creepButtons = new JButton[8];
@@ -75,7 +76,7 @@ public class CreepSelectionPanel extends JPanel {
 			final int setIndex = index;
 			creepButtonActions[index] = new AbstractAction() {
 				public void actionPerformed(ActionEvent e) {
-					//gc.beginPurchasingTower(Tower.createTower(type));
+					//controller.beginPurchasingTower(Tower.createTower(type));
 					creepInfoPurchase.setCreepByIndex(setIndex);
 				}
 			};
@@ -100,8 +101,6 @@ public class CreepSelectionPanel extends JPanel {
 					creepStats.setCreep(null);
 				}
 			});
-			
-			
 
 			c.gridx = index;
 			c.gridy = 1;
@@ -129,15 +128,15 @@ public class CreepSelectionPanel extends JPanel {
 			Creep.Type type = buttonTypes[i];
 			
 			Creep c = Creep.createCreep(type);
-			
-			/*if (!gc.playerCanAfford(c)) {
+			if (!controller.playerCanAfford(c)) {
 				b.setEnabled(false);
 				a.setEnabled(false);
-			} else if (!gc.getPaused()){
+			} 
+			else{
 				b.setEnabled(true);
 				a.setEnabled(true);
 			}
-			*/
+			
 		}
 	}
 	

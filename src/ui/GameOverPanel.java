@@ -2,6 +2,9 @@ package src.ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +21,9 @@ public class GameOverPanel extends JPanel {
 	private JLabel gameOverLabel;
 	private JButton returnButton;
 	
-	public GameOverPanel(GameController c) {
-		final GameController controller = c;
+	public GameOverPanel(GameController gc) {
+		super(new GridBagLayout());
+		final GameController controller = gc;
 		
 		gameOverLabel = new JLabel(gameOverText);
 		gameOverLabel.setForeground(Color.RED);
@@ -32,7 +36,15 @@ public class GameOverPanel extends JPanel {
 			}
 		});
 		
-		add(gameOverLabel);
-		add(returnButton);
+		GridBagConstraints c = new GridBagConstraints();
+		c.insets = new Insets(40, 0, 40, 0);
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		c.fill = GridBagConstraints.NONE;
+		add(gameOverLabel, c);
+		
+		c.gridy = 1;
+		add(returnButton, c);
 	}
 }
