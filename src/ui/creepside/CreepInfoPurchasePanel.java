@@ -24,6 +24,7 @@ import src.ui.side.TowerStatsPanel;
 public class CreepInfoPurchasePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
+	private CreepQueuePanel creepQueue;
 	private Creep cr;
 	private ImageIcon creepIcon;
 	private JLabel iconLabel;
@@ -36,19 +37,23 @@ public class CreepInfoPurchasePanel extends JPanel {
 	private JButton buyButton;
 	private JButton cancelButton;
 	
+	private int creepIndex;
+	
 	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 
 	
-	public CreepInfoPurchasePanel() {
+	public CreepInfoPurchasePanel(CreepQueuePanel cq) {
+	
 		super(new GridBagLayout());
 		
-	
+		creepQueue = cq;
+		creepIndex = -1;		
 		neutralButton = new JButton();
 		neutralButton.setBackground(ColorConstants.neutralColor);
 		neutralButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//if(creep != null)
-				//	creep.setAlignment(IAlignment.Alignment.NEUTRAL);
+				//if(cr != null)
+				//	cr.setAlignment(IAlignment.Alignment.NEUTRAL);
 			}
 		});
 		
@@ -81,6 +86,11 @@ public class CreepInfoPurchasePanel extends JPanel {
 		});			
 		buyButton = new JButton("Buy");
 		buyButton.setBackground(Color.ORANGE);
+		buyButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				creepQueue.enqueue(cr, creepIndex);
+			}
+		});	
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.setBackground(Color.WHITE);
@@ -108,7 +118,6 @@ public class CreepInfoPurchasePanel extends JPanel {
 		add(iconLabel, c);
 		c.gridwidth = 1;
 		c.gridheight = 1;
-		//c.ipadx = -20;
 		c.ipady = 0;
 		c.gridx = 0;
 		c.gridy = 1;
@@ -135,7 +144,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 	}
 	
 	public void setCreepByIndex(int index){
-
+		creepIndex = index;
 		if(index == -1){
 			this.cr = null;
 			String path = FilePaths.imgPath + "blank.png";
@@ -161,8 +170,5 @@ public class CreepInfoPurchasePanel extends JPanel {
 			
 
 		}
-
 	}
-	
-	
 }
