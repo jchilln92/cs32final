@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import org.simpleframework.xml.ElementList;
 
+/**
+ * A list of points that a creep visits on the board.
+ */
 public class CreepPath {
 	@ElementList(inline=true, entry="point", name="points")
 	private ArrayList<Point2D.Double> points;

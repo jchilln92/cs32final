@@ -1,4 +1,7 @@
 package src.core;
+
+import java.awt.Color;
+
 /**
  * An interface allowing for the setting and getting of a tower or creeps element
  */
@@ -33,6 +36,10 @@ public interface IAlignment {
 			return counter;
 		}
 		
+		/**
+		 * Returns the Alignment that deals only half damage against the current Alignment.
+		 * @return
+		 */
 		public Alignment getStrength() {
 			Alignment defeats = NEUTRAL;
 			switch(this) {
@@ -52,6 +59,34 @@ public interface IAlignment {
 			return defeats;
 		}
 		
+		/**
+		 * Returns the Color representing the Alignment.
+		 * @return
+		 */
+		public Color getColor() {
+			Color alColor = Color.GRAY;
+			switch(this) {
+			case BLUE:
+				alColor = Color.BLUE;
+				break;
+			case YELLOW:
+				alColor = Color.YELLOW;
+				break;
+			case RED:
+				alColor = Color.RED;
+				break;
+			case GREEN:
+				alColor = Color.GREEN;
+				break;
+			default:
+				alColor = Color.GRAY;
+			}
+			return alColor;
+		}
+		
+		/**
+		 * Returns the color of the Alignment in string form.
+		 */
 		public String toString() {
 			String desc = "";
 			switch(this) {

@@ -3,6 +3,7 @@ package src.ui;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
@@ -28,10 +29,6 @@ public class CreepDrawer {
 
 		double creepRadius = 5;
 
-		Arc2D.Double creep = new Arc2D.Double();
-		creep.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
-				creepRadius, 0, 360, Arc2D.PIE);
-		
 		Color creepColor = Color.GRAY;
 		switch(c.getAlignment()) {
 			case BLUE:
@@ -49,8 +46,31 @@ public class CreepDrawer {
 			default:
 				creepColor = Color.GRAY;
 		}
+		
 		g.setColor(creepColor);
-		g.fill(creep);
+		
+		switch(c.getType()) {
+			case BIG_GUY:
+				Arc2D.Double big = new Arc2D.Double();
+				big.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
+						creepRadius * 1.5, 0, 360, Arc2D.PIE);
+				g.fill(big);
+				break;
+			/*case FAST:
+				Ellipse2D.Double fast = new Ellipse2D.Double(creepCenter.x - (tileWidth / 4), creepCenter.y - (tileHeight / 3), tileHeight * .25, tileWidth / 3);
+				g.fill(fast);
+				break; //needs to be better aligned
+				*/
+			default: //generic creep
+				Arc2D.Double creep = new Arc2D.Double();
+				creep.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
+					creepRadius, 0, 360, Arc2D.PIE);
+				g.fill(creep);
+		}
+		
+		
+		
+		
 		
 		if(drawHealthBar){
 			// draw a health bar over the creep

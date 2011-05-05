@@ -2,6 +2,9 @@ package src.core;
 
 import java.util.Comparator;
 
+/**
+ * Allows for comparing two creeps based on distance from a given tower.
+ */
 public class DistanceFromTowerComparator implements Comparator<Creep> {
 	private Tower t;
 	

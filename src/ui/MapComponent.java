@@ -17,6 +17,9 @@ import src.core.Map;
 import src.core.TileType;
 import src.ui.controller.GameController;
 
+/**
+ * Handles events involving map and tile components and draws everything on the main game board.
+ */
 public class MapComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
 
