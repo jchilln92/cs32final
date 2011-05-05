@@ -21,13 +21,7 @@ public class TowerDrawer {
 		alignmentBack.setArcByCenter(centX, centY, tileWidth / 4 - 5, 0, 360, Arc2D.PIE);
 		alignmentShow.setArcByCenter(centX, centY, tileWidth / 4 - 6, 0, 360, Arc2D.PIE);
 		
-		switch (t.getType()) {
-			case HTA:
-				g.setColor(Color.YELLOW);
-				break;
-			default:
-				g.setColor(Color.BLUE);
-		}
+		g.setColor(t.getType().getColor());
 		
 		g.fill(tower);
 		g.setColor(Color.BLACK);

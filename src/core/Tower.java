@@ -1,5 +1,6 @@
 package src.core;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -80,6 +81,39 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	
 	public enum Type {
 		GUN, ANTIAIR, SLOWING, MORTAR, FRIEND, FLAME, STASIS, HTA;
+		
+		public Color getColor() {
+		
+			Color colour = Color.BLACK;
+			
+			switch(this) {
+				case GUN:
+					colour = Color.BLUE;
+					break;
+				case ANTIAIR:
+					colour = Color.DARK_GRAY;
+					break;
+				case SLOWING:
+					colour = Color.GREEN;
+					break;
+				case MORTAR:
+					colour = Color.DARK_GRAY;
+					break;
+				case FRIEND:
+					colour = new Color(171, 123, 255);
+					break;
+				case FLAME:
+					colour = Color.RED;
+					break;
+				case STASIS:
+					colour = Color.CYAN;
+					break;
+				case HTA:
+					colour = Color.YELLOW;
+					break;
+				}
+			return colour;
+		}
 	}
 
 	public boolean canFire(int time) {
