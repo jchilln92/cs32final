@@ -52,6 +52,7 @@ public class Lobby extends JPanel {
 		usernameLabel = new JLabel("Username: ");
 		
 		usernameField = new JTextField(13);
+		updateGameListPane();
 		usernameField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				// kind of hacky code
@@ -71,7 +72,6 @@ public class Lobby extends JPanel {
 			}
 		});
 		
-		updateGameListPane();
 		
 		refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(new ActionListener() {
@@ -160,6 +160,9 @@ public class Lobby extends JPanel {
 		c.insets = new Insets(20, 15, 0, 0);	
 		c.fill = GridBagConstraints.NONE;
 		add(joinButton, c);	
+		
+
+
 	}
 	
 	private void updateAllowedButtons(String username) {

@@ -29,8 +29,6 @@ public class CreepQueuePanel extends JPanel {
 	private static final int initialCreepPanelSize = 400;
 	
 	private GameController gc;
-	private ArrayList<JLabel> displayNext;
-	
 	private JButton dequeueButton;
 	
 	private JPanel iconPanel;
@@ -41,7 +39,7 @@ public class CreepQueuePanel extends JPanel {
 		super(new GridBagLayout());
 		
 		gc = controller;
-		displayNext = new ArrayList<JLabel>();
+		new ArrayList<JLabel>();
 		
 		String path = FilePaths.imgPath + "blank.png";
 		ImageIcon blankIcon = new ImageIcon(path);

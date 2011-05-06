@@ -131,7 +131,6 @@ public class GameController {
 			if (isDoubleTime) {
 				game.tick();
 			}
-			
 			if (game.isOver()) {
 				gameMain.showScreen(new GameOverPanel(this));
 				runnerThread.stop();
