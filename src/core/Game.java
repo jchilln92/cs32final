@@ -95,7 +95,6 @@ public class Game {
 	
 	/**
 	 * At the beginning of a new wave, increases the player's income per wave and gives the player gold equal to this income per wave
-	 * TODO: OVERRIDE FOR MULTIPLAYER (multiplayer version will not increase income per wave as that should be done on creep purchase)
 	 */
 	protected void applyPlayerIncomePerWave() {
 		if (wavesSent != 0){

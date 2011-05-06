@@ -662,7 +662,7 @@
 	<tower type="STASIS">
 		<price>200</price>
 		<radius>3</radius>
-		<firePeriod>.25</firePeriod>
+		<firePeriod>100</firePeriod>
 		<description>"Completely stops creeps, but shields them from all damage."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
@@ -672,8 +672,8 @@
 			<instantDamage>0</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
-			<effectDuration>200</effectDuration>
-			<speedChange>-1</speedChange>
+			<effectDuration>80</effectDuration>
+			<speedChange>-.999</speedChange>
 			<targetable>false</targetable>
 		</damage>
 		<upgrades>

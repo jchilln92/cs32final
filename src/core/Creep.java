@@ -164,12 +164,13 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	public void applyDamage(Damage d, Tower t, int applicationTime) {
 		//factor in increases or decreases of damage due to alignment
 		double damage = d.getInstantDamage();
-		if(this.alignment != IAlignment.Alignment.NEUTRAL) {
+		if (this.alignment != IAlignment.Alignment.NEUTRAL) {
 			if(t.getAlignment() == this.alignment.getWeakTo()) //if this creep is weak to tower's element
 				damage *= WEAKNESS_MODIFIER;
 			else if(t.getAlignment() == this.alignment.getStrength()) // if this creep is strong to tower's element
 				damage *= STRENGTH_MODIFIER;
 		}
+		
 		health -= damage;
 		
 		// if there will be any timed effects, hold on to them
