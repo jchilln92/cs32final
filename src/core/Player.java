@@ -11,8 +11,8 @@ public class Player {
 	public Player() {
 		// TODO: stub
 		health = 100;
-		gold = 500;
-		incomePerWave = 50;
+		gold = 1000;
+		incomePerWave = 100;
 	}
 
 	public double getGold() {
