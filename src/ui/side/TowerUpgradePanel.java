@@ -188,7 +188,8 @@ public class TowerUpgradePanel extends JPanel {
 					}
 					
 					public void mouseExited(MouseEvent e) {
-						towerStats.setUpgrade(null);
+						if (e.getComponent().isEnabled())
+							towerStats.setUpgrade(null);
 					}
 				});
 				
@@ -272,8 +273,12 @@ public class TowerUpgradePanel extends JPanel {
 				upgradeButtons[x][y].setEnabled(false);
 			}
 		}
-		
+		strongestButton.setEnabled(false);
+		weakestButton.setEnabled(false);
+		closestButton.setEnabled(false);
+		furthestButton.setEnabled(false);
 		sellTowerButton.setEnabled(false);
+		cancelButton.setEnabled(false);
 	}
 	
 	public void enableTowerUpgrade() {
@@ -282,7 +287,12 @@ public class TowerUpgradePanel extends JPanel {
 				upgradeButtons[x][y].setEnabled(true);
 			}
 		}
-		
+		strongestButton.setEnabled(true);
+		weakestButton.setEnabled(true);
+		closestButton.setEnabled(true);
+		furthestButton.setEnabled(true);
 		sellTowerButton.setEnabled(true);
+		cancelButton.setEnabled(true);
+
 	}
 }
