@@ -29,7 +29,8 @@ public class CreepDrawer {
 		Point2D.Double creepCenter = new Point2D.Double(c.getPosition().getX()
 				* tileWidth, c.getPosition().getY() * tileHeight);
 
-		double creepRadius = 5;
+		//double creepRadius = 5;
+		double creepRadius = 0.2 * Math.sqrt(tileWidth * tileHeight);
 
 		//Creep color is determined by alignment		
 		g.setColor(c.getAlignment().getColor());
@@ -37,25 +38,38 @@ public class CreepDrawer {
 		//Creep shape is determined by its type
 		switch(c.getType()) {
 			case BIG_GUY:
-				Arc2D.Double big = new Arc2D.Double();
-				big.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
-						creepRadius * 1.5, 0, 360, Arc2D.PIE);
-				g.fill(big);
+				double largeRadius = creepRadius * 1.2;
+				GeneralPath square = new GeneralPath();
+				square.moveTo(creepCenter.x + largeRadius, creepCenter.y + largeRadius);
+				square.lineTo(creepCenter.x - largeRadius, creepCenter.y + largeRadius);
+				square.lineTo(creepCenter.x -largeRadius, creepCenter.y - largeRadius);
+				square.lineTo(creepCenter.x + largeRadius, creepCenter.y - largeRadius);
+				square.closePath();
+				g.fill(square);
 				break;
-			/*case FAST:
-				Ellipse2D.Double fast = new Ellipse2D.Double(creepCenter.x - (tileWidth / 4), creepCenter.y - (tileHeight / 3), tileHeight * .25, tileWidth / 3);
+			case FAST:
+				Arc2D.Double fast = new Arc2D.Double();
+				fast.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
+						creepRadius * 0.5, 0, 360, Arc2D.PIE);
 				g.fill(fast);
 				break; //needs to be better aligned
-				*/
 			case FLYING:
 				GeneralPath triangle = new GeneralPath();
-				triangle.moveTo(creepCenter.x - 5, creepCenter.y - 5);
-				triangle.lineTo(creepCenter.x + 5, creepCenter.y - 5);
-				triangle.lineTo(creepCenter.x, creepCenter.y + 5);
+				triangle.moveTo(creepCenter.x - creepRadius, creepCenter.y - creepRadius);
+				triangle.lineTo(creepCenter.x + creepRadius, creepCenter.y - creepRadius);
+				triangle.lineTo(creepCenter.x, creepCenter.y + creepRadius);
 				triangle.closePath();
 				g.fill(triangle);
 				break;
-				
+			case ASSASSIN:
+				GeneralPath diamond = new GeneralPath();
+				diamond.moveTo(creepCenter.x , creepCenter.y + creepRadius);
+				diamond.lineTo(creepCenter.x + creepRadius, creepCenter.y);
+				diamond.lineTo(creepCenter.x , creepCenter.y - creepRadius);
+				diamond.lineTo(creepCenter.x - creepRadius, creepCenter.y);
+				diamond.closePath();
+				g.fill(diamond);
+				break;
 			default: //generic creep
 				Arc2D.Double creep = new Arc2D.Double();
 				creep.setArcByCenter(creepCenter.getX(), creepCenter.getY(),

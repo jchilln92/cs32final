@@ -68,9 +68,7 @@ public class CreepQueuePanel extends JPanel {
 		dequeueButton = new JButton("Cancel All");
 		dequeueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int x = 0; x < displayNext.size(); x++){
 					dequeueAll();
-				}
 			}
 		});	
 		c.gridx = 1;
@@ -118,11 +116,16 @@ public class CreepQueuePanel extends JPanel {
 	}
 
 	public void dequeue(int index){
+		gc.getGame().getPlayer().increaseIncomePerWave(-1 * gc.getGame().getYourCreeps().get(index).getAdditionalGoldPerWave());
 		gc.getGame().getPlayer().setGold(gc.getGame().getPlayer().getGold() + gc.getGame().getYourCreeps().get(index).getPrice());
 		gc.getGame().getYourCreeps().remove(index);
 	}
 	
 	public void dequeueAll() {
+		int maxSize = gc.getGame().getYourCreeps().size();
+		for (int x = 0; x < maxSize; x++)
+			dequeue(0);
+		
 		iconPanel.removeAll();
 		iconPanel.setPreferredSize(new Dimension(initialCreepPanelSize, 16));
 		iconPanel.revalidate();
