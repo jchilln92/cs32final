@@ -37,16 +37,18 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		newCreep.setSpeed(templateCreep.getSpeed());
 		newCreep.setType(t);
 		newCreep.setAlignment(Alignment.NEUTRAL);
+		newCreep.setAdditionalGoldPerWave(templateCreep.getAdditionalGoldPerWave());
 		
 		return newCreep;
 	}
 	
-	public static Creep createCreep(Type t, int scalingFactor) {
+	public static Creep createCreep(Type t, int waveNumber) {
 		Creep originalCreep = createCreep(t);
+		int scalingFactor = waveNumber / 2;
 		
-		originalCreep.setBaseHealth(originalCreep.getBaseHealth() + scalingFactor*50);
+		originalCreep.setBaseHealth(originalCreep.getBaseHealth() + scalingFactor*25);
 		originalCreep.setHealth(originalCreep.getBaseHealth());
-		originalCreep.setPrice(originalCreep.getPrice() + scalingFactor);
+		originalCreep.setPrice(originalCreep.getPrice() + scalingFactor*10);
 		
 		return originalCreep;
 	}
@@ -81,6 +83,9 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 
 	@Element
 	private double price;
+	
+	@Element
+	private double additionalGoldPerWave;
 
 	public double getPrice() {
 		return price;
@@ -287,5 +292,13 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 
 	public void setAlignment(Alignment alignment) {
 		this.alignment = alignment;
+	}
+
+	public void setAdditionalGoldPerWave(double d) {
+		 additionalGoldPerWave = d;
+	}
+	
+	public double getAdditionalGoldPerWave() {
+		return additionalGoldPerWave;
 	}
 }

@@ -6,6 +6,7 @@
 		<flying>false</flying>
 		<damageToBase>10</damageToBase>
 		<price>100</price>
+		<additionalGoldPerWave>1</additionalGoldPerWave>
 	</creep>
 	<creep type="BIG_GUY">
 		<baseHealth>300</baseHealth>
@@ -14,6 +15,7 @@
 		<flying>false</flying>
 		<damageToBase>20</damageToBase>
 		<price>100</price>
+		<additionalGoldPerWave>2</additionalGoldPerWave>
 	</creep>
 	<creep type="ASSASSIN">
 		<baseHealth>100</baseHealth>
@@ -22,6 +24,7 @@
 		<flying>false</flying>
 		<damageToBase>30</damageToBase>
 		<price>100</price>
+		<additionalGoldPerWave>3</additionalGoldPerWave>
 	</creep>
 	<creep type="FLYING">
 		<baseHealth>100</baseHealth>
@@ -30,6 +33,7 @@
 		<flying>true</flying>
 		<damageToBase>15</damageToBase>
 		<price>100</price>
+		<additionalGoldPerWave>4</additionalGoldPerWave>
 	</creep>
 	<creep type="FAST">
 		<baseHealth>100</baseHealth>
@@ -38,5 +42,6 @@
 		<flying>false</flying>
 		<damageToBase>5</damageToBase>
 		<price>100</price>
+		<additionalGoldPerWave>5</additionalGoldPerWave>
 	</creep>
 </creeps>

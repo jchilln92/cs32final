@@ -7,22 +7,27 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.core.Creep;
+import src.ui.controller.GameController;
 
 public class CreepStatsPanel extends JPanel{
 	private Creep creep; // the creep we are currently displaying
 	private JLabel creepNameLabel;
 	private JLabel healthLabel;
 	private JLabel damageLabel;
-	private JLabel abilitiesLabel;
 	private JLabel costLabel;
+	private JLabel speedLabel;
 	private JLabel spacingLabel;
+	private GameController controller;
 	
-	public CreepStatsPanel() {
+	public CreepStatsPanel(GameController gc) {
 		super(new GridBagLayout());
+		
+		controller = gc;
+		
 		creepNameLabel = new JLabel(" ");
 		healthLabel = new JLabel(" ");
 		damageLabel = new JLabel(" ");
-		abilitiesLabel = new JLabel(" ");
+		speedLabel = new JLabel(" ");
 		costLabel = new JLabel(" ");
 		spacingLabel = new JLabel("                            ");
 
@@ -43,7 +48,7 @@ public class CreepStatsPanel extends JPanel{
 		
 		c.gridx = 0;
 		c.gridy = 3;
-		add(abilitiesLabel, c);
+		add(speedLabel, c);
 				
 		c.gridx = 0;
 		c.gridy = 4;
@@ -53,8 +58,6 @@ public class CreepStatsPanel extends JPanel{
 		c.gridy = 5;
 		add(spacingLabel, c);
 		
-		
-		
 	}
 	public void setCreep(Creep c) {
 		creep = c;
@@ -63,9 +66,11 @@ public class CreepStatsPanel extends JPanel{
 			creepNameLabel.setText(" ");
 			healthLabel.setText(" ");
 			damageLabel.setText(" ");
-			abilitiesLabel.setText(" ");
+			speedLabel.setText(" ");
 			costLabel.setText(" ");
 			spacingLabel.setText("                            ");
+			controller.getSideBar().getPlayerStatsPanel().setShowingGoldChange(false);
+
 			/*creepNameLabel.setVisible(false);
 			healthLabel.setVisible(false);
 			damageLabel.setVisible(false);
@@ -78,9 +83,12 @@ public class CreepStatsPanel extends JPanel{
 			double damage = creep.getDamageToBase();
 			String damageText = (int)(damage) + "." + (int)((damage - (int)damage)*10) + (int)((damage*10 - (int)(damage*10))*10);
 			damageLabel.setText("Damage: " + damageText);
-			abilitiesLabel.setText("Abilities: ");
+			speedLabel.setText("Speed: " + creep.getSpeed());
 			costLabel.setText("Cost: " + (int)creep.getPrice());
 			
+			controller.getSideBar().getPlayerStatsPanel().setShowingGoldChange(true);
+			controller.getSideBar().getPlayerStatsPanel().setPerTurnIncrease(creep.getAdditionalGoldPerWave());
+
 			/*creepNameLabel.setVisible(true);
 			healthLabel.setVisible(true);
 			damageLabel.setVisible(true);

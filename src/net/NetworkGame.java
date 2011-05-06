@@ -79,10 +79,16 @@ public class NetworkGame extends Game {
 	@Override
 	public void sendNextWave(){
 		setLastWaveTime(getElapsedTime());
-		super.applyPlayerIncomePerWave();
+		applyPlayerIncomePerWave();
 		sendWaveToOpponent(getYourCreeps());
 		getYourCreeps().clear();
 		//sendWave(WaveGenerator.generateWave(wavesSent + 1)); // wavesSent + 1 == wave number		
+	}
+	
+	public void applyPlayerIncomePerWave() {
+		if (wavesSent != 0){
+			player.reapReward(player.getIncomePerWave());		
+		}
 	}
 
 	/**

@@ -91,12 +91,14 @@ public class TowerPurchasePanel extends JPanel {
 				@Override
 				public void mouseEntered(MouseEvent e) {
 					towerStats.setTower(Tower.createTower(type));
+						gc.getSideBar().getPlayerStatsPanel().setShowingGoldChange(true);
 						gc.getSideBar().getPlayerStatsPanel().setGoldChange(" -" + Tower.createTower(type).getPrice());
 				}
 
 				@Override
 				public void mouseExited(MouseEvent e) {
 					towerStats.setTower(null);
+					gc.getSideBar().getPlayerStatsPanel().setShowingGoldChange(false);
 					gc.getSideBar().getPlayerStatsPanel().setGoldChange("");
 				}
 			});

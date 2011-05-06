@@ -32,6 +32,8 @@ public class PlayerStatsPanel extends JPanel {
 	private JLabel opponentHealthValueLabel;
 	private JLabel goldChangeLabel;
 	
+	private boolean showingGoldChange;
+	
 	public PlayerStatsPanel(Player p) {
 		super(new GridBagLayout());
 		
@@ -44,6 +46,8 @@ public class PlayerStatsPanel extends JPanel {
 		goldValueLabel = new JLabel("0");
 		healthValueLabel = new JLabel("0");
 		goldChangeLabel = new JLabel("");
+		
+		showingGoldChange = false;
 		
 		updateDisplay();
 
@@ -105,10 +109,25 @@ public class PlayerStatsPanel extends JPanel {
 		
 		if (opponentHealthValueLabel != null)
 			opponentHealthValueLabel.setText(Integer.toString((int)opponent.getHealth()));
+		
+		if (!showingGoldChange) {
+			goldChangeLabel.setForeground(Color.BLACK);
+			goldChangeLabel.setText(("(+ " + Integer.toString((int)player.getIncomePerWave()) + " per wave)"));
+		}
 	}
 	
 	public void setGoldChange(String change) {
 		goldChangeLabel.setForeground(Color.RED);
 		goldChangeLabel.setText(change);
+	}
+	
+	public void setPerTurnIncrease(double change) {
+		double newIncrease = player.getIncomePerWave() + change;
+		goldChangeLabel.setForeground(Color.GREEN);
+		goldChangeLabel.setText(("(+ " + (Integer.toString((int)newIncrease) + " per wave)")));
+	}
+	
+	public void setShowingGoldChange(boolean b) {
+		showingGoldChange = b;
 	}
 }

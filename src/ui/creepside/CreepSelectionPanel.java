@@ -48,7 +48,7 @@ public class CreepSelectionPanel extends JPanel {
 		creepButtons = new JButton[8];
 		creepButtonActions = new Action[8];
 		
-		creepStats = new CreepStatsPanel();
+		creepStats = new CreepStatsPanel(controller);
 		
 		GridBagConstraints c = new GridBagConstraints();
 

@@ -19,9 +19,9 @@ public class Game {
 	private Map map;
 	private ArrayList<Creep> creeps;
 	private ArrayList<Tower> towers;
-	private Player player;
+	protected Player player;
 	private int elapsedTime; // the total game time, in "ticks"
-	private int wavesSent; // the total number of waves sent
+	protected int wavesSent; // the total number of waves sent
 	private int lastWaveTime; // the elapsedTime when the last wave was sent
 	private boolean over;
 	
