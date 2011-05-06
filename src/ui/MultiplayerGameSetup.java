@@ -51,14 +51,20 @@ public class MultiplayerGameSetup extends GameSetup {
 				JTextField field = (JTextField) e.getSource();
 
 				int code = e.getKeyCode();
-				int length = field.getText().length();
+				
+				String s = field.getText();
+				s = s.replaceAll("[^a-zA-Z0-9]", "");
+			    field.setText(s);
+				int length = s.length();
+
 				
 				if (length > 0 && code == KeyEvent.VK_BACK_SPACE) {
 					length--;
 				} else {
 					length++;
 				}
-				
+
+				System.out.println(length);
 				if (length <= 0) {
 					playButton.setEnabled(false);
 				} else {
