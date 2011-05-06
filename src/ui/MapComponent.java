@@ -13,6 +13,7 @@ import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 
+import src.core.Bullet;
 import src.core.Map;
 import src.core.TileType;
 import src.ui.controller.GameController;
@@ -208,6 +209,16 @@ public class MapComponent extends JComponent {
 			synchronized (gc.getDrawableCreeps()) {
 				for (IDrawableCreep c : gc.getDrawableCreeps()) {
 					CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
+				}
+			}
+			
+			synchronized (gc.getBullets()) {
+				for (Bullet b : gc.getBullets()) {
+					Rectangle2D.Double bulletBox = new Rectangle2D.Double(b.getPosition().getX() * tileWidth,
+																		  b.getPosition().getY() * tileHeight,
+																		  2, 2);
+					gg.setColor(Color.RED);
+					gg.fill(bulletBox);
 				}
 			}
 		}

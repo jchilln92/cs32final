@@ -12,6 +12,7 @@ import javax.swing.KeyStroke;
 
 import src.GameMain;
 import src.Runner;
+import src.core.Bullet;
 import src.core.Creep;
 import src.core.Game;
 import src.core.IPurchasable;
@@ -167,6 +168,10 @@ public class GameController {
 	
 	public Collection<? extends IDrawableTower> getDrawableTowers() {
 		return game.getTowers();
+	}
+	
+	public Collection<Bullet> getBullets() {
+		return game.getBullets();
 	}
 	
 	public boolean tileIsOccupied(int x, int y) {
