@@ -160,9 +160,6 @@ public class Lobby extends JPanel {
 		c.insets = new Insets(20, 15, 0, 0);	
 		c.fill = GridBagConstraints.NONE;
 		add(joinButton, c);	
-		
-
-
 	}
 	
 	private void updateAllowedButtons(String username) {
@@ -171,9 +168,7 @@ public class Lobby extends JPanel {
 	    	if (gameTable.getSelectedRow() < 0 || username.trim().length() == 0) {
 				joinButton.setEnabled(false);
 			} else {
-				joinButton.setEnabled(true);
-	
-	
+				joinButton.setEnabled(true);	
 			}
 			
 			if (username.trim().length() == 0) {

@@ -81,7 +81,6 @@ public class MultiplayerController {
 			lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
 		}
 	}
-	
 
 	public void waitToJoinGame() {
 		gameMain.showScreen(clientWaitScreen);
@@ -142,7 +141,7 @@ public class MultiplayerController {
 		gameMain.setSize(800, 600);
 	}
 	
-	public void quitNetworkGame(JPanel screen){
+	public void quitNetworkGame(JPanel screen) {
 		gameInProgress = false;
 		lobbyManager.quit();
 		lobby.updateGameListPane();

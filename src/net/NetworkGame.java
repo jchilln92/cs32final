@@ -3,16 +3,14 @@ package src.net;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.esotericsoftware.kryonet.Connection;
-import com.esotericsoftware.kryonet.Listener;
-
-import src.WaveGenerator;
 import src.core.Bullet;
 import src.core.Creep;
 import src.core.Game;
 import src.core.Tower;
-import src.ui.WinPanel;
 import src.ui.controller.GameController;
+
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 
 /**
  * Acts just like a normal game, but adds network functionality

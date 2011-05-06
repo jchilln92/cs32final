@@ -138,11 +138,13 @@ public class GameController {
 			if (isDoubleTime) {
 				game.tick();
 			}
+			
 			if (game.isOver()) {
-				if(multiController != null){
+				if (multiController != null) {
 					multiController.quitNetworkGame(new WinPanel(this));
 					gameMain.showScreen(new GameOverPanel(this));
 				}
+				
 				runnerThread.stop();
 			}
 		}
@@ -360,6 +362,7 @@ public class GameController {
 	public void finalizeCreepPurchase(Creep c){
 		game.getYourCreeps().add(c);
 	}
+	
 	public boolean getPaused() {
 		return isPaused;
 	}
