@@ -5,6 +5,9 @@ import java.util.Collection;
 
 import src.core.Creep;
 
+/**
+ * A small helper class responsible for generating waves of creeps.
+ */
 public class WaveGenerator {
 	/**
 	 * Generates a creep wave, the contents of which vary based on the current wave number.

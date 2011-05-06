@@ -12,7 +12,8 @@ import javax.swing.Timer;
 import src.ui.TitleScreen;
 
 /**
- * The main entry point for the entire application.  Displays the main window.
+ * The main entry point for the entire application.  Displays the main window, and provides simple
+ * utilities for changing which screen is currently displayed in this window.
  */
 public class GameMain extends JFrame {
 	private static final long serialVersionUID = 1L;	
@@ -33,12 +34,13 @@ public class GameMain extends JFrame {
 		getContentPane().add(mainPanel);
 	}
 
+	/**
+	 * The main entry point for our program
+	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-
-				
 				TitleScreen title = new TitleScreen(main);
 				main.showScreen(title);
 				main.setVisible(true);
@@ -56,14 +58,13 @@ public class GameMain extends JFrame {
 		});
 	}
 	
+	/**
+	 * Shows a given screen as the content of the main window.
+	 * @param screen A JPanel representing the main screen.
+	 */
 	public void showScreen(JPanel screen) {
 		mainPanel.removeAll();
 		mainPanel.add(screen, "visible-panel");
 		validate();
-	}
-	
-	public void resetGame(){
-		showScreen(new TitleScreen(main));
-		mainPanel.validate();
 	}
 }

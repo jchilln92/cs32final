@@ -9,6 +9,7 @@ public class DamageApplication {
 	private int lastApplication;
 
 	// needed for kryo
+	@SuppressWarnings("unused")
 	private DamageApplication() {};
 
 	public DamageApplication(Damage d, int time) {

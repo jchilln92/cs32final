@@ -21,6 +21,12 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	
 	private static HashMap<Creep.Type, Creep> templateCreeps;
 	
+	/**
+	 * Helper method to create a creep of a certain type, based on the "template" creep
+	 * defined in XML.  If the XML hasn't been read yet, it is read at this point.
+	 * @param t The type of Creep to return.
+	 * @return A creep of the specified type.
+	 */
 	private static Creep createCreep(Type t) {
 		if (templateCreeps == null) { 
 			templateCreeps = CreepXMLReader.readXML(FilePaths.xmlPath + "creeps.xml");
@@ -42,6 +48,14 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		return newCreep;
 	}
 	
+	/**
+	 * Creates a creep of the specified type, and scales some of its attributes based
+	 * on the current wave number in a game.  This allows creeps to get stronger as time
+	 * goes on, for instance.
+	 * @param t The type of creep to create
+	 * @param waveNumber The current wave number
+	 * @return A creep, with scaled properties
+	 */
 	public static Creep createCreep(Type t, int waveNumber) {
 		Creep originalCreep = createCreep(t);
 		int scalingFactor = waveNumber / 2;
@@ -72,8 +86,8 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	
 	@Element
 	private double damageToBase;
-
 	
+	// holds time-based damage (such as slowing effects) that has been applied to this creep
 	private HashMap<Tower, DamageApplication> damages;
 
 	private CreepPath path;
@@ -93,6 +107,9 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 
 	private IAlignment.Alignment alignment;
 	
+	/**
+	 * An enum describing the type of a creep.
+	 */
 	public enum Type {
 		GENERIC,
 		BIG_GUY,
@@ -108,7 +125,8 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	}
 	
 	/**
-	 * Determines the direction this creep is moving in.
+	 * Determines the direction this creep is moving in, by comparing its current position with
+	 * the next point on its creep path.
 	 * 
 	 * @return A Point2D representing the unit direction vector.
 	 */
@@ -116,7 +134,7 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		Point2D.Double target = path.getPoint(pathIndex);
 		double length = position.distance(target);
 
-		if (length < .1) {
+		if (length < .1) { // have some tolerance for when the creep reaches its target
 			setPosition(target);
 			incrementPathTarget();
 			target = path.getPoint(pathIndex);
@@ -133,10 +151,6 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 
 		return new Point2D.Double(direction.getX() / length, direction.getY()
 				/ length);
-	}
-
-	public double getDamageToBase() {
-		return damageToBase;
 	}
 
 	/**
@@ -161,6 +175,14 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		return false;
 	}
 	
+	/**
+	 * Applies a certain a tower's damage to this creep, taking into account the elemental alignment
+	 * of both the tower and the creep.
+	 * 
+	 * @param d The damage to be applied
+	 * @param t The tower to apply the damage
+	 * @param applicationTime The game time at which this damage is to be applied
+	 */
 	public void applyDamage(Damage d, Tower t, int applicationTime) {
 		//factor in increases or decreases of damage due to alignment
 		double damage = d.getInstantDamage();
@@ -182,8 +204,16 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		}
 	}
 	
+	/**
+	 * Handles any time-based damage that has been applied to this creep.  If the damage has worn off,
+	 * remove it from the list, restore the creep's original speed, etc.  Otherwise, apply the appropriate
+	 * damages.
+	 * 
+	 * @param time The current game time.  This will be compared against the game time at which the damage
+	 * 				was applied.
+	 */
 	public void handleTimedDamage(int time) {
-		Iterator it = damages.keySet().iterator();
+		Iterator<Tower> it = damages.keySet().iterator();
 		while (it.hasNext()) {
 			Tower t = (Tower) it.next();
 			
@@ -277,6 +307,10 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+	
+	public double getDamageToBase() {
+		return damageToBase;
 	}
 
 	public void setDamageToBase(double damageToBase) {
