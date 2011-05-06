@@ -101,7 +101,7 @@ public class Game {
 	protected void applyPlayerIncomePerWave() {
 		if (wavesSent != 0){
 			player.reapReward(player.getIncomePerWave());		
-			player.increaseIncomePerWave(5 * wavesSent);
+			player.increaseIncomePerWave(10 * wavesSent);
 		}
 	}
 

@@ -58,11 +58,11 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	 */
 	public static Creep createCreep(Type t, int waveNumber) {
 		Creep originalCreep = createCreep(t);
-		int scalingFactor = waveNumber / 2;
-		
-		originalCreep.setBaseHealth(originalCreep.getBaseHealth() + scalingFactor*25);
+		double scalingFactor = waveNumber * 0.05;
+		originalCreep.setBaseHealth(originalCreep.getBaseHealth() + scalingFactor*originalCreep.getBaseHealth());
 		originalCreep.setHealth(originalCreep.getBaseHealth());
-		originalCreep.setPrice(originalCreep.getPrice() + scalingFactor*10);
+		originalCreep.setPrice(originalCreep.getPrice() + (int)(waveNumber/2)*10);
+		originalCreep.setReward(originalCreep.getReward() + (int)(waveNumber/2));
 		
 		return originalCreep;
 	}

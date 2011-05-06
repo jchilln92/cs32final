@@ -1,47 +1,47 @@
 <creeps>
 	<creep type="GENERIC">
-		<baseHealth>100</baseHealth>
-		<reward>100</reward>
+		<baseHealth>80</baseHealth>
+		<reward>15</reward>
 		<speed>1</speed>
 		<flying>false</flying>
-		<damageToBase>10</damageToBase>
-		<price>100</price>
-		<additionalGoldPerWave>1</additionalGoldPerWave>
-	</creep>
-	<creep type="BIG_GUY">
-		<baseHealth>300</baseHealth>
-		<reward>100</reward>
-		<speed>.5</speed>
-		<flying>false</flying>
-		<damageToBase>20</damageToBase>
-		<price>100</price>
+		<damageToBase>5</damageToBase>
+		<price>30</price>
 		<additionalGoldPerWave>2</additionalGoldPerWave>
 	</creep>
-	<creep type="ASSASSIN">
-		<baseHealth>100</baseHealth>
-		<reward>100</reward>
-		<speed>1</speed>
+	<creep type="BIG_GUY">
+		<baseHealth>150</baseHealth>
+		<reward>30</reward>
+		<speed>.5</speed>
 		<flying>false</flying>
-		<damageToBase>30</damageToBase>
-		<price>100</price>
-		<additionalGoldPerWave>3</additionalGoldPerWave>
-	</creep>
-	<creep type="FLYING">
-		<baseHealth>100</baseHealth>
-		<reward>100</reward>
-		<speed>1</speed>
-		<flying>true</flying>
-		<damageToBase>15</damageToBase>
-		<price>100</price>
+		<damageToBase>10</damageToBase>
+		<price>60</price>
 		<additionalGoldPerWave>4</additionalGoldPerWave>
 	</creep>
+	<creep type="ASSASSIN">
+		<baseHealth>50</baseHealth>
+		<reward>25</reward>
+		<speed>1</speed>
+		<flying>false</flying>
+		<damageToBase>20</damageToBase>
+		<price>50</price>
+		<additionalGoldPerWave>4</additionalGoldPerWave>
+	</creep>
+	<creep type="FLYING">
+		<baseHealth>50</baseHealth>
+		<reward>25</reward>
+		<speed>1</speed>
+		<flying>true</flying>
+		<damageToBase>10</damageToBase>
+		<price>50</price>
+		<additionalGoldPerWave>3</additionalGoldPerWave>
+	</creep>
 	<creep type="FAST">
-		<baseHealth>100</baseHealth>
-		<reward>100</reward>
+		<baseHealth>75</baseHealth>
+		<reward>25</reward>
 		<speed>2</speed>
 		<flying>false</flying>
 		<damageToBase>5</damageToBase>
-		<price>100</price>
-		<additionalGoldPerWave>5</additionalGoldPerWave>
+		<price>50</price>
+		<additionalGoldPerWave>3</additionalGoldPerWave>
 	</creep>
 </creeps>
