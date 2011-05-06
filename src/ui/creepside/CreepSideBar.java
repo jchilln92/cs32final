@@ -35,8 +35,7 @@ public class CreepSideBar extends JPanel {
 		creepSelection = new CreepSelectionPanel(creepInfoPurchase, controller);
 		
 		creepQueue.setInfoPurchase(creepInfoPurchase);
-
-
+		
 		creepSelection.setBorder(borderLine);
 		creepInfoPurchase.setBorder(borderLine);
 		creepQueue.setBorder(borderLine);
@@ -52,9 +51,11 @@ public class CreepSideBar extends JPanel {
 		for (int x = 0; x < creepSelection.getComponentCount(); x++){
 			creepSelection.getComponent(x).setEnabled(false);
 		}
+		
 		for (int x = 0; x < creepInfoPurchase.getComponentCount(); x++){
 			creepInfoPurchase.getComponent(x).setEnabled(false);
 		}
+		
 		for (int x = 0; x < creepQueue.getComponentCount(); x++){
 			creepQueue.getComponent(x).setEnabled(false);
 		}
@@ -64,9 +65,11 @@ public class CreepSideBar extends JPanel {
 		for (int x = 0; x < creepSelection.getComponentCount(); x++){
 			creepSelection.getComponent(x).setEnabled(true);
 		}
+		
 		for (int x = 0; x < creepInfoPurchase.getComponentCount(); x++){
 			creepInfoPurchase.getComponent(x).setEnabled(true);
 		}
+		
 		for (int x = 0; x < creepQueue.getComponentCount(); x++){
 			creepQueue.getComponent(x).setEnabled(true);
 		}

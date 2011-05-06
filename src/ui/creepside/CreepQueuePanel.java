@@ -2,6 +2,7 @@ package src.ui.creepside;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -68,7 +69,7 @@ public class CreepQueuePanel extends JPanel {
 		dequeueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for(int x = 0; x < displayNext.size(); x++){
-					dequeue(0);
+					dequeueAll();
 				}
 			}
 		});	
@@ -119,6 +120,18 @@ public class CreepQueuePanel extends JPanel {
 	public void dequeue(int index){
 		gc.getGame().getPlayer().setGold(gc.getGame().getPlayer().getGold() + gc.getGame().getYourCreeps().get(index).getPrice());
 		gc.getGame().getYourCreeps().remove(index);
+	}
+	
+	public void dequeueAll() {
+		iconPanel.removeAll();
+		iconPanel.setPreferredSize(new Dimension(initialCreepPanelSize, 16));
+		iconPanel.revalidate();
+	}
+	
+	public void paintComponent(Graphics g) {
+		if (getNumberOfCreeps() == 0) {
+			dequeueAll();
+		}
 	}
 
 	public int getNumberOfCreeps(){

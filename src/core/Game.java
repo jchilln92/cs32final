@@ -25,7 +25,7 @@ public class Game {
 	private int lastWaveTime; // the elapsedTime when the last wave was sent
 	private boolean over;
 	
-	private ArrayList<Creep> yourCreeps; //the creeps that you will be storing
+	private ArrayList<Creep> yourCreeps; // in a multiplayer game, the creeps you will send to the opponent
 	
 	private DistanceFromTowerComparator tdComparator;
 	private HealthComparator hComparator;
@@ -41,9 +41,6 @@ public class Game {
 		creepQueue = new LinkedList<Creep>();
 		tdComparator = new DistanceFromTowerComparator();
 		hComparator = new HealthComparator();
-		
-		
-
 		yourCreeps = new ArrayList<Creep>();
 	}
 	
