@@ -17,6 +17,7 @@ public class Game {
 	private static final int waveTime = 1000; // number of ticks between each wave (about 30 seconds)
 	
 	private Map map;
+	private ArrayList<Bullet> bullets;
 	private ArrayList<Creep> creeps;
 	private ArrayList<Tower> towers;
 	protected Player player;
@@ -36,6 +37,7 @@ public class Game {
 	public Game() {
 		over = false;
 		player = new Player();
+		bullets = new ArrayList<Bullet>();
 		towers = new ArrayList<Tower>();
 		creeps = new ArrayList<Creep>();
 		creepQueue = new LinkedList<Creep>();
@@ -76,13 +78,13 @@ public class Game {
 
 		// do a bunch of stuff to update the state of the game
 		stepCreeps();
+		stepBullets();
 		doTowerAttacks();
 		
 		if (player.getHealth() <= 0) {
 			over = true;
 		}
 	}
-
 
 	/**
 	 * Sends the next wave of creeps (simultaneously calls applyplayerIncomePerWave)
@@ -146,6 +148,30 @@ public class Game {
 			c.handleTimedDamage(elapsedTime);
 		}
 	}
+	
+	private void stepBullets() {
+		double speed = .5; // tiles per tick
+		
+		Iterator<Bullet> it = bullets.iterator();
+		while (it.hasNext()) {
+			Bullet b = it.next();
+			
+			if (b.distanceToTarget() < 1) {
+				synchronized (bullets) {
+					if (!b.targetIsNull())
+						b.dealDamage();
+					
+					it.remove();
+				}
+				
+				continue;
+			}
+			
+			Point2D.Double dir = b.directionToTarget();
+			b.setPosition(new Point2D.Double(b.getPosition().getX() + dir.getX() * speed,
+						  					 b.getPosition().getY() + dir.getY() * speed));
+		}
+	}
 
 	/**
 	 * Sets the creeps targeted by each tower, and 
@@ -183,7 +209,11 @@ public class Game {
 				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius() && // creep in range
 					(!c.isFlying() || t.getTargeting().isHitsFlying()) && // this tower must be flying if creep is
 					c.towerCanApplyDamage(t)) {
-					c.applyDamage(t.getDamage(), t, elapsedTime);
+					
+					synchronized (bullets) {
+						bullets.add(new Bullet(t, c, elapsedTime));
+					}
+
 					t.didFireAtTime(elapsedTime);
 					break;
 				}
@@ -233,6 +263,10 @@ public class Game {
 
 	public void setTowers(ArrayList<Tower> towers) {
 		this.towers = towers;
+	}
+	
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
 	}
 
 	public Player getPlayer() {
