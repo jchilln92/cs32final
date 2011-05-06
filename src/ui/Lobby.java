@@ -201,12 +201,12 @@ public class Lobby extends JPanel {
 					public boolean isCellEditable(int row, int column) {
 						return false;
 					}
-					
+
 					public void valueChanged(ListSelectionEvent e) {
 						updateAllowedButtons(usernameField.getText());
 					}
 				};
-				
+
 				gameTable.setColumnSelectionAllowed(false);
 				gameTable.getTableHeader().setReorderingAllowed(false);
 				gameTableScrollPane.setViewportView(gameTable);

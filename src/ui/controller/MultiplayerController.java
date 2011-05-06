@@ -1,5 +1,7 @@
 package src.ui.controller;
 
+import javax.swing.JOptionPane;
+
 import src.GameMain;
 import src.net.AvailableGame;
 import src.net.LobbyManager;
@@ -20,7 +22,8 @@ public class MultiplayerController {
 	private Lobby lobby;
 	private LobbyManager lobbyManager;
 	private MultiplayerGameSetup gameSetup;
-	private MultiplayerHostWaitScreen waitScreen;
+	private MultiplayerHostWaitScreen hostWaitScreen;
+	private MultiplayerClientWaitScreen clientWaitScreen;
 	
 	private boolean gameInProgress;
 	
@@ -30,7 +33,8 @@ public class MultiplayerController {
 		lobbyManager = new LobbyManager(this);
 		lobby = new Lobby(this);
 		gameSetup = new MultiplayerGameSetup(this);
-		waitScreen = new MultiplayerHostWaitScreen("", "", this);
+		hostWaitScreen = new MultiplayerHostWaitScreen("", "", this);
+		clientWaitScreen = new MultiplayerClientWaitScreen(this);
 		gameInProgress = false;
 	}
 	
@@ -64,29 +68,38 @@ public class MultiplayerController {
 		newHostedGame.setMapName(gameSetup.getMapName());
 		lobbyManager.hostNewGame(newHostedGame);
 	
-		waitScreen = new MultiplayerHostWaitScreen(gameSetup.getGameName(), gameSetup.getMapName(), this);
-		gameMain.showScreen(waitScreen);
+		hostWaitScreen = new MultiplayerHostWaitScreen(gameSetup.getGameName(), gameSetup.getMapName(), this);
+		gameMain.showScreen(hostWaitScreen);
 	}
 	
 	/*
 	 * Joining / exiting games
 	 */
 	public void joinGame(int selectedRow) {
-		lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
+		synchronized (lobbyManager.getAvailableGames()) {
+			lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
+		}
 	}
 	
 
 	public void waitToJoinGame() {
-		gameMain.showScreen(new MultiplayerClientWaitScreen(this));
+		gameMain.showScreen(clientWaitScreen);
 	}
 	
 	public void playerAttemptedToJoin(String name) {	
-		waitScreen.setPotentialOpponent(name);
+		hostWaitScreen.setPotentialOpponent(name);
 	}
 	
 	public void bootPotentialOpponent() {
 		lobbyManager.boot();
-		waitScreen.setPotentialOpponent(null);
+		hostWaitScreen.setPotentialOpponent(null);
+	}
+	
+	public void wasBootedFromGame() {
+		JOptionPane.showMessageDialog(clientWaitScreen, 
+				"You've been booted!", "Booted!", JOptionPane.ERROR_MESSAGE);
+		
+		gameMain.showScreen(lobby);
 	}
 	
 	public void startNetworkGame() {
@@ -134,7 +147,7 @@ public class MultiplayerController {
 	public void opponentDisconnected() {
 		if (lobbyManager.getHostedGame() != null) {
 			lobbyManager.resetOpponentConnection();
-			waitScreen.setPotentialOpponent(null);
+			hostWaitScreen.setPotentialOpponent(null);
 		}
 		
 		if (gameInProgress) {

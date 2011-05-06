@@ -32,11 +32,11 @@ public class MultiplayerGamePanel extends JPanel {
 		gamePanel = new JPanel();
 		opponentMap = new MapComponent(true);
 		opponentMap.setGridOn(true);
-		opponentMap.setSize(600, 600);
+		opponentMap.setSize(400, 400);
 		
 		localMap = new MapComponent(false);
 		localMap.setGridOn(true);
-		localMap.setSize(600, 600);
+		localMap.setSize(400, 400);
 		
 		localController.setGame(game);
 		networkController.setGame(game);
@@ -57,8 +57,5 @@ public class MultiplayerGamePanel extends JPanel {
 		// setup sidebar
 		CreepSideBar cs = new CreepSideBar(localController);
 		add(cs, BorderLayout.SOUTH);
-		
-		
-		
 	}
 }

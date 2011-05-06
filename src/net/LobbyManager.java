@@ -209,7 +209,7 @@ public class LobbyManager {
 							String mapName = (String) m.data;
 							
 							if (mapName == null) {
-								System.out.println("You've been kicked");
+								controller.wasBootedFromGame();
 								client.close();
 							} else {
 								NetworkGame game = new NetworkGame(connection);
@@ -227,24 +227,26 @@ public class LobbyManager {
 	}
 	
 	public void refreshGameList() {
-		availableGames.clear();
-		
-		for (InetAddress addr : SunlabAutodiscoverHack.getSunlabAddresses()) {
-			try {
-				client.connect(20, addr, NetworkConstants.tcpPort, NetworkConstants.udpPort);
-				
-				// send query to server
-				GameNegotiationMessage discoveryMessage = new GameNegotiationMessage();
-				discoveryMessage.type = GameNegotiationMessage.Type.GAME_DISCOVER;
-				client.sendTCP(discoveryMessage);
-				
-				while (true) {
-					synchronized (client) {
-						if (!client.isConnected()) break;
+		synchronized (availableGames) {
+			availableGames.clear();
+
+			for (InetAddress addr : SunlabAutodiscoverHack.getSunlabAddresses()) {
+				try {
+					client.connect(20, addr, NetworkConstants.tcpPort, NetworkConstants.udpPort);
+
+					// send query to server
+					GameNegotiationMessage discoveryMessage = new GameNegotiationMessage();
+					discoveryMessage.type = GameNegotiationMessage.Type.GAME_DISCOVER;
+					client.sendTCP(discoveryMessage);
+
+					while (true) {
+						synchronized (client) {
+							if (!client.isConnected()) break;
+						}
 					}
+				} catch (IOException e) {
+					// There is no server at this address, ignore
 				}
-			} catch (IOException e) {
-				// There is no server at this address, ignore
 			}
 		}
 	}

@@ -12,14 +12,14 @@ public class SunlabAutodiscoverHack {
 			addresses = new ArrayList<InetAddress>();
 
 			try {
-				addresses.add(InetAddress.getByName("cslab8a"));
+				/*addresses.add(InetAddress.getByName("cslab8a"));
 				addresses.add(InetAddress.getByName("cslab8b"));
 				addresses.add(InetAddress.getByName("cslab8c"));
 				addresses.add(InetAddress.getByName("cslab8d"));
 				addresses.add(InetAddress.getByName("cslab8e"));
 				addresses.add(InetAddress.getByName("cslab8f"));
 				addresses.add(InetAddress.getByName("cslab8g"));
-				addresses.add(InetAddress.getByName("cslab8h"));
+				addresses.add(InetAddress.getByName("cslab8h"));*/
 				addresses.add(InetAddress.getByName("cslab7a"));
 				addresses.add(InetAddress.getByName("cslab7b"));
 				addresses.add(InetAddress.getByName("cslab7c"));
