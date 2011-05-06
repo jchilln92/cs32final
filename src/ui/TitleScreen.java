@@ -47,11 +47,9 @@ public class TitleScreen extends JPanel {
 	
 	public TitleScreen(GameMain gameMain) {
 		super(null);
-		//super(new GridBagLayout());
 		setSize(800, 600);
 		
 		bg = new ImageIcon(FilePaths.bgPath + "TOWER_WARS_SCREEN.png");
-		//bg = Toolkit.getDefaultToolkit().createImage(FilePaths.bgPath + "TOWER_WARS_SCREEN.png");
 		singlePlayerImage = new ImageIcon(FilePaths.buttonPath + "SingleButton.png");
 		singlePlayerPressedImage = new ImageIcon(FilePaths.buttonPath + "SingleButtonDown.png");
 		
@@ -65,9 +63,6 @@ public class TitleScreen extends JPanel {
 		exitPressedImage = new ImageIcon(FilePaths.buttonPath + "ExitButtonDown.png");
 
 		this.gameMain = gameMain;
-		//titleLabel = new JLabel("Tower Defense");
-		//titleLabel.setFont(new Font("Dialog.bold", 10, 64));
-		//titleLabel.setForeground(Color.RED);
 		
 		singlePlayerButton = new JButton(singlePlayerImage);
 		singlePlayerButton.setBorder(BorderFactory.createEmptyBorder());
@@ -116,39 +111,17 @@ public class TitleScreen extends JPanel {
 			}
 		});
 		
-		//add(singlePlayerButton);
-		//singlePlayerButton.setLocation(200, 200);
-		
-		singlePlayerButton.setBounds(300, 300, singlePlayerButton.getWidth(), singlePlayerButton.getHeight());
+		singlePlayerButton.setBounds(100, 250, 280, 60);
 		add(singlePlayerButton);
 		
-		/*
-		GridBagConstraints c = new GridBagConstraints();
+		multiPlayerButton.setBounds(100, 320, 280, 60);
+		add(multiPlayerButton);
 		
-		c.gridx = 0;		
-		c.gridy = 0;
-		c.fill = GridBagConstraints.NONE;
-		c.anchor = GridBagConstraints.PAGE_START;
-		c.insets = new Insets(30,0,60,0);
-		//add(titleLabel, c);
-
-		c.gridy = 1;
-		c.ipadx = 0;
-		c.ipady = 0;
-		//c.fill = GridBagConstraints.HORIZONTAL;
-		//c.anchor = GridBagConstraints.CENTER;
-		c.insets = new Insets(0,0,30,0);
-		add(singlePlayerButton, c);
-
-		c.gridy = 2;
-		add(multiPlayerButton, c);	
+		tutorialButton.setBounds(100, 390, 280, 60);
+		add(tutorialButton);
 		
-		c.gridy = 3;
-		add(tutorialButton, c);	
-		
-		c.gridy = 4;
-		add(quitButton, c);	
-		*/
+		quitButton.setBounds(100, 460, 280, 60);
+		add(quitButton);
 	}
 	
 	public void paintComponent(Graphics g) {
