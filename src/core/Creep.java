@@ -67,6 +67,22 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		return originalCreep;
 	}
 	
+	public static Creep copyCreep (Creep original) {
+		Creep newCreep = new Creep();
+		newCreep.setBaseHealth(original.getBaseHealth());
+		newCreep.setHealth(original.getBaseHealth());
+		newCreep.setFlying(original.isFlying());
+		newCreep.setDamageToBase(original.getDamageToBase());
+		newCreep.setPrice(original.getPrice());
+		newCreep.setReward(original.getReward());
+		newCreep.setSpeed(original.getSpeed());
+		newCreep.setType(original.getType());
+		newCreep.setAlignment(original.getAlignment());
+		newCreep.setAdditionalGoldPerWave(original.getAdditionalGoldPerWave());
+		
+		return newCreep;
+	}
+	
 	@Element
 	private double baseHealth;
 	

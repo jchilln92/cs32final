@@ -46,7 +46,6 @@ public class CreepInfoPurchasePanel extends JPanel {
 	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 
 	public CreepInfoPurchasePanel(CreepQueuePanel cq, GameController controller) {
-	
 		super(new GridBagLayout());
 		gc = controller;
 		
@@ -98,9 +97,10 @@ public class CreepInfoPurchasePanel extends JPanel {
 		buyButton.setBackground(Color.ORANGE);
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gc.getGame().getPlayer().increaseIncomePerWave(creep.getAdditionalGoldPerWave());
-				gc.getGame().getPlayer().purchase(creep);
-				creepQueue.enqueue(creep, creepIndex);
+				Creep creepToAdd = Creep.copyCreep(creep);
+				gc.getGame().getPlayer().increaseIncomePerWave(creepToAdd.getAdditionalGoldPerWave());
+				gc.getGame().getPlayer().purchase(creepToAdd);
+				creepQueue.enqueue(creepToAdd, creepIndex);
 			}
 		});	
 		
