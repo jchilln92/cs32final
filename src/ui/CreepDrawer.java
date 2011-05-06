@@ -2,8 +2,10 @@ package src.ui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
@@ -45,6 +47,15 @@ public class CreepDrawer {
 				g.fill(fast);
 				break; //needs to be better aligned
 				*/
+			case FLYING:
+				GeneralPath triangle = new GeneralPath();
+				triangle.moveTo(creepCenter.x - 5, creepCenter.y - 5);
+				triangle.lineTo(creepCenter.x + 5, creepCenter.y - 5);
+				triangle.lineTo(creepCenter.x, creepCenter.y + 5);
+				triangle.closePath();
+				g.fill(triangle);
+				break;
+				
 			default: //generic creep
 				Arc2D.Double creep = new Arc2D.Double();
 				creep.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
