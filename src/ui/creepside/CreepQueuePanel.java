@@ -4,13 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +25,7 @@ import src.ui.controller.GameController;
 
 public class CreepQueuePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+	private static final int initialCreepPanelSize = 400;
 	
 	private GameController gc;
 	private ArrayList<JLabel> displayNext;
@@ -47,11 +48,11 @@ public class CreepQueuePanel extends JPanel {
 		// setup a scrolling panel so that we can add as many creeps as needed
 		iconPanel = new JPanel();
 		iconPanel.setLayout(new BoxLayout(iconPanel, BoxLayout.LINE_AXIS));
-		iconPanel.setPreferredSize(new Dimension(300, 30));
+		iconPanel.setPreferredSize(new Dimension(initialCreepPanelSize, 16));
 		JScrollPane scroller = new JScrollPane(iconPanel, 
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scroller.setPreferredSize(new Dimension(400, 40));
+		scroller.setPreferredSize(new Dimension(405, 50));
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -81,31 +82,42 @@ public class CreepQueuePanel extends JPanel {
 
 	public void enqueue(Creep c, int index){
 		gc.getGame().getYourCreeps().add(c);
-
+		
 		String path = FilePaths.imgPath + "creep-icon" + (index + 1) + ".png";
 		ImageIcon creepIcon = new ImageIcon(path);
 		JLabel creepLabel = new JLabel();
 		creepLabel.setIcon(creepIcon);
-		iconPanel.setPreferredSize(new Dimension(iconPanel.getWidth() + 16, iconPanel.getHeight()));
-		iconPanel.add(creepLabel, BorderLayout.LINE_START);
+		
+		// resize the panel that holds the creep icons
+		final double creepBoxSize = 26;
+		if (getNumberOfCreeps() * creepBoxSize > initialCreepPanelSize)
+			iconPanel.setPreferredSize(new Dimension(iconPanel.getWidth() + (int)creepBoxSize, iconPanel.getHeight()));
+		
+		// create a box to hold this icon and the padding around it
+		Box iconBox = Box.createHorizontalBox();
+		iconBox.add(Box.createHorizontalStrut(5));
+		iconBox.add(creepLabel);
+		iconBox.add(Box.createHorizontalStrut(5));
+		
+		final Box box = iconBox;
+		creepLabel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (getNumberOfCreeps() * creepBoxSize > initialCreepPanelSize) 
+					iconPanel.setPreferredSize(new Dimension(iconPanel.getWidth() - (int)creepBoxSize, iconPanel.getHeight()));
+					
+				dequeue(gc.getGame().getYourCreeps().size()-1);
+				iconPanel.remove(box);
+				
+				iconPanel.revalidate();
+			}
+		});
+		
+		iconPanel.add(iconBox);
 		iconPanel.revalidate();
 	}
 
-	public Creep dequeue(int index){
-		ArrayList<Creep> waitingCreeps = gc.getGame().getYourCreeps();
-		
-		if (index < waitingCreeps.size()) {
-			int nextIndex = 0;
-			for(nextIndex = index; nextIndex < waitingCreeps.size()-1; nextIndex++){
-				displayNext.get(nextIndex).setIcon(displayNext.get(nextIndex+1).getIcon());				
-			}
-			
-			String path = FilePaths.imgPath + "blank.png";
-			displayNext.get(nextIndex).setIcon(new ImageIcon(path));
-			gc.getGame().getPlayer().setGold(gc.getGame().getPlayer().getGold() + waitingCreeps.get(index).getPrice());
-			return waitingCreeps.remove(index);
-		} else
-			return null;
+	public void dequeue(int index){
+		gc.getGame().getYourCreeps().remove(index);
 	}
 
 	public int getNumberOfCreeps(){

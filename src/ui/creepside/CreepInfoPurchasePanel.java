@@ -45,7 +45,6 @@ public class CreepInfoPurchasePanel extends JPanel {
 	
 	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 
-	
 	public CreepInfoPurchasePanel(CreepQueuePanel cq, GameController controller) {
 	
 		super(new GridBagLayout());
@@ -97,7 +96,6 @@ public class CreepInfoPurchasePanel extends JPanel {
 		
 		buyButton = new JButton("Buy");
 		buyButton.setBackground(Color.ORANGE);
-		buyButton.setEnabled(false);
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gc.getGame().getPlayer().purchase(cr);
@@ -162,48 +160,10 @@ public class CreepInfoPurchasePanel extends JPanel {
 		add(buyButton, c);
 		c.gridy = 5;
 		add(cancelButton, c);
-		
-		
-		
-		/*
-		c.gridx = 2;
-		
-		c.gridy = 0;
-
-		add(iconLabel, c);
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.ipady = 0;
-		
-		
-		c.gridx = 0;
-		c.gridy = 1;
-		add(neutralButton, c);
-		c.gridx = 1;
-		add(redButton, c);
-		c.gridx = 2;
-		add(greenButton, c);
-		c.gridx = 3;
-		add(blueButton, c);
-		c.gridx = 4;
-		add(yellowButton, c);
-		
-		updateAllowedButtons();
-		c.insets = new Insets(0, 5, 5, 0);
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 2;
-		c.gridwidth = 5;
-		c.gridheight = 3;
-		add(buyButton, c);
-		c.gridy = 5;
-		add(cancelButton, c);
- */
 	}
 
 	private void updateAllowedButtons() {
-		if ( cr == null || (cr != null && !gc.playerCanAfford(cr)) || creepQueue.getNumberOfCreeps() >= 30
-				|| !gc.playerCanAfford(cr)) {
+		if ( cr == null || (cr != null && !gc.playerCanAfford(cr)) || !gc.playerCanAfford(cr)) {
 			buyButton.setEnabled(false);
 		} 
 		else{
