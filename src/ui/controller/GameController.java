@@ -141,10 +141,10 @@ public class GameController {
 				if(multiController != null){
 					multiController.quitNetworkGame();
 					System.out.println(multiController);
-				//	if(game.getPlayer().getHealth() <= 0)
+					if(game.getPlayer().getHealth() <= 0)
 						gameMain.showScreen(new GameOverPanel(this));
-				//	else
-				//		gameMain.showScreen(new WinPanel(this));
+					else
+						gameMain.showScreen(new WinPanel(this));
 				}
 				runnerThread.stop();
 			}

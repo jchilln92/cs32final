@@ -57,12 +57,7 @@ public class NetworkGame extends Game {
 							
 							break;
 						case HEALTH_UPDATE:
-							double health = ( (Double) m.data);
-							if(health <= 0){
-								controller.getGameMain().showScreen(new WinPanel(controller));
-							}
-							else
-								opponent.setHealth(health);
+							opponent.setHealth((Double) m.data);
 							
 							break;
 						case WAVE:

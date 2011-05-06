@@ -120,7 +120,7 @@ public class MultiplayerController {
 		// controls drawing our map
 		GameController localController = new GameController();
 		
-		ng.setGameController(localController);
+		//ng.setGameController(localController);
 		MultiplayerGamePanel gamePanel = new MultiplayerGamePanel(localController,
 				networkController, ng, this);
 		
