@@ -25,6 +25,7 @@ import src.ui.GameOverPanel;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
 import src.ui.TitleScreen;
+import src.ui.WinPanel;
 import src.ui.side.Sidebar;
 
 /**
@@ -33,6 +34,8 @@ import src.ui.side.Sidebar;
  */
 public class GameController {
 	public static final double towerRefundPercentage = .75;
+	
+	private MultiplayerController multiController;
 	
 	private Game game;
 	private GameMain gameMain;
@@ -117,6 +120,9 @@ public class GameController {
 		gameMain = gm;
 	}
 	
+	public void setMultiplayerController(MultiplayerController mc) {
+		multiController = mc;
+	}
 	/*
 	 * Time control methods
 	 */
@@ -128,12 +134,19 @@ public class GameController {
 	public void tick() {
 		if (!isPaused) {
 			game.tick();
-			
+
 			if (isDoubleTime) {
 				game.tick();
 			}
 			if (game.isOver()) {
-				gameMain.showScreen(new GameOverPanel(this));
+				if(multiController != null){
+					multiController.quitNetworkGame();
+					System.out.println(multiController);
+					if(game.getPlayer().getHealth() <= 0)
+						gameMain.showScreen(new GameOverPanel(this));
+					else
+						gameMain.showScreen(new WinPanel(this));
+				}
 				runnerThread.stop();
 			}
 		}

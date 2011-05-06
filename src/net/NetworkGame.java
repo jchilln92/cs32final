@@ -10,6 +10,8 @@ import src.WaveGenerator;
 import src.core.Creep;
 import src.core.Game;
 import src.core.Tower;
+import src.ui.WinPanel;
+import src.ui.controller.GameController;
 
 /**
  * Acts just like a normal game, but adds network functionality
@@ -21,12 +23,18 @@ public class NetworkGame extends Game {
 	private ArrayList<Tower> opponentTowers; // the towers on the opponent's map
 	private NetworkPlayer opponent; // the opponent
 	
+	private GameController controller;
+	
 	public NetworkGame(Connection opponentConnection) {
 		opponent = new NetworkPlayer();
 		opponentCreeps = new ArrayList<Creep>();
 		opponentTowers = new ArrayList<Tower>();
 		remoteConnection = opponentConnection;
 		initializeGameListeners();
+	}
+	
+	public void setGameController(GameController gc){
+		controller = gc;
 	}
 
 	private void initializeGameListeners() {
@@ -50,6 +58,7 @@ public class NetworkGame extends Game {
 							break;
 						case HEALTH_UPDATE:
 							opponent.setHealth((Double) m.data);
+							
 							break;
 						case WAVE:
 							ArrayList<Creep> wave = (ArrayList<Creep>) m.data;
