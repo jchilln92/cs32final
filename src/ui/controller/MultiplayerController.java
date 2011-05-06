@@ -1,6 +1,7 @@
 package src.ui.controller;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import src.GameMain;
 import src.net.AvailableGame;
@@ -119,6 +120,7 @@ public class MultiplayerController {
 		// controls drawing our map
 		GameController localController = new GameController();
 		
+		ng.setGameController(localController);
 		MultiplayerGamePanel gamePanel = new MultiplayerGamePanel(localController,
 				networkController, ng, this);
 		
@@ -138,6 +140,14 @@ public class MultiplayerController {
 		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
 		gameMain.setSize(800, 600);
+	}
+	
+	public void quitNetworkGame(JPanel screen){
+		gameInProgress = false;
+		lobbyManager.quit();
+		lobby.updateGameListPane();
+		gameMain.showScreen(screen);
+		gameMain.setSize(800, 600);	
 	}
 
 	/**
