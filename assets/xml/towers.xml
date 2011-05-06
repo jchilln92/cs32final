@@ -2,14 +2,14 @@
 	<tower type="GUN">
 		<price>100</price>
 		<radius>3</radius>
-		<firePeriod>1</firePeriod>
+		<firePeriod>10</firePeriod>
 		<description>"The reliable basic tower."</description>
 		<targeting>
 			<strategy>WEAKEST</strategy>
 			<hitsFlying>false</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>.75</instantDamage>
+			<instantDamage>15</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>
@@ -18,7 +18,7 @@
 		</damage>
 		<upgrades>
 			<upgrade type="GUN" level="1" price="100">
-				<dInstantDamage>.4</dInstantDamage>
+				<dInstantDamage>.3</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
@@ -28,7 +28,7 @@
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="1" price="50">
-				<dInstantDamage>.3</dInstantDamage>
+				<dInstantDamage>.25</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
@@ -48,7 +48,7 @@
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="2" price="100">
-				<dInstantDamage>.3</dInstantDamage>
+				<dInstantDamage>.25</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
@@ -58,7 +58,7 @@
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="2" price="100">
-				<dInstantDamage>.7</dInstantDamage>
+				<dInstantDamage>.5</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
@@ -97,8 +97,8 @@
 				<dFirePeriod>0</dFirePeriod>
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
-			<upgrade type="GUN" level="3" price="300">
-				<dInstantDamage>1</dInstantDamage>
+			<upgrade type="GUN" level="3" price="500">
+				<dInstantDamage>0.75</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
@@ -112,14 +112,14 @@
 	<tower type="ANTIAIR">
 		<price>200</price>
 		<radius>3</radius>
-		<firePeriod>1</firePeriod>
+		<firePeriod>10</firePeriod>
 		<description>"Specialized against flying creeps."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
 			<hitsFlying>true</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>0.5</instantDamage>
+			<instantDamage>0.75</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>
