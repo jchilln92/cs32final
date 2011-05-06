@@ -151,9 +151,13 @@ public class LobbyManager {
 		});
 	}
 	
+	public void resetOpponentConnection() {
+		opponentConnection = null;
+	}
+	
 	private void boot(Connection c) {
 		if (c == null) return;
-		if (c.getID() == opponentConnection.getID()) opponentConnection = null;
+		if (c.getID() == opponentConnection.getID()) resetOpponentConnection();
 		
 		GameNegotiationMessage response = new GameNegotiationMessage();
 		response.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN_RESPONSE;
@@ -258,6 +262,8 @@ public class LobbyManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		controller.waitToJoinGame();
 		
 		GameNegotiationMessage joinMessage = new GameNegotiationMessage();
 		joinMessage.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN;

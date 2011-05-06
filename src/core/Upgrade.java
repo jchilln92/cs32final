@@ -9,7 +9,7 @@ import org.simpleframework.xml.Element;
  */
 public class Upgrade implements IPurchasable {
 	/* All of these fields represent percentage increases that will be added on 
-	 * to a current tower's values ex: an instantDamageChange value of 0.1 means 
+	 * to a current tower's values e.g.: an instantDamageChange value of 0.1 means 
 	 * a 10% increase in the tower's instantDamage
 	 */
 	@Element(name="dInstantDamage")

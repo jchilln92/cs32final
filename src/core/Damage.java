@@ -65,6 +65,11 @@ public class Damage {
 		this.instantDamage = instantDamage;
 	}
 	
+	/**
+	 * Creates a copy of a give damage.
+	 * @param d The damage to copy
+	 * @return The new damage
+	 */
 	public static Damage copyDamage(Damage d){
 		Damage damage = new Damage();
 		damage.setInstantDamage(d.getInstantDamage());

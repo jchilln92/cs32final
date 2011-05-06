@@ -6,9 +6,10 @@ import src.net.LobbyManager;
 import src.net.NetworkGame;
 import src.net.NetworkGameController;
 import src.ui.Lobby;
+import src.ui.MultiplayerClientWaitScreen;
 import src.ui.MultiplayerGamePanel;
 import src.ui.MultiplayerGameSetup;
-import src.ui.MultiplayerWaitScreen;
+import src.ui.MultiplayerHostWaitScreen;
 import src.ui.TitleScreen;
 
 /**
@@ -19,7 +20,7 @@ public class MultiplayerController {
 	private Lobby lobby;
 	private LobbyManager lobbyManager;
 	private MultiplayerGameSetup gameSetup;
-	private MultiplayerWaitScreen waitScreen;
+	private MultiplayerHostWaitScreen waitScreen;
 	
 	private boolean gameInProgress;
 	
@@ -29,7 +30,7 @@ public class MultiplayerController {
 		lobbyManager = new LobbyManager(this);
 		lobby = new Lobby(this);
 		gameSetup = new MultiplayerGameSetup(this);
-		waitScreen = new MultiplayerWaitScreen("", "", this);
+		waitScreen = new MultiplayerHostWaitScreen("", "", this);
 		gameInProgress = false;
 	}
 	
@@ -63,7 +64,7 @@ public class MultiplayerController {
 		newHostedGame.setMapName(gameSetup.getMapName());
 		lobbyManager.hostNewGame(newHostedGame);
 	
-		waitScreen = new MultiplayerWaitScreen(gameSetup.getGameName(), gameSetup.getMapName(), this);
+		waitScreen = new MultiplayerHostWaitScreen(gameSetup.getGameName(), gameSetup.getMapName(), this);
 		gameMain.showScreen(waitScreen);
 	}
 	
@@ -72,6 +73,11 @@ public class MultiplayerController {
 	 */
 	public void joinGame(int selectedRow) {
 		lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
+	}
+	
+
+	public void waitToJoinGame() {
+		gameMain.showScreen(new MultiplayerClientWaitScreen(this));
 	}
 	
 	public void playerAttemptedToJoin(String name) {	
@@ -127,6 +133,7 @@ public class MultiplayerController {
 	 */
 	public void opponentDisconnected() {
 		if (lobbyManager.getHostedGame() != null) {
+			lobbyManager.resetOpponentConnection();
 			waitScreen.setPotentialOpponent(null);
 		}
 		

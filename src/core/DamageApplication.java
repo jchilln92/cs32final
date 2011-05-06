@@ -8,7 +8,7 @@ public class DamageApplication {
 	private int timeApplied;
 	private int lastApplication;
 
-	// needed for kryo
+	// see CreepPath for an explanation
 	@SuppressWarnings("unused")
 	private DamageApplication() {};
 
