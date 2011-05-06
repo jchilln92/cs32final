@@ -139,12 +139,8 @@ public class GameController {
 			}
 			if (game.isOver()) {
 				if(multiController != null){
-					multiController.quitNetworkGame();
-					System.out.println(multiController);
-					if(game.getPlayer().getHealth() <= 0)
-						gameMain.showScreen(new GameOverPanel(this));
-					else
-						gameMain.showScreen(new WinPanel(this));
+					multiController.quitNetworkGame(new WinPanel(this));
+					gameMain.showScreen(new GameOverPanel(this));
 				}
 				runnerThread.stop();
 			}
