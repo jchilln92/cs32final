@@ -166,33 +166,19 @@ public class Lobby extends JPanel {
 	}
 	
 	private void updateAllowedButtons(String username) {
-<<<<<<< Updated upstream:src/ui/Lobby.java
 	    username = username.replaceAll("[^a-zA-Z0-9]", "");
 	    if(gameTable != null){
 	    	if (gameTable.getSelectedRow() < 0 || username.trim().length() == 0) {
 				joinButton.setEnabled(false);
 			} else {
 				joinButton.setEnabled(true);
-	
-	
-=======
-		if (gameTable != null) {
-			if (gameTable.getSelectedRow() < 0 || username.trim().length() == 0) {
-				joinButton.setEnabled(false);
-			} else {
-				joinButton.setEnabled(true);
->>>>>>> Stashed changes:src/ui/Lobby.java
 			}
-			
+	
 			if (username.trim().length() == 0) {
 				createGameButton.setEnabled(false);
 			} else {
 				createGameButton.setEnabled(true);
 			}
-<<<<<<< Updated upstream:src/ui/Lobby.java
-=======
-		
->>>>>>> Stashed changes:src/ui/Lobby.java
 		}
 	}
 	

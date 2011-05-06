@@ -2,6 +2,7 @@ package src.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -34,7 +35,7 @@ public class TitleScreen extends JPanel {
 	
 	private GameMain gameMain;
 	
-	private Image bg;
+	private ImageIcon bg;
 	private ImageIcon singlePlayerImage;
 	private ImageIcon singlePlayerPressedImage;
 	private ImageIcon multiPlayerImage;
@@ -45,10 +46,12 @@ public class TitleScreen extends JPanel {
 	private ImageIcon exitPressedImage;
 	
 	public TitleScreen(GameMain gameMain) {
-		super(new GridBagLayout());
+		super(null);
+		//super(new GridBagLayout());
 		setSize(800, 600);
 		
-		bg = Toolkit.getDefaultToolkit().createImage(FilePaths.bgPath + "TOWER_WARS_SCREEN.png");
+		bg = new ImageIcon(FilePaths.bgPath + "TOWER_WARS_SCREEN.png");
+		//bg = Toolkit.getDefaultToolkit().createImage(FilePaths.bgPath + "TOWER_WARS_SCREEN.png");
 		singlePlayerImage = new ImageIcon(FilePaths.buttonPath + "SingleButton.png");
 		singlePlayerPressedImage = new ImageIcon(FilePaths.buttonPath + "SingleButtonDown.png");
 		
@@ -113,6 +116,13 @@ public class TitleScreen extends JPanel {
 			}
 		});
 		
+		//add(singlePlayerButton);
+		//singlePlayerButton.setLocation(200, 200);
+		
+		singlePlayerButton.setBounds(300, 300, singlePlayerButton.getWidth(), singlePlayerButton.getHeight());
+		add(singlePlayerButton);
+		
+		/*
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;		
@@ -138,10 +148,10 @@ public class TitleScreen extends JPanel {
 		
 		c.gridy = 4;
 		add(quitButton, c);	
-		
+		*/
 	}
 	
 	public void paintComponent(Graphics g) {
-		g.drawImage(bg, 0 ,0, null);
+		g.drawImage(bg.getImage(), 0 ,0, null);
 	}
 }
