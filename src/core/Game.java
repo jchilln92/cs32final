@@ -156,7 +156,7 @@ public class Game {
 		while (it.hasNext()) {
 			Bullet b = it.next();
 			
-			if (b.distanceToTarget() < 1) {
+			if (b.distanceToTarget() < 1 || b.targetIsNull()) {
 				synchronized (bullets) {
 					if (!b.targetIsNull())
 						b.dealDamage();

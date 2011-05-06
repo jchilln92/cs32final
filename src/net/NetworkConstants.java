@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import src.core.Bullet;
 import src.core.Creep;
 import src.core.CreepPath;
 import src.core.Damage;
@@ -42,5 +43,6 @@ public class NetworkConstants {
 		k.register(Point2D.Double.class);
 		k.register(Creep.Type.class);
 		k.register(DamageApplication.class);
+		k.register(Bullet.class);
 	}
 }

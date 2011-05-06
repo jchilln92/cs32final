@@ -2,6 +2,7 @@ package src.net;
 
 import java.util.Collection;
 
+import src.core.Bullet;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
 import src.ui.controller.GameController;
@@ -24,5 +25,9 @@ public class NetworkGameController extends GameController {
 	
 	public Collection<? extends IDrawableTower> getDrawableTowers() {
 		return game.getOpponentTowers();
+	}
+	
+	public Collection<Bullet> getBullets() {
+		return game.getOpponentBullets();
 	}
 }
