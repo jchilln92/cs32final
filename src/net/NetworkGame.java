@@ -7,6 +7,7 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 import src.WaveGenerator;
+import src.core.Bullet;
 import src.core.Creep;
 import src.core.Game;
 import src.core.Tower;
@@ -19,6 +20,7 @@ import src.ui.controller.GameController;
  */
 public class NetworkGame extends Game {
 	private Connection remoteConnection; // the connection with our opponent
+	private ArrayList<Bullet> opponentBullets; // the bullets flying around on the other side
 	private ArrayList<Creep> opponentCreeps; // the creeps on the opponent's map
 	private ArrayList<Tower> opponentTowers; // the towers on the opponent's map
 	private NetworkPlayer opponent; // the opponent
@@ -27,6 +29,7 @@ public class NetworkGame extends Game {
 	
 	public NetworkGame(Connection opponentConnection) {
 		opponent = new NetworkPlayer();
+		opponentBullets = new ArrayList<Bullet>();
 		opponentCreeps = new ArrayList<Creep>();
 		opponentTowers = new ArrayList<Tower>();
 		remoteConnection = opponentConnection;
@@ -53,6 +56,12 @@ public class NetworkGame extends Game {
 						case TOWERS_UPDATE:
 							synchronized (opponentTowers) {
 								opponentTowers = (ArrayList<Tower>) m.data;
+							}
+							
+							break;
+						case BULLETS_UPDATE:
+							synchronized (opponentBullets) {
+								opponentBullets = (ArrayList<Bullet>) m.data;
 							}
 							
 							break;
@@ -109,6 +118,7 @@ public class NetworkGame extends Game {
 	private void provideInformation() {
 		GameNegotiationMessage creepMessage = new GameNegotiationMessage();
 		GameNegotiationMessage towerMessage = new GameNegotiationMessage();
+		GameNegotiationMessage bulletMessage = new GameNegotiationMessage();
 		GameNegotiationMessage healthMessage = new GameNegotiationMessage();
 		
 		creepMessage.type = GameNegotiationMessage.Type.CREEPS_UPDATE;
@@ -116,6 +126,9 @@ public class NetworkGame extends Game {
 		
 		towerMessage.type = GameNegotiationMessage.Type.TOWERS_UPDATE;
 		towerMessage.data = getTowers();
+		
+		bulletMessage.type = GameNegotiationMessage.Type.BULLETS_UPDATE;
+		bulletMessage.data = getBullets();
 		
 		healthMessage.type = GameNegotiationMessage.Type.HEALTH_UPDATE;
 		healthMessage.data = (Double) getPlayer().getHealth();
@@ -128,6 +141,10 @@ public class NetworkGame extends Game {
 			remoteConnection.sendTCP(towerMessage);
 		}
 		
+		synchronized (getBullets()) {
+			remoteConnection.sendTCP(bulletMessage);
+		}
+		
 		remoteConnection.sendTCP(healthMessage);
 	}
 
@@ -137,6 +154,10 @@ public class NetworkGame extends Game {
 
 	public ArrayList<Tower> getOpponentTowers() {
 		return opponentTowers;
+	}
+	
+	public ArrayList<Bullet> getOpponentBullets() {
+		return opponentBullets;
 	}
 	
 	public NetworkPlayer getOpponent() {
