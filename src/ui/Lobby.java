@@ -170,7 +170,7 @@ public class Lobby extends JPanel {
 			} else {
 				joinButton.setEnabled(true);	
 			}
-			
+	
 			if (username.trim().length() == 0) {
 				createGameButton.setEnabled(false);
 			} else {

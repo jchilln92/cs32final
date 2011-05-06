@@ -150,12 +150,13 @@ public class TowerStatsPanel extends JPanel {
 			rangeChangeLabel.setText(" ");
 			rateChangeLabel.setText(" ");
 			abilitiesChangeLabel.setText(" ");
+			controller.getSideBar().getPlayerStatsPanel().setShowingGoldChange(false);
 			controller.getSideBar().getPlayerStatsPanel().setGoldChange("");
 			extraDamageChangeLabel.setText(" ");
 
 		} else {
 			String modifier = "";
-			
+			controller.getSideBar().getPlayerStatsPanel().setShowingGoldChange(true);
 			controller.getSideBar().getPlayerStatsPanel().setGoldChange(" -" + u.getPrice());
 			
 			// damage change
@@ -201,16 +202,6 @@ public class TowerStatsPanel extends JPanel {
 			if (u.getHitsFlyingChange() && !tower.getTargeting().isHitsFlying())
 				newAbilities += "Anti-air, ";
 			
-			//TODO: decide whether or not we want to add this in. As the game is built right now, it is
-			//		impossible for a tower to without damage over time or slowing to gain it as everything
-			//		is percentage based
-			
-			/*
-			if (u.getTimeDamageChange() != 0 && tower.getDamage().getTimeDamage() == 0)
-				newAbilities += "DoT, ";
-			if (u.speedEffectChange() != 0 && tower.getDamage().getSpeedChange() == 0)
-				newAbilities += "slowing, ";
-			*/
 			newAbilities = newAbilities.substring(0, newAbilities.length() -2);
 			abilitiesChangeLabel.setForeground(Color.GREEN);
 			abilitiesChangeLabel.setText(newAbilities);
