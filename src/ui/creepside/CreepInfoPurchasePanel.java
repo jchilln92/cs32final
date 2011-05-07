@@ -129,7 +129,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 		creepIcon = new ImageIcon(path);
 		
 		Image i = creepIcon.getImage();
-		i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
+		i = i.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);  
 		creepIcon = new ImageIcon(i);  
 		iconLabel = new JLabel(creepIcon);
 		
@@ -210,7 +210,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 			creepIcon = new ImageIcon(path);
 			
 			Image i = creepIcon.getImage();
-			i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
+			i = i.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);  
 			creepIcon = new ImageIcon(i);  
 			iconLabel.setIcon(creepIcon);
 			buyButton.setEnabled(false);
@@ -234,7 +234,7 @@ public class CreepInfoPurchasePanel extends JPanel {
 		creepIcon = new ImageIcon(path);
 		
 		Image i = creepIcon.getImage();
-		i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
+		i = i.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);  
 		creepIcon = new ImageIcon(i);  
 		iconLabel.setIcon(creepIcon);
 

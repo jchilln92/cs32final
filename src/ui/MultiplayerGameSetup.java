@@ -86,7 +86,7 @@ public class MultiplayerGameSetup extends GameSetup {
 			}
 		});
 		
-		playButton.setText("Create Game");
+		playButton.setText("");
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.completeGameCreation();

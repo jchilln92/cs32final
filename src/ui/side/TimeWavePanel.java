@@ -6,10 +6,13 @@ import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.FilePaths;
 import src.Runner;
 import src.ui.controller.GameController;
 
@@ -25,7 +28,6 @@ public class TimeWavePanel extends JPanel {
 	private static final String waveText = "Wave: ";
 	private static final String nextWaveText = "Next wave in: ";
 	private static final String elapsedText = "Time elapsed: ";
-	private static final String nextWaveButtonText = "Next Wave!";
 	private static final String fastForwardButtonText = ">>";
 	
 	private JLabel waveNumberLabel;
@@ -39,11 +41,20 @@ public class TimeWavePanel extends JPanel {
 
 	private JButton nextWaveButton;
 	private JButton fastForwardButton;
+	
+	private ImageIcon nextWaveIcon;
+	private ImageIcon nextWavePressedIcon;
+	private ImageIcon nextWaveHoverIcon;
 
 	public TimeWavePanel(GameController controller, boolean isMultiplayer) {
 		super(new GridBagLayout());
 		
 		this.gc = controller;
+		
+		nextWaveIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveButton.png");
+		nextWavePressedIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveButtonDown.png");
+		nextWaveHoverIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveButtonHover.png");
+		
 		
 		waveNumberLabel = new JLabel(waveText);
 		waveNumberValueLabel = new JLabel(Integer.toString(gc.getGame().getWavesSent()));
@@ -54,7 +65,12 @@ public class TimeWavePanel extends JPanel {
 		elapsedLabel = new JLabel(elapsedText);
 		elapsedValueLabel = new JLabel();
 		
-		nextWaveButton = new JButton(nextWaveButtonText);
+		nextWaveButton = new JButton(nextWaveIcon);
+		nextWaveButton.setBorder(BorderFactory.createEmptyBorder());
+		nextWaveButton.setContentAreaFilled(false);
+		nextWaveButton.setPressedIcon(nextWavePressedIcon);
+		nextWaveButton.setRolloverIcon(nextWaveHoverIcon);
+		
 		nextWaveButton.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
 				

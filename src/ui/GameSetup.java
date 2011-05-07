@@ -7,6 +7,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -17,6 +19,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import src.FilePaths;
 import src.GameMain;
 import src.core.Game;
 import src.core.Map;
@@ -44,6 +47,10 @@ public class GameSetup extends JPanel {
 
 	private MapComponent mc;
 	protected GameMain gameMain;
+	
+	private ImageIcon beginGameIcon;
+	private ImageIcon beginGamePressedIcon;
+	private ImageIcon beginGameHoverIcon;
 
 	public GameSetup() {
 		super(new GridBagLayout());
@@ -53,6 +60,10 @@ public class GameSetup extends JPanel {
 		mc.setGridOn(true);
 		mc.setSize(400, 400);
 	
+		beginGameIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButton.png");
+		beginGamePressedIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDown.png");
+		beginGameHoverIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonHover.png");
+		
 		createGameLabel = new JLabel(createGameText);
 		mapLabel = new JLabel("Map:");
 		
@@ -60,7 +71,11 @@ public class GameSetup extends JPanel {
 		createNameField = new JTextField("");
 		
 		cancelButton = new JButton("Cancel");
-		playButton = new JButton("Begin Game");
+		playButton = new JButton(beginGameIcon);
+		playButton.setBorder(BorderFactory.createEmptyBorder());
+		playButton.setContentAreaFilled(false);
+		playButton.setPressedIcon(beginGamePressedIcon);
+		playButton.setRolloverIcon(beginGameHoverIcon);
 		
 		Object mapNames[] = Map.getMapNames().toArray();
 		mapList = new JList(mapNames);
