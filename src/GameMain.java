@@ -27,7 +27,7 @@ public class GameMain extends JFrame {
 		// set up window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600); 
-		//setResizable(false);
+		setResizable(false);
 		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new CardLayout());
