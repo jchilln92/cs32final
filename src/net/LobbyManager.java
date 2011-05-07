@@ -49,6 +49,8 @@ public class LobbyManager {
 	}
 	
 	public void quit() {
+		opponentConnection = null;
+		
 		GameNegotiationMessage quitMessage = new GameNegotiationMessage();
 		quitMessage.type = GameNegotiationMessage.Type.QUIT_GAME;
 		

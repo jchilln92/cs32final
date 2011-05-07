@@ -8,12 +8,14 @@ import src.net.AvailableGame;
 import src.net.LobbyManager;
 import src.net.NetworkGame;
 import src.net.NetworkGameController;
+import src.ui.GameOverPanel;
 import src.ui.Lobby;
 import src.ui.MultiplayerClientWaitScreen;
 import src.ui.MultiplayerGamePanel;
 import src.ui.MultiplayerGameSetup;
 import src.ui.MultiplayerHostWaitScreen;
 import src.ui.TitleScreen;
+import src.ui.WinPanel;
 
 /**
  * Handles events occurring with the multiplayer lobby; enables creation, joining, dropping, and starting of games.
@@ -151,6 +153,24 @@ public class MultiplayerController {
 		lobby.updateGameListPane();
 		gameMain.showScreen(screen);
 		gameMain.setSize(800, 600);	
+	}
+	
+	/**
+	 * Handles the (error-free) end of a network game, and displays the appropriate screen depending
+	 * on the outcome 
+	 * @param won Whether or not we won
+	 */
+	public void networkGameFinished(boolean won) {
+		gameInProgress = false;
+		lobbyManager.resetOpponentConnection();
+		
+		gameMain.setSize(800, 600);
+		
+		if (won) {
+			gameMain.showScreen(new WinPanel(this));
+		} else {
+			gameMain.showScreen(new GameOverPanel(gameMain));
+		}
 	}
 
 	/**
