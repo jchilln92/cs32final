@@ -154,7 +154,6 @@ public class MultiplayerController {
 	public void networkGameFinished(boolean won) {
 		gameInProgress = false;
 		lobbyManager.resetOpponentConnection();
-		lobbyManager.stopHostingGame();
 		
 		gameMain.setSize(800, 600);
 		
