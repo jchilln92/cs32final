@@ -46,7 +46,12 @@ public class TimeWavePanel extends JPanel {
 	private ImageIcon nextWavePressedIcon;
 	private ImageIcon nextWaveHoverIcon;
 	private ImageIcon nextWaveDisabledIcon;
-
+	
+	private ImageIcon FFIcon;
+	private ImageIcon FFPressedIcon;
+	private ImageIcon FFHoverIcon;
+	private ImageIcon FFDisabledIcon;
+	
 	public TimeWavePanel(GameController controller, boolean isMultiplayer) {
 		super(new GridBagLayout());
 		
@@ -57,6 +62,11 @@ public class TimeWavePanel extends JPanel {
 		nextWaveHoverIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveButtonHover.png");
 		nextWaveDisabledIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveDisabled.png");
 		
+		FFIcon = new ImageIcon(FilePaths.buttonPath + "FFButton.png");
+		FFPressedIcon = new ImageIcon(FilePaths.buttonPath + "FFButtonDown.png");
+		FFHoverIcon = new ImageIcon(FilePaths.buttonPath + "FFButtonHover.png");
+		FFDisabledIcon = new ImageIcon(FilePaths.buttonPath + "FFButtonDisabled.png");
+
 		waveNumberLabel = new JLabel(waveText);
 		waveNumberValueLabel = new JLabel(Integer.toString(gc.getGame().getWavesSent()));
 		
@@ -71,8 +81,7 @@ public class TimeWavePanel extends JPanel {
 		nextWaveButton.setContentAreaFilled(false);
 		nextWaveButton.setPressedIcon(nextWavePressedIcon);
 		nextWaveButton.setRolloverIcon(nextWaveHoverIcon);
-		nextWaveButton.setDisabledIcon(nextWaveDisabledIcon);
-		
+		nextWaveButton.setDisabledIcon(nextWaveDisabledIcon);	
 		nextWaveButton.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
 				
@@ -86,7 +95,12 @@ public class TimeWavePanel extends JPanel {
 			}
 		});
 		
-		fastForwardButton = new JButton(fastForwardButtonText);
+		fastForwardButton = new JButton(FFIcon);
+		fastForwardButton.setBorder(BorderFactory.createEmptyBorder());
+		fastForwardButton.setContentAreaFilled(false);
+		fastForwardButton.setPressedIcon(FFPressedIcon);
+		fastForwardButton.setRolloverIcon(FFHoverIcon);
+		fastForwardButton.setDisabledIcon(FFDisabledIcon);	
 		fastForwardButton.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
 				gc.toggleDoubleTime(true);

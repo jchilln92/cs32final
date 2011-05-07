@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -28,8 +29,17 @@ public class PauseQuitPanel extends JPanel {
 	private JButton heartButton;
 	private JButton pauseButton;
 	private JButton quitButton;
-	
 	private JOptionPane quitPopup;
+	
+	private ImageIcon pauseIcon;
+	private ImageIcon pauseHoverIcon;
+	private ImageIcon pausePressedIcon;
+	private ImageIcon resumeIcon;
+	private ImageIcon resumeHoverIcon;
+	private ImageIcon resumePressedIcon;
+	private ImageIcon quitIcon;
+	private ImageIcon quitHoverIcon;
+	private ImageIcon quitPressedIcon;
 	
 	public PauseQuitPanel(GameController controller) {
 		this(controller, false);
@@ -37,9 +47,21 @@ public class PauseQuitPanel extends JPanel {
 	
 	public PauseQuitPanel(GameController controller, boolean isMultiplayer) {
 		super(new GridBagLayout());
-		
 		this.gc = controller;
 
+		pauseIcon = new ImageIcon(FilePaths.buttonPath + "PauseButton.png");
+		pauseHoverIcon = new ImageIcon(FilePaths.buttonPath + "PauseButtonHover.png");
+		pausePressedIcon = new ImageIcon(FilePaths.buttonPath + "PauseButtonDown.png");
+		
+		resumeIcon = new ImageIcon(FilePaths.buttonPath + "ResumeButton.png");
+		resumeHoverIcon = new ImageIcon(FilePaths.buttonPath + "ResumeButtonHover.png");
+		resumePressedIcon = new ImageIcon(FilePaths.buttonPath + "ResumeButtonDown.png");
+		
+		quitIcon = new ImageIcon(FilePaths.buttonPath + "QuitButton.png");
+		quitHoverIcon = new ImageIcon(FilePaths.buttonPath + "QuitButtonHover.png");
+		quitPressedIcon = new ImageIcon(FilePaths.buttonPath + "QuitButtonDown.png");
+
+		
 		String path = FilePaths.imgPath + "tower-icon"+1+".png";
 		
 		ImageIcon heartIcon = new ImageIcon(path);
@@ -50,23 +72,38 @@ public class PauseQuitPanel extends JPanel {
 			}
 		});		
 		
-		pauseButton = new JButton("Pause");
+		pauseButton = new JButton(pauseIcon);
+		pauseButton.setBorder(BorderFactory.createEmptyBorder());
+		pauseButton.setContentAreaFilled(false);
+		pauseButton.setPressedIcon(pausePressedIcon);
+		pauseButton.setRolloverIcon(pauseHoverIcon);
+		
 		pauseButton.setActionCommand("pause");
 		pauseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getActionCommand().equals("pause")) {
 					gc.togglePause(true);
 					pauseButton.setActionCommand("resume");
-					pauseButton.setText("Resume");
+					pauseButton.setIcon(resumeIcon);
+					pauseButton.setPressedIcon(resumePressedIcon);
+					pauseButton.setRolloverIcon(resumeHoverIcon);
+					//pauseButton.setText("Resume");
 				} else if (e.getActionCommand().equals("resume")) {
 					gc.togglePause(false);
 					pauseButton.setActionCommand("pause");
-					pauseButton.setText("Pause");
+					pauseButton.setIcon(resumeIcon);
+					pauseButton.setPressedIcon(pausePressedIcon);
+					pauseButton.setRolloverIcon(pauseHoverIcon);
+					//pauseButton.setText("Pause");
 				}
 			}
 		});
 		
-		quitButton = new JButton("Quit");
+		quitButton = new JButton(quitIcon);
+		quitButton.setBorder(BorderFactory.createEmptyBorder());
+		quitButton.setContentAreaFilled(false);
+		quitButton.setPressedIcon(quitPressedIcon);
+		quitButton.setRolloverIcon(quitHoverIcon);
 		
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

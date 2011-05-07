@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 
+import src.FilePaths;
 import src.net.AvailableGame;
 import src.net.LobbyManager;
 import src.ui.controller.MultiplayerController;
@@ -39,10 +42,46 @@ public class Lobby extends JPanel {
 	private JButton joinButton;
 	
 	private MultiplayerController controller;
+	
+	private ImageIcon mainMenuIcon;
+	private ImageIcon mainMenuPressedIcon;
+	private ImageIcon mainMenuHoverIcon;
 
+	private ImageIcon refreshIcon;
+	private ImageIcon refreshPressedIcon;
+	private ImageIcon refreshHoverIcon;
+	
+	private ImageIcon createIcon;
+	private ImageIcon createPressedIcon;
+	private ImageIcon createHoverIcon;
+	private ImageIcon createDisabledIcon;
+	
+	private ImageIcon joinIcon;
+	private ImageIcon joinPressedIcon;
+	private ImageIcon joinHoverIcon;
+	private ImageIcon joinDisabledIcon;
+	
 	public Lobby(MultiplayerController multiController) {
 		super(new GridBagLayout());
 		setSize(800, 600);
+		
+		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButton.png");
+		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonDown.png");
+		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonHover.png");
+
+		refreshIcon = new ImageIcon(FilePaths.buttonPath + "RefreshButton.png");
+		refreshPressedIcon = new ImageIcon(FilePaths.buttonPath + "RefreshButtonDown.png");
+		refreshHoverIcon = new ImageIcon(FilePaths.buttonPath + "RefreshButtonHover.png");
+		
+		createIcon = new ImageIcon(FilePaths.buttonPath + "CreateGameButton.png");
+		createPressedIcon = new ImageIcon(FilePaths.buttonPath + "CreateGameButtonDown.png");
+		createHoverIcon = new ImageIcon(FilePaths.buttonPath + "CreateGameButtonHover.png");
+		createDisabledIcon = new ImageIcon(FilePaths.buttonPath + "CreateGameButtonDisabled.png");
+		
+		joinIcon = new ImageIcon(FilePaths.buttonPath + "JoinGameButton.png");
+		joinPressedIcon = new ImageIcon(FilePaths.buttonPath + "JoinGameButtonDown.png");
+		joinHoverIcon = new ImageIcon(FilePaths.buttonPath + "JoinGameButtonHover.png");
+		joinDisabledIcon = new ImageIcon(FilePaths.buttonPath + "JoinGameButtonDisabled.png");
 		
 		this.controller = multiController;
 		
@@ -77,21 +116,36 @@ public class Lobby extends JPanel {
 			}
 		});
 		
-		refreshButton = new JButton("Refresh");
+		refreshButton = new JButton(refreshIcon);
+		refreshButton.setBorder(BorderFactory.createEmptyBorder());
+		refreshButton.setContentAreaFilled(false);
+		refreshButton.setPressedIcon(refreshPressedIcon);
+		refreshButton.setRolloverIcon(refreshHoverIcon);
+		
 		refreshButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateGameListPane();
 			}
 		});
 		
-		exitButton = new JButton("Go back"); 
+		exitButton = new JButton(mainMenuIcon); 
+		exitButton.setBorder(BorderFactory.createEmptyBorder());
+		exitButton.setContentAreaFilled(false);
+		exitButton.setPressedIcon(mainMenuPressedIcon);
+		exitButton.setRolloverIcon(mainMenuHoverIcon);
+		
 		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.exitLobby();
 			}
 		});
 		
-		createGameButton = new  JButton("Create Game");
+		createGameButton = new  JButton(createIcon);
+		createGameButton.setBorder(BorderFactory.createEmptyBorder());
+		createGameButton.setContentAreaFilled(false);
+		createGameButton.setPressedIcon(createPressedIcon);
+		createGameButton.setRolloverIcon(createHoverIcon);
+		createGameButton.setDisabledIcon(createDisabledIcon);
 		createGameButton.setEnabled(false);
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -99,7 +153,12 @@ public class Lobby extends JPanel {
 			}
 		});
 		
-		joinButton = new JButton("Join Game");
+		joinButton = new JButton(joinIcon);
+		joinButton.setBorder(BorderFactory.createEmptyBorder());
+		joinButton.setContentAreaFilled(false);
+		joinButton.setPressedIcon(joinPressedIcon);
+		joinButton.setRolloverIcon(joinHoverIcon);
+		joinButton.setDisabledIcon(joinDisabledIcon);
 		joinButton.setEnabled(false);
 		joinButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

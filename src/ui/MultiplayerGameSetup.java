@@ -7,8 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import src.FilePaths;
 import src.ui.controller.MultiplayerController;
 
 public class MultiplayerGameSetup extends GameSetup {
@@ -16,8 +20,24 @@ public class MultiplayerGameSetup extends GameSetup {
 	
 	private MultiplayerController controller;
 	private JTextField nameField;
+	
+	private ImageIcon cancelIcon;
+	private ImageIcon cancelPressedIcon;
+	private ImageIcon cancelHoverIcon;
+
+	
 	public MultiplayerGameSetup(MultiplayerController multiController) {
 		this.controller = multiController;
+		
+		cancelIcon = new ImageIcon(FilePaths.buttonPath + "CancelButton.png");
+		cancelPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelButtonDown.png");
+		cancelHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelButtonHover.png");
+		
+		cancelButton = new JButton(cancelIcon);
+		cancelButton.setBorder(BorderFactory.createEmptyBorder());
+		cancelButton.setContentAreaFilled(false);
+		cancelButton.setPressedIcon(cancelPressedIcon);
+		cancelButton.setRolloverIcon(cancelHoverIcon);
 		
 		setupLayout();
 		setupButtonActions();

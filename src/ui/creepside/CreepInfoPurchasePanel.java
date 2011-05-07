@@ -15,6 +15,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.Action;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -45,6 +46,11 @@ public class CreepInfoPurchasePanel extends JPanel {
 	private JButton buyButton;
 	private JButton cancelButton;
 	
+	private ImageIcon buyCreepIcon;
+	private ImageIcon buyCreepHoverIcon;
+	private ImageIcon buyCreepPressedIcon;
+
+	
 	private int creepIndex;
 	
 	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
@@ -52,6 +58,10 @@ public class CreepInfoPurchasePanel extends JPanel {
 	public CreepInfoPurchasePanel(CreepQueuePanel cq, GameController controller) {
 		super(new GridBagLayout());
 		gc = controller;
+		
+		buyCreepIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButton.png");
+		buyCreepHoverIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonHover.png");
+		buyCreepPressedIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepsButtonDown.png");
 		
 		creepQueue = cq;
 		creepIndex = -1;		
@@ -107,7 +117,15 @@ public class CreepInfoPurchasePanel extends JPanel {
 			}
 		});			
 		
-		buyButton = new JButton("Buy");
+		buyButton = new JButton("Buy creep");
+		/*
+		buyButton = new JButton(buyCreepIcon);
+		buyButton.setBorder(BorderFactory.createEmptyBorder());
+		buyButton.setContentAreaFilled(false);
+		buyButton.setPressedIcon(buyCreepPressedIcon);
+		buyButton.setRolloverIcon(buyCreepHoverIcon);
+		*/
+		
 		buyButton.setBackground(Color.ORANGE);
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

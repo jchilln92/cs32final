@@ -51,6 +51,9 @@ public class GameSetup extends JPanel {
 	private ImageIcon beginGameIcon;
 	private ImageIcon beginGamePressedIcon;
 	private ImageIcon beginGameHoverIcon;
+	private ImageIcon mainMenuIcon;
+	private ImageIcon mainMenuPressedIcon;
+	private ImageIcon mainMenuHoverIcon;
 
 	public GameSetup() {
 		super(new GridBagLayout());
@@ -64,13 +67,24 @@ public class GameSetup extends JPanel {
 		beginGamePressedIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDown.png");
 		beginGameHoverIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonHover.png");
 		
+		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButton.png");
+		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonDown.png");
+		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonHover.png");
+
+		
 		createGameLabel = new JLabel(createGameText);
 		mapLabel = new JLabel("Map:");
 		
 		createNameLabel = new JLabel(createNameText);
 		createNameField = new JTextField("");
 		
-		cancelButton = new JButton("Cancel");
+		cancelButton = new JButton(mainMenuIcon); //go back to main menu if cancel game creation
+		cancelButton.setBorder(BorderFactory.createEmptyBorder());
+		cancelButton.setContentAreaFilled(false);
+		cancelButton.setPressedIcon(mainMenuPressedIcon);
+		cancelButton.setRolloverIcon(mainMenuHoverIcon);
+
+		
 		playButton = new JButton(beginGameIcon);
 		playButton.setBorder(BorderFactory.createEmptyBorder());
 		playButton.setContentAreaFilled(false);

@@ -11,10 +11,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.FilePaths;
 import src.core.TargetingInfo;
 import src.core.Tower;
 import src.core.Upgrade;
@@ -41,9 +44,59 @@ public class TowerUpgradePanel extends JPanel {
 	private JButton strongestButton, weakestButton, closestButton, furthestButton;
 	private JButton[][] upgradeButtons;
 
+	private ImageIcon cancelUpgradeIcon;
+	private ImageIcon cancelUpgradePressedIcon;
+	private ImageIcon cancelUpgradeHoverIcon;
+	private ImageIcon cancelUpgradeDisabledIcon;
+	
+	private ImageIcon farIcon;
+	private ImageIcon farPressedIcon;
+	private ImageIcon farHoverIcon;
+	private ImageIcon farDisabledIcon;
+	private ImageIcon closeIcon;
+	private ImageIcon closePressedIcon;
+	private ImageIcon closeHoverIcon;
+	private ImageIcon closeDisabledIcon;
+	private ImageIcon strongIcon;
+	private ImageIcon strongPressedIcon;
+	private ImageIcon strongHoverIcon;
+	private ImageIcon strongDisabledIcon;
+	private ImageIcon weakIcon;
+	private ImageIcon weakPressedIcon;
+	private ImageIcon weakHoverIcon;
+	private ImageIcon weakDisabledIcon;
+	
+
+	
 	public TowerUpgradePanel(GameController gc) {
 		super(new GridBagLayout());
 		controller = gc;
+	
+		cancelUpgradeIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButton.png");
+		cancelUpgradePressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButtonDown.png");
+		cancelUpgradeHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButtonHover.png");
+		cancelUpgradeDisabledIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButtonDisabled.png");
+		
+		farIcon = new ImageIcon(FilePaths.buttonPath + "FarButton.png");
+		farPressedIcon = new ImageIcon(FilePaths.buttonPath + "FarButtonDown.png");
+		farHoverIcon = new ImageIcon(FilePaths.buttonPath + "FarButtonHover.png");
+		farDisabledIcon = new ImageIcon(FilePaths.buttonPath + "FarButtonDisabled.png");
+		
+		closeIcon = new ImageIcon(FilePaths.buttonPath + "CloseButton.png");
+		closePressedIcon = new ImageIcon(FilePaths.buttonPath + "CloseButtonDown.png");
+		closeHoverIcon = new ImageIcon(FilePaths.buttonPath + "CloseButtonHover.png");
+		closeDisabledIcon = new ImageIcon(FilePaths.buttonPath + "CloseButtonDisabled.png");
+		
+		weakIcon = new ImageIcon(FilePaths.buttonPath + "WeakButton.png");
+		weakPressedIcon = new ImageIcon(FilePaths.buttonPath + "WeakButtonDown.png");
+		weakHoverIcon = new ImageIcon(FilePaths.buttonPath + "WeakButtonHover.png");
+		weakDisabledIcon = new ImageIcon(FilePaths.buttonPath + "WeakButtonDisabled.png");
+		
+		strongIcon = new ImageIcon(FilePaths.buttonPath + "StrongButton.png");
+		strongPressedIcon = new ImageIcon(FilePaths.buttonPath + "StrongButtonDown.png");
+		strongHoverIcon = new ImageIcon(FilePaths.buttonPath + "StrongButtonHover.png");
+		strongDisabledIcon = new ImageIcon(FilePaths.buttonPath + "StrongButtonDisabled.png");
+		
 		
 		towerStats = new TowerStatsPanel(controller);
 		towerStats.setTower(controller.getSelectedTower());
@@ -52,38 +105,74 @@ public class TowerUpgradePanel extends JPanel {
 		Font targetingButtonFont = new Font("Default", Font.PLAIN, 8);
 		Insets targetingButtonInsets = new Insets(0, 5, 0, 5);
 		
-		strongestButton = new JButton("STRONG");
-		strongestButton.setFont(targetingButtonFont);
+		strongestButton = new JButton(strongIcon);
+		strongestButton.setBorder(BorderFactory.createEmptyBorder());
+		strongestButton.setContentAreaFilled(false);
+		strongestButton.setRolloverIcon(strongHoverIcon);
+		strongestButton.setDisabledIcon(strongDisabledIcon);
+		strongestButton.setPressedIcon(strongPressedIcon);
+		
 		strongestButton.setMargin(targetingButtonInsets);
 		strongestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				strongestButton.setEnabled(false);
+				weakestButton.setEnabled(true);
+				closestButton.setEnabled(true);
+				furthestButton.setEnabled(true);
 				controller.setTowerStrategy(TargetingInfo.Strategy.STRONGEST);
 			}
 		});
 		
-		weakestButton = new JButton("WEAK");
-		weakestButton.setFont(targetingButtonFont);
+		weakestButton = new JButton(weakIcon);
+		weakestButton.setBorder(BorderFactory.createEmptyBorder());
+		weakestButton.setContentAreaFilled(false);
+		weakestButton.setRolloverIcon(weakHoverIcon);
+		weakestButton.setDisabledIcon(weakDisabledIcon);
+		weakestButton.setPressedIcon(weakPressedIcon);
+		
 		weakestButton.setMargin(targetingButtonInsets);
 		weakestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				strongestButton.setEnabled(true);
+				weakestButton.setEnabled(false);
+				closestButton.setEnabled(true);
+				furthestButton.setEnabled(true);
 				controller.setTowerStrategy(TargetingInfo.Strategy.WEAKEST);
 			}
 		});
 		
-		closestButton = new JButton("CLOSE");
-		closestButton.setFont(targetingButtonFont);
+		closestButton = new JButton(closeIcon);
+		closestButton.setBorder(BorderFactory.createEmptyBorder());
+		closestButton.setContentAreaFilled(false);
+		closestButton.setRolloverIcon(closeHoverIcon);
+		closestButton.setDisabledIcon(closeDisabledIcon);
+		closestButton.setPressedIcon(closePressedIcon);
+		
 		closestButton.setMargin(targetingButtonInsets);
 		closestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				strongestButton.setEnabled(true);
+				weakestButton.setEnabled(true);
+				closestButton.setEnabled(false);
+				furthestButton.setEnabled(true);
 				controller.setTowerStrategy(TargetingInfo.Strategy.CLOSEST);
 			}
 		});
 		
-		furthestButton = new JButton("FAR");
-		furthestButton.setFont(targetingButtonFont);
+		furthestButton = new JButton(farIcon);
+		furthestButton.setBorder(BorderFactory.createEmptyBorder());
+		furthestButton.setContentAreaFilled(false);
+		furthestButton.setRolloverIcon(farHoverIcon);
+		furthestButton.setDisabledIcon(farDisabledIcon);
+		furthestButton.setPressedIcon(farPressedIcon);
+		
 		furthestButton.setMargin(targetingButtonInsets);
 		furthestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				strongestButton.setEnabled(true);
+				weakestButton.setEnabled(true);
+				closestButton.setEnabled(true);
+				furthestButton.setEnabled(false);
 				controller.setTowerStrategy(TargetingInfo.Strategy.FURTHEST);
 			}
 		});
@@ -95,7 +184,12 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		});
 		
-		cancelButton = new JButton("Cancel Upgrading");
+		cancelButton = new JButton(cancelUpgradeIcon);
+		cancelButton.setBorder(BorderFactory.createEmptyBorder());
+		cancelButton.setContentAreaFilled(false);
+		cancelButton.setPressedIcon(cancelUpgradePressedIcon);
+		cancelButton.setRolloverIcon(cancelUpgradeHoverIcon);
+		cancelButton.setDisabledIcon(cancelUpgradeDisabledIcon);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.unselectTower();
@@ -212,30 +306,6 @@ public class TowerUpgradePanel extends JPanel {
 		add(cancelButton, c);
 	}
 	
-	private void updateTargetingButtonHighlight() {
-		// clear all highlights
-		strongestButton.setBackground(defaultButtonBackground);
-		weakestButton.setBackground(defaultButtonBackground);
-		furthestButton.setBackground(defaultButtonBackground);
-		closestButton.setBackground(defaultButtonBackground);
-		
-		// highlight the appropriate targeting strategy button
-		switch (controller.getSelectedTower().getTargeting().getStrategy()) {
-			case STRONGEST:
-				strongestButton.setBackground(Color.ORANGE);
-				break;
-			case WEAKEST:
-				weakestButton.setBackground(Color.ORANGE);
-				break;
-			case FURTHEST:
-				furthestButton.setBackground(Color.ORANGE);
-				break;
-			case CLOSEST:
-				closestButton.setBackground(Color.ORANGE);
-				break;
-		}
-	}
-	
 	private void updateSellButton() {
 		sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
 	}
@@ -264,7 +334,6 @@ public class TowerUpgradePanel extends JPanel {
 		towerStats.setTower(controller.getSelectedTower());
 		updateSellButton();
 		updateClickableButtons();
-		updateTargetingButtonHighlight();
 	}
 	
 	public void disableTowerUpgrade() {
@@ -287,10 +356,36 @@ public class TowerUpgradePanel extends JPanel {
 				upgradeButtons[x][y].setEnabled(true);
 			}
 		}
-		strongestButton.setEnabled(true);
-		weakestButton.setEnabled(true);
-		closestButton.setEnabled(true);
-		furthestButton.setEnabled(true);
+		
+		//make sure we don't re-enable the current targeting strategy
+		TargetingInfo.Strategy strat = controller.getSelectedTower().getTargeting().getStrategy();
+		switch(strat) {
+			case STRONGEST:
+				strongestButton.setEnabled(false);
+				weakestButton.setEnabled(true);
+				closestButton.setEnabled(true);
+				furthestButton.setEnabled(true);
+				break;
+			case WEAKEST:
+				strongestButton.setEnabled(true);
+				weakestButton.setEnabled(false);
+				closestButton.setEnabled(true);
+				furthestButton.setEnabled(true);
+				break;
+			case FURTHEST:
+				strongestButton.setEnabled(true);
+				weakestButton.setEnabled(true);
+				closestButton.setEnabled(true);
+				furthestButton.setEnabled(false);
+				break;
+			case CLOSEST:
+				strongestButton.setEnabled(true);
+				weakestButton.setEnabled(true);
+				closestButton.setEnabled(false);
+				furthestButton.setEnabled(true);
+				break;
+		}
+
 		sellTowerButton.setEnabled(true);
 		cancelButton.setEnabled(true);
 

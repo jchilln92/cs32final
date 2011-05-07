@@ -10,4 +10,5 @@ public class FilePaths {
 	public final static String bgPath = "assets/backgrounds/";
 	public final static String buttonPath = "assets/buttons/";
 	public final static String creepsPath = "assets/creeps/";
+	public final static String towersPath = "assets/towers/";
 }

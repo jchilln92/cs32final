@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -65,10 +66,14 @@ public class TowerPurchasePanel extends JPanel {
 		
 		// initialize a purchase button for each of the towers
 		for (int index = 0; index < 8; index++) {
-			String path = FilePaths.imgPath + "tower-icon"+(index+1)+".png";
+			String path = FilePaths.towersPath + "tower-icon"+(index+1)+".png";
 			
 			ImageIcon towerIcon = new ImageIcon(path);
 			final JButton towerButton = new JButton(towerIcon);
+			
+			towerButton.setBorder(BorderFactory.createEmptyBorder());
+			towerButton.setContentAreaFilled(false);
+
 			towerButtons[index] = towerButton;
 			
 			final Tower.Type type = buttonTypes[index];
