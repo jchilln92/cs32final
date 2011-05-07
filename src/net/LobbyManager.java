@@ -58,7 +58,6 @@ public class LobbyManager {
 		
 		if (server != null) {
 			opponentConnection.sendTCP(quitMessage);
-			System.out.println(hostedGame);
 			stopHostingGame();
 		}
 
@@ -158,7 +157,6 @@ public class LobbyManager {
 	}
 	
 	private void boot(Connection c) {
-		Thread.dumpStack();
 		if (c == null) return;
 		if (c.getID() == opponentConnection.getID()) resetOpponentConnection();
 		
@@ -215,7 +213,6 @@ public class LobbyManager {
 							
 							if (mapName == null) {
 								controller.wasBootedFromGame();
-								client.close();
 							} else {
 								opponentConnection = connection;
 								NetworkGame game = new NetworkGame(connection);
