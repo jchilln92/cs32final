@@ -165,6 +165,8 @@ public class MultiplayerController {
 		}
 		
 		if (gameInProgress) {
+			JOptionPane.showMessageDialog(gameMain, 
+					"Your opponent disconnected unexpectedly (they're probably scared of you)", "Disconnection", JOptionPane.ERROR_MESSAGE);
 			quitNetworkGame();
 		}
 	}

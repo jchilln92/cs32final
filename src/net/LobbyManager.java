@@ -212,6 +212,7 @@ public class LobbyManager {
 								controller.wasBootedFromGame();
 								client.close();
 							} else {
+								opponentConnection = connection;
 								NetworkGame game = new NetworkGame(connection);
 								game.setMap(Map.getMapByName(mapName));
 								controller.startNetworkGame(game);
@@ -222,6 +223,11 @@ public class LobbyManager {
 							controller.opponentDisconnected();
 					}
 				}
+			}
+			
+			public void disconnected(Connection c) {
+				if (opponentConnection != null && c.getID() == opponentConnection.getID())
+					controller.opponentDisconnected();
 			}
 		});
 	}
