@@ -57,7 +57,6 @@ public class Sidebar extends JPanel {
 		timeWave.setBorder(borderLine);
 		towerPanel.setBorder(borderLine);
 		pauseQuit.setBorder(borderLine);
-		this.setBorder(borderLine);
 		add(playerStats, BorderLayout.LINE_START);
 		add(timeWave, BorderLayout.LINE_START);
 		add(towerPanel, BorderLayout.LINE_START);

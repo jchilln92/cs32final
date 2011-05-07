@@ -64,7 +64,6 @@ public class TowerStatsPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.LINE_START;
-		//c.fill = GridBagConstraints.HORIZONTAL;
 		add(towerNameLabel, c);
 		
 		c.gridx = 0;
@@ -106,7 +105,6 @@ public class TowerStatsPanel extends JPanel {
 		c.gridx = 1;
 		c.gridy = 5;
 		add(extraDamageChangeLabel, c);
-		
 	}
 	
 	public void setTower(Tower t) {
@@ -122,18 +120,18 @@ public class TowerStatsPanel extends JPanel {
 		} else {
 			towerNameLabel.setText("Type: " + tower.getType().toString());
 			
-			NumberFormat.getInstance().setMaximumFractionDigits(2);
-			damageLabel.setText("Damage: " +NumberFormat.getInstance().format(tower.getDamage().getInstantDamage()));
-			rangeLabel.setText("Range: " + NumberFormat.getInstance().format(tower.getRadius()));
-			fireRateLabel.setText("Fire Rate: " + NumberFormat.getInstance().format(1/tower.getFirePeriod() * 1000/Runner.tickDuration) + " / s");
+			NumberFormat oneDigitNF = NumberFormat.getInstance();
+			oneDigitNF.setMaximumFractionDigits(1);
+			
+			damageLabel.setText("Damage: " + oneDigitNF.format(tower.getDamage().getInstantDamage()));
+			rangeLabel.setText("Range: " + oneDigitNF.format(tower.getRadius()));
+			fireRateLabel.setText("Fire Rate: " + oneDigitNF.format(1/tower.getFirePeriod() * 1000/Runner.tickDuration) + " / s");
 			
 			setCurrentAbilities(tower);
-			
 			
 			//properly set the extra damage label for slowing or damage over time
 			if (tower.getDamage().getSpeedChange() != 0) {
 				extraDamageLabel.setText("Slow Effect: " + NumberFormat.getInstance().format(tower.getDamage().getSpeedChange() * 100) + "%");
-
 			} else if (tower.getDamage().getTimeDamage() != 0) {
 				extraDamageLabel.setText("Damage over Time: " + NumberFormat.getInstance().format(tower.getDamage().getTimeDamage()));		
 			} else
@@ -231,7 +229,7 @@ public class TowerStatsPanel extends JPanel {
 		}
 	}
 	
-	//Takes in a tower and sets it's abilitiesLabel 
+	// Takes in a tower and sets its abilitiesLabel 
 	public void setCurrentAbilities(Tower tower){
 		String abilitiesText = "";
 		if (tower.getTargeting().isHitsFlying())
