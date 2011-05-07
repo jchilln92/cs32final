@@ -43,28 +43,24 @@ public class MultiplayerGameSetup extends GameSetup {
 		
 		nameField = new JTextField();
 		nameField.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				// kind of hacky code
-				JTextField field = (JTextField) e.getSource();
-
-				int code = e.getKeyCode();
+			public void keyTyped(KeyEvent e) {
+				char[] key = {e.getKeyChar()};
+				String charString = new String(key);
 				
-				String s = field.getText();
-				s = s.replaceAll("[^a-zA-Z0-9' ]", "");
-			    field.setText(s);
-				int length = s.length();
-
-				
-				if (length > 0 && code == KeyEvent.VK_BACK_SPACE) {
-					length--;
+				if (charString.matches("[^a-zA-Z0-9' ]") && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+					e.consume();
 				} else {
-					length++;
-				}
-
-				if (length <= 0) {
-					playButton.setEnabled(false);
-				} else {
-					playButton.setEnabled(true);
+					int length = nameField.getText().length();
+					
+					if (e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+						length++;
+					}
+					
+					if (length > 0) {
+						playButton.setEnabled(true);
+					} else {
+						playButton.setEnabled(false);
+					}
 				}
 			}
 		});
