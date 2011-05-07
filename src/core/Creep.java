@@ -282,6 +282,12 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		case GENERIC:
 			typeString = "Generic";
 			break;
+		case FAST:
+			typeString = "Fast";
+			break;
+		case FLYING:
+			typeString = "Flying";
+			break;
 		}
 		
 		switch(align) {

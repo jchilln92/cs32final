@@ -45,6 +45,7 @@ public class TimeWavePanel extends JPanel {
 	private ImageIcon nextWaveIcon;
 	private ImageIcon nextWavePressedIcon;
 	private ImageIcon nextWaveHoverIcon;
+	private ImageIcon nextWaveDisabledIcon;
 
 	public TimeWavePanel(GameController controller, boolean isMultiplayer) {
 		super(new GridBagLayout());
@@ -54,7 +55,7 @@ public class TimeWavePanel extends JPanel {
 		nextWaveIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveButton.png");
 		nextWavePressedIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveButtonDown.png");
 		nextWaveHoverIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveButtonHover.png");
-		
+		nextWaveDisabledIcon = new ImageIcon(FilePaths.buttonPath + "NextWaveDisabled.png");
 		
 		waveNumberLabel = new JLabel(waveText);
 		waveNumberValueLabel = new JLabel(Integer.toString(gc.getGame().getWavesSent()));
@@ -70,6 +71,7 @@ public class TimeWavePanel extends JPanel {
 		nextWaveButton.setContentAreaFilled(false);
 		nextWaveButton.setPressedIcon(nextWavePressedIcon);
 		nextWaveButton.setRolloverIcon(nextWaveHoverIcon);
+		nextWaveButton.setDisabledIcon(nextWaveDisabledIcon);
 		
 		nextWaveButton.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
