@@ -49,8 +49,6 @@ public class LobbyManager {
 	}
 	
 	public void quit() {
-		opponentConnection = null;
-		
 		GameNegotiationMessage quitMessage = new GameNegotiationMessage();
 		quitMessage.type = GameNegotiationMessage.Type.QUIT_GAME;
 		
@@ -59,9 +57,12 @@ public class LobbyManager {
 		}
 		
 		if (server != null) {
-			server.sendToAllTCP(quitMessage);
-			stopHostingGame();
+			opponentConnection.sendTCP(quitMessage);
+			System.out.println(hostedGame);
+			//stopHostingGame();
 		}
+
+		//opponentConnection = null;
 	}
 	
 	/*
@@ -74,8 +75,8 @@ public class LobbyManager {
 	}
 	
 	public void stopHostingGame() {
-		hostedGame = null;
 		shutdownServer();
+		hostedGame = null;
 	}
 	
 	private void createServer() {
@@ -158,6 +159,7 @@ public class LobbyManager {
 	}
 	
 	private void boot(Connection c) {
+		Thread.dumpStack();
 		if (c == null) return;
 		if (c.getID() == opponentConnection.getID()) resetOpponentConnection();
 		
@@ -181,7 +183,9 @@ public class LobbyManager {
 		ng.setMap(Map.getMapByName(hostedGame.getMapName()));
 		
 		opponentConnection = server.getConnections()[0];
-		server.sendToAllTCP(response);
+		opponentConnection.sendTCP(response);
+		
+		hostedGame = null;
 		
 		return ng;
 	}
@@ -221,7 +225,6 @@ public class LobbyManager {
 							}
 							break;
 						case QUIT_GAME:
-							client.close();
 							controller.opponentDisconnected();
 					}
 				}

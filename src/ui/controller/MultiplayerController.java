@@ -1,8 +1,6 @@
 package src.ui.controller;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import src.GameMain;
 import src.net.AvailableGame;
 import src.net.LobbyManager;
@@ -147,14 +145,6 @@ public class MultiplayerController {
 		gameMain.setSize(800, 600);
 	}
 	
-	public void quitNetworkGame(JPanel screen) {
-		gameInProgress = false;
-		lobbyManager.quit();
-		lobby.updateGameListPane();
-		gameMain.showScreen(screen);
-		gameMain.setSize(800, 600);	
-	}
-	
 	/**
 	 * Handles the (error-free) end of a network game, and displays the appropriate screen depending
 	 * on the outcome 
@@ -163,6 +153,7 @@ public class MultiplayerController {
 	public void networkGameFinished(boolean won) {
 		gameInProgress = false;
 		lobbyManager.resetOpponentConnection();
+		lobbyManager.stopHostingGame();
 		
 		gameMain.setSize(800, 600);
 		
