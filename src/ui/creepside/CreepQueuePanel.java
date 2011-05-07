@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -80,8 +81,12 @@ public class CreepQueuePanel extends JPanel {
 	public void enqueue(Creep c, int index){
 		gc.getGame().getYourCreeps().add(c);
 		
-		String path = FilePaths.imgPath + "creep-icon" + (index + 1) + ".png";
+		String path = Creep.getcreepIconPath(c.getAlignment(), c.getType());
 		ImageIcon creepIcon = new ImageIcon(path);
+		Image i = creepIcon.getImage();
+		i = i.getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH);
+		creepIcon = new ImageIcon(i);
+		
 		JLabel creepLabel = new JLabel();
 		creepLabel.setIcon(creepIcon);
 		

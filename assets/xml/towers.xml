@@ -48,7 +48,7 @@
 				<canHitFlying>true</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="2" price="100">
-				<dInstantDamage>.25</dInstantDamage>
+				<dInstantDamage>.2</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>
@@ -58,7 +58,7 @@
 				<canHitFlying>false</canHitFlying>
 			</upgrade>
 			<upgrade type="GUN" level="2" price="100">
-				<dInstantDamage>.5</dInstantDamage>
+				<dInstantDamage>.3</dInstantDamage>
 				<dTimeDamage>0</dTimeDamage>
 				<dPeriod>0</dPeriod>
 				<dDuration>0</dDuration>

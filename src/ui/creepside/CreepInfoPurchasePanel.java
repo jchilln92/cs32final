@@ -55,8 +55,10 @@ public class CreepInfoPurchasePanel extends JPanel {
 		neutralButton.setBackground(ColorConstants.neutralColor);
 		neutralButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(creep != null)
+				if(creep != null) {
 					creep.setAlignment(IAlignment.Alignment.NEUTRAL);
+					setIconLabel(creep);
+				}
 			}
 		});
 		
@@ -64,32 +66,40 @@ public class CreepInfoPurchasePanel extends JPanel {
 		redButton.setBackground(ColorConstants.redColor);
 		redButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(creep != null)
+				if(creep != null) {
 					creep.setAlignment(IAlignment.Alignment.RED);
+					setIconLabel(creep);
+				}
 			}
 		});		
 		greenButton = new JButton();
 		greenButton.setBackground(ColorConstants.greenColor);
 		greenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(creep != null)
+				if(creep != null) {
 					creep.setAlignment(IAlignment.Alignment.GREEN);
+					setIconLabel(creep);
+				}
 			}
 		});			
 		blueButton = new JButton();
 		blueButton.setBackground(ColorConstants.blueColor);
 		blueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(creep != null)
+				if(creep != null) {
 					creep.setAlignment(IAlignment.Alignment.BLUE);
+					setIconLabel(creep);
+				}
 			}
 		});			
 		yellowButton = new JButton();
 		yellowButton.setBackground(ColorConstants.yellowColor);
 		yellowButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(creep != null)
+				if(creep != null) {
 					creep.setAlignment(IAlignment.Alignment.YELLOW);
+					setIconLabel(creep);
+				}
 			}
 		});			
 		
@@ -209,15 +219,24 @@ public class CreepInfoPurchasePanel extends JPanel {
 		}
 		else{
 			this.creep = Creep.createCreep(creepTypes[index], gc.getGame().getWavesSent());
-			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
-			creepIcon = new ImageIcon(path);
+			//String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
+			//creepIcon = new ImageIcon(path);
+			setIconLabel(creep);
 			
-			Image i = creepIcon.getImage();
-			i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
-			creepIcon = new ImageIcon(i);  
-			iconLabel.setIcon(creepIcon);
 			buyButton.setEnabled(true);
 			cancelButton.setEnabled(true);
 		}
+	}
+	
+	//Sets the iconLabel to the appropriate creep based off of type and and alignment
+	public void setIconLabel(Creep c) {
+		String path = Creep.getcreepIconPath(c.getAlignment(), c.getType());
+		creepIcon = new ImageIcon(path);
+		
+		Image i = creepIcon.getImage();
+		i = i.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);  
+		creepIcon = new ImageIcon(i);  
+		iconLabel.setIcon(creepIcon);
+
 	}
 }

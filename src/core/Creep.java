@@ -61,7 +61,7 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		double scalingFactor = waveNumber * 0.05;
 		originalCreep.setBaseHealth(originalCreep.getBaseHealth() + scalingFactor*originalCreep.getBaseHealth());
 		originalCreep.setHealth(originalCreep.getBaseHealth());
-		originalCreep.setPrice(originalCreep.getPrice() + (int)(waveNumber/2)*10);
+		originalCreep.setPrice(originalCreep.getPrice() + (int)(waveNumber/5)*10);
 		originalCreep.setReward(originalCreep.getReward() + (int)(waveNumber/2));
 		
 		return originalCreep;
@@ -265,6 +265,42 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 				health -= da.getDamage().getTimeDamage();
 			}
 		}
+	}
+	
+	//Given a creep alignment and a creep type, returns a path to find that creep's icon
+	public static String getcreepIconPath(IAlignment.Alignment align, Creep.Type type) {
+		String alignString = "";
+		String typeString = "";
+		
+		switch(type) {
+		case BIG_GUY:
+			typeString = "BigGuy";
+			break;
+		case ASSASSIN:
+			typeString = "Assassin";
+			break;
+		}
+		
+		switch(align) {
+		case NEUTRAL:
+			alignString = "Neutral";
+			break;
+		case GREEN:
+			alignString = "Green";
+			break;
+		case BLUE:
+			alignString = "Blue";
+			break;
+		case YELLOW:
+			alignString = "Yellow";
+			break;
+		case RED:
+			alignString = "Red";
+			break;
+		}
+		
+		String path = FilePaths.creepsPath + typeString + alignString + ".png";
+		return path;
 	}
 
 	public CreepPath getPath() {
