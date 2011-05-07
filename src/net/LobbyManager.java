@@ -138,7 +138,6 @@ public class LobbyManager {
 							controller.playerAttemptedToJoin((String) m.data);
 							break;
 						case QUIT_GAME:
-							connection.close();
 							controller.opponentDisconnected();
 							break;
 					}
