@@ -99,7 +99,7 @@ public class Lobby extends JPanel {
 		joinButton.setEnabled(false);
 		joinButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.joinGame(gameTable.getSelectedRow());
+					controller.joinGame(gameTable.getSelectedRow());
 			}
 		});
 
@@ -163,7 +163,7 @@ public class Lobby extends JPanel {
 	}
 	
 	private void updateAllowedButtons(String username) {
-	    username = username.replaceAll("[^a-zA-Z0-9]", "");
+	    username = username.replaceAll("[^a-zA-Z0-9 ]", "");
 	    if(gameTable != null){
 	    	if (gameTable.getSelectedRow() < 0 || username.trim().length() == 0) {
 				joinButton.setEnabled(false);

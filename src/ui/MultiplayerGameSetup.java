@@ -53,7 +53,7 @@ public class MultiplayerGameSetup extends GameSetup {
 				int code = e.getKeyCode();
 				
 				String s = field.getText();
-				s = s.replaceAll("[^a-zA-Z0-9]", "");
+				s = s.replaceAll("[^a-zA-Z0-9 ]", "");
 			    field.setText(s);
 				int length = s.length();
 
@@ -64,7 +64,6 @@ public class MultiplayerGameSetup extends GameSetup {
 					length++;
 				}
 
-				System.out.println(length);
 				if (length <= 0) {
 					playButton.setEnabled(false);
 				} else {

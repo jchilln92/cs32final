@@ -151,10 +151,12 @@ public class MultiplayerHostWaitScreen extends JPanel {
 
 	public void setPotentialOpponent(String name) {
 		if (name == null) {
+			waitingLabel.setText("Waiting for opponents...");
 			opponentNameLabel.setText("No opponent");
 			startGameButton.setEnabled(false);
 			bootButton.setEnabled(false);
 		} else {
+			waitingLabel.setText(name + " wants to battle you!");
 			opponentNameLabel.setText(name);
 			startGameButton.setEnabled(true);
 			bootButton.setEnabled(true);

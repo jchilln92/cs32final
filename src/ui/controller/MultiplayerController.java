@@ -78,7 +78,11 @@ public class MultiplayerController {
 	 */
 	public void joinGame(int selectedRow) {
 		synchronized (lobbyManager.getAvailableGames()) {
-			lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
+			try {
+				lobbyManager.joinGame(lobbyManager.getAvailableGames().get(selectedRow));
+			} catch (IndexOutOfBoundsException e) {
+				//Just to prevent a user trying to to rejoin a game that has been quit before refreshing
+			}
 		}
 	}
 

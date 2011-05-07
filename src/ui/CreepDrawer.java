@@ -2,12 +2,18 @@ package src.ui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.ImageObserver;
+
+import javax.swing.ImageIcon;
+
+import src.core.Creep;
 
 public class CreepDrawer {
 	private static boolean drawHealthBar = true; 
@@ -61,7 +67,7 @@ public class CreepDrawer {
 				triangle.closePath();
 				g.fill(triangle);
 				break;
-			case ASSASSIN:
+			case ASSASSIN: 
 				GeneralPath diamond = new GeneralPath();
 				diamond.moveTo(creepCenter.x , creepCenter.y + creepRadius);
 				diamond.lineTo(creepCenter.x + creepRadius, creepCenter.y);
