@@ -159,9 +159,6 @@ public class MultiplayerController {
 	 * disconnected during a game.
 	 */
 	public void opponentDisconnected() {
-		gameInProgress = false;
-		lobbyManager.resetOpponentConnection();
-		
 		if (lobbyManager.getHostedGame() != null) {
 			hostWaitScreen.setPotentialOpponent(null);
 		}
@@ -171,6 +168,9 @@ public class MultiplayerController {
 					"Your opponent disconnected unexpectedly (they're probably scared of you)", "Disconnection", JOptionPane.ERROR_MESSAGE);
 			quitNetworkGame();
 		}
+		
+		gameInProgress = false;
+		lobbyManager.resetOpponentConnection();
 	}
 	
 	/**
