@@ -53,25 +53,29 @@ public class Lobby extends JPanel {
 		
 		usernameField = new JTextField(13);
 		updateGameListPane();
+		
 		usernameField.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				// kind of hacky code
-				JTextField field = (JTextField) e.getSource();
-
-				int code = e.getKeyCode();
-				String uname = "";
-				if (code == KeyEvent.VK_BACK_SPACE && field.getText().length() > 0) {
-					uname = field.getText().substring(0, field.getText().length()-1);
-				} else {
-					uname = field.getText() + e.getKeyChar();
-				}
-
-				controller.setUsername(uname);
+			public void keyTyped(KeyEvent e) {
+				char[] key = {e.getKeyChar()};
+				String charString = new String(key);
 				
-				updateAllowedButtons(uname);
+				if (charString.matches("[^a-zA-Z0-9]") && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+					e.consume();
+				} else {
+					JTextField field = (JTextField) e.getSource();
+					String uname = "";
+
+					if (e.getKeyChar() == KeyEvent.VK_BACK_SPACE && field.getText().length() > 0) {
+						uname = field.getText();
+					} else {
+						uname = field.getText() + e.getKeyChar();
+					}
+
+					controller.setUsername(uname);
+					updateAllowedButtons(uname);
+				}
 			}
 		});
-		
 		
 		refreshButton = new JButton("Refresh");
 		refreshButton.addActionListener(new ActionListener() {
@@ -163,15 +167,14 @@ public class Lobby extends JPanel {
 	}
 	
 	private void updateAllowedButtons(String username) {
-	    username = username.replaceAll("[^a-zA-Z0-9 ]", "");
-	    if(gameTable != null){
-	    	if (gameTable.getSelectedRow() < 0 || username.trim().length() == 0) {
+	    if (gameTable != null) {
+	    	if (gameTable.getSelectedRow() < 0 || username.trim().length() <= 0) {
 				joinButton.setEnabled(false);
 			} else {
 				joinButton.setEnabled(true);	
 			}
 	
-			if (username.trim().length() == 0) {
+			if (username.trim().length() <= 0) {
 				createGameButton.setEnabled(false);
 			} else {
 				createGameButton.setEnabled(true);
