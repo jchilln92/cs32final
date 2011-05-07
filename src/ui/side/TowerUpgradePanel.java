@@ -183,7 +183,8 @@ public class TowerUpgradePanel extends JPanel {
 				
 				upgradeButton.addMouseListener(new MouseAdapter() {
 					public void mouseEntered(MouseEvent e) {
-						if (e.getComponent().isEnabled())
+						if (e.getComponent().isEnabled() 
+								|| controller.getTowerUpgrade(level, idx).getLevel() > controller.getSelectedTower().getUpgradeLevel())
 							towerStats.setUpgrade(controller.getTowerUpgrade(level, idx));
 					}
 					
