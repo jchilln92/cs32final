@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.ui.controller.GameController;
+import src.ui.controller.MultiplayerController;
 
 public class WinPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -22,9 +22,9 @@ public class WinPanel extends JPanel {
 	private JLabel winLabel;
 	private JButton returnButton;
 	
-	public WinPanel(GameController gc) {
+	public WinPanel(MultiplayerController gc) {
 		super(new GridBagLayout());
-		final GameController controller = gc;
+		final MultiplayerController controller = gc;
 		
 		winLabel = new JLabel(winText);
 		winLabel.setForeground(Color.BLUE);
@@ -33,7 +33,7 @@ public class WinPanel extends JPanel {
 		returnButton = new JButton(returnToTitleText);
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.quit();
+				controller.exitLobby();
 			}
 		});
 		

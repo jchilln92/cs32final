@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.ui.controller.GameController;
+import src.GameMain;
 
 public class GameOverPanel extends JPanel {
 	private static final String gameOverText = "GAME OVER";
@@ -21,9 +21,10 @@ public class GameOverPanel extends JPanel {
 	private JLabel gameOverLabel;
 	private JButton returnButton;
 	
-	public GameOverPanel(GameController gc) {
+	public GameOverPanel(GameMain gm) {
 		super(new GridBagLayout());
-		final GameController controller = gc;
+		
+		final GameMain main = gm;
 		
 		gameOverLabel = new JLabel(gameOverText);
 		gameOverLabel.setForeground(Color.RED);
@@ -32,7 +33,7 @@ public class GameOverPanel extends JPanel {
 		returnButton = new JButton(returnToTitleText);
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.quit();
+				main.showScreen(new TitleScreen(main));
 			}
 		});
 		

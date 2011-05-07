@@ -142,13 +142,9 @@ public class GameController {
 			
 			if (game.isOver()) {
 				if (game instanceof NetworkGame) {
-					if (((NetworkGame)game).getOpponent().getHealth() <= 0) { // they lose, we win
-						multiController.quitNetworkGame(new WinPanel(this));
-					} else { // we lose, they win
-						multiController.quitNetworkGame(new GameOverPanel(this));
-					}
+					multiController.networkGameFinished(((NetworkGame)game).getOpponent().getHealth() <= 0);
 				} else { 
-					gameMain.showScreen(new GameOverPanel(this));
+					gameMain.showScreen(new GameOverPanel(gameMain));
 				}
 				
 				runnerThread.stop();
@@ -256,6 +252,7 @@ public class GameController {
 			if (seenAtLevel - 1 == idx) 
 				return u;
 		}
+		
 		return null;
 	}
 	
