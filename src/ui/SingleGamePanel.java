@@ -27,14 +27,8 @@ public class SingleGamePanel extends JPanel {
 		
 		CreepDrawer.toggleDrawHealthBar(true);
 		
-		// setup sidebar
-		CreepSideBar cs = new CreepSideBar(gameController);
-		add(cs, BorderLayout.SOUTH);
-		
 		Sidebar s = new Sidebar(gameController, null);
 		add(s, BorderLayout.EAST);
 		gameController.setSidebar(s);
-		
-
 	}
 }

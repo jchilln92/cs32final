@@ -24,7 +24,7 @@ import src.ui.controller.MultiplayerController;
 public class Lobby extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final String lobbyText = "Multiplayer Lobby";
-	private static final String[] columnHeaders = {"Game Name", "Host", "Map Name", "Time Waiting"};
+	private static final String[] columnHeaders = {"Game Name", "Host", "Map Name"};
 	
 	private JLabel lobbyLabel;
 	private JLabel usernameLabel;
@@ -189,14 +189,13 @@ public class Lobby extends JPanel {
 			}
 			
 			protected void done() {
-				String[][] data = new String[lm.getAvailableGames().size()][4];
+				String[][] data = new String[lm.getAvailableGames().size()][3];
 				
 				int i = 0;
 				for (AvailableGame ag : lm.getAvailableGames()) {
 					data[i][0] = ag.getGameName();
 					data[i][1] = ag.getHostName();
 					data[i][2] = ag.getMapName();
-					data[i][3] = Long.toString(ag.getSecondsWaiting());
 					i++;
 				}
 				

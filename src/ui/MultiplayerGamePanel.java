@@ -15,6 +15,8 @@ import src.ui.side.Sidebar;
  * Handles setup of multiplayer display components. 
  */
 public class MultiplayerGamePanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+
 	private MultiplayerController controller; 
 	
 	private MapComponent opponentMap;
@@ -39,9 +41,8 @@ public class MultiplayerGamePanel extends JPanel {
 		localMap.setSize(375, 375);
 		
 		localController.setGame(game);
+		localController.setMultiplayerController(controller);
 		networkController.setGame(game);
-		
-		localController.setMultiplayerController(multiController);
 		
 		sidebar = new Sidebar(localController, multiController);
 		localController.setSidebar(sidebar);
@@ -57,7 +58,7 @@ public class MultiplayerGamePanel extends JPanel {
 		
 		add(gamePanel, BorderLayout.CENTER);
 		
-		// setup sidebar
+		// setup side bar
 		CreepSideBar cs = new CreepSideBar(localController);
 		add(cs, BorderLayout.SOUTH);
 	}

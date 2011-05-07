@@ -5,7 +5,6 @@ public class AvailableGame {
 	private String mapName;
 	private String hostAddress;
 	private String hostName;
-	private long secondsWaiting;
 	
 	public String getGameName() {
 		return gameName;
@@ -37,18 +36,5 @@ public class AvailableGame {
 	
 	public void setHostName(String hostName) {
 		this.hostName = hostName;
-	}
-	
-	public long getSecondsWaiting() {
-		return secondsWaiting;
-	}
-	
-	public void setSecondsWaiting(long secondsWaiting) {
-		this.secondsWaiting = secondsWaiting;
-	}
-	
-	public String toString(){
-		int minutes = (int)(secondsWaiting/60);
-		return gameName + "\t" + hostName + "\t" + mapName + "\t" + minutes+":"+secondsWaiting%60;
 	}
 }

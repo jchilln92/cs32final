@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 
 import src.ui.controller.GameController;
 
-public class WinPanel extends JPanel{
+public class WinPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private static final String winText = "YOU WIN";
 	private static final String returnToTitleText = "Return to Main Menu";
 	

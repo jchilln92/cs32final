@@ -23,8 +23,6 @@ public class NetworkGame extends Game {
 	private ArrayList<Tower> opponentTowers; // the towers on the opponent's map
 	private NetworkPlayer opponent; // the opponent
 	
-	private GameController controller;
-	
 	public NetworkGame(Connection opponentConnection) {
 		opponent = new NetworkPlayer();
 		opponentBullets = new ArrayList<Bullet>();
@@ -32,10 +30,6 @@ public class NetworkGame extends Game {
 		opponentTowers = new ArrayList<Tower>();
 		remoteConnection = opponentConnection;
 		initializeGameListeners();
-	}
-	
-	public void setGameController(GameController gc){
-		controller = gc;
 	}
 
 	private void initializeGameListeners() {
@@ -81,6 +75,11 @@ public class NetworkGame extends Game {
 	public void tick() {
 		super.tick();
 		provideInformation();
+	}
+	
+	@Override
+	public boolean isOver() { 
+		return getPlayer().getHealth() <= 0 || opponent.getHealth() <= 0;
 	}
 	
 	@Override

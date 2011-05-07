@@ -1,6 +1,5 @@
 package src.ui.controller;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
@@ -21,6 +20,7 @@ import src.core.TargetingInfo;
 import src.core.Tower;
 import src.core.Upgrade;
 import src.core.IAlignment.Alignment;
+import src.net.NetworkGame;
 import src.ui.GameOverPanel;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
@@ -121,8 +121,9 @@ public class GameController {
 	}
 	
 	public void setMultiplayerController(MultiplayerController mc) {
-		multiController = mc;
+		this.multiController = mc;
 	}
+	
 	/*
 	 * Time control methods
 	 */
@@ -140,8 +141,13 @@ public class GameController {
 			}
 			
 			if (game.isOver()) {
-				if (multiController != null) {
-					multiController.quitNetworkGame(new WinPanel(this));
+				if (game instanceof NetworkGame) {
+					if (((NetworkGame)game).getOpponent().getHealth() <= 0) { // they lose, we win
+						multiController.quitNetworkGame(new WinPanel(this));
+					} else { // we lose, they win
+						multiController.quitNetworkGame(new GameOverPanel(this));
+					}
+				} else { 
 					gameMain.showScreen(new GameOverPanel(this));
 				}
 				

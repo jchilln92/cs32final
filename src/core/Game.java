@@ -24,7 +24,6 @@ public class Game {
 	private int elapsedTime; // the total game time, in "ticks"
 	protected int wavesSent; // the total number of waves sent
 	private int lastWaveTime; // the elapsedTime when the last wave was sent
-	private boolean over;
 	
 	private ArrayList<Creep> yourCreeps; // in a multiplayer game, the creeps you will send to the opponent
 	
@@ -35,7 +34,6 @@ public class Game {
 	private int lastCreepTime; // the time the last creep was sent
 
 	public Game() {
-		over = false;
 		player = new Player();
 		bullets = new ArrayList<Bullet>();
 		towers = new ArrayList<Tower>();
@@ -52,7 +50,7 @@ public class Game {
 	 * among other things.
 	 */
 	public void tick() {
-		if (over) return;
+		if (isOver()) return;
 		
 		elapsedTime++;
 		
@@ -80,10 +78,10 @@ public class Game {
 		stepCreeps();
 		stepBullets();
 		doTowerAttacks();
-		
-		if (player.getHealth() <= 0) {
-			over = true;
-		}
+	}
+	
+	public boolean isOver() {
+		return player.getHealth() <= 0;
 	}
 
 	/**
@@ -300,10 +298,7 @@ public class Game {
 	public LinkedList<Creep> getCreepQueue(){
 		return creepQueue;
 	}
-	
-	public boolean isOver() {
-		return over;
-	}
+
 	public ArrayList<Creep> getYourCreeps(){
 		return yourCreeps;
 	}
