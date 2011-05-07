@@ -41,7 +41,7 @@ public class MultiplayerGamePanel extends JPanel {
 		localMap.setSize(375, 375);
 		
 		localController.setGame(game);
-		localController.setMultiplayerController(controller);
+		localController.setMultiplayerController(multiController);
 		networkController.setGame(game);
 		
 		sidebar = new Sidebar(localController, multiController);
