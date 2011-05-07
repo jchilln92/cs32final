@@ -72,6 +72,7 @@ public class Damage {
 	 */
 	public static Damage copyDamage(Damage d){
 		Damage damage = new Damage();
+		damage.setTargetable(d.isTargetable());
 		damage.setInstantDamage(d.getInstantDamage());
 		damage.setEffectDuration(d.getEffectDuration());
 		damage.setPeriod(d.getPeriod());

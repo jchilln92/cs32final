@@ -88,6 +88,12 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	
 	private double health;
 	
+	private boolean targetable;
+	
+	// counts how many damage applications have changed the targetable property
+	// so that we know when to change the targetable value 
+	private int targetableCount;
+	
 	@Element
 	private double reward;
 	
@@ -137,6 +143,8 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	public Creep() {
 		damages = new HashMap<Tower, DamageApplication>();
 		pathIndex = 0;
+		targetable = true;
+		targetableCount = 0;
 		health = baseHealth;
 	}
 	
@@ -184,7 +192,7 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	 * 		   this creep.
 	 */
 	public boolean towerCanApplyDamage(Tower t) {
-		if (!damages.containsKey(t) /* && targetable */) { // TODO: fix this
+		if (!damages.containsKey(t) && targetable) {
 			return true;
 		}
 		
@@ -203,13 +211,18 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		//factor in increases or decreases of damage due to alignment
 		double damage = d.getInstantDamage();
 		if (this.alignment != IAlignment.Alignment.NEUTRAL) {
-			if(t.getAlignment() == this.alignment.getWeakTo()) //if this creep is weak to tower's element
+			if (t.getAlignment() == this.alignment.getWeakTo()) //if this creep is weak to tower's element
 				damage *= WEAKNESS_MODIFIER;
-			else if(t.getAlignment() == this.alignment.getStrength()) // if this creep is strong to tower's element
+			else if (t.getAlignment() == this.alignment.getStrength()) // if this creep is strong to tower's element
 				damage *= STRENGTH_MODIFIER;
 		}
 		
 		health -= damage;
+		
+		if (!d.isTargetable()) {
+			targetable = false;
+			targetableCount++;
+		}
 		
 		// if there will be any timed effects, hold on to them
 		if (d.getEffectDuration() > 0 && !damages.containsKey(t)) {
@@ -243,6 +256,11 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 			if (da.shouldUnattach(time)) {
 				it.remove();
 				speed /= 1 + da.getDamage().getSpeedChange();
+				
+				if (!da.getDamage().isTargetable()) {
+					targetableCount--;
+					if (targetableCount == 0) targetable = true;
+				}
 			} else if (da.shouldDoTimeDamage(time)) {
 				health -= da.getDamage().getTimeDamage();
 			}
