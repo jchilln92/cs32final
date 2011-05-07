@@ -8,6 +8,10 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.Action;
@@ -111,8 +115,24 @@ public class CreepInfoPurchasePanel extends JPanel {
 				gc.getGame().getPlayer().increaseIncomePerWave(creepToAdd.getAdditionalGoldPerWave());
 				gc.getGame().getPlayer().purchase(creepToAdd);
 				creepQueue.enqueue(creepToAdd, creepIndex);
+				gc.getSideBar().getPlayerStatsPanel().setGoldChange(" -" + creepToAdd.getPrice());
 			}
-		});	
+		});
+		buyButton.addMouseListener(new MouseAdapter() {
+				public void mouseEntered(MouseEvent e) {
+					if (creep != null) {
+						gc.getSideBar().getPlayerStatsPanel().setShowingGoldChange(true);
+						gc.getSideBar().getPlayerStatsPanel().setGoldChange(" -" + creep.getPrice());
+					}
+				}
+				
+				public void mouseExited(MouseEvent e) {
+					gc.getSideBar().getPlayerStatsPanel().setShowingGoldChange(false);
+					if (buyButton.isEnabled())
+						gc.getSideBar().getPlayerStatsPanel().setGoldChange(" ");
+				}
+			
+		});
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.setBackground(Color.WHITE);
