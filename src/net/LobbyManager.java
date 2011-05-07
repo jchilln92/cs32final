@@ -59,10 +59,10 @@ public class LobbyManager {
 		if (server != null) {
 			opponentConnection.sendTCP(quitMessage);
 			System.out.println(hostedGame);
-			//stopHostingGame();
+			stopHostingGame();
 		}
 
-		//opponentConnection = null;
+		opponentConnection = null;
 	}
 	
 	/*
@@ -86,7 +86,6 @@ public class LobbyManager {
 		try {
 			server.bind(NetworkConstants.tcpPort, NetworkConstants.udpPort);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
