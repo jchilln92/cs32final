@@ -116,13 +116,11 @@ public class TimeWavePanel extends JPanel {
 			c.gridx = 0;
 			c.gridy = 3;
 			c.fill = GridBagConstraints.NONE;
-			c.insets.set(5, 0, 0, 0);
 			add(nextWaveButton, c);
 
 			c.gridx = 1;
 			c.gridy = 3;
 			c.fill = GridBagConstraints.NONE;
-			c.insets.set(5, 0, 0, 0);
 			add(fastForwardButton, c);
 		}
 	}
