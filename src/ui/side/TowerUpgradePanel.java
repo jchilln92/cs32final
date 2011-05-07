@@ -188,7 +188,6 @@ public class TowerUpgradePanel extends JPanel {
 					}
 					
 					public void mouseExited(MouseEvent e) {
-						if (e.getComponent().isEnabled())
 							towerStats.setUpgrade(null);
 					}
 				});

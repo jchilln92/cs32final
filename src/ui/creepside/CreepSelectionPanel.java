@@ -3,6 +3,7 @@ package src.ui.creepside;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -22,6 +23,7 @@ import src.core.Creep;
 import src.core.Upgrade;
 import src.ui.controller.GameController;
 import src.ui.creepside.CreepStatsPanel;
+import src.core.IAlignment;
 
 
 public class CreepSelectionPanel extends JPanel {
@@ -63,13 +65,17 @@ public class CreepSelectionPanel extends JPanel {
 		
 		c.insets = new Insets(-20,20,0,-15);
 		c.gridwidth = 1;
-		// initialize a purchase button for each of the towers
-
+		
+		// initialize a purchase button for each of the creeps
 		for (int index = 0; index < 5; index++) {
-			String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
+			//String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
+			String path = Creep.getcreepIconPath(IAlignment.Alignment.NEUTRAL, buttonTypes[index]);
+			ImageIcon creepIcon = new ImageIcon(path);
+			Image i = creepIcon.getImage();
+			i = i.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);  
+			creepIcon = new ImageIcon(i);
 			
-			ImageIcon towerIcon = new ImageIcon(path);
-			JButton creepButton = new JButton(towerIcon);
+			JButton creepButton = new JButton(creepIcon);
 			creepButtons[index] = creepButton;
 			
 			final Creep.Type type = buttonTypes[index];
@@ -82,21 +88,14 @@ public class CreepSelectionPanel extends JPanel {
 			};
 			
 			// set up buttons
-			creepButton.addActionListener(creepButtonActions[index]);
-			
-			// set up equivalent key bindings
-			//Integer idx = index;
-			//this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(Character.forDigit(index + 1, 10)), idx);
-			//this.getActionMap().put(idx, creepButtonActions[index]);
+			creepButton.addActionListener(creepButtonActions[index]);	
 			
 			// set up mouse hover on buttons
 			creepButton.addMouseListener(new MouseAdapter() {
-				@Override
 				public void mouseEntered(MouseEvent e) {
 					creepStats.setCreep(Creep.createCreep(type, controller.getGame().getWavesSent()));
 				}
 
-				@Override
 				public void mouseExited(MouseEvent e) {
 					creepStats.setCreep(null);
 				}
