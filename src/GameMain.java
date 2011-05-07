@@ -20,8 +20,6 @@ public class GameMain extends JFrame {
 	
 	private JPanel mainPanel;
 	private static final GameMain main = new GameMain();
-	private static Thread thread = new Thread();
-	private JPanel gamePanel;
 
 	public GameMain() {
 		// set up window

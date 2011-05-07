@@ -222,7 +222,7 @@
 	<tower type="SLOWING">
 		<price>500</price>
 		<radius>3</radius>
-		<firePeriod>2</firePeriod>
+		<firePeriod>15</firePeriod>
 		<description>"Does no damage but slows creeps."</description>
 		<targeting>
 			<strategy>CLOSEST</strategy>
@@ -232,7 +232,7 @@
 			<instantDamage>0</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
-			<effectDuration>10</effectDuration>
+			<effectDuration>66</effectDuration>
 			<speedChange>-.5</speedChange>
 			<targetable>true</targetable>
 		</damage>

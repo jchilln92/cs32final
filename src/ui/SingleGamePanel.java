@@ -4,12 +4,11 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-import src.net.NetworkGameController;
 import src.ui.controller.GameController;
-import src.ui.creepside.CreepSideBar;
 import src.ui.side.Sidebar;
 
 public class SingleGamePanel extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private GameController gameController;
 	
 	public SingleGamePanel(GameController controller) {

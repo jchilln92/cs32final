@@ -200,6 +200,8 @@ public class Lobby extends JPanel {
 				}
 				
 				gameTable = new JTable(data, columnHeaders) {
+					private static final long serialVersionUID = 1L;
+
 					public boolean isCellEditable(int row, int column) {
 						return false;
 					}
