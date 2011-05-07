@@ -58,11 +58,10 @@ public class LobbyManager {
 		
 		if (server != null) {
 			opponentConnection.sendTCP(quitMessage);
-			System.out.println(hostedGame);
-			//stopHostingGame();
+			stopHostingGame();
 		}
 
-		//opponentConnection = null;
+		opponentConnection = null;
 	}
 	
 	/*
@@ -86,7 +85,6 @@ public class LobbyManager {
 		try {
 			server.bind(NetworkConstants.tcpPort, NetworkConstants.udpPort);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -159,7 +157,6 @@ public class LobbyManager {
 	}
 	
 	private void boot(Connection c) {
-		Thread.dumpStack();
 		if (c == null) return;
 		if (c.getID() == opponentConnection.getID()) resetOpponentConnection();
 		
@@ -216,7 +213,6 @@ public class LobbyManager {
 							
 							if (mapName == null) {
 								controller.wasBootedFromGame();
-								client.close();
 							} else {
 								opponentConnection = connection;
 								NetworkGame game = new NetworkGame(connection);

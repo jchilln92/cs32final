@@ -103,6 +103,7 @@ public class MultiplayerController {
 		JOptionPane.showMessageDialog(clientWaitScreen, 
 				"You've been booted!", "Booted!", JOptionPane.ERROR_MESSAGE);
 		
+		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
 	}
 	
