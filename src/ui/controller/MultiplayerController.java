@@ -160,9 +160,9 @@ public class MultiplayerController {
 	 */
 	public void opponentDisconnected() {
 		gameInProgress = false;
+		lobbyManager.resetOpponentConnection();
 		
 		if (lobbyManager.getHostedGame() != null) {
-			lobbyManager.resetOpponentConnection();
 			hostWaitScreen.setPotentialOpponent(null);
 		}
 		
