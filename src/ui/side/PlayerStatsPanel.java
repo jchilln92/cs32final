@@ -112,7 +112,7 @@ public class PlayerStatsPanel extends JPanel {
 		
 		if (!showingGoldChange) {
 			goldChangeLabel.setForeground(Color.BLACK);
-			goldChangeLabel.setText(("(+ " + Integer.toString((int)player.getIncomePerWave()) + " per wave)"));
+			goldChangeLabel.setText(("(+ " + Integer.toString((int)player.getIncomePerWave()) + " / wave)"));
 		}
 	}
 	

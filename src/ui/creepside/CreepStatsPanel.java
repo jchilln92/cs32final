@@ -2,6 +2,7 @@ package src.ui.creepside;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.text.NumberFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,9 +36,7 @@ public class CreepStatsPanel extends JPanel{
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		//c.ipadx = 100;
 		c.anchor = GridBagConstraints.CENTER;
-		//c.fill = GridBagConstraints.HORIZONTAL;
 		add(creepNameLabel, c);
 		
 		c.gridy = 1;
@@ -70,30 +69,16 @@ public class CreepStatsPanel extends JPanel{
 			costLabel.setText(" ");
 			spacingLabel.setText("                            ");
 			controller.getSideBar().getPlayerStatsPanel().setShowingGoldChange(false);
-
-			/*creepNameLabel.setVisible(false);
-			healthLabel.setVisible(false);
-			damageLabel.setVisible(false);
-			abilitiesLabel.setVisible(false);
-			costLabel.setVisible(false);
-			spacingLabel.setVisible(false);*/
 		} else {
 			creepNameLabel.setText("Type: " + creep.getType().toString());
 			healthLabel.setText("Health: " + (int)creep.getHealth());
-			double damage = creep.getDamageToBase();
-			String damageText = (int)(damage) + "." + (int)((damage - (int)damage)*10) + (int)((damage*10 - (int)(damage*10))*10);
+			String damageText = NumberFormat.getIntegerInstance().format(creep.getDamageToBase());
 			damageLabel.setText("Damage: " + damageText);
 			speedLabel.setText("Speed: " + creep.getSpeed());
 			costLabel.setText("Cost: " + (int)creep.getPrice());
 			
 			controller.getSideBar().getPlayerStatsPanel().setShowingGoldChange(true);
 			controller.getSideBar().getPlayerStatsPanel().setPerTurnIncrease(creep.getAdditionalGoldPerWave());
-
-			/*creepNameLabel.setVisible(true);
-			healthLabel.setVisible(true);
-			damageLabel.setVisible(true);
-			abilitiesLabel.setVisible(true);
-			costLabel.setVisible(true);*/
 		}
 	}
 }

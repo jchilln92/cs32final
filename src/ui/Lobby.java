@@ -102,18 +102,18 @@ public class Lobby extends JPanel {
 		usernameLabel.setForeground(Color.WHITE);
 		usernameLabel.setFont(new Font("lobbyFont", Font.BOLD, 12));
 
-		usernameField = new JTextField(13);
+		usernameField = new JTextField(15);
 		updateGameListPane();
 		
 		usernameField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char[] key = {e.getKeyChar()};
 				String charString = new String(key);
+				JTextField field = (JTextField) e.getSource();
 				
-				if (charString.matches("[^a-zA-Z0-9]") && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+				if (charString.matches("[^a-zA-Z0-9]") && e.getKeyChar() != KeyEvent.VK_BACK_SPACE || field.getText().length() == 15) {
 					e.consume();
 				} else {
-					JTextField field = (JTextField) e.getSource();
 					String uname = "";
 
 					if (e.getKeyChar() == KeyEvent.VK_BACK_SPACE && field.getText().length() > 0) {

@@ -27,13 +27,13 @@ import src.ui.controller.GameController;
 
 public class CreepQueuePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private static final int initialCreepPanelSize = 400;
+	private static final int initialCreepPanelSize = 550;
 	
 	private GameController gc;
 	private JButton dequeueButton;
 	
 	private JPanel iconPanel;
-	private CreepInfoPurchasePanel infoPurchase;
+	private CreepPurchasePanel infoPurchase;
 	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 	
 	public CreepQueuePanel(GameController controller){
@@ -52,29 +52,30 @@ public class CreepQueuePanel extends JPanel {
 		JScrollPane scroller = new JScrollPane(iconPanel, 
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scroller.setPreferredSize(new Dimension(405, 50));
+		scroller.setPreferredSize(new Dimension(555, 50));
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.LINE_START;
+		c.anchor = GridBagConstraints.WEST;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(scroller, c);
-		
-		c.insets.set(0, 0, 0, 0);
-		c.ipady = 0;
+
 		dequeueButton = new JButton("Cancel All");
 		dequeueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					dequeueAll();
 			}
 		});	
+		
 		c.gridx = 1;
+		c.anchor = GridBagConstraints.EAST;
+		c.insets.set(0, 10, 0, 0);
 		add(dequeueButton, c);
 	}
 	
-	public void setInfoPurchase(CreepInfoPurchasePanel cip){
+	public void setInfoPurchase(CreepPurchasePanel cip){
 		infoPurchase = cip;
 	}
 
