@@ -6,13 +6,10 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.BorderFactory; 
 import javax.swing.border.Border;
 
-
-import src.net.NetworkGameController;
 import src.ui.controller.GameController;
 
 public class CreepSideBar extends JPanel {
@@ -21,29 +18,37 @@ public class CreepSideBar extends JPanel {
 	private GameController controller;
 	
 	private CreepSelectionPanel creepSelection;
-	private CreepInfoPurchasePanel creepInfoPurchase;
+	private CreepPurchasePanel creepInfoPurchase;
 	private CreepQueuePanel creepQueue;
 	
 	public CreepSideBar(GameController gc) {
 		controller = gc;
 
 		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
-		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.LINE_AXIS);
-		setLayout(new BorderLayout());
+		this.setBorder(borderLine);
+		
+		setLayout(new GridBagLayout());
+		
 		creepQueue = new CreepQueuePanel(controller);
-		creepInfoPurchase = new CreepInfoPurchasePanel(creepQueue, controller);
+		creepInfoPurchase = new CreepPurchasePanel(creepQueue, controller);
 		creepSelection = new CreepSelectionPanel(creepInfoPurchase, controller);
 		
 		creepQueue.setInfoPurchase(creepInfoPurchase);
-		
-		creepSelection.setBorder(borderLine);
-		creepInfoPurchase.setBorder(borderLine);
-		creepQueue.setBorder(borderLine);
-		this.setBorder(borderLine);
 
-		add(creepSelection, BorderLayout.LINE_START);
-		add(creepInfoPurchase, BorderLayout.CENTER);
-		add(creepQueue, BorderLayout.PAGE_END);
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		add(creepSelection, c);
+		
+		c.gridx = 1;
+		c.gridy = 0;
+		add(creepInfoPurchase, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		c.gridwidth = 2;
+		add(creepQueue, c);
 	}
 	
 	

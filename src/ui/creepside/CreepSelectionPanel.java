@@ -34,14 +34,14 @@ public class CreepSelectionPanel extends JPanel {
 	private static final String purchaseCreepsText = "Purchase Creeps:";
 	private JLabel purchaseCreepsLabel;
 	private CreepStatsPanel creepStats;
-	private CreepInfoPurchasePanel creepInfoPurchase;
+	private CreepPurchasePanel creepInfoPurchase;
 	
 	private JButton[] creepButtons;	
 	private Action[] creepButtonActions;
 	private Creep.Type[] buttonTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST}; 
 	
 	
-	public CreepSelectionPanel(CreepInfoPurchasePanel cip, GameController gc){
+	public CreepSelectionPanel(CreepPurchasePanel cip, GameController gc){
 
 		super(new GridBagLayout());
 		controller = gc;
