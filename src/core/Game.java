@@ -148,7 +148,7 @@ public class Game {
 	}
 	
 	private void stepBullets() {
-		double speed = .5; // tiles per tick
+		double speed = .3; // tiles per tick
 		
 		Iterator<Bullet> it = bullets.iterator();
 		while (it.hasNext()) {
