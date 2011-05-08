@@ -52,16 +52,14 @@ public class LobbyManager {
 		GameNegotiationMessage quitMessage = new GameNegotiationMessage();
 		quitMessage.type = GameNegotiationMessage.Type.QUIT_GAME;
 		
-		if (client.isConnected()) {
-			client.sendTCP(quitMessage);
-		}
+		if (opponentConnection != null)
+			opponentConnection.sendTCP(quitMessage);
 		
 		if (server != null) {
-			opponentConnection.sendTCP(quitMessage);
-			stopHostingGame();
+			shutdownServer();
 		}
 
-		opponentConnection = null;
+		resetOpponentConnection();
 	}
 	
 	/*
@@ -74,14 +72,17 @@ public class LobbyManager {
 	}
 	
 	public void stopHostingGame() {
-		shutdownServer();
 		hostedGame = null;
+		boot();
+		shutdownServer();
+		resetOpponentConnection();
 	}
 	
 	private void createServer() {
 		server = new Server(NetworkConstants.bufferSize, NetworkConstants.bufferSize);
 		NetworkConstants.registerKryoClasses(server.getKryo());
 		server.start();
+		
 		try {
 			server.bind(NetworkConstants.tcpPort, NetworkConstants.udpPort);
 		} catch (IOException e) {
@@ -91,9 +92,8 @@ public class LobbyManager {
 		initializeServerListener();
 	}
 
-	private void shutdownServer() {
+	public void shutdownServer() {
 		if (server != null) {
-			boot(opponentConnection);
 			server.close();
 			server = null;
 		}
@@ -113,19 +113,19 @@ public class LobbyManager {
 								response.data = null;
 								
 								connection.sendTCP(response);
-								break;
+							} else {
+								try {
+									hostedGame.setHostAddress(InetAddress.getLocalHost().getCanonicalHostName());
+								} catch (UnknownHostException e) {
+									// pretty sure localhost always exists
+								}
+
+								response.type = GameNegotiationMessage.Type.GAME_DISCOVER_RESPONSE;
+								response.data = hostedGame;
+
+								connection.sendTCP(response);
 							}
 							
-							try {
-								hostedGame.setHostAddress(InetAddress.getLocalHost().getCanonicalHostName());
-							} catch (UnknownHostException e) {
-								// pretty sure localhost always exists
-							}
-							
-							response.type = GameNegotiationMessage.Type.GAME_DISCOVER_RESPONSE;
-							response.data = hostedGame;
-							
-							connection.sendTCP(response);
 							break;
 						case ATTEMPT_TO_JOIN:
 							if (opponentConnection == null) {
@@ -138,6 +138,7 @@ public class LobbyManager {
 							controller.playerAttemptedToJoin((String) m.data);
 							break;
 						case QUIT_GAME:
+							opponentConnection = null;
 							controller.opponentDisconnected();
 							break;
 					}
@@ -178,11 +179,9 @@ public class LobbyManager {
 		NetworkGame ng = new NetworkGame(server.getConnections()[0]);
 		ng.setMap(Map.getMapByName(hostedGame.getMapName()));
 		
-		opponentConnection = server.getConnections()[0];
 		opponentConnection.sendTCP(response);
-		
 		hostedGame = null;
-		
+
 		return ng;
 	}
 	
@@ -218,8 +217,10 @@ public class LobbyManager {
 								game.setMap(Map.getMapByName(mapName));
 								controller.startNetworkGame(game);
 							}
+
 							break;
 						case QUIT_GAME:
+							opponentConnection = null;
 							controller.opponentDisconnected();
 					}
 				}
@@ -271,7 +272,7 @@ public class LobbyManager {
 			e.printStackTrace();
 		}
 		
-		controller.waitToJoinGame();
+		controller.waitingToJoinGame();
 		
 		GameNegotiationMessage joinMessage = new GameNegotiationMessage();
 		joinMessage.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN;
