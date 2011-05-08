@@ -22,7 +22,7 @@ public class PlayerStatsPanel extends JPanel {
 
 	private static final String goldText = "Gold: ";
 	private static final String healthText = "Health: ";
-	private static final String opponentHealthText = "Enemy Health: ";
+	private static final String opponentHealthText = "Enemy: ";
 
 	private JLabel goldLabel;
 	private JLabel healthLabel;

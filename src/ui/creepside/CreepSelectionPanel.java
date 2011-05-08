@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -55,7 +56,8 @@ public class CreepSelectionPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(0,20,0,-20);
+		//c.insets = new Insets(0,20,0,-20);
+		c.insets.set(10, 10, 0, 0);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 5;
@@ -68,7 +70,6 @@ public class CreepSelectionPanel extends JPanel {
 		
 		// initialize a purchase button for each of the creeps
 		for (int index = 0; index < 5; index++) {
-			//String path = FilePaths.imgPath + "creep-icon"+(index+1)+".png";
 			String path = Creep.getcreepIconPath(IAlignment.Alignment.NEUTRAL, buttonTypes[index]);
 			ImageIcon creepIcon = new ImageIcon(path);
 			Image i = creepIcon.getImage();
@@ -76,6 +77,10 @@ public class CreepSelectionPanel extends JPanel {
 			creepIcon = new ImageIcon(i);
 			
 			JButton creepButton = new JButton(creepIcon);
+			creepButton.setBorder(BorderFactory.createEmptyBorder());
+			creepButton.setFocusPainted(false);
+			creepButton.setContentAreaFilled(false);
+			
 			creepButtons[index] = creepButton;
 			
 			final Creep.Type type = buttonTypes[index];
@@ -105,6 +110,7 @@ public class CreepSelectionPanel extends JPanel {
 			c.gridy = 1;
 			c.fill = GridBagConstraints.NONE;
 			c.anchor = GridBagConstraints.LINE_START;
+			c.insets.set(0, 10, 5, 0);
 			add(creepButton, c);
 		}
 		
