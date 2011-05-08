@@ -123,9 +123,8 @@ public class MultiplayerController {
 		NetworkGameController networkController = new NetworkGameController(ng);
 		
 		// controls drawing our map
-		GameController localGameController = new GameController();
+		localGameController = new GameController();
 		
-		//ng.setGameController(localController);
 		MultiplayerGamePanel gamePanel = new MultiplayerGamePanel(localGameController,
 				networkController, ng, this);
 		
@@ -155,7 +154,6 @@ public class MultiplayerController {
 	 */
 	public void networkGameFinished(boolean won) {
 		gameInProgress = false;
-		localGameController.stop();
 		lobbyManager.resetOpponentConnection();
 		lobbyManager.shutdownServer();
 		
