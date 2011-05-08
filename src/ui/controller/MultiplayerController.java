@@ -140,7 +140,6 @@ public class MultiplayerController {
 	 */
 	public void quitNetworkGame() {
 		gameInProgress = false;
-		localGameController.stop();
 		lobbyManager.quit();
 		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
@@ -177,6 +176,7 @@ public class MultiplayerController {
 		}
 		
 		if (gameInProgress) {
+			localGameController.stop();
 			JOptionPane.showMessageDialog(gameMain, 
 					"Your opponent disconnected unexpectedly (they're probably scared of you)", "Disconnection", JOptionPane.ERROR_MESSAGE);
 			quitNetworkGame();
