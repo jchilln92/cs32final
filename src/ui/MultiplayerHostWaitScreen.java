@@ -3,6 +3,7 @@ package src.ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -11,11 +12,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import src.FilePaths;
 import src.core.Map;
 import src.ui.controller.MultiplayerController;
 
@@ -38,17 +41,67 @@ public class MultiplayerHostWaitScreen extends JPanel {
 	
 	private MultiplayerController controller;
 	
+	private ImageIcon background;
+	private ImageIcon cancelIcon;
+	private ImageIcon cancelHoverIcon;
+	private ImageIcon cancelPressedIcon;
+	
+	private ImageIcon startIcon;
+	private ImageIcon startHoverIcon;
+	private ImageIcon startPressedIcon;
+	private ImageIcon startDisabledIcon;
+	
+	private ImageIcon bootIcon;
+	private ImageIcon bootHoverIcon;
+	private ImageIcon bootPressedIcon;
+	
 	public MultiplayerHostWaitScreen(String gameName, String mapName, MultiplayerController multiController) {
 		super (new GridBagLayout());
 		this.controller = multiController;
 		
-		startGameButton = new JButton("Start Game");
-		bootButton = new JButton("Boot");
-		startGameButton.setEnabled(false);
-		bootButton.setEnabled(false);		
-		cancelButton = new JButton("Cancel");
-		waitingLabel = new JLabel("Waiting for opponents...");
+		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
+		
+		cancelIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButton.png");
+		cancelHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButtonHover.png");
+		cancelPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButtonDown.png");
+	
+		startIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButton.png");
+		startHoverIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonHover.png");
+		startPressedIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDown.png");
+		startDisabledIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDisabled.png");
+		
+		bootIcon = new ImageIcon(FilePaths.buttonPath + "BootButton.png");
+		bootHoverIcon = new ImageIcon(FilePaths.buttonPath + "BootButtonHover.png");
+		bootPressedIcon = new ImageIcon(FilePaths.buttonPath + "BootButtonDown.png");
 
+		
+		startGameButton = new JButton(startIcon);
+		startGameButton.setBorder(BorderFactory.createEmptyBorder());
+		startGameButton.setContentAreaFilled(false);
+		startGameButton.setFocusPainted(false);
+		startGameButton.setPressedIcon(startPressedIcon);
+		startGameButton.setRolloverIcon(startHoverIcon);
+		startGameButton.setDisabledIcon(startDisabledIcon);		
+		
+		bootButton = new JButton(bootIcon);
+		bootButton.setBorder(BorderFactory.createEmptyBorder());
+		bootButton.setContentAreaFilled(false);
+		bootButton.setFocusPainted(false);
+		bootButton.setPressedIcon(bootPressedIcon);
+		bootButton.setRolloverIcon(bootHoverIcon);		
+		bootButton.setEnabled(false);			
+		bootButton.setVisible(false);
+		
+		cancelButton = new JButton(cancelIcon);
+		cancelButton.setBorder(BorderFactory.createEmptyBorder());
+		cancelButton.setContentAreaFilled(false);
+		cancelButton.setFocusPainted(false);
+		cancelButton.setPressedIcon(cancelPressedIcon);
+		cancelButton.setRolloverIcon(cancelHoverIcon);	
+		
+		waitingLabel = new JLabel("Waiting for opponents...");
+		waitingLabel.setFont(new Font("waiting font", Font.BOLD, 16));
+		waitingLabel.setForeground(Color.WHITE);
 		
 		mc = new MapComponent(true);
 		mc.setGridOn(true);
@@ -61,16 +114,15 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.WEST;
-		//c.gridwidth = 3;
 		add(waitingLabel, c);
 		
-		c.insets.set(0, 0, 0, 0);
+		c.insets.set(0, 0, 0, 30);
 		c.gridx = 1;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.EAST;
 		add(bootButton, c);
-		
-		c.insets.set(20, 100, 0, 0);
+
+		c.insets.set(30, 100, 0, 30);
 		c.gridx = 1;
 		c.gridy = 2;
 		c.anchor = GridBagConstraints.CENTER;
@@ -81,103 +133,14 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		c.gridy = 3;
 		c.anchor = GridBagConstraints.WEST;
 		add(cancelButton, c);
-		
+
+		c.insets.set(20, 0, 0, 30);
 		c.gridx = 1;
 		c.gridy = 3;
 		c.anchor = GridBagConstraints.EAST;
 		add(startGameButton, c);
 		
-		/*
-		super(new BorderLayout());
-		this.controller = multiController;
-
-		startGameButton = new JButton("Start Game");
-		bootButton = new JButton("Boot");
-		startGameButton.setEnabled(false);
-		bootButton.setEnabled(false);
-		
-		cancelButton = new JButton("Cancel");
-
-		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
-		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.PAGE_AXIS);	
-
-		waitingLabel = new JLabel("Waiting for opponents...");
-		waitingPanel = new JPanel();
-		waitingPanel.setBorder(borderLine);
-		waitingPanel.add(waitingLabel);
-		
-		mc = new MapComponent(true);
-		mc.setGridOn(true);
-		mc.setSize(400, 400);
-		mc.setMap(Map.getMapByName(mapName));
-		
-		gridPanel = new JPanel();
-		gridPanel.setLayout(new GridBagLayout());
-		gameLabel = new JLabel(gameName);
-		gameLabel.setFont(new Font("Dialog.bold", 10, 32));
-		gameLabel.setText(gameName);
-		mapNameLabel = new JLabel(mapName);
-		opponentLabel = new JLabel("Your opponent: ");
-		opponentNameLabel = new JLabel("No opponent");
-		
-		GridBagConstraints c = new GridBagConstraints();
-		
-		c.insets = new Insets(0, 0, 30, 0);
-		c.gridx = 1;
-		c.gridy = 0;
-	
-		c.anchor = GridBagConstraints.CENTER;
-		c.gridwidth = 3;
-
-		c.gridy = 1;
-		gridPanel.add(gameLabel, c);
-			
-		c.gridx = 3;
-		c.gridy = 2;
-	
-		c.insets = new Insets(0, 150, 0, 0);
-		c.gridwidth = 1;
-		gridPanel.add(mapNameLabel, c);
-
-		c.insets = new Insets(0, 0, 0, 0);
-		c.anchor = GridBagConstraints.LINE_START;
-		c.gridx = 2;
-		c.gridy = 3;
-		c.gridwidth = 3;
-		c.gridheight = 2;
-		gridPanel.add(mc, c);
-
-		c.insets = new Insets(30, 0, 0, 0);
-		c.gridx = 0;
-		c.gridy = 3;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		gridPanel.add(opponentLabel, c);
-
-		c.gridx = 0;
-		c.gridy = 3;
-		c.insets = new Insets(60, 0, 0, 0);
-		gridPanel.add(opponentNameLabel, c);
-
-		c.gridy = 4;
-		c.gridx = 0;
-		c.insets = new Insets(90, 0, 0, 0);
-		gridPanel.add(bootButton, c);
-
-		c.insets = new Insets(0, 0, 0, 0);
-		c.gridy = 5;
-		c.gridx = 0;
-		c.gridwidth = 2;
-		gridPanel.add(cancelButton, c);
-
-		c.gridx = 2;
-		gridPanel.add(startGameButton, c);
-	
-		add(waitingPanel, BorderLayout.PAGE_START);
-		add(gridPanel, BorderLayout.CENTER);
 		setupButtonHandlers();
-		
-		*/
 	}
 	
 	public void setupButtonHandlers() {
@@ -203,14 +166,19 @@ public class MultiplayerHostWaitScreen extends JPanel {
 	public void setPotentialOpponent(String name) {
 		if (name == null) {
 			waitingLabel.setText("Waiting for opponents...");
-			opponentNameLabel.setText("No opponent");
 			startGameButton.setEnabled(false);
 			bootButton.setEnabled(false);
+			bootButton.setVisible(false);
+			
 		} else {
 			waitingLabel.setText(name + " wants to battle you!");
-			opponentNameLabel.setText(name);
 			startGameButton.setEnabled(true);
 			bootButton.setEnabled(true);
+			bootButton.setVisible(true);
 		}
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0 ,0, null);
 	}
 }
