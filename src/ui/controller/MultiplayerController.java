@@ -180,7 +180,7 @@ public class MultiplayerController {
 					"Your opponent disconnected unexpectedly (they're probably scared of you)", "Disconnection", JOptionPane.ERROR_MESSAGE);
 			quitNetworkGame();
 		}
-		
+
 		gameInProgress = false;
 		lobbyManager.resetOpponentConnection();
 	}
