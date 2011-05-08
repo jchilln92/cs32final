@@ -72,6 +72,7 @@ public class TowerPurchasePanel extends JPanel {
 			final JButton towerButton = new JButton(towerIcon);
 			
 			towerButton.setBorder(BorderFactory.createEmptyBorder());
+			towerButton.setFocusPainted(false);
 			towerButton.setContentAreaFilled(false);
 
 			towerButtons[index] = towerButton;
