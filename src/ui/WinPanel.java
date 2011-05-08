@@ -1,52 +1,57 @@
 package src.ui;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.FilePaths;
 import src.ui.controller.MultiplayerController;
 
 public class WinPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private static final String winText = "YOU WIN";
-	private static final String returnToTitleText = "Return to Main Menu";
 	
-	private JLabel winLabel;
 	private JButton returnButton;
 	
+	private ImageIcon winBackground;
+	private ImageIcon mainMenuIcon;
+	private ImageIcon mainMenuPressedIcon;
+	private ImageIcon mainMenuHoverIcon;
+	
 	public WinPanel(MultiplayerController gc) {
-		super(new GridBagLayout());
+		super(null);
 		final MultiplayerController controller = gc;
 		
-		winLabel = new JLabel(winText);
-		winLabel.setForeground(Color.BLUE);
-		winLabel.setFont(new Font("Dialog.bold", 10, 32));
+		winBackground = new ImageIcon(FilePaths.bgPath + "WIN_SCREEN.png");
+		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButton.png");
+		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonDown.png");
+		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonHover.png");
 		
-		returnButton = new JButton(returnToTitleText);
+		returnButton = new JButton(mainMenuIcon);
+		returnButton.setBorder(BorderFactory.createEmptyBorder());
+		returnButton.setContentAreaFilled(false);
+		returnButton.setPressedIcon(mainMenuPressedIcon);
+		returnButton.setRolloverIcon(mainMenuHoverIcon);
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.exitLobby();
 			}
 		});
 		
-		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(40, 0, 40, 0);
-		
-		c.gridx = 0;
-		c.gridy = 0;
-		c.fill = GridBagConstraints.NONE;
-		add(winLabel, c);
-		
-		c.gridy = 1;
-		add(returnButton, c);
+
+		returnButton.setBounds(530,450,140,40);
+		add(returnButton);
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(winBackground.getImage(), 0 ,0, null);
 	}
 }
 

@@ -40,6 +40,8 @@ public class PauseQuitPanel extends JPanel {
 	private ImageIcon quitIcon;
 	private ImageIcon quitHoverIcon;
 	private ImageIcon quitPressedIcon;
+	private ImageIcon heartIcon;
+	private ImageIcon heartPressedIcon;
 	
 	public PauseQuitPanel(GameController controller) {
 		this(controller, false);
@@ -61,11 +63,16 @@ public class PauseQuitPanel extends JPanel {
 		quitHoverIcon = new ImageIcon(FilePaths.buttonPath + "QuitButtonHover.png");
 		quitPressedIcon = new ImageIcon(FilePaths.buttonPath + "QuitButtonDown.png");
 
+		heartIcon = new ImageIcon(FilePaths.buttonPath + "HeartButton.png");
+		heartPressedIcon = new ImageIcon(FilePaths.buttonPath + "HeartButtonDown.png");
+
 		
-		String path = FilePaths.imgPath + "tower-icon"+1+".png";
 		
-		ImageIcon heartIcon = new ImageIcon(path);
 		heartButton = new JButton(heartIcon);
+		heartButton.setBorder(BorderFactory.createEmptyBorder());
+		heartButton.setContentAreaFilled(false);
+		heartButton.setPressedIcon(heartPressedIcon);
+		
 		heartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreepDrawer.toggleDrawHealthBar(!CreepDrawer.getDrawHealthBar());
@@ -87,14 +94,12 @@ public class PauseQuitPanel extends JPanel {
 					pauseButton.setIcon(resumeIcon);
 					pauseButton.setPressedIcon(resumePressedIcon);
 					pauseButton.setRolloverIcon(resumeHoverIcon);
-					//pauseButton.setText("Resume");
 				} else if (e.getActionCommand().equals("resume")) {
 					gc.togglePause(false);
 					pauseButton.setActionCommand("pause");
-					pauseButton.setIcon(resumeIcon);
+					pauseButton.setIcon(pauseIcon);
 					pauseButton.setPressedIcon(pausePressedIcon);
 					pauseButton.setRolloverIcon(pauseHoverIcon);
-					//pauseButton.setText("Pause");
 				}
 			}
 		});

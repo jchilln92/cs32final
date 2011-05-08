@@ -38,12 +38,19 @@ public class TitleScreen extends JPanel {
 	private ImageIcon bg;
 	private ImageIcon singlePlayerImage;
 	private ImageIcon singlePlayerPressedImage;
+	private ImageIcon singlePlayerHoverImage;
+	
 	private ImageIcon multiPlayerImage;
 	private ImageIcon multiPlayerPressedImage;
+	private ImageIcon multiPlayerHoverImage;
+	
 	private ImageIcon tutorialImage;
 	private ImageIcon tutorialPressedImage;
+	private ImageIcon tutorialHoverImage;
+
 	private ImageIcon exitImage;
 	private ImageIcon exitPressedImage;
+	private ImageIcon exitHoverImage;
 	
 	public TitleScreen(GameMain gameMain) {
 		super(null);
@@ -52,37 +59,45 @@ public class TitleScreen extends JPanel {
 		bg = new ImageIcon(FilePaths.bgPath + "TOWER_WARS_SCREEN.png");
 		singlePlayerImage = new ImageIcon(FilePaths.buttonPath + "SingleButton.png");
 		singlePlayerPressedImage = new ImageIcon(FilePaths.buttonPath + "SingleButtonDown.png");
+		singlePlayerHoverImage = new ImageIcon(FilePaths.buttonPath + "SingleButtonHover.png");
 		
 		multiPlayerImage = new ImageIcon(FilePaths.buttonPath + "MultiButton.png");
 		multiPlayerPressedImage = new ImageIcon(FilePaths.buttonPath + "MultiButtonDown.png");
-		
+		multiPlayerHoverImage = new ImageIcon(FilePaths.buttonPath + "MultiButtonHover.png");
+
 		tutorialImage = new ImageIcon(FilePaths.buttonPath + "TutorialButton.png");
 		tutorialPressedImage = new ImageIcon(FilePaths.buttonPath + "TutorialButtonDown.png");
+		tutorialHoverImage = new ImageIcon(FilePaths.buttonPath + "TutorialButtonHover.png");
 
 		exitImage = new ImageIcon(FilePaths.buttonPath + "ExitButton.png");
 		exitPressedImage = new ImageIcon(FilePaths.buttonPath + "ExitButtonDown.png");
-
+		exitHoverImage = new ImageIcon(FilePaths.buttonPath + "ExitButtonHover.png");
+		
 		this.gameMain = gameMain;
 		
 		singlePlayerButton = new JButton(singlePlayerImage);
 		singlePlayerButton.setBorder(BorderFactory.createEmptyBorder());
 		singlePlayerButton.setContentAreaFilled(false);
 		singlePlayerButton.setPressedIcon(singlePlayerPressedImage);
+		singlePlayerButton.setRolloverIcon(singlePlayerHoverImage);
 	
 		multiPlayerButton = new JButton(multiPlayerImage);
 		multiPlayerButton.setBorder(BorderFactory.createEmptyBorder());
 		multiPlayerButton.setContentAreaFilled(false);
 		multiPlayerButton.setPressedIcon(multiPlayerPressedImage);
-		
+		multiPlayerButton.setRolloverIcon(multiPlayerHoverImage);
+
 		tutorialButton = new JButton(tutorialImage);
 		tutorialButton.setBorder(BorderFactory.createEmptyBorder());
 		tutorialButton.setContentAreaFilled(false);
 		tutorialButton.setPressedIcon(tutorialPressedImage);
-		
+		tutorialButton.setRolloverIcon(tutorialHoverImage);
+
 		quitButton = new JButton(exitImage);
 		quitButton.setBorder(BorderFactory.createEmptyBorder());
 		quitButton.setContentAreaFilled(false);
 		quitButton.setPressedIcon(exitPressedImage);
+		quitButton.setRolloverIcon(exitHoverImage);
 
 		final GameMain main = this.gameMain;
 		

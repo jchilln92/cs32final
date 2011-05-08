@@ -358,32 +358,34 @@ public class TowerUpgradePanel extends JPanel {
 		}
 		
 		//make sure we don't re-enable the current targeting strategy
-		TargetingInfo.Strategy strat = controller.getSelectedTower().getTargeting().getStrategy();
-		switch(strat) {
-			case STRONGEST:
-				strongestButton.setEnabled(false);
-				weakestButton.setEnabled(true);
-				closestButton.setEnabled(true);
-				furthestButton.setEnabled(true);
-				break;
-			case WEAKEST:
-				strongestButton.setEnabled(true);
-				weakestButton.setEnabled(false);
-				closestButton.setEnabled(true);
-				furthestButton.setEnabled(true);
-				break;
-			case FURTHEST:
-				strongestButton.setEnabled(true);
-				weakestButton.setEnabled(true);
-				closestButton.setEnabled(true);
-				furthestButton.setEnabled(false);
-				break;
-			case CLOSEST:
-				strongestButton.setEnabled(true);
-				weakestButton.setEnabled(true);
-				closestButton.setEnabled(false);
-				furthestButton.setEnabled(true);
-				break;
+		if (controller.getSelectedTower() != null) {
+			TargetingInfo.Strategy strat = controller.getSelectedTower().getTargeting().getStrategy();
+			switch(strat) {
+				case STRONGEST:
+					strongestButton.setEnabled(false);
+					weakestButton.setEnabled(true);
+					closestButton.setEnabled(true);
+					furthestButton.setEnabled(true);
+					break;
+				case WEAKEST:
+					strongestButton.setEnabled(true);
+					weakestButton.setEnabled(false);
+					closestButton.setEnabled(true);
+					furthestButton.setEnabled(true);
+					break;
+				case FURTHEST:
+					strongestButton.setEnabled(true);
+					weakestButton.setEnabled(true);
+					closestButton.setEnabled(true);
+					furthestButton.setEnabled(false);
+					break;
+				case CLOSEST:
+					strongestButton.setEnabled(true);
+					weakestButton.setEnabled(true);
+					closestButton.setEnabled(false);
+					furthestButton.setEnabled(true);
+					break;
+			}
 		}
 
 		sellTowerButton.setEnabled(true);

@@ -1,6 +1,9 @@
 package src.ui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -30,8 +33,8 @@ import src.ui.controller.GameController;
  */
 public class GameSetup extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private static final String createGameText = "Create your game:";
-	private static final String createNameText = "Game name:";
+	private static final String createGameText = "Create your Game:";
+	private static final String createNameText = "Game Name:";
 
 	private JLabel createGameLabel;
 	private JLabel mapLabel;
@@ -48,6 +51,7 @@ public class GameSetup extends JPanel {
 	private MapComponent mc;
 	protected GameMain gameMain;
 	
+	private ImageIcon background;
 	private ImageIcon beginGameIcon;
 	private ImageIcon beginGamePressedIcon;
 	private ImageIcon beginGameHoverIcon;
@@ -62,7 +66,8 @@ public class GameSetup extends JPanel {
 		mc = new MapComponent(true);
 		mc.setGridOn(true);
 		mc.setSize(400, 400);
-	
+			
+		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
 		beginGameIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButton.png");
 		beginGamePressedIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDown.png");
 		beginGameHoverIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonHover.png");
@@ -72,10 +77,18 @@ public class GameSetup extends JPanel {
 		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonHover.png");
 
 		
+		Font creationFont = new Font("test", Font.BOLD, 18);
 		createGameLabel = new JLabel(createGameText);
+		createGameLabel.setForeground(Color.WHITE);
+		createGameLabel.setFont(creationFont);
+
 		mapLabel = new JLabel("Map:");
+		mapLabel.setForeground(Color.WHITE);
 		
+		Font nameFont = new Font("test", Font.BOLD, 14);
 		createNameLabel = new JLabel(createNameText);
+		createNameLabel.setForeground(Color.WHITE);
+		createNameLabel.setFont(creationFont);
 		createNameField = new JTextField("");
 		
 		cancelButton = new JButton(mainMenuIcon); //go back to main menu if cancel game creation
@@ -191,4 +204,9 @@ public class GameSetup extends JPanel {
 	public String getMapName() {
 		return (String) mapList.getSelectedValue();
 	}
-}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0 ,0, null);
+	}
+	
+	}

@@ -7,10 +7,13 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.FilePaths;
 import src.ui.controller.GameController;
 
 /**
@@ -29,10 +32,20 @@ public class CancelPurchasePanel extends JPanel {
 	
 	private JButton cancelButton;
 	
+	private ImageIcon cancelPurchaseIcon;
+	private ImageIcon cancelPurchasePressedIcon;
+	private ImageIcon cancelPurchaseHoverIcon;
+	private ImageIcon cancelPurchaseDisabledIcon;
+	
 	public CancelPurchasePanel(GameController controller) {
 		super(new GridBagLayout());
 		
 		gc = controller;
+		
+		cancelPurchaseIcon = new ImageIcon(FilePaths.buttonPath + "CancelPurchaseButton.png");
+		cancelPurchasePressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelPurchaseButtonDown.png");
+		cancelPurchaseHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelPurchaseButtonHover.png");
+		cancelPurchaseDisabledIcon = new ImageIcon(FilePaths.buttonPath + "CancelPurchaseButtonDisabled.png");
 		
 		purchaseLabel = new JLabel("Purchasing");
 		towerNameLabel = new JLabel();
@@ -45,7 +58,12 @@ public class CancelPurchasePanel extends JPanel {
 
 		tipLabel = new JLabel(tipText);
 		
-		cancelButton = new JButton("Cancel Purchase");
+		cancelButton = new JButton(cancelPurchaseIcon);
+		cancelButton.setBorder(BorderFactory.createEmptyBorder());
+		cancelButton.setContentAreaFilled(false);
+		cancelButton.setRolloverIcon(cancelPurchaseHoverIcon);
+		cancelButton.setDisabledIcon(cancelPurchaseDisabledIcon);
+		cancelButton.setPressedIcon(cancelPurchasePressedIcon);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gc.cancelTowerPurchase();

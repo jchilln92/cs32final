@@ -65,9 +65,9 @@ public class Lobby extends JPanel {
 		super(new GridBagLayout());
 		setSize(800, 600);
 		
-		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButton.png");
-		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonDown.png");
-		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonHover.png");
+		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MPMenuButton.png");
+		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "MPMenuButtonDown.png");
+		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "MPMenuButtonHover.png");
 
 		refreshIcon = new ImageIcon(FilePaths.buttonPath + "RefreshButton.png");
 		refreshPressedIcon = new ImageIcon(FilePaths.buttonPath + "RefreshButtonDown.png");

@@ -29,9 +29,9 @@ public class MultiplayerGameSetup extends GameSetup {
 	public MultiplayerGameSetup(MultiplayerController multiController) {
 		this.controller = multiController;
 		
-		cancelIcon = new ImageIcon(FilePaths.buttonPath + "CancelButton.png");
-		cancelPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelButtonDown.png");
-		cancelHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelButtonHover.png");
+		cancelIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButton.png");
+		cancelPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButtonDown.png");
+		cancelHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButtonHover.png");
 		
 		cancelButton = new JButton(cancelIcon);
 		cancelButton.setBorder(BorderFactory.createEmptyBorder());

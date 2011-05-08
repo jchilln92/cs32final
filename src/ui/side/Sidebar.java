@@ -3,13 +3,16 @@ package src.ui.side;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory; 
 import javax.swing.border.Border;
 
 
+import src.FilePaths;
 import src.net.NetworkGame;
 import src.ui.controller.GameController;
 import src.ui.controller.MultiplayerController;
@@ -26,11 +29,13 @@ public class Sidebar extends JPanel {
 	private PlayerStatsPanel playerStats;
 	private TimeWavePanel timeWave;
 	private PauseQuitPanel pauseQuit;
-	
+	private ImageIcon background;
 	public Sidebar(GameController gc, MultiplayerController mc) {
 		controller = gc;
 		boolean isMultiplayer = mc != null;
 		
+		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
+
 		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.PAGE_AXIS);
 		setLayout(layoutManager);
@@ -61,6 +66,13 @@ public class Sidebar extends JPanel {
 		add(timeWave, BorderLayout.LINE_START);
 		add(towerPanel, BorderLayout.LINE_START);
 		add(pauseQuit, BorderLayout.LINE_START);
+		
+		/*
+		playerStats.setOpaque(false);
+		timeWave.setOpaque(false);
+		towerPanel.setOpaque(false);
+		pauseQuit.setOpaque(false);
+		*/
 	}
 	
 	public void showTowerPurchase() {
@@ -98,4 +110,10 @@ public class Sidebar extends JPanel {
 	public PlayerStatsPanel getPlayerStatsPanel() {
 		return playerStats;
 	}
+	
+	/*
+	public void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0 ,0, null);
+	}
+	*/
 } 
