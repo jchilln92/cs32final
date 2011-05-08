@@ -3,11 +3,15 @@ package src.ui;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
 public class TowerDrawer {
 	public static void drawTower(IDrawableTower t, double tileHeight,
 			double tileWidth, Graphics2D g) {
+		
+		AffineTransform originalAt = g.getTransform();
+		g.setTransform(AffineTransform.getRotateInstance(t.getOrientation(), (t.getX() + .5) * tileWidth, (t.getY() + .5) * tileHeight));
 		
 		Image towerImage = t.getType().getImage();
 		g.drawImage(towerImage, 
@@ -16,6 +20,8 @@ public class TowerDrawer {
 					(int)tileWidth,
 					(int)tileHeight,
 					null);
+		
+		g.setTransform(originalAt);
 
 		/*
 		// TODO: stub method

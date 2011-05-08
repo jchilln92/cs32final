@@ -2,6 +2,7 @@ package src.core;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -53,6 +54,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	private int upgradeLevel;
 
 	private int x, y;
+	private double orientation;
 	private double investment;
 	
 	public static Tower createTower(Type t){
@@ -218,8 +220,15 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	}
 
 	public double getOrientation() {
-		// TODO: stub
-		return 0;
+		return orientation;
+	}
+	
+	public void orientTowards(Creep c) {
+		double length = c.getPosition().distance(new Point2D.Double(x + .5, y + .5));
+		Point2D.Double direction = new Point2D.Double((c.getPosition().getX() - (x + .5)) / length, 
+													  (c.getPosition().getY() - (y + .5)) / length);
+
+		orientation = Math.PI - Math.atan2(direction.getX(), direction.getY());
 	}
 
 	public void setType(Tower.Type t){

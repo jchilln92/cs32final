@@ -208,6 +208,8 @@ public class Game {
 					(!c.isFlying() || t.getTargeting().isHitsFlying()) && // this tower must be flying if creep is
 					c.towerCanApplyDamage(t)) {
 					
+					t.orientTowards(c);
+					
 					synchronized (bullets) {
 						bullets.add(new Bullet(t, c, elapsedTime));
 					}
