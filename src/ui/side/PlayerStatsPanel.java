@@ -5,9 +5,11 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.FilePaths;
 import src.core.Player;
 
 /**
@@ -20,10 +22,6 @@ public class PlayerStatsPanel extends JPanel {
 	private Player player;
 	private Player opponent;
 
-	private static final String goldText = "Gold: ";
-	private static final String healthText = "Health: ";
-	private static final String opponentHealthText = "Enemy: ";
-
 	private JLabel goldLabel;
 	private JLabel healthLabel;
 	private JLabel opponentHealthLabel;
@@ -32,23 +30,29 @@ public class PlayerStatsPanel extends JPanel {
 	private JLabel opponentHealthValueLabel;
 	private JLabel goldChangeLabel;
 	
+	private ImageIcon goldIcon;
+	private ImageIcon healthIcon;
+	private ImageIcon enemyHealthIcon;
+	
 	private boolean showingGoldChange;
 	
 	public PlayerStatsPanel(Player p) {
 		super(new GridBagLayout());
 		
 		player = p;
-
-		goldLabel = new JLabel(goldText);
-		goldLabel.setForeground(Color.YELLOW);
-		healthLabel = new JLabel(healthText);
-		healthLabel.setForeground(Color.RED);
+		
+		goldIcon = new ImageIcon(FilePaths.miscPath + "gold-icon.png");
+		healthIcon = new ImageIcon(FilePaths.miscPath + "heart-icon1.png");
+		
+		goldLabel = new JLabel(goldIcon);
+		healthLabel = new JLabel(healthIcon);
+		
 		goldValueLabel = new JLabel("0");
 		healthValueLabel = new JLabel("0");
 		goldChangeLabel = new JLabel("");
 		
 		showingGoldChange = false;
-		
+
 		updateDisplay();
 
 		GridBagConstraints c = new GridBagConstraints();
@@ -57,7 +61,6 @@ public class PlayerStatsPanel extends JPanel {
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
 		add(goldLabel, c);
-
 		c.gridx = 1;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
@@ -83,10 +86,11 @@ public class PlayerStatsPanel extends JPanel {
 		this(localPlayer);
 		
 		this.opponent = opponent;
+		enemyHealthIcon = new ImageIcon(FilePaths.miscPath + "heart-icon2.png");
 		
-		opponentHealthLabel = new JLabel(opponentHealthText);
-		opponentHealthLabel.setForeground(Color.RED);
+		opponentHealthLabel = new JLabel(enemyHealthIcon);
 		opponentHealthValueLabel = new JLabel("0");
+		
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;

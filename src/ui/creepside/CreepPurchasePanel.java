@@ -189,6 +189,7 @@ public class CreepPurchasePanel extends JPanel {
 		c.gridx = 4;
 		add(blueButton, c);
 		c.gridx = 5;
+		c.insets.set(0, 0, 0, 0);
 		add(yellowButton, c);
 		
 		updateAllowedButtons();
