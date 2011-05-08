@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import com.esotericsoftware.minlog.Log;
+
 import src.ui.TitleScreen;
 
 /**
@@ -36,6 +38,7 @@ public class GameMain extends JFrame {
 	 * The main entry point for our program
 	 */
 	public static void main(String[] args) {
+		Log.set(Log.LEVEL_TRACE);
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {

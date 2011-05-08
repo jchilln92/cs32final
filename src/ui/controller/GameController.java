@@ -89,8 +89,12 @@ public class GameController {
 		runnerThread.start();
 	}
 	
-	public void quit() {
+	public void stop() {
 		runnerThread.stop(); // this is technically not safe, if it causes problems, we should change it
+	}
+	
+	public void quit() {
+		stop(); 
 		gameMain.showScreen(new TitleScreen(gameMain));
 	}
 	
@@ -141,13 +145,13 @@ public class GameController {
 			}
 			
 			if (game.isOver()) {
+				stop();
+				
 				if (game instanceof NetworkGame) {
 					multiController.networkGameFinished(((NetworkGame)game).getOpponent().getHealth() <= 0);
 				} else { 
 					gameMain.showScreen(new GameOverPanel(gameMain));
 				}
-				
-				runnerThread.stop();
 			}
 		}
 	}
