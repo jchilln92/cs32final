@@ -282,21 +282,22 @@ public class LobbyManager {
 						   InetAddress.getByName(ag.getHostAddress()), 
 						   NetworkConstants.tcpPort, 
 						   NetworkConstants.udpPort);
+			
+			controller.waitingToJoinGame();
+			
+			GameNegotiationMessage joinMessage = new GameNegotiationMessage();
+			joinMessage.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN;
+			joinMessage.data = localPlayer.getUsername();
+
+			client.sendTCP(joinMessage);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// we probably tried to join a game that doesn't exist any more
+			// so refresh
+			controller.refreshLobby();
 		}
-		
-		controller.waitingToJoinGame();
-		
-		GameNegotiationMessage joinMessage = new GameNegotiationMessage();
-		joinMessage.type = GameNegotiationMessage.Type.ATTEMPT_TO_JOIN;
-		joinMessage.data = localPlayer.getUsername();
-
-		client.sendTCP(joinMessage);
 	}
 	
 	public ArrayList<AvailableGame> getAvailableGames(){

@@ -52,6 +52,10 @@ public class MultiplayerController {
 		gameMain.showScreen(title);
 	}
 	
+	public void refreshLobby() {
+		lobby.updateGameListPane();
+	}
+	
 	/*
 	 * Game creation
 	 */
@@ -131,8 +135,8 @@ public class MultiplayerController {
 		localGameController.start();
 		
 		localGameController.setGameMain(gameMain);
-		gameMain.showScreen(gamePanel);
 		gameMain.setSize(1080, 700);
+		gameMain.showScreen(gamePanel);
 	}
 
 	/**
