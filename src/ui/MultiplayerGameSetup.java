@@ -21,23 +21,24 @@ public class MultiplayerGameSetup extends GameSetup {
 	private MultiplayerController controller;
 	private JTextField nameField;
 	
-	private ImageIcon cancelIcon;
-	private ImageIcon cancelPressedIcon;
-	private ImageIcon cancelHoverIcon;
-
+	private ImageIcon createIcon;
+	private ImageIcon createHoverIcon;
+	private ImageIcon createPressedIcon;
+	private ImageIcon createDisabledIcon;
 	
 	public MultiplayerGameSetup(MultiplayerController multiController) {
 		this.controller = multiController;
 		
-		cancelIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButton.png");
-		cancelPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButtonDown.png");
-		cancelHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButtonHover.png");
-		
-		cancelButton = new JButton(cancelIcon);
-		cancelButton.setBorder(BorderFactory.createEmptyBorder());
-		cancelButton.setContentAreaFilled(false);
-		cancelButton.setPressedIcon(cancelPressedIcon);
-		cancelButton.setRolloverIcon(cancelHoverIcon);
+		createIcon = new ImageIcon(FilePaths.buttonPath + "SlimCreateButton.png");
+		createPressedIcon = new ImageIcon(FilePaths.buttonPath + "SlimCreateButtonDown.png");
+		createHoverIcon = new ImageIcon(FilePaths.buttonPath + "SlimCreateButtonHover.png");
+		createDisabledIcon = new ImageIcon(FilePaths.buttonPath + "SlimCreateButtonDisabled.png");
+		playButton = new JButton(createIcon);
+		playButton.setBorder(BorderFactory.createEmptyBorder());
+		playButton.setContentAreaFilled(false);
+		playButton.setPressedIcon(createPressedIcon);
+		playButton.setRolloverIcon(createHoverIcon);
+		playButton.setDisabledIcon(createDisabledIcon);
 		
 		setupLayout();
 		setupButtonActions();
