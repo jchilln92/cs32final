@@ -63,6 +63,8 @@ public class LobbyManager {
 	}
 	
 	public void sendGameOverMessage(boolean opponentWon) {
+		if (opponentConnection == null) return;
+		
 		GameNegotiationMessage gameOver = new GameNegotiationMessage();
 		gameOver.type = GameNegotiationMessage.Type.GAME_OVER;
 		gameOver.data = opponentWon;
@@ -156,6 +158,7 @@ public class LobbyManager {
 					}
 				}
 			}
+			
 			public void disconnected(Connection c) {
 				if (opponentConnection != null && c.getID() == opponentConnection.getID())
 					controller.opponentDisconnected();
