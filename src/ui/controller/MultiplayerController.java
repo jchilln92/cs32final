@@ -27,6 +27,7 @@ public class MultiplayerController {
 	private MultiplayerClientWaitScreen clientWaitScreen;
 	
 	private boolean gameInProgress;
+	private GameController localGameController;
 	
 	public MultiplayerController(GameMain gameMain) {
 		this.gameMain = gameMain;
@@ -122,15 +123,15 @@ public class MultiplayerController {
 		NetworkGameController networkController = new NetworkGameController(ng);
 		
 		// controls drawing our map
-		GameController localController = new GameController();
+		GameController localGameController = new GameController();
 		
 		//ng.setGameController(localController);
-		MultiplayerGamePanel gamePanel = new MultiplayerGamePanel(localController,
+		MultiplayerGamePanel gamePanel = new MultiplayerGamePanel(localGameController,
 				networkController, ng, this);
 		
-		localController.start();
+		localGameController.start();
 		
-		localController.setGameMain(gameMain);
+		localGameController.setGameMain(gameMain);
 		gameMain.showScreen(gamePanel);
 		gameMain.setSize(1080, 700);
 	}
@@ -140,6 +141,7 @@ public class MultiplayerController {
 	 */
 	public void quitNetworkGame() {
 		gameInProgress = false;
+		localGameController.stop();
 		lobbyManager.quit();
 		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
@@ -153,6 +155,7 @@ public class MultiplayerController {
 	 */
 	public void networkGameFinished(boolean won) {
 		gameInProgress = false;
+		localGameController.stop();
 		lobbyManager.resetOpponentConnection();
 		lobbyManager.shutdownServer();
 		
