@@ -60,7 +60,7 @@ public class TowerPurchasePanel extends JPanel {
 		c.weightx = 1;
 		c.gridx = 1;
 		c.gridy = 0;
-		c.insets.set(0, 0, 10, 0);
+		c.insets.set(0, 0, 40, 0);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(purchaseTowersLabel, c);
 		
@@ -115,7 +115,7 @@ public class TowerPurchasePanel extends JPanel {
 
 			c.gridy = 1 + index / 3;
 			c.ipadx = 4;
-			c.insets.set(0, 5, 0, 5);
+			c.insets.set(5, 5, 0, 5);
 			c.fill = GridBagConstraints.NONE;
 			add(towerButton, c);
 		}

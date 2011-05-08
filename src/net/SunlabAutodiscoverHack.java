@@ -52,14 +52,14 @@ public class SunlabAutodiscoverHack {
 				addresses.add(InetAddress.getByName("cslab4f"));
 				addresses.add(InetAddress.getByName("cslab4g"));
 				addresses.add(InetAddress.getByName("cslab4h"));
-				addresses.add(InetAddress.getByName("cslab3a"));
+				/*addresses.add(InetAddress.getByName("cslab3a"));
 				addresses.add(InetAddress.getByName("cslab3b"));
 				addresses.add(InetAddress.getByName("cslab3c"));
 				addresses.add(InetAddress.getByName("cslab3d"));
 				addresses.add(InetAddress.getByName("cslab3e"));
 				addresses.add(InetAddress.getByName("cslab3f"));
 				addresses.add(InetAddress.getByName("cslab3g"));
-				addresses.add(InetAddress.getByName("cslab3h"));
+				addresses.add(InetAddress.getByName("cslab3h"));*/
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

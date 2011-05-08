@@ -277,6 +277,8 @@ public class TowerUpgradePanel extends JPanel {
 		// initialize a helper panel to hold the tower strategy buttons
 		// this makes laying them out nicely much easier
 		JPanel holder = new JPanel(new GridBagLayout());
+		holder.setOpaque(false);
+		
 		c.gridx = 0;
 		c.insets.set(0, 5, 0, 5);
 		holder.add(strongestButton, c);
@@ -374,13 +376,13 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		}
 
-		c.insets = new Insets(10, 0, 0, 0);
+		c.insets = new Insets(15, 0, 0, 0);
 		c.gridx = 0;
 		c.gridy = 6;
 		c.gridwidth = 4;
 		c.fill = GridBagConstraints.NONE;
 		add(sellTowerButton, c);
-		c.insets = new Insets(0, 0, 10, 0);
+		c.insets = new Insets(5, 0, 0, 0);
 		c.gridy = 7;
 		add(cancelButton, c);
 	}

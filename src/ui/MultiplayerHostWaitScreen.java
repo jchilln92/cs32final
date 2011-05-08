@@ -39,6 +39,55 @@ public class MultiplayerHostWaitScreen extends JPanel {
 	private MultiplayerController controller;
 	
 	public MultiplayerHostWaitScreen(String gameName, String mapName, MultiplayerController multiController) {
+		super (new GridBagLayout());
+		this.controller = multiController;
+		
+		startGameButton = new JButton("Start Game");
+		bootButton = new JButton("Boot");
+		startGameButton.setEnabled(false);
+		bootButton.setEnabled(false);		
+		cancelButton = new JButton("Cancel");
+		waitingLabel = new JLabel("Waiting for opponents...");
+
+		
+		mc = new MapComponent(true);
+		mc.setGridOn(true);
+		mc.setSize(400, 400);
+		mc.setMap(Map.getMapByName(mapName));
+		
+		
+		GridBagConstraints c = new GridBagConstraints();
+		c.insets = new Insets(0, 0, 0, 0);
+		c.gridx = 0;
+		c.gridy = 0;
+		c.anchor = GridBagConstraints.WEST;
+		//c.gridwidth = 3;
+		add(waitingLabel, c);
+		
+		c.insets.set(0, 0, 0, 0);
+		c.gridx = 1;
+		c.gridy = 0;
+		c.anchor = GridBagConstraints.EAST;
+		add(bootButton, c);
+		
+		c.insets.set(20, 100, 0, 0);
+		c.gridx = 1;
+		c.gridy = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		add(mc, c);
+		
+		c.insets.set(20, 0, 0, 0);
+		c.gridx = 0;
+		c.gridy = 3;
+		c.anchor = GridBagConstraints.WEST;
+		add(cancelButton, c);
+		
+		c.gridx = 1;
+		c.gridy = 3;
+		c.anchor = GridBagConstraints.EAST;
+		add(startGameButton, c);
+		
+		/*
 		super(new BorderLayout());
 		this.controller = multiController;
 
@@ -127,6 +176,8 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		add(waitingPanel, BorderLayout.PAGE_START);
 		add(gridPanel, BorderLayout.CENTER);
 		setupButtonHandlers();
+		
+		*/
 	}
 	
 	public void setupButtonHandlers() {

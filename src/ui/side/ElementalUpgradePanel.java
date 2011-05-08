@@ -30,6 +30,8 @@ public class ElementalUpgradePanel extends JPanel {
 	public ElementalUpgradePanel(GameController gc){
 		super(new GridBagLayout());
 		
+		this.setOpaque(false);
+		
 		controller = gc;
 		neutralButton = new JButton();
 		neutralButton.setBackground(ColorConstants.neutralColor);

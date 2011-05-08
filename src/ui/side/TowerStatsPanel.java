@@ -43,6 +43,8 @@ public class TowerStatsPanel extends JPanel {
 		
 		controller = gc;
 		
+		this.setOpaque(false);
+		
 		tower = null;
 		upgrade = null;
 		

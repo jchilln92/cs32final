@@ -35,6 +35,11 @@ public class TowerCardPanel extends JPanel {
 		add(tpPanel, PanelID.PURCHASE.toString());
 		add(cpPanel, PanelID.CANCEL_PURCHASE.toString());
 		add(tuPanel, PanelID.STATS_UPGRADE.toString());
+		
+		tpPanel.setOpaque(false);
+		cpPanel.setOpaque(false);
+		tuPanel.setOpaque(false);
+		
 	}
 	
 	public void showPurchasePanel() {
