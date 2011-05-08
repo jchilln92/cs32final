@@ -203,16 +203,6 @@ public class MapComponent extends JComponent {
 		}
 
 		if (gc != null) {
-			for (IDrawableTower t : gc.getDrawableTowers()) {
-				TowerDrawer.drawTower(t, tileHeight, tileWidth, gg);
-			}
-			
-			synchronized (gc.getDrawableCreeps()) {
-				for (IDrawableCreep c : gc.getDrawableCreeps()) {
-					CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
-				}
-			}
-			
 			synchronized (gc.getBullets()) {
 				for (Bullet b : gc.getBullets()) {
 					Rectangle2D.Double bulletBox = new Rectangle2D.Double(b.getPosition().getX() * tileWidth,
@@ -220,6 +210,16 @@ public class MapComponent extends JComponent {
 																		  2, 2);
 					gg.setColor(Color.RED);
 					gg.fill(bulletBox);
+				}
+			}
+			
+			for (IDrawableTower t : gc.getDrawableTowers()) {
+				TowerDrawer.drawTower(t, tileHeight, tileWidth, gg);
+			}
+			
+			synchronized (gc.getDrawableCreeps()) {
+				for (IDrawableCreep c : gc.getDrawableCreeps()) {
+					CreepDrawer.drawCreep(c, tileHeight, tileWidth, gg);
 				}
 			}
 		}

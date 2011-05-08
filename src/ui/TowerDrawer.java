@@ -59,18 +59,15 @@ public class TowerDrawer {
 		switch (t.getUpgradeLevel()) {
 			// the omission of break statements is intentional
 			case 3:
-				upgradeDot.x = t.getX() * 
-					tileWidth + tileWidth / 2 - upgradeDot.width / 2;
-				upgradeDot.y =  t.getY() * tileHeight + upgradeDot.height / 2;
+				upgradeDot.x = t.getX() * tileWidth + tileWidth / 2 - upgradeDot.width / 2;
+				upgradeDot.y =  t.getY() * tileHeight + tileHeight - 2 * upgradeDot.height;
 				g.fill(upgradeDot);
 			case 2:
-				upgradeDot.x = t.getX() * 
-					tileWidth + tileWidth / 2 - 2 * upgradeDot.width;
+				upgradeDot.x = t.getX() * tileWidth + tileWidth / 2 - 2 * upgradeDot.width;
 				upgradeDot.y =  t.getY() * tileHeight + tileHeight - 2 * upgradeDot.height;
 				g.fill(upgradeDot);
 			case 1:
-				upgradeDot.x = t.getX() * 
-					tileWidth + tileWidth / 2 + upgradeDot.width;
+				upgradeDot.x = t.getX() * tileWidth + tileWidth / 2 + upgradeDot.width;
 				upgradeDot.y =  t.getY() * tileHeight + tileHeight - 2 * upgradeDot.height;
 				g.fill(upgradeDot);
 			case 0:
