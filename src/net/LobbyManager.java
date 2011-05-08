@@ -62,6 +62,14 @@ public class LobbyManager {
 		resetOpponentConnection();
 	}
 	
+	public void sendGameOverMessage(boolean opponentWon) {
+		GameNegotiationMessage gameOver = new GameNegotiationMessage();
+		gameOver.type = GameNegotiationMessage.Type.GAME_OVER;
+		gameOver.data = opponentWon;
+		
+		opponentConnection.sendTCP(gameOver);
+	}
+	
 	/*
 	 * Methods related to functioning as a host
 	 */
@@ -140,6 +148,10 @@ public class LobbyManager {
 						case QUIT_GAME:
 							opponentConnection = null;
 							controller.opponentDisconnected();
+							break;
+						case GAME_OVER:
+							opponentConnection = null;
+							controller.networkGameFinished((Boolean)m.data);
 							break;
 					}
 				}
@@ -221,6 +233,10 @@ public class LobbyManager {
 						case QUIT_GAME:
 							opponentConnection = null;
 							controller.opponentDisconnected();
+						case GAME_OVER:
+							opponentConnection = null;
+							controller.networkGameFinished((Boolean)m.data);
+							break;
 					}
 				}
 			}

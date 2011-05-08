@@ -14,6 +14,7 @@ public class GameNegotiationMessage {
 		BULLETS_UPDATE,
 		HEALTH_UPDATE,
 		WAVE,
-		QUIT_GAME
+		QUIT_GAME,
+		GAME_OVER
 	}
 }
