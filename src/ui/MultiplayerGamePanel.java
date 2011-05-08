@@ -58,26 +58,26 @@ public class MultiplayerGamePanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		c.insets.set(0, 0, 0, 10);
-		c.anchor = GridBagConstraints.SOUTH;
+		c.anchor = GridBagConstraints.SOUTHEAST;
 		add(opponentMap, c);
 		
 		c.gridx = 1;
 		c.gridy = 0;
-		c.insets.set(0, 0, 0, 10);
-		c.anchor = GridBagConstraints.SOUTH;
+		c.anchor = GridBagConstraints.SOUTHEAST;
 		add(localMap, c);
 		
 		c.gridx = 2;
 		c.gridy = 0;
-		c.insets.set(0, 0, 0, 10);
+		c.gridheight = 2;
+		c.fill = GridBagConstraints.VERTICAL;
 		add(sidebar, c);
+		c.gridheight = 0;
 		
 		// setup side bar
 		c.insets.set(0, 0, 0, 0);
 		c.gridx = 0;
 		c.gridy = 1;
-		c.gridwidth = 3;
+		c.gridwidth = 2;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		CreepSideBar cs = new CreepSideBar(localController);
 		add(cs, c);
