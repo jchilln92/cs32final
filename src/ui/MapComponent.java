@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 
 import src.core.Bullet;
@@ -31,6 +32,7 @@ public class MapComponent extends JComponent {
 
 	public MapComponent(boolean readOnly) {
 		this.readOnly = readOnly;
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		if (!readOnly)
 			setupMouseEvents();
