@@ -144,13 +144,13 @@ public class GameController {
 			}
 			
 			if (game.isOver()) {
-				stop();
-				
 				if (game instanceof NetworkGame) {
-					multiController.networkGameFinished(((NetworkGame)game).getOpponent().getHealth() <= 0);
+					multiController.gameOver(((NetworkGame)game).getOpponent().getHealth() <= 0);
 				} else { 
 					gameMain.showScreen(new GameOverPanel(gameMain));
 				}
+				
+				stop();
 			}
 		}
 	}

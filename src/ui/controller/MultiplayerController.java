@@ -3,6 +3,7 @@ package src.ui.controller;
 import javax.swing.JOptionPane;
 import src.GameMain;
 import src.net.AvailableGame;
+import src.net.GameNegotiationMessage;
 import src.net.LobbyManager;
 import src.net.NetworkGame;
 import src.net.NetworkGameController;
@@ -164,6 +165,11 @@ public class MultiplayerController {
 		} else {
 			gameMain.showScreen(new GameOverPanel(gameMain));
 		}
+	}
+	
+	public void gameOver(boolean won) {
+		lobbyManager.sendGameOverMessage(!won);
+		networkGameFinished(won);
 	}
 
 	/**
