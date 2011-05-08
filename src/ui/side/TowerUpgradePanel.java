@@ -85,8 +85,8 @@ public class TowerUpgradePanel extends JPanel {
 		
 		sellIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButton.png");
 		sellPressedIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonDown.png");
-		sellHoverIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonHover.png");
-		sellDisabledIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonDisabled.png");
+		//sellHoverIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonHover.png");
+		//sellDisabledIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonDisabled.png");
 		
 		farIcon = new ImageIcon(FilePaths.buttonPath + "FarButton.png");
 		farPressedIcon = new ImageIcon(FilePaths.buttonPath + "FarButtonDown.png");
@@ -191,8 +191,8 @@ public class TowerUpgradePanel extends JPanel {
 		sellTowerButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		sellTowerButton.setBorder(BorderFactory.createEmptyBorder());
 		sellTowerButton.setContentAreaFilled(false);
-		sellTowerButton.setRolloverIcon(sellHoverIcon);
-		sellTowerButton.setDisabledIcon(sellDisabledIcon);
+		//sellTowerButton.setRolloverIcon(sellHoverIcon);
+		//sellTowerButton.setDisabledIcon(sellDisabledIcon);
 		sellTowerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.sellTower();
@@ -202,14 +202,12 @@ public class TowerUpgradePanel extends JPanel {
 		sellTowerButton.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				if (e.getComponent().isEnabled()) {
-					sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
 					sellTowerButton.setForeground(Color.WHITE);
 				}
 
 			}
 			
 			public void mouseExited(MouseEvent e) {
-				sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
 				sellTowerButton.setForeground(Color.BLACK);
 			}
 			
@@ -338,6 +336,7 @@ public class TowerUpgradePanel extends JPanel {
 	}
 	
 	private void updateSellButton() {
+		sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
 		sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
 	}
 	
