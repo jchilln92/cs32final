@@ -55,6 +55,7 @@ public class GameSetup extends JPanel {
 	private ImageIcon beginGameIcon;
 	private ImageIcon beginGamePressedIcon;
 	private ImageIcon beginGameHoverIcon;
+	private ImageIcon beginGameDisabledIcon;
 	private ImageIcon mainMenuIcon;
 	private ImageIcon mainMenuPressedIcon;
 	private ImageIcon mainMenuHoverIcon;
@@ -71,7 +72,8 @@ public class GameSetup extends JPanel {
 		beginGameIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButton.png");
 		beginGamePressedIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDown.png");
 		beginGameHoverIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonHover.png");
-		
+		beginGameDisabledIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDisabled.png");
+
 		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButton.png");
 		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonDown.png");
 		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonHover.png");
@@ -88,7 +90,7 @@ public class GameSetup extends JPanel {
 		Font nameFont = new Font("test", Font.BOLD, 14);
 		createNameLabel = new JLabel(createNameText);
 		createNameLabel.setForeground(Color.WHITE);
-		createNameLabel.setFont(creationFont);
+		createNameLabel.setFont(nameFont);
 		createNameField = new JTextField("");
 		
 		cancelButton = new JButton(mainMenuIcon); //go back to main menu if cancel game creation
@@ -103,6 +105,7 @@ public class GameSetup extends JPanel {
 		playButton.setContentAreaFilled(false);
 		playButton.setPressedIcon(beginGamePressedIcon);
 		playButton.setRolloverIcon(beginGameHoverIcon);
+		playButton.setDisabledIcon(beginGameDisabledIcon);
 		
 		Object mapNames[] = Map.getMapNames().toArray();
 		mapList = new JList(mapNames);

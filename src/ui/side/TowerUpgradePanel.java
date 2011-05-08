@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import src.FilePaths;
 import src.core.TargetingInfo;
@@ -49,6 +50,11 @@ public class TowerUpgradePanel extends JPanel {
 	private ImageIcon cancelUpgradeHoverIcon;
 	private ImageIcon cancelUpgradeDisabledIcon;
 	
+	private ImageIcon sellIcon;
+	private ImageIcon sellPressedIcon;
+	private ImageIcon sellHoverIcon;
+	private ImageIcon sellDisabledIcon;
+
 	private ImageIcon farIcon;
 	private ImageIcon farPressedIcon;
 	private ImageIcon farHoverIcon;
@@ -77,6 +83,11 @@ public class TowerUpgradePanel extends JPanel {
 		cancelUpgradeHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButtonHover.png");
 		cancelUpgradeDisabledIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButtonDisabled.png");
 		
+		sellIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButton.png");
+		sellPressedIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonDown.png");
+		sellHoverIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonHover.png");
+		sellDisabledIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonDisabled.png");
+		
 		farIcon = new ImageIcon(FilePaths.buttonPath + "FarButton.png");
 		farPressedIcon = new ImageIcon(FilePaths.buttonPath + "FarButtonDown.png");
 		farHoverIcon = new ImageIcon(FilePaths.buttonPath + "FarButtonHover.png");
@@ -102,7 +113,6 @@ public class TowerUpgradePanel extends JPanel {
 		towerStats.setTower(controller.getSelectedTower());
 		
 		// set up the buttons to handle changing targeting strategy
-		Font targetingButtonFont = new Font("Default", Font.PLAIN, 8);
 		Insets targetingButtonInsets = new Insets(0, 5, 0, 5);
 		
 		strongestButton = new JButton(strongIcon);
@@ -177,11 +187,32 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		});
 		
-		sellTowerButton = new JButton("Sell");
+		sellTowerButton = new JButton(sellIcon);
+		sellTowerButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		sellTowerButton.setBorder(BorderFactory.createEmptyBorder());
+		sellTowerButton.setContentAreaFilled(false);
 		sellTowerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.sellTower();
 			}
+		});
+		
+		sellTowerButton.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				if (e.getComponent().isEnabled()) {
+					sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
+					sellTowerButton.setForeground(Color.WHITE);
+					sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
+				}
+
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
+				sellTowerButton.setForeground(Color.BLACK);
+				sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
+			}
+			
 		});
 		
 		cancelButton = new JButton(cancelUpgradeIcon);
@@ -307,6 +338,8 @@ public class TowerUpgradePanel extends JPanel {
 	}
 	
 	private void updateSellButton() {
+		sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
+		sellTowerButton.setForeground(Color.BLACK);
 		sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
 	}
 	
@@ -332,7 +365,7 @@ public class TowerUpgradePanel extends JPanel {
 		super.paintComponent(g);
 		
 		towerStats.setTower(controller.getSelectedTower());
-		updateSellButton();
+		//updateSellButton();
 		updateClickableButtons();
 	}
 	

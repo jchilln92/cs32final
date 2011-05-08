@@ -144,7 +144,6 @@ public class LobbyManager {
 					}
 				}
 			}
-
 			public void disconnected(Connection c) {
 				if (opponentConnection != null && c.getID() == opponentConnection.getID())
 					controller.opponentDisconnected();

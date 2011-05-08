@@ -141,7 +141,7 @@ public class MultiplayerController {
 	 */
 	public void quitNetworkGame() {
 		gameInProgress = false;
-		localGameController.stop();
+		//localGameController.stop();
 		lobbyManager.quit();
 		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);

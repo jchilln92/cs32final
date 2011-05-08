@@ -1,5 +1,8 @@
 package src.ui;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -43,6 +46,8 @@ public class Lobby extends JPanel {
 	
 	private MultiplayerController controller;
 	
+	private ImageIcon background;
+	
 	private ImageIcon mainMenuIcon;
 	private ImageIcon mainMenuPressedIcon;
 	private ImageIcon mainMenuHoverIcon;
@@ -64,6 +69,8 @@ public class Lobby extends JPanel {
 	public Lobby(MultiplayerController multiController) {
 		super(new GridBagLayout());
 		setSize(800, 600);
+		
+		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
 		
 		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MPMenuButton.png");
 		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "MPMenuButtonDown.png");
@@ -88,8 +95,13 @@ public class Lobby extends JPanel {
 		gameTableScrollPane = new JScrollPane();
 		
 		lobbyLabel = new JLabel(lobbyText);
-		usernameLabel = new JLabel("Username: ");
+		lobbyLabel.setForeground(Color.WHITE);
+		lobbyLabel.setFont(new Font("lobbyFont", Font.BOLD, 16));
 		
+		usernameLabel = new JLabel("Username: ");
+		usernameLabel.setForeground(Color.WHITE);
+		usernameLabel.setFont(new Font("lobbyFont", Font.BOLD, 12));
+
 		usernameField = new JTextField(13);
 		updateGameListPane();
 		
@@ -188,7 +200,7 @@ public class Lobby extends JPanel {
 		
 		c.gridx = 3;
 		c.gridy = 0;
-		c.insets = new Insets(20, -80, 0, 0);	
+		c.insets = new Insets(20, -150, 0, 0);	
 		c.fill = GridBagConstraints.NONE;
 		add(refreshButton, c);
 			
@@ -199,7 +211,7 @@ public class Lobby extends JPanel {
 		c.ipady = 60;
 		c.insets = new Insets(20, 0, 0, 0);	
 		c.anchor = GridBagConstraints.LINE_START;
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.BOTH;
 		add(gameTableScrollPane, c);
 		
 		c.gridx = 0;
@@ -213,14 +225,14 @@ public class Lobby extends JPanel {
 		
 		c.gridx = 1;
 		c.gridy = 3;
-		c.insets = new Insets(20, 60, 0, 0);	
+		c.insets = new Insets(20, 150, 0, 0);	
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
 		add(createGameButton, c);				
 
 		c.gridx = 2;
 		c.gridy = 3;
-		c.insets = new Insets(20, 15, 0, 0);	
+		c.insets = new Insets(20, 50, 0, 0);	
 		c.fill = GridBagConstraints.NONE;
 		add(joinButton, c);	
 	}
@@ -281,5 +293,9 @@ public class Lobby extends JPanel {
 		};
 		
 		worker.execute();
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0 ,0, null);
 	}
 }
