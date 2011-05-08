@@ -1,8 +1,11 @@
 package src.core;
 
+import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import javax.swing.ImageIcon;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -20,6 +23,58 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	private static double STRENGTH_MODIFIER = 0.8;
 	
 	private static HashMap<Creep.Type, Creep> templateCreeps;
+	private static HashMap<Type, HashMap<IAlignment.Alignment, Image>> creepImages;
+	
+	/**
+	 * Returns a preloaded image for a creep of this type and color
+	 */
+	public static Image getImage(Type type, IAlignment.Alignment alignment) {
+		if (creepImages == null) loadImages();
+		return creepImages.get(type).get(alignment);
+	}
+	
+	/**
+	 * Loads all of the creep images and stores them in a useful data structure.  This code is kind of tedious and
+	 * annoying.
+	 */
+	private static void loadImages() {
+		creepImages = new HashMap<Type, HashMap<IAlignment.Alignment, Image>>();
+		creepImages.put(Type.ASSASSIN, new HashMap<IAlignment.Alignment, Image>());
+		creepImages.put(Type.BIG_GUY, new HashMap<IAlignment.Alignment, Image>());
+		creepImages.put(Type.FAST, new HashMap<IAlignment.Alignment, Image>());
+		creepImages.put(Type.FLYING, new HashMap<IAlignment.Alignment, Image>());
+		creepImages.put(Type.GENERIC, new HashMap<IAlignment.Alignment, Image>());
+		
+		creepImages.get(Type.ASSASSIN).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.creepsPath + "AssassinBlue.png").getImage());
+		creepImages.get(Type.ASSASSIN).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.creepsPath + "AssassinGreen.png").getImage());
+		creepImages.get(Type.ASSASSIN).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.creepsPath + "AssassinNeutral.png").getImage());
+		creepImages.get(Type.ASSASSIN).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.creepsPath + "AssassinRed.png").getImage());
+		creepImages.get(Type.ASSASSIN).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.creepsPath + "AssassinYellow.png").getImage());
+		
+		creepImages.get(Type.BIG_GUY).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.creepsPath + "BigGuyBlue.png").getImage());
+		creepImages.get(Type.BIG_GUY).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.creepsPath + "BigGuyGreen.png").getImage());
+		creepImages.get(Type.BIG_GUY).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.creepsPath + "BigGuyNeutral.png").getImage());
+		creepImages.get(Type.BIG_GUY).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.creepsPath + "BigGuyRed.png").getImage());
+		creepImages.get(Type.BIG_GUY).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.creepsPath + "BigGuyYellow.png").getImage());
+
+		creepImages.get(Type.FAST).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.creepsPath + "FastBlue.png").getImage());
+		creepImages.get(Type.FAST).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.creepsPath + "FastGreen.png").getImage());
+		creepImages.get(Type.FAST).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.creepsPath + "FastNeutral.png").getImage());
+		creepImages.get(Type.FAST).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.creepsPath + "FastRed.png").getImage());
+		creepImages.get(Type.FAST).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.creepsPath + "FastYellow.png").getImage());
+		
+		creepImages.get(Type.FLYING).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.creepsPath + "FlyingBlue.png").getImage());
+		creepImages.get(Type.FLYING).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.creepsPath + "FlyingGreen.png").getImage());
+		creepImages.get(Type.FLYING).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.creepsPath + "FlyingNeutral.png").getImage());
+		creepImages.get(Type.FLYING).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.creepsPath + "FlyingRed.png").getImage());
+		creepImages.get(Type.FLYING).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.creepsPath + "FlyingYellow.png").getImage());
+		
+		creepImages.get(Type.GENERIC).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.creepsPath + "GenericBlue.png").getImage());
+		creepImages.get(Type.GENERIC).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.creepsPath + "GenericGreen.png").getImage());
+		creepImages.get(Type.GENERIC).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.creepsPath + "GenericNeutral.png").getImage());
+		creepImages.get(Type.GENERIC).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.creepsPath + "GenericRed.png").getImage());
+		creepImages.get(Type.GENERIC).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.creepsPath + "GenericYellow.png").getImage());
+	}
 	
 	/**
 	 * Helper method to create a creep of a certain type, based on the "template" creep

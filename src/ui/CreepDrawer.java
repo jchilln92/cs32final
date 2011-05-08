@@ -3,15 +3,7 @@ package src.ui;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Polygon;
-import java.awt.geom.Arc2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.GeneralPath;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.ImageObserver;
-
-import javax.swing.ImageIcon;
 
 import src.core.Creep;
 
@@ -31,75 +23,32 @@ public class CreepDrawer {
 	 */
 	public static void drawCreep(IDrawableCreep c, double tileHeight,
 			double tileWidth, Graphics2D g) {
-		// TODO: This is just a stub / test method
-		Point2D.Double creepCenter = new Point2D.Double(c.getPosition().getX()
-				* tileWidth, c.getPosition().getY() * tileHeight);
+		double creepRadius = 0.25 * Math.sqrt(tileWidth * tileHeight);
 
-		//double creepRadius = 5;
-		double creepRadius = 0.2 * Math.sqrt(tileWidth * tileHeight);
-
-		//Creep color is determined by alignment		
-		g.setColor(c.getAlignment().getColor());
-		
 		//Creep shape is determined by its type
-		switch(c.getType()) {
-			case BIG_GUY:
-				double largeRadius = creepRadius * 1.2;
-				GeneralPath square = new GeneralPath();
-				square.moveTo(creepCenter.x + largeRadius, creepCenter.y + largeRadius);
-				square.lineTo(creepCenter.x - largeRadius, creepCenter.y + largeRadius);
-				square.lineTo(creepCenter.x -largeRadius, creepCenter.y - largeRadius);
-				square.lineTo(creepCenter.x + largeRadius, creepCenter.y - largeRadius);
-				square.closePath();
-				g.fill(square);
-				break;
-			case FAST:
-				Arc2D.Double fast = new Arc2D.Double();
-				fast.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
-						creepRadius * 0.5, 0, 360, Arc2D.PIE);
-				g.fill(fast);
-				break; //needs to be better aligned
-			case FLYING:
-				GeneralPath triangle = new GeneralPath();
-				triangle.moveTo(creepCenter.x - creepRadius, creepCenter.y - creepRadius);
-				triangle.lineTo(creepCenter.x + creepRadius, creepCenter.y - creepRadius);
-				triangle.lineTo(creepCenter.x, creepCenter.y + creepRadius);
-				triangle.closePath();
-				g.fill(triangle);
-				break;
-			case ASSASSIN: 
-				GeneralPath diamond = new GeneralPath();
-				diamond.moveTo(creepCenter.x , creepCenter.y + creepRadius);
-				diamond.lineTo(creepCenter.x + creepRadius, creepCenter.y);
-				diamond.lineTo(creepCenter.x , creepCenter.y - creepRadius);
-				diamond.lineTo(creepCenter.x - creepRadius, creepCenter.y);
-				diamond.closePath();
-				g.fill(diamond);
-				break;
-			default: //generic creep
-				Arc2D.Double creep = new Arc2D.Double();
-				creep.setArcByCenter(creepCenter.getX(), creepCenter.getY(),
-					creepRadius, 0, 360, Arc2D.PIE);
-				g.fill(creep);
-		}
+		Image creepImage = Creep.getImage(c.getType(), c.getAlignment());
+		g.drawImage(creepImage, 
+				(int)(c.getPosition().getX() * tileWidth) - (int)creepRadius, 
+				(int)(c.getPosition().getY() * tileHeight) - (int)creepRadius,
+				(int)(2 * creepRadius),
+				(int)(2 * creepRadius),
+				null);
 		
-		
-		if(drawHealthBar){
+		if (drawHealthBar) {
+			double healthBarWidth = 2 * creepRadius - 3;
+			
 			// draw a health bar over the creep
-			Rectangle2D.Double backgroundBar = new Rectangle2D.Double(creepCenter
-					.getX()
-					- creepRadius, creepCenter.getY() - creepRadius - 5,
-					2 * creepRadius, 3);
+			Rectangle2D.Double backgroundBar = new Rectangle2D.Double(c.getPosition().getX() * tileWidth - healthBarWidth / 2, 
+																	  c.getPosition().getY() * tileHeight - creepRadius - 5,
+																	  2 * creepRadius - 4, 3);
 	
 			g.setColor(Color.RED);
 			g.fill(backgroundBar);
 
 
-			Rectangle2D.Double healthBar = new Rectangle2D.Double(creepCenter
-				.getX()
-				- creepRadius, creepCenter.getY() - creepRadius - 5, c
-				.getHealthFraction()
-				* 2 * creepRadius, 3);
+			Rectangle2D.Double healthBar = new Rectangle2D.Double(c.getPosition().getX() * tileWidth - healthBarWidth / 2, 
+																  c.getPosition().getY() * tileHeight - creepRadius - 5, 
+																  c.getHealthFraction() * healthBarWidth, 3);
 
 			g.setColor(Color.GREEN);
 			g.fill(healthBar);
