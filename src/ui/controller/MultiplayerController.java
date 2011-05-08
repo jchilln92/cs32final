@@ -140,8 +140,11 @@ public class MultiplayerController {
 	 * Exits a game in progress and returns the player to the lobby.
 	 */
 	public void quitNetworkGame() {
-		gameInProgress = false;
-		localGameController.stop();
+		if (gameInProgress) {
+			gameInProgress = false;
+			localGameController.stop();
+		}
+	
 		lobbyManager.quit();
 		lobby.updateGameListPane();
 		gameMain.showScreen(lobby);
