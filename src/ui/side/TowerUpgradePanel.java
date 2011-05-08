@@ -191,6 +191,8 @@ public class TowerUpgradePanel extends JPanel {
 		sellTowerButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		sellTowerButton.setBorder(BorderFactory.createEmptyBorder());
 		sellTowerButton.setContentAreaFilled(false);
+		sellTowerButton.setRolloverIcon(sellHoverIcon);
+		sellTowerButton.setDisabledIcon(sellDisabledIcon);
 		sellTowerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.sellTower();
@@ -202,7 +204,6 @@ public class TowerUpgradePanel extends JPanel {
 				if (e.getComponent().isEnabled()) {
 					sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
 					sellTowerButton.setForeground(Color.WHITE);
-					sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
 				}
 
 			}
@@ -210,7 +211,6 @@ public class TowerUpgradePanel extends JPanel {
 			public void mouseExited(MouseEvent e) {
 				sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
 				sellTowerButton.setForeground(Color.BLACK);
-				sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
 			}
 			
 		});
@@ -330,7 +330,7 @@ public class TowerUpgradePanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 6;
 		c.gridwidth = 4;
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.NONE;
 		add(sellTowerButton, c);
 		c.insets = new Insets(0, 0, 10, 0);
 		c.gridy = 7;
@@ -338,8 +338,6 @@ public class TowerUpgradePanel extends JPanel {
 	}
 	
 	private void updateSellButton() {
-		sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
-		sellTowerButton.setForeground(Color.BLACK);
 		sellTowerButton.setText("Sell for " + controller.getSelectedTower().getInvestment() * GameController.towerRefundPercentage);
 	}
 	
@@ -365,7 +363,7 @@ public class TowerUpgradePanel extends JPanel {
 		super.paintComponent(g);
 		
 		towerStats.setTower(controller.getSelectedTower());
-		//updateSellButton();
+		updateSellButton();
 		updateClickableButtons();
 	}
 	
