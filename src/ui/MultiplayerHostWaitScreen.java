@@ -81,7 +81,8 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		startGameButton.setFocusPainted(false);
 		startGameButton.setPressedIcon(startPressedIcon);
 		startGameButton.setRolloverIcon(startHoverIcon);
-		startGameButton.setDisabledIcon(startDisabledIcon);		
+		startGameButton.setDisabledIcon(startDisabledIcon);
+		startGameButton.setEnabled(false);
 		
 		bootButton = new JButton(bootIcon);
 		bootButton.setBorder(BorderFactory.createEmptyBorder());
