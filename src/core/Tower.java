@@ -1,8 +1,11 @@
 package src.core;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.swing.ImageIcon;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
@@ -81,6 +84,51 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	
 	public enum Type {
 		GUN, ANTIAIR, SLOWING, MORTAR, FRIEND, FLAME, STASIS, HTA;
+		
+		private static Image gunImage;
+		private static Image antiairImage;
+		private static Image slowingImage;
+		private static Image mortarImage;
+		private static Image friendImage;
+		private static Image flameImage;
+		private static Image stasisImage;
+		private static Image htaImage;
+		
+		public static void loadImages() {
+			gunImage = (new ImageIcon(FilePaths.towersPath + "tower-icon1.png")).getImage();
+			antiairImage = (new ImageIcon(FilePaths.towersPath + "tower-icon2.png")).getImage();
+			slowingImage = (new ImageIcon(FilePaths.towersPath + "tower-icon3.png")).getImage();
+			mortarImage = (new ImageIcon(FilePaths.towersPath + "tower-icon4.png")).getImage();
+			friendImage = (new ImageIcon(FilePaths.towersPath + "tower-icon5.png")).getImage();
+			flameImage = (new ImageIcon(FilePaths.towersPath + "tower-icon6.png")).getImage();
+			stasisImage = (new ImageIcon(FilePaths.towersPath + "tower-icon7.png")).getImage();
+			htaImage = (new ImageIcon(FilePaths.towersPath + "tower-icon8.png")).getImage();
+		}
+		
+		public Image getImage() {
+			if (gunImage == null) loadImages();
+			
+			switch (this) {
+				case GUN:
+					return gunImage;
+				case ANTIAIR:
+					return antiairImage;
+				case SLOWING:
+					return slowingImage;
+				case MORTAR:
+					return mortarImage;
+				case FRIEND:
+					return friendImage;
+				case FLAME:
+					return flameImage;
+				case STASIS:
+					return stasisImage;
+				case HTA:
+					return htaImage;
+			}
+			
+			return null;
+		}
 		
 		public Color getColor() {
 		

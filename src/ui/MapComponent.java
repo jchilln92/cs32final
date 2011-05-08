@@ -128,6 +128,7 @@ public class MapComponent extends JComponent {
 
 		gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
+		gg.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
 		double tileWidth = getTileWidth();
 		double tileHeight = getTileHeight();

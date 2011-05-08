@@ -208,7 +208,7 @@ public class Lobby extends JPanel {
 		c.gridy = 2;
 		c.gridwidth = 6;
 		c.ipadx = 100;
-		c.ipady = 60;
+		c.ipady = 300;
 		c.insets = new Insets(20, 0, 0, 0);	
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;

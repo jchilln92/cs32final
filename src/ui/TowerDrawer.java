@@ -2,12 +2,22 @@ package src.ui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Arc2D;
+import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 
 public class TowerDrawer {
 	public static void drawTower(IDrawableTower t, double tileHeight,
 			double tileWidth, Graphics2D g) {
+		
+		Image towerImage = t.getType().getImage();
+		g.drawImage(towerImage, 
+					(int)(t.getX() * tileWidth), 
+					(int)(t.getY() * tileHeight),
+					(int)tileWidth,
+					(int)tileHeight,
+					null);
+
+		/*
 		// TODO: stub method
 		Arc2D.Double tower = new Arc2D.Double();
 		
@@ -32,6 +42,7 @@ public class TowerDrawer {
 		g.fill(alignmentBack);
 		g.setColor(t.getAlignment().getColor());
 		g.fill(alignmentShow);
+		*/
 		
 		// draw an indicator of tower upgrade status
 		g.setColor(Color.ORANGE);
