@@ -9,9 +9,10 @@ import java.awt.geom.Rectangle2D;
 public class TowerDrawer {
 	public static void drawTower(IDrawableTower t, double tileHeight,
 			double tileWidth, Graphics2D g) {
-		
 		AffineTransform originalAt = g.getTransform();
-		g.setTransform(AffineTransform.getRotateInstance(t.getOrientation(), (t.getX() + .5) * tileWidth, (t.getY() + .5) * tileHeight));
+		g.transform(AffineTransform.getRotateInstance(t.getOrientation(), 
+														(t.getX() + .5) * tileWidth, 
+														(t.getY() + .5) * tileHeight));
 		
 		Image towerImage = t.getType().getImage();
 		g.drawImage(towerImage, 
@@ -22,33 +23,6 @@ public class TowerDrawer {
 					null);
 		
 		g.setTransform(originalAt);
-
-		/*
-		// TODO: stub method
-		Arc2D.Double tower = new Arc2D.Double();
-		
-		//Allows player to distinguish between alignment color and tower color
-		Arc2D.Double alignmentBack = new Arc2D.Double(); 
-		
-		
-		Arc2D.Double alignmentShow = new Arc2D.Double();
-		
-		double centX = ((t.getX() * tileWidth) + (tileWidth / 2));
-		double centY = ((t.getY() * tileHeight) + (tileHeight / 2));
-		
-		tower.setArcByCenter(centX, centY, tileWidth / 2 - 5, 0, 360,
-				Arc2D.PIE);
-		alignmentBack.setArcByCenter(centX, centY, tileWidth / 3 - 5, 0, 360, Arc2D.PIE);
-		alignmentShow.setArcByCenter(centX, centY, tileWidth / 3 - 6, 0, 360, Arc2D.PIE);
-		
-		g.setColor(t.getType().getColor());
-		
-		g.fill(tower);
-		g.setColor(Color.BLACK);
-		g.fill(alignmentBack);
-		g.setColor(t.getAlignment().getColor());
-		g.fill(alignmentShow);
-		*/
 		
 		// draw an indicator of tower upgrade status
 		g.setColor(Color.ORANGE);
