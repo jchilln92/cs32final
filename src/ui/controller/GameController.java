@@ -25,7 +25,6 @@ import src.ui.GameOverPanel;
 import src.ui.IDrawableCreep;
 import src.ui.IDrawableTower;
 import src.ui.TitleScreen;
-import src.ui.WinPanel;
 import src.ui.side.Sidebar;
 
 /**
