@@ -131,8 +131,10 @@ public class TowerStatsPanel extends JPanel {
 			
 			setCurrentAbilities(tower);
 			
-			//properly set the extra damage label for slowing or damage over time
-			if (tower.getDamage().getSpeedChange() != 0) {
+			//properly set the extra damage label
+			if (tower.getType() == Tower.Type.STASIS) {
+				extraDamageLabel.setText(" ");
+			} else if (tower.getDamage().getSpeedChange() != 0) {
 				extraDamageLabel.setText("Slow Effect: " + NumberFormat.getInstance().format(tower.getDamage().getSpeedChange() * 100) + "%");
 			} else if (tower.getDamage().getTimeDamage() != 0) {
 				extraDamageLabel.setText("Damage over Time: " + NumberFormat.getInstance().format(tower.getDamage().getTimeDamage()));		
@@ -236,13 +238,19 @@ public class TowerStatsPanel extends JPanel {
 		String abilitiesText = "";
 		if (tower.getTargeting().isHitsFlying())
 			abilitiesText += "Anti-air, ";
-		if (tower.getDamage().getSpeedChange() != 0.0)
+		
+		if (tower.getType() == Tower.Type.STASIS)
+			abilitiesText += "Stuns, ";
+		else if (tower.getDamage().getSpeedChange() != 0.0)
 			abilitiesText += "Slowing, ";
+		
 		if (tower.getDamage().getTimeDamage() != 0.0)
 			abilitiesText += "DoT, ";
 		
 		if (abilitiesText.length() > 0)
 			abilitiesText = abilitiesText.substring(0, abilitiesText.length() - 2);
+		else
+			abilitiesText = "None";
 
 		abilitiesLabel.setText("Abilities: " + abilitiesText);
 	}

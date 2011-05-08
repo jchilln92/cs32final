@@ -106,8 +106,8 @@ public class TowerUpgradePanel extends JPanel {
 		sellPressedIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonDown.png");
 		// sellHoverIcon = new ImageIcon(FilePaths.buttonPath +
 		// "BlankSellButtonHover.png");
-		// sellDisabledIcon = new ImageIcon(FilePaths.buttonPath +
-		// "BlankSellButtonDisabled.png");
+		 sellDisabledIcon = new ImageIcon(FilePaths.buttonPath +
+		 "BlankSellButtonDisabled.png");
 
 		farIcon = new ImageIcon(FilePaths.buttonPath + "FarButton.png");
 		farPressedIcon = new ImageIcon(FilePaths.buttonPath + "FarButtonDown.png");
@@ -211,7 +211,7 @@ public class TowerUpgradePanel extends JPanel {
 		sellTowerButton.setBorder(BorderFactory.createEmptyBorder());
 		sellTowerButton.setContentAreaFilled(false);
 		// sellTowerButton.setRolloverIcon(sellHoverIcon);
-		// sellTowerButton.setDisabledIcon(sellDisabledIcon);
+		sellTowerButton.setDisabledIcon(sellDisabledIcon);
 
 		sellTowerButton.setForeground(Color.BLACK);
 		sellTowerButton.addActionListener(new ActionListener() {

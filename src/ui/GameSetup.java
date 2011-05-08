@@ -74,9 +74,9 @@ public class GameSetup extends JPanel {
 		beginGameHoverIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonHover.png");
 		beginGameDisabledIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDisabled.png");
 
-		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButton.png");
-		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonDown.png");
-		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "MainMenuButtonHover.png");
+		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButton.png");
+		mainMenuPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButtonDown.png");
+		mainMenuHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButtonHover.png");
 
 		
 		Font creationFont = new Font("test", Font.BOLD, 18);

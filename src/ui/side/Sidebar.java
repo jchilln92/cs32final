@@ -36,7 +36,6 @@ public class Sidebar extends JPanel {
 		
 		background = new ImageIcon(FilePaths.bgPath + "SidebarBGRD.png");
 
-		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.PAGE_AXIS);
 		setLayout(layoutManager);
 		
@@ -58,10 +57,7 @@ public class Sidebar extends JPanel {
 			pauseQuit = new PauseQuitPanel(controller);
 		}
 
-		playerStats.setBorder(borderLine);
-		timeWave.setBorder(borderLine);
-		towerPanel.setBorder(borderLine);
-		pauseQuit.setBorder(borderLine);
+
 		add(playerStats, BorderLayout.LINE_START);
 		add(timeWave, BorderLayout.LINE_START);
 		add(towerPanel, BorderLayout.LINE_START);
@@ -88,22 +84,12 @@ public class Sidebar extends JPanel {
 	}
 	
 	public void disableSidebar(){
-		for (int x = 0; x < playerStats.getComponentCount(); x++){
-			playerStats.getComponent(x).setEnabled(false);
-		}
-		for (int x = 0; x < timeWave.getComponentCount(); x++){
-			timeWave.getComponent(x).setEnabled(false);
-		}
+		timeWave.disableTimeWave();
 		towerPanel.disableCardPanel();
 	}
 	
 	public void enableSidebar(){
-		for (int x = 0; x < playerStats.getComponentCount(); x++){
-			playerStats.getComponent(x).setEnabled(true);
-		}
-		for (int x = 0; x < timeWave.getComponentCount(); x++){
-			timeWave.getComponent(x).setEnabled(true);
-		}
+		timeWave.enableTimeWave();
 		towerPanel.enableCardPanel();
 	}
 	

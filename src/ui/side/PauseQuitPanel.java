@@ -122,14 +122,17 @@ public class PauseQuitPanel extends JPanel {
 			c.gridx = 0;
 			c.gridy = 0;
 			c.fill = GridBagConstraints.NONE;
+			c.insets.set(0, 10, 0, 0);
 			add(heartButton, c);
 			
 			c.gridx = 1;
 			c.gridy = 0;
+			c.insets.set(0, 0, 0, 0);
 			add(pauseButton, c);
 			
 			c.gridx = 2;
 			c.gridy = 0;
+			c.insets.set(0, 0, 0, 10);
 			add(quitButton, c);
 		} else {
 			c.weightx = 1;
