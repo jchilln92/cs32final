@@ -34,7 +34,7 @@ public class Sidebar extends JPanel {
 		controller = gc;
 		boolean isMultiplayer = mc != null;
 		
-		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
+		//background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
 
 		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.PAGE_AXIS);
@@ -67,12 +67,12 @@ public class Sidebar extends JPanel {
 		add(towerPanel, BorderLayout.LINE_START);
 		add(pauseQuit, BorderLayout.LINE_START);
 		
-		/*
-		playerStats.setOpaque(false);
-		timeWave.setOpaque(false);
-		towerPanel.setOpaque(false);
-		pauseQuit.setOpaque(false);
-		*/
+		
+		//playerStats.setOpaque(false);
+	//	timeWave.setOpaque(false);
+	//	towerPanel.setOpaque(false);
+		//pauseQuit.setOpaque(false);
+		
 	}
 	
 	public void showTowerPurchase() {
@@ -116,4 +116,5 @@ public class Sidebar extends JPanel {
 		g.drawImage(background.getImage(), 0 ,0, null);
 	}
 	*/
+	
 } 
