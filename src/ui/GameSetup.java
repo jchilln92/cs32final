@@ -96,6 +96,7 @@ public class GameSetup extends JPanel {
 		cancelButton = new JButton(mainMenuIcon); //go back to main menu if cancel game creation
 		cancelButton.setBorder(BorderFactory.createEmptyBorder());
 		cancelButton.setContentAreaFilled(false);
+		cancelButton.setFocusPainted(false);
 		cancelButton.setPressedIcon(mainMenuPressedIcon);
 		cancelButton.setRolloverIcon(mainMenuHoverIcon);
 
@@ -103,6 +104,7 @@ public class GameSetup extends JPanel {
 		playButton = new JButton(beginGameIcon);
 		playButton.setBorder(BorderFactory.createEmptyBorder());
 		playButton.setContentAreaFilled(false);
+		playButton.setFocusPainted(false);
 		playButton.setPressedIcon(beginGamePressedIcon);
 		playButton.setRolloverIcon(beginGameHoverIcon);
 		playButton.setDisabledIcon(beginGameDisabledIcon);

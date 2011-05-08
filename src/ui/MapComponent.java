@@ -41,6 +41,10 @@ public class MapComponent extends JComponent {
 	private void setupMouseEvents() {
 		this.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
+				if (gc.getPaused()) {
+					return;
+				}
+				
 				Point mouse = getMouseTile();
 				
 				int x = mouse.x;
@@ -184,7 +188,7 @@ public class MapComponent extends JComponent {
 				int x = mouse.x;
 				int y = mouse.y;
 				
-				if (gc != null && gc.tileIsOccupied(x, y)) {
+				if (gc != null && gc.tileIsOccupied(x, y) && !gc.getPaused()) {
 					// draw a hover display over any towers we're hovering over
 					tile.setFrame(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 					

@@ -207,7 +207,6 @@ public class Game {
 				if (c.getPosition().distance(t.getX(), t.getY()) < t.getRadius() && // creep in range
 					(!c.isFlying() || t.getTargeting().isHitsFlying()) && // this tower must be flying if creep is
 					c.towerCanApplyDamage(t)) {
-					
 					t.orientTowards(c);
 					
 					synchronized (bullets) {

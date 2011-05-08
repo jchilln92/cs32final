@@ -289,6 +289,8 @@ public class Lobby extends JPanel {
 				gameTable.getTableHeader().setReorderingAllowed(false);
 				gameTableScrollPane.setViewportView(gameTable);
 				gameTable.setFillsViewportHeight(true);
+				
+				updateAllowedButtons(usernameField.getText());
 			}
 		};
 		
