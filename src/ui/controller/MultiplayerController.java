@@ -55,11 +55,11 @@ public class MultiplayerController {
 	 * Game creation
 	 */
 	public void beginGameCreation() {
+		gameSetup.reset();
 		gameMain.showScreen(gameSetup);
 	}
 	
 	public void cancelGameCreation() {
-		gameSetup.reset();
 		gameMain.showScreen(lobby);
 	}
 	
@@ -86,7 +86,7 @@ public class MultiplayerController {
 		}
 	}
 
-	public void waitToJoinGame() {
+	public void waitingToJoinGame() {
 		gameMain.showScreen(clientWaitScreen);
 	}
 	
@@ -154,6 +154,7 @@ public class MultiplayerController {
 	public void networkGameFinished(boolean won) {
 		gameInProgress = false;
 		lobbyManager.resetOpponentConnection();
+		lobbyManager.shutdownServer();
 		
 		gameMain.setSize(800, 600);
 		
@@ -170,7 +171,7 @@ public class MultiplayerController {
 	 * disconnected during a game.
 	 */
 	public void opponentDisconnected() {
-		if (lobbyManager.getHostedGame() != null) {
+		if (lobbyManager.getHostedGame() != null) { // we haven't actually started a game yet
 			hostWaitScreen.setPotentialOpponent(null);
 		}
 		
@@ -195,6 +196,9 @@ public class MultiplayerController {
 		gameMain.showScreen(lobby);
 	}
 	
+	/*
+	 * Misc getters/setters
+	 */
 	public void setUsername(String uname) {
 		lobbyManager.setPlayerName(uname);
 	}
