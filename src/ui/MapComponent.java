@@ -256,12 +256,12 @@ public class MapComponent extends JComponent {
 
 	@Override
 	public Dimension getMinimumSize() {
-		return getPreferredSize();
+		return new Dimension(getWidth(), getHeight());
 	}
 
 	@Override
 	public Dimension getMaximumSize() {
-		return getPreferredSize();
+		return new Dimension(getWidth(), getHeight());
 	}
 
 	public void setReadOnly(boolean readOnly) {
