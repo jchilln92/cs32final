@@ -23,6 +23,8 @@ public class CreepStatsPanel extends JPanel{
 	public CreepStatsPanel(GameController gc) {
 		super(new GridBagLayout());
 		
+		this.setOpaque(false);
+		
 		controller = gc;
 		
 		creepNameLabel = new JLabel(" ");

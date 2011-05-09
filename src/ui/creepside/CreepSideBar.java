@@ -3,13 +3,16 @@ package src.ui.creepside;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import src.FilePaths;
 import src.ui.controller.GameController;
 
 public class CreepSideBar extends JPanel {
@@ -21,9 +24,13 @@ public class CreepSideBar extends JPanel {
 	private CreepPurchasePanel creepInfoPurchase;
 	private CreepQueuePanel creepQueue;
 	
+	private ImageIcon creepBackground;
+	
 	public CreepSideBar(GameController gc) {
 		controller = gc;
 
+		creepBackground = new ImageIcon(FilePaths.bgPath +"MPCreepBGRD.png");
+		
 		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
 		this.setBorder(borderLine);
 		
@@ -32,6 +39,10 @@ public class CreepSideBar extends JPanel {
 		creepQueue = new CreepQueuePanel(controller);
 		creepInfoPurchase = new CreepPurchasePanel(creepQueue, controller);
 		creepSelection = new CreepSelectionPanel(creepInfoPurchase, controller);
+		
+		creepQueue.setOpaque(false);
+		creepInfoPurchase.setOpaque(false);
+		creepSelection.setOpaque(false);
 		
 		creepQueue.setInfoPurchase(creepInfoPurchase);
 
@@ -78,5 +89,9 @@ public class CreepSideBar extends JPanel {
 		for (int x = 0; x < creepQueue.getComponentCount(); x++){
 			creepQueue.getComponent(x).setEnabled(true);
 		}
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(creepBackground.getImage(), 0 ,0, null);
 	}
 } 
