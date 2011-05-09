@@ -68,7 +68,6 @@ public class TowerPurchasePanel extends JPanel {
 		// initialize a purchase button for each of the towers
 		for (int index = 0; index < 8; index++) {
 			final Tower.Type type = buttonTypes[index];
-			System.out.println(type);
 			ImageIcon towerIcon = new ImageIcon(Tower.getImage(type, IAlignment.Alignment.NEUTRAL));
 			
 			final JButton towerButton = new JButton(towerIcon);
