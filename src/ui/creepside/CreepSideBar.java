@@ -31,8 +31,8 @@ public class CreepSideBar extends JPanel {
 
 		creepBackground = new ImageIcon(FilePaths.bgPath +"MPCreepBGRD.png");
 		
-		Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
-		this.setBorder(borderLine);
+		//Border borderLine = BorderFactory.createLineBorder(Color.BLACK);
+		//this.setBorder(borderLine);
 		
 		setLayout(new GridBagLayout());
 		
