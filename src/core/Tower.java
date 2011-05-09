@@ -13,6 +13,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import src.FilePaths;
+import src.core.Creep.Type;
 import src.core.xml.TowerXMLReader;
 import src.ui.IDrawableTower;
 
@@ -24,6 +25,80 @@ import src.core.IAlignment;
  */
 public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	private static HashMap<Type, Tower> templateTowers = null;
+	private static HashMap<Type, HashMap<IAlignment.Alignment, Image>> towerImages;
+	
+	/**
+	 * Returns a preloaded image for a creep of this type and alignment
+	 */
+	public static Image getImage(Type type, IAlignment.Alignment alignment) {
+		if (towerImages == null) loadImages();
+		
+		return towerImages.get(type).get(alignment);
+	}
+	
+	/**
+	 * Loads all of the creep images and stores them in a useful data structure.  This code is kind of tedious and
+	 * annoying.
+	 */
+	private static void loadImages() {
+		towerImages = new HashMap<Type, HashMap<IAlignment.Alignment, Image>>();
+		towerImages.put(Type.GUN, new HashMap<IAlignment.Alignment, Image>());
+		towerImages.put(Type.ANTIAIR, new HashMap<IAlignment.Alignment, Image>());
+		towerImages.put(Type.SLOWING, new HashMap<IAlignment.Alignment, Image>());
+		towerImages.put(Type.MORTAR, new HashMap<IAlignment.Alignment, Image>());
+		towerImages.put(Type.FRIEND, new HashMap<IAlignment.Alignment, Image>());
+		towerImages.put(Type.FLAME, new HashMap<IAlignment.Alignment, Image>());
+		towerImages.put(Type.HTA, new HashMap<IAlignment.Alignment, Image>());
+		towerImages.put(Type.STASIS, new HashMap<IAlignment.Alignment, Image>());
+		
+		towerImages.get(Type.GUN).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.towersPath + "gunblue.png").getImage());
+		towerImages.get(Type.GUN).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.towersPath + "gungreen.png").getImage());
+		towerImages.get(Type.GUN).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.towersPath + "gunneutral.png").getImage());
+		towerImages.get(Type.GUN).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.towersPath + "gunred.png").getImage());
+		towerImages.get(Type.GUN).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.towersPath + "gunyellow.png").getImage());
+		
+		towerImages.get(Type.ANTIAIR).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.towersPath + "antiairblue.png").getImage());
+		towerImages.get(Type.ANTIAIR).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.towersPath + "antiairgreen.png").getImage());
+		towerImages.get(Type.ANTIAIR).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.towersPath + "antiairneutral.png").getImage());
+		towerImages.get(Type.ANTIAIR).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.towersPath + "antiairred.png").getImage());
+		towerImages.get(Type.ANTIAIR).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.towersPath + "antiairyellow.png").getImage());
+		
+		towerImages.get(Type.SLOWING).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.towersPath + "slowingblue.png").getImage());
+		towerImages.get(Type.SLOWING).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.towersPath + "slowinggreen.png").getImage());
+		towerImages.get(Type.SLOWING).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.towersPath + "slowingneutral.png").getImage());
+		towerImages.get(Type.SLOWING).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.towersPath + "slowingred.png").getImage());
+		towerImages.get(Type.SLOWING).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.towersPath + "slowingyellow.png").getImage());
+		
+		towerImages.get(Type.MORTAR).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.towersPath + "mortarblue.png").getImage());
+		towerImages.get(Type.MORTAR).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.towersPath + "mortargreen.png").getImage());
+		towerImages.get(Type.MORTAR).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.towersPath + "mortarneutral.png").getImage());
+		towerImages.get(Type.MORTAR).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.towersPath + "mortarred.png").getImage());
+		towerImages.get(Type.MORTAR).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.towersPath + "mortaryellow.png").getImage());
+		
+		towerImages.get(Type.FRIEND).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.towersPath + "friendblue.png").getImage());
+		towerImages.get(Type.FRIEND).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.towersPath + "friendgreen.png").getImage());
+		towerImages.get(Type.FRIEND).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.towersPath + "friendneutral.png").getImage());
+		towerImages.get(Type.FRIEND).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.towersPath + "friendred.png").getImage());
+		towerImages.get(Type.FRIEND).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.towersPath + "friendyellow.png").getImage());
+		
+		towerImages.get(Type.FLAME).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.towersPath + "flameblue.png").getImage());
+		towerImages.get(Type.FLAME).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.towersPath + "flamegreen.png").getImage());
+		towerImages.get(Type.FLAME).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.towersPath + "flameneutral.png").getImage());
+		towerImages.get(Type.FLAME).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.towersPath + "flamered.png").getImage());
+		towerImages.get(Type.FLAME).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.towersPath + "flameyellow.png").getImage());
+		
+		towerImages.get(Type.HTA).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.towersPath + "htablue.png").getImage());
+		towerImages.get(Type.HTA).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.towersPath + "htagreen.png").getImage());
+		towerImages.get(Type.HTA).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.towersPath + "htaneutral.png").getImage());
+		towerImages.get(Type.HTA).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.towersPath + "htared.png").getImage());
+		towerImages.get(Type.HTA).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.towersPath + "htayellow.png").getImage());
+		
+		towerImages.get(Type.STASIS).put(IAlignment.Alignment.BLUE, new ImageIcon(FilePaths.towersPath + "stasisblue.png").getImage());
+		towerImages.get(Type.STASIS).put(IAlignment.Alignment.GREEN, new ImageIcon(FilePaths.towersPath + "stasisgreen.png").getImage());
+		towerImages.get(Type.STASIS).put(IAlignment.Alignment.NEUTRAL, new ImageIcon(FilePaths.towersPath + "stasisneutral.png").getImage());
+		towerImages.get(Type.STASIS).put(IAlignment.Alignment.RED, new ImageIcon(FilePaths.towersPath + "stasisred.png").getImage());
+		towerImages.get(Type.STASIS).put(IAlignment.Alignment.YELLOW, new ImageIcon(FilePaths.towersPath + "stasisyellow.png").getImage());
+	}
 	
 	@Attribute
 	private Tower.Type type;
@@ -86,51 +161,6 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	
 	public enum Type {
 		GUN, ANTIAIR, SLOWING, MORTAR, FRIEND, FLAME, STASIS, HTA;
-		
-		private static Image gunImage;
-		private static Image antiairImage;
-		private static Image slowingImage;
-		private static Image mortarImage;
-		private static Image friendImage;
-		private static Image flameImage;
-		private static Image stasisImage;
-		private static Image htaImage;
-		
-		public static void loadImages() {
-			gunImage = (new ImageIcon(FilePaths.towersPath + "tower-icon1.png")).getImage();
-			antiairImage = (new ImageIcon(FilePaths.towersPath + "tower-icon2.png")).getImage();
-			slowingImage = (new ImageIcon(FilePaths.towersPath + "tower-icon3.png")).getImage();
-			mortarImage = (new ImageIcon(FilePaths.towersPath + "tower-icon4.png")).getImage();
-			friendImage = (new ImageIcon(FilePaths.towersPath + "tower-icon5.png")).getImage();
-			flameImage = (new ImageIcon(FilePaths.towersPath + "tower-icon6.png")).getImage();
-			stasisImage = (new ImageIcon(FilePaths.towersPath + "tower-icon7.png")).getImage();
-			htaImage = (new ImageIcon(FilePaths.towersPath + "tower-icon8.png")).getImage();
-		}
-		
-		public Image getImage() {
-			if (gunImage == null) loadImages();
-			
-			switch (this) {
-				case GUN:
-					return gunImage;
-				case ANTIAIR:
-					return antiairImage;
-				case SLOWING:
-					return slowingImage;
-				case MORTAR:
-					return mortarImage;
-				case FRIEND:
-					return friendImage;
-				case FLAME:
-					return flameImage;
-				case STASIS:
-					return stasisImage;
-				case HTA:
-					return htaImage;
-			}
-			
-			return null;
-		}
 		
 		public Color getColor() {
 		

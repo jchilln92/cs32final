@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
+import src.core.Tower;
+
 public class TowerDrawer {
 	public static void drawTower(IDrawableTower t, double tileHeight,
 			double tileWidth, Graphics2D g) {
@@ -14,7 +16,7 @@ public class TowerDrawer {
 														(t.getX() + .5) * tileWidth, 
 														(t.getY() + .5) * tileHeight));
 		
-		Image towerImage = t.getType().getImage();
+		Image towerImage = Tower.getImage(t.getType(), t.getAlignment());
 		g.drawImage(towerImage, 
 					(int)(t.getX() * tileWidth), 
 					(int)(t.getY() * tileHeight),
