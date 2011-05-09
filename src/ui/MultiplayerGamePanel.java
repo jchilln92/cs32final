@@ -36,8 +36,8 @@ public class MultiplayerGamePanel extends JPanel {
 								MultiplayerController multiController) {
 		super(new GridBagLayout());
 				
-		playerLabel.setText("You");
-		opponentLabel.setText("Opponent");
+		playerLabel = new JLabel("You");
+		opponentLabel = new JLabel("Opponent");
 		
 		opponentMap = new MapComponent(true);
 		opponentMap.setGridOn(true);
