@@ -135,7 +135,7 @@ public class MultiplayerController {
 		localGameController.start();
 		
 		localGameController.setGameMain(gameMain);
-		gameMain.setSize(1080, 700);
+		gameMain.setSize(930, 553);
 		gameMain.showScreen(gamePanel);
 	}
 
