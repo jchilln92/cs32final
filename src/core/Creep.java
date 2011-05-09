@@ -26,7 +26,7 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	private static HashMap<Type, HashMap<IAlignment.Alignment, Image>> creepImages;
 	
 	/**
-	 * Returns a preloaded image for a creep of this type and color
+	 * Returns a preloaded image for a creep of this type and alignment
 	 */
 	public static Image getImage(Type type, IAlignment.Alignment alignment) {
 		if (creepImages == null) loadImages();

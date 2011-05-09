@@ -1,6 +1,5 @@
 package src.ui.creepside;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,11 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
 
-import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,7 +21,6 @@ import src.core.Creep;
 import src.core.IAlignment;
 import src.ui.ColorConstants;
 import src.ui.controller.GameController;
-import src.ui.side.TowerStatsPanel;
 
 public class CreepPurchasePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -199,7 +193,7 @@ public class CreepPurchasePanel extends JPanel {
 	}
 
 	private void updateAllowedButtons() {
-		if ( creep == null || (creep != null && !gc.playerCanAfford(creep)) || !gc.playerCanAfford(creep)) {
+		if (creep == null || (creep != null && !gc.playerCanAfford(creep)) || !gc.playerCanAfford(creep)) {
 			buyButton.setEnabled(false);
 		} 
 		else{

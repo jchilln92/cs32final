@@ -25,6 +25,7 @@ import javax.swing.KeyStroke;
 
 import src.FilePaths;
 import src.core.Damage;
+import src.core.IAlignment;
 import src.core.Tower;
 import src.ui.controller.GameController;
 
@@ -66,18 +67,17 @@ public class TowerPurchasePanel extends JPanel {
 		
 		// initialize a purchase button for each of the towers
 		for (int index = 0; index < 8; index++) {
-			String path = FilePaths.towersPath + "tower-icon"+(index+1)+".png";
+			final Tower.Type type = buttonTypes[index];
+			System.out.println(type);
+			ImageIcon towerIcon = new ImageIcon(Tower.getImage(type, IAlignment.Alignment.NEUTRAL));
 			
-			ImageIcon towerIcon = new ImageIcon(path);
 			final JButton towerButton = new JButton(towerIcon);
-			
 			towerButton.setBorder(BorderFactory.createEmptyBorder());
 			towerButton.setFocusPainted(false);
 			towerButton.setContentAreaFilled(false);
 
 			towerButtons[index] = towerButton;
 			
-			final Tower.Type type = buttonTypes[index];
 			towerButtonActions[index] = new AbstractAction() {
 				public void actionPerformed(ActionEvent e) {
 					gc.beginPurchasingTower(Tower.createTower(type));
