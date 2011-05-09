@@ -79,7 +79,6 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		bgImage = new ImageIcon(FilePaths.miscPath + "MPWaitImg.png");
 		JLabel imageLabel = new JLabel(bgImage);
 		
-		
 		startGameButton = new JButton(startIcon);
 		startGameButton.setBorder(BorderFactory.createEmptyBorder());
 		startGameButton.setContentAreaFilled(false);
@@ -116,22 +115,23 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		
 		
 		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(0, 0, 0, 0);
-		c.ipadx = 40;
+		c.insets = new Insets(0, 40, 0, 0);
+		c.weightx = 1;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.WEST;
 		c.gridwidth = 2;
 		add(waitingLabel, c);
 		c.gridwidth = 1;
+		c.weightx = 0;
 		
-		c.insets.set(0, 0, 0, 30);
+		c.insets.set(0, 40, 0, 30);
 		c.gridx = 1;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.EAST;
 		add(bootButton, c);
 		
-		c.insets.set(0,0,0,0);
+		c.insets.set(0, 40, 0, 0);
 		c.gridx = 0;
 		c.gridy = 2;
 		c.anchor = GridBagConstraints.CENTER;
@@ -143,7 +143,7 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		c.anchor = GridBagConstraints.CENTER;
 		add(mc, c);
 		
-		c.insets.set(20, 0, 0, 0);
+		c.insets.set(20, 40, 0, 0);
 		c.gridx = 0;
 		c.gridy = 3;
 		c.anchor = GridBagConstraints.WEST;
@@ -184,12 +184,13 @@ public class MultiplayerHostWaitScreen extends JPanel {
 			startGameButton.setEnabled(false);
 			bootButton.setEnabled(false);
 			bootButton.setVisible(false);
-			
+			revalidate();
 		} else {
 			waitingLabel.setText(name + " wants to battle you!");
 			startGameButton.setEnabled(true);
 			bootButton.setEnabled(true);
 			bootButton.setVisible(true);
+			revalidate();
 		}
 	}
 	

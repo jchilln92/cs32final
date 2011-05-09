@@ -146,6 +146,8 @@ public class TowerStatsPanel extends JPanel {
 	
 	public void setUpgrade(Upgrade u) {
 		upgrade = u;
+		NumberFormat oneDigitNF = NumberFormat.getInstance();
+		oneDigitNF.setMaximumFractionDigits(1);
 		
 		if (upgrade == null) {
 			damageChangeLabel.setText(" ");
@@ -171,7 +173,7 @@ public class TowerStatsPanel extends JPanel {
 			}
 			
 			if (upgrade.getInstantDamageChange() != 0)
-				damageChangeLabel.setText(modifier + Double.toString(upgrade.getInstantDamageChange() * 100) + "%");
+				damageChangeLabel.setText(modifier + oneDigitNF.format(upgrade.getInstantDamageChange() * 100) + "%");
 			
 			// range change
 			if (upgrade.getRadiusChange() > 0) {
@@ -183,19 +185,20 @@ public class TowerStatsPanel extends JPanel {
 			}
 			
 			if (upgrade.getRadiusChange() != 0)
-				rangeChangeLabel.setText(modifier + Double.toString(upgrade.getRadiusChange() * 100) + "%");
+				rangeChangeLabel.setText(modifier + oneDigitNF.format(upgrade.getRadiusChange() * 100) + "%");
 			
-			// fire rate change
+			// fire rate change 
+			// (this is backwards because fire rate is the inverse of fire period, which is how it's represented internally)
 			if (upgrade.getFirePeriodChange() > 0) {
-				rateChangeLabel.setForeground(Color.GREEN);
-				modifier = " +";
-			} else {
 				rateChangeLabel.setForeground(Color.RED);
 				modifier = " -";
+			} else {
+				rateChangeLabel.setForeground(Color.GREEN);
+				modifier = " +";
 			}
 			
 			if (upgrade.getFirePeriodChange() != 0)
-				rateChangeLabel.setText(modifier + Double.toString(upgrade.getFirePeriodChange() * 100) + "%");
+				rateChangeLabel.setText(modifier + oneDigitNF.format(upgrade.getFirePeriodChange() * 100) + "%");
 			
 			
 			setCurrentAbilities(tower);
@@ -217,7 +220,7 @@ public class TowerStatsPanel extends JPanel {
 					extraDamageChangeLabel.setForeground(Color.RED);
 					modifier = " +";
 				}
-				extraDamageChangeLabel.setText(modifier + Double.toString(upgrade.speedEffectChange() * 100) + "%");
+				extraDamageChangeLabel.setText(modifier + oneDigitNF.format(upgrade.speedEffectChange() * 100) + "%");
 			} else if (upgrade.getTimeDamageChange() != 0) { //second, check for damage over time
 				if (extraDamageChangeLabel.getText().equals(" ")) {				
 					if (upgrade.getTimeDamageChange() > 0) {
@@ -227,7 +230,7 @@ public class TowerStatsPanel extends JPanel {
 						extraDamageChangeLabel.setForeground(Color.RED);
 						modifier = " -";
 					}				
-					extraDamageChangeLabel.setText(modifier + Double.toString(upgrade.getTimeDamageChange() * 100) + "%");
+					extraDamageChangeLabel.setText(modifier + oneDigitNF.format(upgrade.getTimeDamageChange() * 100) + "%");
 				}
 			}
 		}
