@@ -117,11 +117,13 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(0, 0, 0, 0);
+		c.ipadx = 40;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.WEST;
 		c.gridwidth = 2;
 		add(waitingLabel, c);
+		c.gridwidth = 1;
 		
 		c.insets.set(0, 0, 0, 30);
 		c.gridx = 1;
