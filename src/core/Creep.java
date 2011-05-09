@@ -19,8 +19,9 @@ import src.ui.IDrawableCreep;
  * Represents an enemy in the game.
  */
 public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
-	private static double WEAKNESS_MODIFIER = 1.2;
-	private static double STRENGTH_MODIFIER = 0.8;
+	private static double WEAKNESS_MODIFIER = 1.25;
+	private static double STRENGTH_MODIFIER = 0.75;
+	private static double NEUTRAL_MODIFIER = 0.8;
 	
 	private static HashMap<Creep.Type, Creep> templateCreeps;
 	private static HashMap<Type, HashMap<IAlignment.Alignment, Image>> creepImages;
@@ -275,7 +276,10 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	public void applyDamage(Damage d, Tower t, int applicationTime) {
 		//factor in increases or decreases of damage due to alignment
 		double damage = d.getInstantDamage();
-		if (this.alignment != IAlignment.Alignment.NEUTRAL) {
+		
+		if (t.getAlignment() == IAlignment.Alignment.NEUTRAL) {
+			damage *= NEUTRAL_MODIFIER;
+		} else if (this.alignment != IAlignment.Alignment.NEUTRAL) {
 			if (t.getAlignment() == this.alignment.getWeakTo()) //if this creep is weak to tower's element
 				damage *= WEAKNESS_MODIFIER;
 			else if (t.getAlignment() == this.alignment.getStrength()) // if this creep is strong to tower's element
