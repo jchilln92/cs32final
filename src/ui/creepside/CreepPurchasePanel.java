@@ -178,7 +178,7 @@ public class CreepPurchasePanel extends JPanel {
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.ipady = 10;
-		c.insets.set(0, 0, 5, 5);
+		c.insets.set(20, 0, 5, 5);
 		c.gridx = 1;
 		c.gridy = 0;
 		add(neutralButton, c);
@@ -189,19 +189,19 @@ public class CreepPurchasePanel extends JPanel {
 		c.gridx = 4;
 		add(blueButton, c);
 		c.gridx = 5;
-		c.insets.set(0, 0, 0, 0);
+		c.insets.set(20, 0, 5, 0);
 		add(yellowButton, c);
 		
 		updateAllowedButtons();
-		c.insets = new Insets(0, 5, 0, 0);
-		c.fill = GridBagConstraints.HORIZONTAL;
+		
 		c.ipady = 0;
+		c.insets.set(0, 0, 5, 0);
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
 		c.gridy = 1;
 		c.gridwidth = 5;
-		c.gridheight = 3;
 		add(buyButton, c);
-		c.gridy = 5;
+		c.gridy = 2;
 		add(cancelButton, c);
 	}
 

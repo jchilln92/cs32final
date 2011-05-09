@@ -56,8 +56,7 @@ public class CreepSelectionPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.anchor = GridBagConstraints.LINE_START;
-		//c.insets = new Insets(0,20,0,-20);
-		c.insets.set(10, 10, 0, 0);
+		c.insets.set(30, 10, 0, 0);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 5;
