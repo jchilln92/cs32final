@@ -55,6 +55,8 @@ public class MultiplayerHostWaitScreen extends JPanel {
 	private ImageIcon bootHoverIcon;
 	private ImageIcon bootPressedIcon;
 	
+	private ImageIcon bgImage;
+	
 	public MultiplayerHostWaitScreen(String gameName, String mapName, MultiplayerController multiController) {
 		super (new GridBagLayout());
 		this.controller = multiController;
@@ -74,6 +76,9 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		bootHoverIcon = new ImageIcon(FilePaths.buttonPath + "BootButtonHover.png");
 		bootPressedIcon = new ImageIcon(FilePaths.buttonPath + "BootButtonDown.png");
 
+		bgImage = new ImageIcon(FilePaths.miscPath + "MPWaitImg.png");
+		JLabel imageLabel = new JLabel(bgImage);
+		
 		
 		startGameButton = new JButton(startIcon);
 		startGameButton.setBorder(BorderFactory.createEmptyBorder());
@@ -123,7 +128,13 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.EAST;
 		add(bootButton, c);
-
+		
+		c.insets.set(0,0,0,0);
+		c.gridx = 0;
+		c.gridy = 2;
+		c.anchor = GridBagConstraints.CENTER;
+		add(imageLabel, c);
+		
 		c.insets.set(30, 100, 0, 30);
 		c.gridx = 1;
 		c.gridy = 2;

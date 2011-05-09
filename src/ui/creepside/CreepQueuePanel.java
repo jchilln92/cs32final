@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -36,15 +37,22 @@ public class CreepQueuePanel extends JPanel {
 	private CreepPurchasePanel infoPurchase;
 	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 	
+	private ImageIcon cancelAllIcon;
+	private ImageIcon cancelAllHoverIcon;
+	private ImageIcon cancelAllPressedIcon;
+	private ImageIcon cancelAllDisabledIcon;
+	
 	public CreepQueuePanel(GameController controller){
 		super(new GridBagLayout());
 		
 		gc = controller;
 		new ArrayList<JLabel>();
 		
-		String path = FilePaths.imgPath + "blank.png";
-		ImageIcon blankIcon = new ImageIcon(path);
-		
+		cancelAllIcon = new ImageIcon(FilePaths.buttonPath + "CancelAllButton.png");
+		cancelAllHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelAllButtonHover.png");
+		cancelAllPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelAllButtonDown.png");
+		cancelAllDisabledIcon = new ImageIcon(FilePaths.buttonPath + "CancelAllButtonDisabled.png");
+				
 		// setup a scrolling panel so that we can add as many creeps as needed
 		iconPanel = new JPanel();
 		iconPanel.setLayout(new BoxLayout(iconPanel, BoxLayout.LINE_AXIS));
@@ -62,7 +70,14 @@ public class CreepQueuePanel extends JPanel {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		add(scroller, c);
 
-		dequeueButton = new JButton("Cancel All");
+		dequeueButton = new JButton(cancelAllIcon);
+		dequeueButton.setBorder(BorderFactory.createEmptyBorder());
+		dequeueButton.setFocusPainted(false);
+		dequeueButton.setContentAreaFilled(false);	
+		dequeueButton.setPressedIcon(cancelAllPressedIcon);
+		dequeueButton.setRolloverIcon(cancelAllHoverIcon);
+		dequeueButton.setDisabledIcon(cancelAllDisabledIcon);
+
 		dequeueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					dequeueAll();
@@ -138,7 +153,10 @@ public class CreepQueuePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		if (getNumberOfCreeps() == 0) {
 			dequeueAll();
-		}
+			dequeueButton.setEnabled(false);
+		} else
+			dequeueButton.setEnabled(true);
+		
 	}
 
 	public int getNumberOfCreeps(){

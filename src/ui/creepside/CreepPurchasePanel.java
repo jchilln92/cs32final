@@ -48,6 +48,7 @@ public class CreepPurchasePanel extends JPanel {
 	private ImageIcon buyCreepIcon;
 	private ImageIcon buyCreepHoverIcon;
 	private ImageIcon buyCreepPressedIcon;
+	private ImageIcon buyCreepDisabledIcon;
 
 	private int creepIndex;
 	
@@ -60,6 +61,9 @@ public class CreepPurchasePanel extends JPanel {
 		buyCreepIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButton.png");
 		buyCreepHoverIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonHover.png");
 		buyCreepPressedIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonDown.png");
+		buyCreepDisabledIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonDisabled.png");
+		
+
 
 		creepQueue = cq;
 		creepIndex = -1;		
@@ -121,6 +125,7 @@ public class CreepPurchasePanel extends JPanel {
 		buyButton.setContentAreaFilled(false);	
 		buyButton.setPressedIcon(buyCreepPressedIcon);
 		buyButton.setRolloverIcon(buyCreepHoverIcon);
+		buyButton.setDisabledIcon(buyCreepDisabledIcon);
 
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -162,10 +167,10 @@ public class CreepPurchasePanel extends JPanel {
 
 		c.insets = new Insets(0, 5, 0, 10);
 		
-		c.gridx = 0;
+		c.gridx = 1;
 		c.gridy = 1;
-
 		add(iconLabel, c);
+		
 		c.gridwidth = 1;
 		c.gridheight = 3;
 		c.ipady = 0;
@@ -192,7 +197,7 @@ public class CreepPurchasePanel extends JPanel {
 		c.ipady = 0;
 		c.insets.set(0, 0, 5, 0);
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 1;
+		c.gridx = 2;
 		c.gridy = 1;
 		c.gridwidth = 5;
 		add(buyButton, c);
