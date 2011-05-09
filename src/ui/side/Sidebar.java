@@ -34,7 +34,12 @@ public class Sidebar extends JPanel {
 		controller = gc;
 		boolean isMultiplayer = mc != null;
 		
-		background = new ImageIcon(FilePaths.bgPath + "SidebarBGRD.png");
+		
+		if (!isMultiplayer) {
+			background = new ImageIcon(FilePaths.bgPath + "SidebarBGRD.png");
+		} else {
+			background = new ImageIcon(FilePaths.bgPath + "MPSidebarBGRD.png");
+		}
 
 		BoxLayout layoutManager = new BoxLayout(this, BoxLayout.PAGE_AXIS);
 		setLayout(layoutManager);
