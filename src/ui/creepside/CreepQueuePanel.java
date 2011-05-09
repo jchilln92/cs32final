@@ -28,7 +28,7 @@ import src.ui.controller.GameController;
 
 public class CreepQueuePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private static final int initialCreepPanelSize = 550;
+	private static final int initialCreepPanelSize = 450;
 	
 	private GameController gc;
 	private JButton dequeueButton;
@@ -60,7 +60,7 @@ public class CreepQueuePanel extends JPanel {
 		JScrollPane scroller = new JScrollPane(iconPanel, 
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scroller.setPreferredSize(new Dimension(555, 50));
+		scroller.setPreferredSize(new Dimension(455, 50));
 				
 		GridBagConstraints c = new GridBagConstraints();
 		

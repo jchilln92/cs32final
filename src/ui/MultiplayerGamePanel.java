@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.net.NetworkGame;
@@ -35,11 +36,11 @@ public class MultiplayerGamePanel extends JPanel {
 		
 		opponentMap = new MapComponent(true);
 		opponentMap.setGridOn(true);
-		opponentMap.setSize(375, 375);
+		opponentMap.setSize(350, 350);
 		
 		localMap = new MapComponent(false);
 		localMap.setGridOn(true);
-		localMap.setSize(375, 375);
+		localMap.setSize(350, 350);
 		
 		localController.setGame(game);
 		localController.setMultiplayerController(multiController);
@@ -58,17 +59,29 @@ public class MultiplayerGamePanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 0;
+		c.anchor = GridBagConstraints.WEST;
+		add (new JLabel("Opponent: asdasdasd"));
+		
+		c.gridx = 1;
+		c.gridy = 0;
+		c.anchor = GridBagConstraints.WEST;
+		add (new JLabel("Player: asdasdasd"));
+		
+		c.gridx = 0;
+		c.gridy = 1;
 		c.anchor = GridBagConstraints.SOUTHEAST;
 		add(opponentMap, c);
 		
 		c.gridx = 1;
-		c.gridy = 0;
+		c.gridy = 1;
+		c.insets.set(0, 5, 0, 0);
 		c.anchor = GridBagConstraints.SOUTHEAST;
 		add(localMap, c);
 		
+		c.insets.set(0,0,0,0);
 		c.gridx = 2;
 		c.gridy = 0;
-		c.gridheight = 2;
+		c.gridheight = 3;
 		c.fill = GridBagConstraints.VERTICAL;
 		add(sidebar, c);
 		c.gridheight = 0;
@@ -76,7 +89,7 @@ public class MultiplayerGamePanel extends JPanel {
 		// setup side bar
 		c.insets.set(0, 0, 0, 0);
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 2;
 		c.gridwidth = 2;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		CreepSideBar cs = new CreepSideBar(localController);
