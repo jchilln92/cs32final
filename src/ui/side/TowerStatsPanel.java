@@ -198,7 +198,7 @@ public class TowerStatsPanel extends JPanel {
 			}
 			
 			if (upgrade.getFirePeriodChange() != 0)
-				rateChangeLabel.setText(modifier + oneDigitNF.format(upgrade.getFirePeriodChange() * 100) + "%");
+				rateChangeLabel.setText(modifier + oneDigitNF.format(Math.abs(upgrade.getFirePeriodChange() * 100)) + "%");
 			
 			
 			setCurrentAbilities(tower);
