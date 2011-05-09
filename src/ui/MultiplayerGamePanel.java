@@ -25,6 +25,8 @@ public class MultiplayerGamePanel extends JPanel {
 	private MapComponent opponentMap;
 	private MapComponent localMap;
 	private Sidebar sidebar;
+	private JLabel playerLabel;
+	private JLabel opponentLabel;
 	
 	private JPanel gamePanel;
 	
@@ -33,6 +35,9 @@ public class MultiplayerGamePanel extends JPanel {
 								NetworkGame game,
 								MultiplayerController multiController) {
 		super(new GridBagLayout());
+				
+		playerLabel.setText("You");
+		opponentLabel.setText("Opponent");
 		
 		opponentMap = new MapComponent(true);
 		opponentMap.setGridOn(true);
@@ -60,12 +65,12 @@ public class MultiplayerGamePanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.WEST;
-		add (new JLabel("Opponent: asdasdasd"));
+		add(opponentLabel);
 		
 		c.gridx = 1;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.WEST;
-		add (new JLabel("Player: asdasdasd"));
+		add(playerLabel);
 		
 		c.gridx = 0;
 		c.gridy = 1;
