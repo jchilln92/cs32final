@@ -44,7 +44,6 @@ public class CreepPurchasePanel extends JPanel {
 	private JButton blueButton;
 	private JButton yellowButton;
 	private JButton buyButton;
-	private JButton cancelButton;
 	
 	private ImageIcon buyCreepIcon;
 	private ImageIcon buyCreepHoverIcon;
@@ -60,8 +59,8 @@ public class CreepPurchasePanel extends JPanel {
 		
 		buyCreepIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButton.png");
 		buyCreepHoverIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonHover.png");
-		buyCreepPressedIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepsButtonDown.png");
-		
+		buyCreepPressedIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonDown.png");
+
 		creepQueue = cq;
 		creepIndex = -1;		
 		neutralButton = new JButton();
@@ -116,9 +115,13 @@ public class CreepPurchasePanel extends JPanel {
 			}
 		});			
 		
-		buyButton = new JButton("Buy creep");
-		
-		buyButton.setBackground(Color.ORANGE);
+		buyButton = new JButton(buyCreepIcon);
+		buyButton.setBorder(BorderFactory.createEmptyBorder());
+		buyButton.setFocusPainted(false);
+		buyButton.setContentAreaFilled(false);	
+		buyButton.setPressedIcon(buyCreepPressedIcon);
+		buyButton.setRolloverIcon(buyCreepHoverIcon);
+
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Creep creepToAdd = Creep.copyCreep(creep);
@@ -145,14 +148,6 @@ public class CreepPurchasePanel extends JPanel {
 			
 		});
 		
-		cancelButton = new JButton("Cancel");
-		cancelButton.setBackground(Color.WHITE);
-		cancelButton.setEnabled(false);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setCreepByIndex(-1);
-			}
-		});	
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -201,8 +196,6 @@ public class CreepPurchasePanel extends JPanel {
 		c.gridy = 1;
 		c.gridwidth = 5;
 		add(buyButton, c);
-		c.gridy = 2;
-		add(cancelButton, c);
 	}
 
 	private void updateAllowedButtons() {
@@ -246,15 +239,11 @@ public class CreepPurchasePanel extends JPanel {
 			creepIcon = new ImageIcon(i);  
 			iconLabel.setIcon(creepIcon);
 			buyButton.setEnabled(false);
-			cancelButton.setEnabled(false);	
-
 		}
 		else{
 			this.creep = Creep.createCreep(creepTypes[index], gc.getGame().getWavesSent());
 			setIconLabel(creep);
-			
 			buyButton.setEnabled(true);
-			cancelButton.setEnabled(true);
 		}
 	}
 	

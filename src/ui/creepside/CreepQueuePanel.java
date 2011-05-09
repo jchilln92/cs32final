@@ -53,9 +53,7 @@ public class CreepQueuePanel extends JPanel {
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, 
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroller.setPreferredSize(new Dimension(555, 50));
-		
-		iconPanel.setOpaque(false);
-		
+				
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
