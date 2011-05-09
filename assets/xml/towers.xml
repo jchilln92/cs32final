@@ -779,7 +779,7 @@
 			<hitsFlying>true</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>3</instantDamage>
+			<instantDamage>50</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>
