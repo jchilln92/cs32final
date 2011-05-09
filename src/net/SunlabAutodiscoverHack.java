@@ -12,6 +12,8 @@ public class SunlabAutodiscoverHack {
 			addresses = new ArrayList<InetAddress>();
 
 			try {
+				addresses.add(InetAddress.getByName("cslab8c"));
+
 				addresses.add(InetAddress.getByName("cslab3a"));
 				addresses.add(InetAddress.getByName("cslab3b"));
 				addresses.add(InetAddress.getByName("cslab3c"));

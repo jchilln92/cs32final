@@ -128,6 +128,9 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		} else if (waveNumber < 20) {
 			originalCreep.setBaseHealth(originalCreep.getBaseHealth() + 3*scalingFactor*originalCreep.getBaseHealth());
 			originalCreep.setHealth(originalCreep.getBaseHealth());
+		} else {
+			originalCreep.setBaseHealth(originalCreep.getBaseHealth() + 4*scalingFactor*originalCreep.getBaseHealth());
+			originalCreep.setHealth(originalCreep.getBaseHealth());
 		}
 		
 		return originalCreep;
