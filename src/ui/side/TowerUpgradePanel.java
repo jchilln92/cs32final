@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -390,8 +391,8 @@ public class TowerUpgradePanel extends JPanel {
 	private void updateSellButton() {
 		sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
 		sellTowerButton.setText("Sell for "
-				+ controller.getSelectedTower().getInvestment()
-				* GameController.towerRefundPercentage);
+				+ NumberFormat.getIntegerInstance().format(controller.getSelectedTower().getInvestment()
+				* GameController.towerRefundPercentage));
 	}
 
 	private void updateClickableButtons() {
