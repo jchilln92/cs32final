@@ -9,7 +9,7 @@
 		<additionalGoldPerWave>2</additionalGoldPerWave>
 	</creep>
 	<creep type="BIG_GUY">
-		<baseHealth>300</baseHealth>
+		<baseHealth>275</baseHealth>
 		<reward>60</reward>
 		<speed>.7</speed>
 		<flying>false</flying>
@@ -22,12 +22,12 @@
 		<reward>50</reward>
 		<speed>1.2</speed>
 		<flying>false</flying>
-		<damageToBase>20</damageToBase>
+		<damageToBase>25</damageToBase>
 		<price>35</price>
 		<additionalGoldPerWave>5</additionalGoldPerWave>
 	</creep>
 	<creep type="FLYING">
-		<baseHealth>65</baseHealth>
+		<baseHealth>70</baseHealth>
 		<reward>55</reward>
 		<speed>1</speed>
 		<flying>true</flying>

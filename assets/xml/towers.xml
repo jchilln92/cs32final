@@ -770,7 +770,7 @@
 		</upgrades>
 	</tower>
 	<tower type="HTA">
-		<price>1000</price>
+		<price>3000</price>
 		<radius>8</radius>
 		<firePeriod>4</firePeriod>
 		<description>"Just plain unfair."</description>
@@ -779,7 +779,7 @@
 			<hitsFlying>true</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>50</instantDamage>
+			<instantDamage>45</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>
