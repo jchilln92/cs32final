@@ -28,7 +28,6 @@ public class TimeWavePanel extends JPanel {
 	private static final String waveText = "Wave: ";
 	private static final String nextWaveText = "Next wave in: ";
 	private static final String elapsedText = "Time elapsed: ";
-	private static final String fastForwardButtonText = ">>";
 	
 	private JLabel waveNumberLabel;
 	private JLabel waveNumberValueLabel;
@@ -84,7 +83,6 @@ public class TimeWavePanel extends JPanel {
 		nextWaveButton.setDisabledIcon(nextWaveDisabledIcon);	
 		nextWaveButton.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
-				
 				//Only allow wave advancement and incrementation if the button is clickable
 				if(nextWaveButton.isEnabled())
 					gc.getGame().sendNextWave();
@@ -113,7 +111,6 @@ public class TimeWavePanel extends JPanel {
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.weightx = 1;
-
 		c.gridx = 0;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.NONE;
