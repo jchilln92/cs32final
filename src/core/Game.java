@@ -14,7 +14,7 @@ import src.WaveGenerator;
  */
 public class Game {
 	private static final int creepDelay = 25; // delay, in ticks, between creeps
-	private static final int waveTime = 1000; // number of ticks between each wave (about 30 seconds)
+	private static final int waveTime = 790; // number of ticks between each wave (about 25 seconds)
 	
 	private Map map;
 	private ArrayList<Bullet> bullets;

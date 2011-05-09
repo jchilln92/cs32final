@@ -462,6 +462,7 @@ public class TowerUpgradePanel extends JPanel {
 				upgradeButtons[x][y].setEnabled(false);
 			}
 		}
+		
 		strongestButton.setEnabled(false);
 		weakestButton.setEnabled(false);
 		closestButton.setEnabled(false);
@@ -478,10 +479,7 @@ public class TowerUpgradePanel extends JPanel {
 			}
 		}
 
-
-
 		sellTowerButton.setEnabled(true);
 		cancelButton.setEnabled(true);
-
 	}
 }
