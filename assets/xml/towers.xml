@@ -119,7 +119,7 @@
 			<hitsFlying>true</hitsFlying>
 		</targeting>
 		<damage>
-			<instantDamage>0.75</instantDamage>
+			<instantDamage>20</instantDamage>
 			<timeDamage>0</timeDamage>
 			<period>0</period>
 			<effectDuration>0</effectDuration>
