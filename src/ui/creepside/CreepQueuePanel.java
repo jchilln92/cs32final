@@ -86,7 +86,7 @@ public class CreepQueuePanel extends JPanel {
 		
 		c.gridx = 1;
 		c.anchor = GridBagConstraints.EAST;
-		c.insets.set(0, 10, 0, 0);
+		c.insets.set(0, 30, 0, 0);
 		add(dequeueButton, c);
 	}
 	
