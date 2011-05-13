@@ -132,6 +132,11 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	private double orientation;
 	private double investment;
 	
+	/**
+	 * Generate a specific tower based on XML stats.
+	 * @param t The type of tower to create
+	 * @return A tower of the designated type
+	 */
 	public static Tower createTower(Type t){
 		if (templateTowers == null) {
 			templateTowers = TowerXMLReader.readXML(FilePaths.xmlPath + "towers.xml");
@@ -253,6 +258,10 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 		return orientation;
 	}
 	
+	/**
+	 * Sets the orientation of the Tower so that the tower can face a targeted creep
+	 * @param The creep that the tower is specifically targeting
+	 */
 	public void orientTowards(Creep c) {
 		double length = c.getPosition().distance(new Point2D.Double(x + .5, y + .5));
 		Point2D.Double direction = new Point2D.Double((c.getPosition().getX() - (x + .5)) / length, 
@@ -297,8 +306,10 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 		investment += item.getPrice();
 	}
 
-	// Applies an upgrade u onto this tower, modifying its Damage,
-	// TargetingInfo, and self
+	/**
+	 * Applies an upgrade onto the tower, modifying its Damage, TargetingInfo, and self
+	 * @param u The upgrade to apply
+	 */
 	public void applyUpgrade(Upgrade u) {
 		assert u.getLevel() == upgradeLevel + 1 : "Attempted to apply inappropriate update!";
 		

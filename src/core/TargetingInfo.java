@@ -32,6 +32,11 @@ public class TargetingInfo {
 		this.hitsFlying = hitsFlying;
 	}
 	
+	/**
+	 * Creates a copy of a given TargetingInfo.
+	 * @param oldInfo The TargetingInfo to copy
+	 * @return The new TargetingInfo
+	 */
 	public static TargetingInfo copyTargetingInfo(TargetingInfo oldInfo) {
 		TargetingInfo targeting = new TargetingInfo();
 		targeting.setHitsFlying(oldInfo.isHitsFlying());

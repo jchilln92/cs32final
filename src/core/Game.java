@@ -146,7 +146,11 @@ public class Game {
 			c.handleTimedDamage(elapsedTime);
 		}
 	}
-	
+
+	/**
+	 * Moves each of the bullets toward their specified Creep. When creeps are less than a pixel
+	 * away from their target, they deal damage and are removed from the game.
+	 */
 	private void stepBullets() {
 		double speed = .3; // tiles per tick
 		
@@ -172,7 +176,7 @@ public class Game {
 	}
 
 	/**
-	 * Sets the creeps targeted by each tower, and 
+	 * Sets the creeps targeted by each tower, and have each tower target the creep based on each tower's targeting strategy
 	 */
 	private void doTowerAttacks() {
 		// find towers eligible to attack

@@ -13,7 +13,11 @@ import src.core.Tower;
  * The format for the XML is defined by annotations in the relevant classes.
  */
 public class TowerXMLReader {	
-	//Reads in an XML Document inputFile and returns a HashMap of Towers keyed to Tower.Type
+	/**
+	 * Generates the basic information for the towers available in the game
+	 * @param inputFile The Filepath for the XML file to be read
+	 * @return A database for the tower information
+	 */
 	public static HashMap<Tower.Type, Tower> readXML(String inputFile) {
 		Serializer serializer = new Persister();
 		File input = new File(inputFile);

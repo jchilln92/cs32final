@@ -12,7 +12,16 @@ import org.simpleframework.xml.strategy.Strategy;
 
 import src.core.Map;
 
+/**
+ * XML Reader for reading in information about maps.
+ * The format for the XML is defined by annotations in the relevant classes.
+ */
 public class MapXMLReader {
+	/**
+	 * Generates the basic information for the maps to be used in the game
+	 * @param inputFile The Filepath for the XML file to be read
+	 * @return A list of the available maps
+	 */
 	public static ArrayList<Map> readXML(String inputFile) {
 		Registry registry = new Registry();
 		Strategy strategy = new RegistryStrategy(registry);

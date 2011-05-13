@@ -8,7 +8,17 @@ import org.simpleframework.xml.core.Persister;
 
 import src.core.Creep;
 
+/**
+ * XML Reader for reading in information about creep and their upgrades.
+ * The format for the XML is defined by annotations in the relevant classes.
+ */
 public class CreepXMLReader {
+	
+	/**
+	 * Generates the basic information/templates for creeps to be used in the game.
+	 * @param inputFile The Filepath for the XML file to be read
+	 * @return A database for the creep information
+	 */
 	public static HashMap<Creep.Type, Creep> readXML(String inputFile) {
 		Serializer serializer = new Persister();
 		File input = new File(inputFile);

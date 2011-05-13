@@ -66,7 +66,7 @@ public class Damage {
 	}
 	
 	/**
-	 * Creates a copy of a give damage.
+	 * Creates a copy of a given damage.
 	 * @param d The damage to copy
 	 * @return The new damage
 	 */

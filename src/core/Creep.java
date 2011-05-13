@@ -136,6 +136,11 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		return originalCreep;
 	}
 	
+	/**
+	 * Creates a creep with the same properties as another creep.
+	 * @param original The creep to copy
+	 * @return A new creep with the same properties as the original
+	 */	
 	public static Creep copyCreep (Creep original) {
 		Creep newCreep = new Creep();
 		newCreep.setBaseHealth(original.getBaseHealth());
@@ -339,6 +344,13 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		}
 	}
 	
+	/**
+	 * Provides a specific filepath for a creep's icon, based on type and alignment
+	 * 
+	 * @param align The alignment of the creep.
+	 * @param type The type of the creep.
+	 * @return A filepath to the creep icon
+	 */
 	//Given a creep alignment and a creep type, returns a path to find that creep's icon
 	public static String getcreepIconPath(IAlignment.Alignment align, Creep.Type type) {
 		String alignString = "";

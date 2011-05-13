@@ -89,7 +89,10 @@ public class Upgrade implements IPurchasable {
 		priceOfUpgrade = p;
 	}
 
-	// Modifies Damage d's fields based on this upgrade's change fields
+	/**
+	 * Modifies Damage d's fields based on this upgrade's change fields
+	 * @param d The damage to modify
+	 */
 	public void updateDamage(Damage d) {
 		double curInstantDamage = d.getInstantDamage();
 		double curTimeDamage = d.getTimeDamage();
@@ -106,11 +109,19 @@ public class Upgrade implements IPurchasable {
 				+ (curEffectDuration * effectDurationChange));
 	}
 
+	/**
+	 * Modifies a tower's targeting information based on whether it can hit air or not
+	 * @param t The TargetingInfo to change for anti-air abilities
+	 */
 	public void updateTargeting(TargetingInfo t) {
 		if (!t.isHitsFlying())	//a tower that hits flying should not ever lose this ability
 			t.setHitsFlying(getHitsFlyingChange());
 	}
 
+	/**
+	 * Upgrades a tower, improving its firing rate, attack radius, and investment
+	 * @param t The tower to upgrade
+	 */
 	public void updateTower(Tower t) {
 		double curFirePeriod = t.getFirePeriod();
 		double curRadius = t.getRadius();
