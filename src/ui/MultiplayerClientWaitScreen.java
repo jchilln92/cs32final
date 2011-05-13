@@ -17,6 +17,9 @@ import javax.swing.JPanel;
 import src.FilePaths;
 import src.ui.controller.MultiplayerController;
 
+/**
+ * Displays the waiting screen for the client before entering a multiplayer game
+ */
 public class MultiplayerClientWaitScreen extends JPanel {
 	private JLabel waitingLabel;
 	private JButton cancelButton;

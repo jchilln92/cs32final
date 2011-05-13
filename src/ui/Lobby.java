@@ -27,6 +27,9 @@ import src.net.AvailableGame;
 import src.net.LobbyManager;
 import src.ui.controller.MultiplayerController;
 
+/**
+ * Handles code for the layout and operations involved with viewing other available games and creating/joining a multiplayer game.
+ */
 public class Lobby extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final String lobbyText = "Multiplayer Lobby";

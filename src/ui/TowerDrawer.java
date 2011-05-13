@@ -8,7 +8,18 @@ import java.awt.geom.Rectangle2D;
 
 import src.core.Tower;
 
+/**
+ * Handles drawing towers on the screen with their respective upgrades and orientations
+ */
 public class TowerDrawer {
+	
+	/**
+	 * Draws a tower into the the appropriate area in the graphics context g.
+	 * @param t The tower to draw
+	 * @param tileHeight The height of a tile on the map
+	 * @param tileWIdth The width of a tile on the map
+	 * @param g The Graphics2D object
+	 */
 	public static void drawTower(IDrawableTower t, double tileHeight,
 			double tileWidth, Graphics2D g) {
 		AffineTransform originalAt = g.getTransform();

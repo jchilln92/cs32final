@@ -18,6 +18,9 @@ import javax.swing.JPanel;
 import src.FilePaths;
 import src.GameMain;
 
+/**
+ * Displays the game over screen when a player has lost
+ */
 public class GameOverPanel extends JPanel {
 	
 	private JLabel gameOverLabel;

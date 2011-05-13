@@ -4,6 +4,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+/**
+ * Helps set up connections for games in the SunLab.
+ */
 public class SunlabAutodiscoverHack {
 	private static ArrayList<InetAddress> addresses;
 

@@ -1,5 +1,9 @@
 package src.net;
 
+
+/**
+ * Any multiplayer game that only has one player and has not begun yet
+ */
 public class AvailableGame {
 	private String gameName;
 	private String mapName;

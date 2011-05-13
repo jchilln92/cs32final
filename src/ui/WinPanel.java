@@ -15,6 +15,10 @@ import javax.swing.JPanel;
 import src.FilePaths;
 import src.ui.controller.MultiplayerController;
 
+/**
+ * Displays the winner screen when a player has won a multiplayer game
+ */
+
 public class WinPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	

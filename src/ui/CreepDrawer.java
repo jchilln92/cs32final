@@ -7,6 +7,9 @@ import java.awt.geom.Rectangle2D;
 
 import src.core.Creep;
 
+/**
+ * Handles drawing creeps and their respective health bars on the screen
+ */
 public class CreepDrawer {
 	private static boolean drawHealthBar = true; 
 
@@ -20,6 +23,10 @@ public class CreepDrawer {
 
 	/**
 	 * Draws a creep into the the appropriate area in the graphics context g.
+	 * @param c The creep to draw
+	 * @param tileHeight The height of a tile on the map
+	 * @param tileWIdth The width of a tile on the map
+	 * @param g The Graphics2D object
 	 */
 	public static void drawCreep(IDrawableCreep c, double tileHeight,
 			double tileWidth, Graphics2D g) {

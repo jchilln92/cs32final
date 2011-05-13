@@ -29,7 +29,7 @@ import src.core.Map;
 import src.ui.controller.GameController;
 
 /**
- * Handles code for the layout and operations involved with creating a multiplayer game.
+ * Handles code for the layout and operations involved with creating a game.
  */
 public class GameSetup extends JPanel {
 	private static final long serialVersionUID = 1L;
