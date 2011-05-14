@@ -9,103 +9,109 @@ public interface IAlignment {
 	public IAlignment.Alignment getAlignment();
 	public void setAlignment(IAlignment.Alignment alignment);
 	
+	/**
+	 *  Enum representing all of the different possible Alignments. Contains methods for checking alignment strengths and weaknesses
+	 */
 	public enum Alignment implements IPurchasable {
 		NEUTRAL, BLUE, RED, YELLOW, GREEN;
 		private static double ALIGNMENT_COST = 5;
 
 		/**
-		 * Returns the Alignment that deals double damage against the current Alignment.
+		 * Returns the Alignment that deals bonus damage against this current Alignment.
 		 */
 		public Alignment getWeakTo() {
 			Alignment counter = NEUTRAL;
 			switch(this) {
-			case BLUE:
-				counter = YELLOW;
-				break;
-			case RED:
-				counter = BLUE;
-				break;
-			case YELLOW:
-				counter = GREEN;
-				break;
-			case GREEN:
-				counter = RED;
-				break;
+				case BLUE:
+					counter = YELLOW;
+					break;
+				case RED:
+					counter = BLUE;
+					break;
+				case YELLOW:
+					counter = GREEN;
+					break;
+				case GREEN:
+					counter = RED;
+					break;
 			}
 			return counter;
 		}
 		
 		/**
-		 * Returns the Alignment that deals only half damage against the current Alignment.
+		 * Returns the Alignment that deals less damage against this current Alignment.
 		 */
 		public Alignment getStrength() {
 			Alignment defeats = NEUTRAL;
 			switch(this) {
-			case BLUE:
-				defeats = RED;
-				break;
-			case RED:
-				defeats = GREEN;
-				break;
-			case YELLOW:
-				defeats = BLUE;
-				break;
-			case GREEN:
-				defeats = YELLOW;
-				break;
+				case BLUE:
+					defeats = RED;
+					break;
+				case RED:
+					defeats = GREEN;
+					break;
+				case YELLOW:
+					defeats = BLUE;
+					break;
+				case GREEN:
+					defeats = YELLOW;
+					break;
 			}
+			
 			return defeats;
 		}
 		
 		/**
-		 * Returns the Color representing the Alignment.
+		 * Returns the Color representing this Alignment.
 		 */
 		public Color getColor() {
-			Color alColor = Color.GRAY;
+			Color alignmentColor = Color.GRAY;
 			switch(this) {
 			case BLUE:
-				alColor = Color.BLUE;
+				alignmentColor = Color.BLUE;
 				break;
 			case YELLOW:
-				alColor = Color.YELLOW;
+				alignmentColor = Color.YELLOW;
 				break;
 			case RED:
-				alColor = Color.RED;
+				alignmentColor = Color.RED;
 				break;
 			case GREEN:
-				alColor = Color.GREEN;
+				alignmentColor = Color.GREEN;
 				break;
 			default:
-				alColor = Color.GRAY;
+				alignmentColor = Color.GRAY;
 			}
-			return alColor;
+			
+			return alignmentColor;
 		}
 		
 		/**
 		 * Returns the color of the Alignment in string form.
 		 */
 		public String toString() {
-			String desc = "";
+			String color = "";
 			switch(this) {
-			case BLUE:
-				desc = "Blue";
-				break;
-			case RED:
-				desc = "Red";
-				break;
-			case YELLOW:
-				desc = "Yellow";
-				break;
-			case GREEN:
-				desc = "Green";
-				break;
-			case NEUTRAL:
-				desc = "Neutral";
-				break;
-			default:
-				desc = "$_ALIGNMENT";
+				case BLUE:
+					color = "Blue";
+					break;
+				case RED:
+					color = "Red";
+					break;
+				case YELLOW:
+					color = "Yellow";
+					break;
+				case GREEN:
+					color = "Green";
+					break;
+				case NEUTRAL:
+					color = "Neutral";
+					break;
+				default:
+					color = "$_ALIGNMENT";
 			}
-			return desc;
+			
+			return color;
 		}
 
 		@Override
@@ -113,7 +119,7 @@ public interface IAlignment {
 			return ALIGNMENT_COST;
 		}
 		
-		//setPrice does nothing here as alignments always have a set price
+		//setPrice does nothing here as alignments all have the same pre-set price
 		@Override
 		public void setPrice(double p) {
 			

@@ -100,13 +100,11 @@ public class Upgrade implements IPurchasable {
 		double curSpeedChange = d.getSpeedChange();
 		double curEffectDuration = d.getEffectDuration();
 
-		d.setInstantDamage(curInstantDamage
-				+ (curInstantDamage * instantDamageChange));
+		d.setInstantDamage(curInstantDamage + (curInstantDamage * instantDamageChange));
 		d.setTimeDamage(curTimeDamage + (curTimeDamage * timeDamageChange));
 		d.setPeriod(curPeriod + (curPeriod * periodChange));
 		d.setSpeedChange(curSpeedChange + (curSpeedChange * speedEffectChange));
-		d.setEffectDuration(curEffectDuration
-				+ (curEffectDuration * effectDurationChange));
+		d.setEffectDuration(curEffectDuration + (curEffectDuration * effectDurationChange));
 	}
 
 	/**
@@ -119,7 +117,7 @@ public class Upgrade implements IPurchasable {
 	}
 
 	/**
-	 * Upgrades a tower, improving its firing rate, attack radius, and investment
+	 * Upgrades a tower, improving its firing rate, attack radius, and investment based on this upgrade
 	 * @param t The tower to upgrade
 	 */
 	public void updateTower(Tower t) {

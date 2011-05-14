@@ -152,17 +152,10 @@ public class TowerPurchasePanel extends JPanel {
 		updateAllowedButtons();
 	}
 	
-	public void disableTowerPurchase(){
+	public void enableTowerPurchase(boolean enable){
 		for (int x = 0; x< towerButtons.length; x++){
-			towerButtons[x].setEnabled(false);
-			towerButtonActions[x].setEnabled(false);
-		}
-	}
-	
-	public void enableTowerPurchase(){
-		for (int x = 0; x< towerButtons.length; x++){
-			towerButtons[x].setEnabled(true);
-			towerButtonActions[x].setEnabled(true);
+			towerButtons[x].setEnabled(enable);
+			towerButtonActions[x].setEnabled(enable);
 		}
 	}
 }

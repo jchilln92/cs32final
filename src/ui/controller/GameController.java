@@ -162,12 +162,12 @@ public class GameController {
 				cancelTowerPurchase();
 			
 			escAction.setEnabled(false);
-			side.disableSidebar();
+			side.enableSidebar(false);
 		}
 		else {
 			if (isPlacingTower() || isTowerSelected()) escAction.setEnabled(true);
 			
-			side.enableSidebar();
+			side.enableSidebar(true);
 		}
 	}
 	

@@ -12,6 +12,11 @@ public class TargetingInfo {
 	@Element
 	private boolean hitsFlying;
 
+
+	/**
+	 * Enum to represent tower's attack strategy. Closest attacks nearest enemy to tower and strongest attacks creep with
+	 * the most current health. Furthest and weakest are just the opposite of closest and strongest respectively.
+	 */
 	public enum Strategy {
 		CLOSEST, FURTHEST, STRONGEST, WEAKEST
 	}

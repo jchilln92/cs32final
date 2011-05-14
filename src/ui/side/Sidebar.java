@@ -87,15 +87,10 @@ public class Sidebar extends JPanel {
 	public void showTowerUpgrade() {
 		towerPanel.showUpgradePanel();
 	}
-	
-	public void disableSidebar(){
-		timeWave.disableTimeWave();
-		towerPanel.disableCardPanel();
-	}
-	
-	public void enableSidebar(){
-		timeWave.enableTimeWave();
-		towerPanel.enableCardPanel();
+
+	public void enableSidebar(boolean enable) {
+		timeWave.enableTimeWave(enable);
+		towerPanel.enableCardPanel(enable);
 	}
 	
 	public PlayerStatsPanel getPlayerStatsPanel() {

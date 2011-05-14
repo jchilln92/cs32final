@@ -1,18 +1,22 @@
 package src.core;
 
 /**
- * Represents a player within the game.
+ * Represents a player within the game. This class is used to keep track of a player's health, gold, and income gained per wave.
+ * Contains methods for updating health/gold/income as necessary.
  */
 public class Player {
 	private double gold;
 	private double health;
 	private double incomePerWave;
+	
+	private static double STARTING_HEALTH = 100;
+	private static double STARTING_GOLD = 500;
+	private static double STARTING_INCOME = 200;
 
 	public Player() {
-		// TODO: stub
-		health = 100;
-		gold = 500;
-		incomePerWave = 200;
+		health = STARTING_HEALTH;
+		gold = STARTING_GOLD;
+		incomePerWave = STARTING_INCOME;
 	}
 
 	public double getGold() {

@@ -456,31 +456,26 @@ public class TowerUpgradePanel extends JPanel {
 		updateClickableButtons();
 	}
 
-	public void disableTowerUpgrade() {
-		checkPaused = true;
-		for (int x = 0; x < upgradeButtons.length; x++) {
-			for (int y = 0; y < upgradeButtons[x].length; y++) {
-				upgradeButtons[x][y].setEnabled(false);
-			}
-		}
+	public void enableTowerUpgrade(boolean enable) {
+		checkPaused = !enable;
 		
-		strongestButton.setEnabled(false);
-		weakestButton.setEnabled(false);
-		closestButton.setEnabled(false);
-		furthestButton.setEnabled(false);
-		sellTowerButton.setEnabled(false);
-		cancelButton.setEnabled(false);
-	}
-
-	public void enableTowerUpgrade() {
-		checkPaused = false;
 		for (int x = 0; x < upgradeButtons.length; x++) {
 			for (int y = 0; y < upgradeButtons[x].length; y++) {
-				upgradeButtons[x][y].setEnabled(true);
+				upgradeButtons[x][y].setEnabled(enable);
 			}
 		}
 
-		sellTowerButton.setEnabled(true);
-		cancelButton.setEnabled(true);
+		if (enable) {
+			sellTowerButton.setEnabled(true);
+			cancelButton.setEnabled(true);
+		} else {
+			strongestButton.setEnabled(false);
+			weakestButton.setEnabled(false);
+			closestButton.setEnabled(false);
+			furthestButton.setEnabled(false);
+			sellTowerButton.setEnabled(false);
+			cancelButton.setEnabled(false);
+		}
 	}
+	
 }

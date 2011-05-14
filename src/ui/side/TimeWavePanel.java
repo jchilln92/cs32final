@@ -203,14 +203,9 @@ public class TimeWavePanel extends JPanel {
 			nextWaveButton.setEnabled(true);
 	}
 
-	public void disableTimeWave() {
-		nextWaveButton.setEnabled(false);
-		fastForwardButton.setEnabled(false);
-	}
-	
-	public void enableTimeWave() {
-		nextWaveButton.setEnabled(true);
-		fastForwardButton.setEnabled(true);
+	public void enableTimeWave(boolean enable) {
+			nextWaveButton.setEnabled(enable);
+			fastForwardButton.setEnabled(enable);
 	}
 	
 }
