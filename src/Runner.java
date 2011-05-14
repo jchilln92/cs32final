@@ -4,7 +4,8 @@ import src.ui.controller.GameController;
 
 /**
  * A class that runs on a separate thread, and whose only duty is to send a "tick"
- * message at some predefined time interval.  This is used to run games.
+ * message at some predefined time interval.  This is used to run games on a separate
+ * thread from the drawing code.
  */
 public class Runner implements Runnable {
 	public static long tickDuration = 33; // how long each tick is, in milliseconds

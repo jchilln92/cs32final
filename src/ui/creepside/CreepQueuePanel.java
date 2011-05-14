@@ -97,12 +97,11 @@ public class CreepQueuePanel extends JPanel {
 
 	public void enqueue(Creep c, int index){
 		gc.getGame().getYourCreeps().add(c);
-		
-		String path = Creep.getcreepIconPath(c.getAlignment(), c.getType());
-		ImageIcon creepIcon = new ImageIcon(path);
-		Image i = creepIcon.getImage();
+
+		Image i = Creep.getImage(c.getType(), c.getAlignment());
 		i = i.getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH);
-		creepIcon = new ImageIcon(i);
+		
+		ImageIcon creepIcon = new ImageIcon(i);
 		
 		JLabel creepLabel = new JLabel();
 		creepLabel.setIcon(creepIcon);

@@ -19,10 +19,17 @@ import src.ui.IDrawableCreep;
  * Represents an enemy in the game.
  */
 public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
+	/**
+	 * Modifiers that affect the strength of a creep vs. towers of certain elemental colors.
+	 * ex. If this creep is weak to the tower, the damage is multiplied by WEAKNESS_MODIFIER
+	 */
 	private static double WEAKNESS_MODIFIER = 1.25;
 	private static double STRENGTH_MODIFIER = 0.75;
 	private static double NEUTRAL_MODIFIER = 0.8;
 	
+	/**
+	 * Templates for creeps, as well as images for creeps of every type and alignment
+	 */
 	private static HashMap<Creep.Type, Creep> templateCreeps;
 	private static HashMap<Type, HashMap<IAlignment.Alignment, Image>> creepImages;
 	
@@ -35,8 +42,8 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	}
 	
 	/**
-	 * Loads all of the creep images and stores them in a useful data structure.  This code is kind of tedious and
-	 * annoying.
+	 * Loads all of the creep images and stores them in a useful data structure so they can be accessed quickly.
+	 * This code is kind of tedious and annoying.
 	 */
 	private static void loadImages() {
 		creepImages = new HashMap<Type, HashMap<IAlignment.Alignment, Image>>();
@@ -158,18 +165,19 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	}
 	
 	@Element
-	private double baseHealth;
+	private double baseHealth; // the health this creep started with
 	
-	private double health;
+	private double health; // the creep's current health
 	
-	private boolean targetable;
+	private boolean targetable; // whether or not towers are allowed to target this creep
 	
 	// counts how many damage applications have changed the targetable property
-	// so that we know when to change the targetable value 
+	// so that we know when to change the targetable value as timed damage wears off
+	// to understand why this is needed, look at the stasis tower
 	private int targetableCount;
 	
 	@Element
-	private double reward;
+	private double reward; // the gold reward for killing this creep
 	
 	@Element
 	private double speed; // the speed of this creep, as a percentage of normal speed
@@ -186,6 +194,7 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	// holds time-based damage (such as slowing effects) that has been applied to this creep
 	private HashMap<Tower, DamageApplication> damages;
 
+	// the creep's path, and its position along the path
 	private CreepPath path;
 	private int pathIndex;
 
@@ -194,12 +203,9 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	@Element
 	private double price;
 	
+	// the additional gold per wave the user receives for purchasing this creep (in multiplayer mode)
 	@Element
 	private double additionalGoldPerWave;
-
-	public double getPrice() {
-		return price;
-	}
 
 	private IAlignment.Alignment alignment;
 	
@@ -282,9 +288,10 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	 * @param applicationTime The game time at which this damage is to be applied
 	 */
 	public void applyDamage(Damage d, Tower t, int applicationTime) {
-		//factor in increases or decreases of damage due to alignment
+		// factor in increases or decreases of damage due to alignment
 		double damage = d.getInstantDamage();
 		
+		// adjust effect of damage based on alignment
 		if (t.getAlignment() == IAlignment.Alignment.NEUTRAL) {
 			damage *= NEUTRAL_MODIFIER;
 		} else if (this.alignment != IAlignment.Alignment.NEUTRAL) {
@@ -296,6 +303,7 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		
 		health -= damage;
 		
+		// set this creep untargetable, and keep track of the fact that we did so
 		if (!d.isTargetable()) {
 			targetable = false;
 			targetableCount++;
@@ -330,82 +338,22 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 			
 			DamageApplication da = damages.get(t);
 			
-			if (da.shouldUnattach(time)) {
+			if (da.shouldUnattach(time)) { // throw away old damge
 				it.remove();
 				speed /= 1 + da.getDamage().getSpeedChange();
 				
-				if (!da.getDamage().isTargetable()) {
+				if (!da.getDamage().isTargetable()) { // count how many times targetability has changed
 					targetableCount--;
 					if (targetableCount == 0) targetable = true;
 				}
-			} else if (da.shouldDoTimeDamage(time)) {
+			} else if (da.shouldDoTimeDamage(time)) { // otherwise do damages
 				health -= da.getDamage().getTimeDamage();
 			}
 		}
 	}
-	
-	/**
-	 * Provides a specific filepath for a creep's icon, based on type and alignment
-	 * 
-	 * @param align The alignment of the creep.
-	 * @param type The type of the creep.
-	 * @return A filepath to the creep icon
-	 */
-	//Given a creep alignment and a creep type, returns a path to find that creep's icon
-	public static String getcreepIconPath(IAlignment.Alignment align, Creep.Type type) {
-		String alignString = "";
-		String typeString = "";
-		
-		switch(type) {
-		case BIG_GUY:
-			typeString = "BigGuy";
-			break;
-		case ASSASSIN:
-			typeString = "Assassin";
-			break;
-		case GENERIC:
-			typeString = "Generic";
-			break;
-		case FAST:
-			typeString = "Fast";
-			break;
-		case FLYING:
-			typeString = "Flying";
-			break;
-		}
-		
-		switch(align) {
-		case NEUTRAL:
-			alignString = "Neutral";
-			break;
-		case GREEN:
-			alignString = "Green";
-			break;
-		case BLUE:
-			alignString = "Blue";
-			break;
-		case YELLOW:
-			alignString = "Yellow";
-			break;
-		case RED:
-			alignString = "Red";
-			break;
-		}
-		
-		String path = FilePaths.creepsPath + typeString + alignString + ".png";
-		return path;
-	}
-
-	public CreepPath getPath() {
-		return path;
-	}
 
 	public void setPath(CreepPath path) {
 		this.path = path;
-	}
-
-	public int getPathTarget() {
-		return pathIndex;
 	}
 
 	public void incrementPathTarget() {
@@ -478,6 +426,10 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 
 	public void setDamageToBase(double damageToBase) {
 		this.damageToBase = damageToBase;
+	}
+	
+	public double getPrice() {
+		return price;
 	}
 
 	public void setPrice(double price) {

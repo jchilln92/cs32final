@@ -8,9 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-
-import com.esotericsoftware.minlog.Log;
-
 import src.ui.TitleScreen;
 
 /**
