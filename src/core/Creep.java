@@ -19,13 +19,6 @@ import src.ui.IDrawableCreep;
  * Represents an enemy in the game.
  */
 public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
-	/**
-	 * Modifiers that affect the strength of a creep vs. towers of certain elemental colors.
-	 * ex. If this creep is weak to the tower, the damage is multiplied by WEAKNESS_MODIFIER
-	 */
-	private static double WEAKNESS_MODIFIER = 1.25;
-	private static double STRENGTH_MODIFIER = 0.75;
-	private static double NEUTRAL_MODIFIER = 0.8;
 	
 	/**
 	 * Templates for creeps, as well as images for creeps of every type and alignment
@@ -126,6 +119,8 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		originalCreep.setReward(originalCreep.getReward() + (int)(waveNumber/2));
 		originalCreep.setPrice(originalCreep.getPrice() + (int)(waveNumber/5)*10);
 		
+		//Creep health increases based on wave number. For the first five waves, creep health increases by 5% of the creeps original base hp.
+		//For the next five waves, creep health increases by 10% of creeps original base hp. This keeps increasing up until 20% per wave.
 		if (waveNumber < 5) {
 			originalCreep.setBaseHealth(originalCreep.getBaseHealth() + scalingFactor*originalCreep.getBaseHealth());
 			originalCreep.setHealth(originalCreep.getBaseHealth());
@@ -293,12 +288,12 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 		
 		// adjust effect of damage based on alignment
 		if (t.getAlignment() == IAlignment.Alignment.NEUTRAL) {
-			damage *= NEUTRAL_MODIFIER;
+			damage *= CoreConstants.NEUTRAL_MODIFIER;
 		} else if (this.alignment != IAlignment.Alignment.NEUTRAL) {
 			if (t.getAlignment() == this.alignment.getWeakTo()) //if this creep is weak to tower's element
-				damage *= WEAKNESS_MODIFIER;
+				damage *= CoreConstants.WEAKNESS_MODIFIER;
 			else if (t.getAlignment() == this.alignment.getStrength()) // if this creep is strong to tower's element
-				damage *= STRENGTH_MODIFIER;
+				damage *= CoreConstants.STRENGTH_MODIFIER;
 		}
 		
 		health -= damage;

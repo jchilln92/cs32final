@@ -13,7 +13,6 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 
 import src.FilePaths;
-import src.core.Creep.Type;
 import src.core.xml.TowerXMLReader;
 import src.ui.IDrawableTower;
 
@@ -38,7 +37,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	
 	/**
 	 * Loads all of the creep images and stores them in a useful data structure.  This code is kind of tedious and
-	 * annoying.
+	 * annoying. Sorry :(
 	 */
 	private static void loadImages() {
 		towerImages = new HashMap<Type, HashMap<IAlignment.Alignment, Image>>();
@@ -164,6 +163,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 		lastFireTime = 0;
 	}
 	
+	//Enum to represent the tower's type 
 	public enum Type {
 		GUN, ANTIAIR, SLOWING, MORTAR, FRIEND, FLAME, STASIS, HTA;
 		
@@ -201,6 +201,10 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 		}
 	}
 
+	/**
+	 * Checks of the tower can shoot again based off of the last time it shot
+	 * @param the current time in game
+	 */
 	public boolean canFire(int time) {
 		if (time >= lastFireTime + firePeriod) {
 			return true;
@@ -311,7 +315,7 @@ public class Tower implements IDrawableTower, IPurchasable, IAlignment {
 	 * @param u The upgrade to apply
 	 */
 	public void applyUpgrade(Upgrade u) {
-		assert u.getLevel() == upgradeLevel + 1 : "Attempted to apply inappropriate update!";
+		assert u.getLevel() == upgradeLevel + 1 : "Attempted to apply inappropriate update!"; //the lone assertion
 		
 		u.updateDamage(damage); // all damage modifications
 		u.updateTargeting(targeting); // canHitFlying

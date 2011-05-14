@@ -14,7 +14,6 @@ public interface IAlignment {
 	 */
 	public enum Alignment implements IPurchasable {
 		NEUTRAL, BLUE, RED, YELLOW, GREEN;
-		private static double ALIGNMENT_COST = 5;
 
 		/**
 		 * Returns the Alignment that deals bonus damage against this current Alignment.
@@ -116,7 +115,7 @@ public interface IAlignment {
 
 		@Override
 		public double getPrice() {
-			return ALIGNMENT_COST;
+			return CoreConstants.ALIGNMENT_COST;
 		}
 		
 		//setPrice does nothing here as alignments all have the same pre-set price

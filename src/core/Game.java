@@ -8,14 +8,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import src.WaveGenerator;
-
 /**
  * Represents a game and handles logic of creep movement and tower attacks.
  */
 public class Game {
-	private static final int creepDelay = 25; // delay, in ticks, between creeps
-	private static final int waveTime = 790; // number of ticks between each wave (about 25 seconds)
-	
 	// the map on which this game takes place
 	private Map map;
 	
@@ -59,12 +55,12 @@ public class Game {
 		elapsedTime++;
 		
 		// time to send another wave
-		if (elapsedTime - lastWaveTime >= waveTime) {
+		if (elapsedTime - lastWaveTime >= CoreConstants.waveTime) {
 			sendNextWave();
 		}
 		
 		// time to send another creep, if there is one...
-		if (creepQueue.size() != 0 && elapsedTime - lastCreepTime > creepDelay) {
+		if (creepQueue.size() != 0 && elapsedTime - lastCreepTime > CoreConstants.creepDelay) {
 			lastCreepTime = elapsedTime;
 			
 			Creep toSend = creepQueue.poll();
@@ -246,7 +242,7 @@ public class Game {
 	 * @return The number of "ticks" until the next wave will be released.
 	 */
 	public int getTicksUntilNextWave() {
-		return waveTime - (elapsedTime - lastWaveTime);
+		return CoreConstants.waveTime - (elapsedTime - lastWaveTime);
 	}
 
 	public Map getMap() {

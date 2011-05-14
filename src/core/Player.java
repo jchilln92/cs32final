@@ -8,15 +8,11 @@ public class Player {
 	private double gold;
 	private double health;
 	private double incomePerWave;
-	
-	private static double STARTING_HEALTH = 100;
-	private static double STARTING_GOLD = 500;
-	private static double STARTING_INCOME = 200;
 
 	public Player() {
-		health = STARTING_HEALTH;
-		gold = STARTING_GOLD;
-		incomePerWave = STARTING_INCOME;
+		health = CoreConstants.STARTING_HEALTH;
+		gold = CoreConstants.STARTING_GOLD;
+		incomePerWave = CoreConstants.STARTING_INCOME;
 	}
 
 	public double getGold() {
