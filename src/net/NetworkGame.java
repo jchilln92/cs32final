@@ -7,7 +7,6 @@ import src.core.Bullet;
 import src.core.Creep;
 import src.core.Game;
 import src.core.Tower;
-import src.ui.controller.GameController;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -40,6 +39,7 @@ public class NetworkGame extends Game {
 	 */
 	private void initializeGameListeners() {
 		remoteConnection.addListener(new Listener() {
+			@SuppressWarnings("unchecked")
 			public void received(Connection c, Object object) {
 				if (object instanceof GameNegotiationMessage) {
 					GameNegotiationMessage m = (GameNegotiationMessage)object;

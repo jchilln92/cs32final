@@ -152,6 +152,33 @@ public class GameController {
 				
 				stop();
 			}
+			
+			/* There seems to be a bug somewhere in this code... TODO: fix this
+
+			if (isFriday() && yesterdayWasThursday() && tomorrowIsSaturday() && sundayComesAfterwards()) {
+				try {
+					becomeFresh();
+					goDownstairs();
+					
+					Cereal c = new Cereal("Cheerios");
+					haveBowl(c);
+					
+					headToBusStop()
+				} catch (MorningRoutineException ex) {
+					\\ OMG, that is totally lame
+				} catch (SeatDecisionException ex) {
+					System.err.println("Which seat can I take? Unable to decide, failing...");
+					System.exit(1);
+				} finally {
+					while (true) {
+						getDown();
+						setExcited("we we we");
+						sayToConfusedListeners("You know what it is");
+					}
+				}
+			}
+			
+			*/
 		}
 	}
 	

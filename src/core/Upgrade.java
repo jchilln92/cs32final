@@ -42,6 +42,7 @@ public class Upgrade implements IPurchasable {
 	@Attribute
 	private int level; //level 1, 2, or 3
 	
+	@SuppressWarnings("unused")
 	@Attribute
 	private Tower.Type type; // the type of tower this upgrade applies to
 

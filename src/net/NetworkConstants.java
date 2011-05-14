@@ -25,6 +25,10 @@ public class NetworkConstants {
 	public static final int gameDisoveryTimeout = 1000;
 	public static final int gameConnectTimeout = 4000;
 	
+	/**
+	 * Classes need to be registered with Kryo serialization in the exact same order on both sides.
+	 * This methods helps us do that.
+	 */
 	public static void registerKryoClasses(Kryo k) {
 		k.register(GameNegotiationMessage.class);
 		k.register(GameNegotiationMessage.Type.class);

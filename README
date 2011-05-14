@@ -1,1 +1,20 @@
-This is our CS32 Final Project
+TOWER WARS
+
+How to run
+----------
+
+You can compile the source yourself, or run the provided jar file located at bin/TowerWars.jar.  Note that the jar doesn't contain any of the 
+image assets needed for the game, so run it in the top level directory (the same directory as this file).  Simply run:
+
+	java -jar bin/TowerWars.jar
+	
+from the top level directory to start the game.
+
+Issues
+------
+- Although autodiscovery is provided by the kryonet library, it doesn't seem to work in the Sunlab properly, so we were forced to work around this
+	by quickly checking each machine in a list of machines to see if it is hosting a game.  This works well within the Sunlab.  If you need to add other computers
+	to the list, please see src/net/SunlabAutodiscoveryHack.java.  This is where the names of machines to check are stored.
+	
+- The game is extremely unbalanced.  If the "HTA" tower is ever obtained, the game is basically over.  All aspects of towers and their upgrades, as well as the
+	attributes of the creeps, are located in the XML files in assets/xml.  You'll also find map definitions here.

@@ -4,7 +4,6 @@ package src.net;
 /**
  * Represents an update message to be sent between players in a multiplayer game
  */
-
 public class GameNegotiationMessage {
 	public Type type;
 	public Object data;
