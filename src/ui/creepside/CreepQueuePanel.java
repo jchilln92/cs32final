@@ -1,6 +1,5 @@
 package src.ui.creepside;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -26,6 +25,10 @@ import src.FilePaths;
 import src.core.Creep;
 import src.ui.controller.GameController;
 
+/**
+ * Panel used to display the creep queue portion of the creep purchase bottom bar. Visually shows all of the creeps about to be sent to your opponent, and
+ * allows a user to cancel any given creep by clicking on it in the queue.
+ */
 public class CreepQueuePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final int initialCreepPanelSize = 450;
@@ -34,8 +37,6 @@ public class CreepQueuePanel extends JPanel {
 	private JButton dequeueButton;
 	
 	private JPanel iconPanel;
-	private CreepPurchasePanel infoPurchase;
-	private Creep.Type[] creepTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST};
 	
 	private ImageIcon cancelAllIcon;
 	private ImageIcon cancelAllHoverIcon;
@@ -44,16 +45,15 @@ public class CreepQueuePanel extends JPanel {
 	
 	public CreepQueuePanel(GameController controller){
 		super(new GridBagLayout());
-		
 		gc = controller;
-		new ArrayList<JLabel>();
 		
+		//setting up ImageIcons
 		cancelAllIcon = new ImageIcon(FilePaths.buttonPath + "CancelAllButton.png");
 		cancelAllHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelAllButtonHover.png");
 		cancelAllPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelAllButtonDown.png");
 		cancelAllDisabledIcon = new ImageIcon(FilePaths.buttonPath + "CancelAllButtonDisabled.png");
 				
-		// setup a scrolling panel so that we can add as many creeps as needed
+		// setup a scrolling panel so that we can add as many creeps as needed (adds scrollbar when filled)
 		iconPanel = new JPanel();
 		iconPanel.setLayout(new BoxLayout(iconPanel, BoxLayout.LINE_AXIS));
 		iconPanel.setPreferredSize(new Dimension(initialCreepPanelSize, 16));
@@ -63,14 +63,7 @@ public class CreepQueuePanel extends JPanel {
 		scroller.setPreferredSize(new Dimension(initialCreepPanelSize + 5, 50));
 		scroller.setMinimumSize(new Dimension(initialCreepPanelSize + 5, 50));
 				
-		GridBagConstraints c = new GridBagConstraints();
-		
-		c.gridx = 0;
-		c.gridy = 0;
-		c.anchor = GridBagConstraints.WEST;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		add(scroller, c);
-
+		//set up dequeue button to allow for canceling all purchased creeps
 		dequeueButton = new JButton(cancelAllIcon);
 		dequeueButton.setBorder(BorderFactory.createEmptyBorder());
 		dequeueButton.setFocusPainted(false);
@@ -85,16 +78,24 @@ public class CreepQueuePanel extends JPanel {
 			}
 		});	
 		
+		//laying out with gridbag
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		c.anchor = GridBagConstraints.WEST;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		add(scroller, c);
+		
 		c.gridx = 1;
 		c.anchor = GridBagConstraints.EAST;
 		c.insets.set(0, 30, 0, 0);
 		add(dequeueButton, c);
 	}
-	
-	public void setInfoPurchase(CreepPurchasePanel cip){
-		infoPurchase = cip;
-	}
 
+	/**
+	 * adds a creep to the list of creeps to be sent to your opponent, and visually adds it to the "creep queue"
+	 */
 	public void enqueue(Creep c, int index){
 		gc.getGame().getYourCreeps().add(c);
 
@@ -118,6 +119,7 @@ public class CreepQueuePanel extends JPanel {
 		iconBox.add(Box.createHorizontalStrut(5));
 		
 		final Box box = iconBox;
+		//Setting it up so when a user clicks on a creep in the queue, removes creep
 		creepLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (getNumberOfCreeps() * creepBoxSize > initialCreepPanelSize) 
@@ -133,13 +135,19 @@ public class CreepQueuePanel extends JPanel {
 		iconPanel.add(iconBox);
 		iconPanel.revalidate();
 	}
-
+	
+	/**
+	 * removes a creep to the list of creeps to be sent to your opponent, and visually removes it to the "creep queue"
+	 */
 	public void dequeue(int index){
 		gc.getGame().getPlayer().increaseIncomePerWave(-1 * gc.getGame().getYourCreeps().get(index).getAdditionalGoldPerWave());
 		gc.getGame().getPlayer().setGold(gc.getGame().getPlayer().getGold() + gc.getGame().getYourCreeps().get(index).getPrice());
 		gc.getGame().getYourCreeps().remove(index);
 	}
 	
+	/**
+	 * simply dequeue's every creep in the queue
+	 */
 	public void dequeueAll() {
 		int maxSize = gc.getGame().getYourCreeps().size();
 		for (int x = 0; x < maxSize; x++)
@@ -151,12 +159,12 @@ public class CreepQueuePanel extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
+		//If a wave is sent (hence, number of creeps = 0), set the dequeue button the false, and call dequeueAll to update the iconPanel
 		if (getNumberOfCreeps() == 0) {
 			dequeueAll();
 			dequeueButton.setEnabled(false);
 		} else
 			dequeueButton.setEnabled(true);
-		
 	}
 
 	public int getNumberOfCreeps(){

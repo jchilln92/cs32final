@@ -48,7 +48,6 @@ public class WinPanel extends JPanel {
 			}
 		});
 		
-
 		returnButton.setBounds(530,450,140,40);
 		add(returnButton);
 	}

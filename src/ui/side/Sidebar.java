@@ -18,7 +18,7 @@ import src.ui.controller.GameController;
 import src.ui.controller.MultiplayerController;
 
 /**
- * Contains and shows components and subpanels in the sidebar.
+ * Panel that contains and displays the sidebar as a whole.
  */
 public class Sidebar extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -32,9 +32,9 @@ public class Sidebar extends JPanel {
 	private ImageIcon background;
 	public Sidebar(GameController gc, MultiplayerController mc) {
 		controller = gc;
-		boolean isMultiplayer = mc != null;
+		boolean isMultiplayer = mc != null; //if not given a MultiplayerController, game must not be multiplayer
 		
-		
+		//(Sidebar is built slightly differently in single player and multiplayer)
 		if (!isMultiplayer) {
 			background = new ImageIcon(FilePaths.bgPath + "SidebarBGRD.png");
 		} else {
@@ -68,7 +68,7 @@ public class Sidebar extends JPanel {
 		add(towerPanel, BorderLayout.LINE_START);
 		add(pauseQuit, BorderLayout.LINE_START);
 		
-		
+		//(set opaque so background image displays properly)
 		playerStats.setOpaque(false);
 		timeWave.setOpaque(false);
 		towerPanel.setOpaque(false);

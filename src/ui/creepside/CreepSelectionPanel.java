@@ -1,6 +1,5 @@
 package src.ui.creepside;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,6 +21,10 @@ import src.core.Creep;
 import src.core.IAlignment;
 import src.ui.controller.GameController;
 
+/**
+ * This panel represents the part of the creep purchase bottom bar for selecting potential creeps. Contains all 5 of the different creep types
+ * in their neutral alignment form, and clicking on any one will update the CreepPurchasePanel accordingly.
+ */
 
 public class CreepSelectionPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -37,17 +40,17 @@ public class CreepSelectionPanel extends JPanel {
 	private Action[] creepButtonActions;
 	private Creep.Type[] buttonTypes = {Creep.Type.GENERIC, Creep.Type.FLYING, Creep.Type.BIG_GUY, Creep.Type.ASSASSIN, Creep.Type.FAST}; 
 	
-	
 	public CreepSelectionPanel(CreepPurchasePanel cip, GameController gc) {
 		super(new GridBagLayout());
 		controller = gc;
-		this.creepInfoPurchase = cip;
+		creepInfoPurchase = cip;
 		purchaseCreepsLabel = new JLabel(purchaseCreepsText);
-		creepButtons = new JButton[8];
-		creepButtonActions = new Action[8];
+		creepButtons = new JButton[5];
+		creepButtonActions = new Action[5];
 		
 		creepStats = new CreepStatsPanel(controller);
 		
+		//begin laying out with gridbag (sorry that the laying out of stuff for this class is very spread out)
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.anchor = GridBagConstraints.LINE_START;
@@ -62,7 +65,7 @@ public class CreepSelectionPanel extends JPanel {
 		c.insets = new Insets(-20,20,0,-15);
 		c.gridwidth = 1;
 		
-		// initialize a purchase button for each of the creeps
+		// initialize all of the creep Buttons, and add listeners to send information to the CreepPurchasePanel
 		for (int index = 0; index < 5; index++) {
 			Image i = Creep.getImage(buttonTypes[index], IAlignment.Alignment.NEUTRAL);
 			i = i.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);  
@@ -77,24 +80,24 @@ public class CreepSelectionPanel extends JPanel {
 			
 			final Creep.Type type = buttonTypes[index];
 			final int setIndex = index;
+			
 			creepButtonActions[index] = new AbstractAction() {
-				public void actionPerformed(ActionEvent e) {
-					//controller.beginPurchasingTower(Tower.createTower(type));
+				public void actionPerformed(ActionEvent e) { 
 					creepInfoPurchase.setCreepByIndex(setIndex);
 				}
 			};
 			
-			// set up buttons
+			// when a creep button is pressed, sends message to creep purchase panel so that panel can display the creep in an ImageIcon
 			creepButton.addActionListener(creepButtonActions[index]);	
 			
-			// set up mouse hover on buttons
+			// On mouseover, displays the creep stats by setting information in the CreepStatsPanel
 			creepButton.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent e) {
-					creepStats.setCreep(Creep.createCreep(type, controller.getGame().getWavesSent()));
+					creepStats.setCreepStats(Creep.createCreep(type, controller.getGame().getWavesSent()));
 				}
 
 				public void mouseExited(MouseEvent e) {
-					creepStats.setCreep(null);
+					creepStats.setCreepStats(null);
 				}
 			});
 
@@ -118,6 +121,9 @@ public class CreepSelectionPanel extends JPanel {
 		add(creepStats, c);
 	}
 	
+	/** 
+	 * if a player cannot afford a certain creep, sets that creep's button to be disabled and vice versa.
+	 */
 	private void updateAllowedButtons() {
 		for (int i = 0; i < 5; i++) {
 			JButton b = creepButtons[i];
@@ -128,8 +134,7 @@ public class CreepSelectionPanel extends JPanel {
 			if (!controller.playerCanAfford(c)) {
 				b.setEnabled(false);
 				a.setEnabled(false);
-			} 
-			else{
+			} else {
 				b.setEnabled(true);
 				a.setEnabled(true);
 			}
@@ -142,14 +147,14 @@ public class CreepSelectionPanel extends JPanel {
 	}
 	
 	public void disableCreepPurchase(){
-		for (int x = 0; x< creepButtons.length; x++){
+		for (int x = 0; x< creepButtons.length; x++) {
 			creepButtons[x].setEnabled(false);
 			creepButtonActions[x].setEnabled(false);
 		}
 	}
 	
 	public void enableCreepPurchase(){
-		for (int x = 0; x< creepButtons.length; x++){
+		for (int x = 0; x< creepButtons.length; x++) {
 			creepButtons[x].setEnabled(true);
 			creepButtonActions[x].setEnabled(true);
 		}

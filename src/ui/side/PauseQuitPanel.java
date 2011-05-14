@@ -17,8 +17,7 @@ import src.ui.controller.GameController;
 import src.ui.controller.MultiplayerController;
 
 /**
- * This is a panel that displays information on a player's gold and health,
- * which is typically shown in the sidebar.
+ * Small panel for displaying the pause, quit, and toggle health buttons
  */
 public class PauseQuitPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -73,6 +72,7 @@ public class PauseQuitPanel extends JPanel {
 		heartButton.setContentAreaFilled(false);
 		heartButton.setPressedIcon(heartPressedIcon);
 		
+		//when pressed, toggles health bars for creeps
 		heartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreepDrawer.toggleDrawHealthBar(!CreepDrawer.getDrawHealthBar());
@@ -116,6 +116,7 @@ public class PauseQuitPanel extends JPanel {
 			}
 		});
 		
+		//Laying out everything. Note that if the game is multiplayer, the pause button is not added
 		GridBagConstraints c = new GridBagConstraints();
 		if (!isMultiplayer) {
 			c.weightx = 1;
@@ -152,7 +153,9 @@ public class PauseQuitPanel extends JPanel {
 		this(gc, true);
 		this.multiController = multiController;
 	}
-	
+	/**
+	 * Called whenever the quit button is pressed. Prompt pops up asking user whether they actually want to quit.
+	 */
 	public void makePopup(){
 		Object[] options = {"I want to quit.", "I don't want to quit."};
 		int n = JOptionPane.showOptionDialog(this, 

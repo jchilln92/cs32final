@@ -13,8 +13,7 @@ import src.FilePaths;
 import src.core.Player;
 
 /**
- * This is a panel that displays information on a player's gold and health,
- * which is typically shown in the sidebar.
+ * This is a panel that displays information on a player's gold and health (also opponent's health for multiplayer)
  */
 public class PlayerStatsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -36,6 +35,7 @@ public class PlayerStatsPanel extends JPanel {
 	
 	private boolean showingGoldChange;
 	
+	//sets up for single player
 	public PlayerStatsPanel(Player p) {
 		super(new GridBagLayout());
 		
@@ -82,6 +82,7 @@ public class PlayerStatsPanel extends JPanel {
 		add(healthValueLabel, c);
 	}
 	
+	//if multiplayer, also adds in opponent health
 	public PlayerStatsPanel(Player localPlayer, Player opponent) {
 		this(localPlayer);
 		
@@ -107,6 +108,9 @@ public class PlayerStatsPanel extends JPanel {
 		updateDisplay();
 	}
 
+	/**
+	 * updates the gold and health labels just by constantly checking these values
+	 */
 	public void updateDisplay() {
 		goldValueLabel.setText(Integer.toString((int)player.getGold()));
 		healthValueLabel.setText(Integer.toString((int)player.getHealth()));
@@ -114,12 +118,15 @@ public class PlayerStatsPanel extends JPanel {
 		if (opponentHealthValueLabel != null)
 			opponentHealthValueLabel.setText(Integer.toString((int)opponent.getHealth()));
 		
-		if (!showingGoldChange) {
+		if (!showingGoldChange) { //if something else is displaying the cost of some purchasable item, do not display income per wave
 			goldChangeLabel.setForeground(Color.BLACK);
 			goldChangeLabel.setText(("(+ " + Integer.toString((int)player.getIncomePerWave()) + " / wave)"));
 		}
 	}
 	
+	/**
+	 * Called by other classes - whenever attempting to purchase an item, displays how much gold it will detract from our current gold.
+	 */
 	public void setGoldChange(String change) {
 		goldChangeLabel.setForeground(Color.RED);
 		goldChangeLabel.setText(change);
@@ -130,7 +137,7 @@ public class PlayerStatsPanel extends JPanel {
 		goldChangeLabel.setForeground(Color.GREEN);
 		goldChangeLabel.setText(("(+ " + (Integer.toString((int)newIncrease) + " per wave)")));
 	}
-	
+
 	public void setShowingGoldChange(boolean b) {
 		showingGoldChange = b;
 	}

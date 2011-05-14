@@ -14,7 +14,9 @@ import src.core.IAlignment.Alignment;
 import src.ui.ColorConstants;
 import src.ui.controller.GameController;
 
-
+/**
+ * Small panel that is used by the TowerUpgradePanel. Contains buttons for the 5 different alignments for a tower
+ */
 public class ElementalUpgradePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
@@ -33,9 +35,10 @@ public class ElementalUpgradePanel extends JPanel {
 		this.setOpaque(false);
 		
 		controller = gc;
+		
+		//Long drawn out process of setting up each of the buttons. Whenever one is pressed, applies the proper alignment
 		neutralButton = new JButton();
 		neutralButton.setBackground(ColorConstants.neutralColor);
-		
 		neutralButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.NEUTRAL);
@@ -44,7 +47,6 @@ public class ElementalUpgradePanel extends JPanel {
 		
 		redButton = new JButton();
 		redButton.setBackground(ColorConstants.redColor);
-		
 		redButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.RED);
@@ -53,7 +55,6 @@ public class ElementalUpgradePanel extends JPanel {
 		
 		greenButton = new JButton();
 		greenButton.setBackground(ColorConstants.greenColor);
-		
 		greenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.GREEN);
@@ -62,7 +63,6 @@ public class ElementalUpgradePanel extends JPanel {
 		
 		blueButton = new JButton();
 		blueButton.setBackground(ColorConstants.blueColor);
-		
 		blueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.BLUE);
@@ -71,7 +71,6 @@ public class ElementalUpgradePanel extends JPanel {
 		
 		yellowButton = new JButton();
 		yellowButton.setBackground(ColorConstants.yellowColor);
-		
 		yellowButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.applyAlignment(Alignment.YELLOW);
@@ -106,7 +105,9 @@ public class ElementalUpgradePanel extends JPanel {
 		updateAlignmentButtons();
 	}
 
-	//Updates whether or not you can purchase an alignment
+	/**
+	 * Updates whether or not you can purchase an alignment
+	 */
 	private void updateAlignmentButtons() {
 		//create a dummy alignment to check if player can afford as all alignments are of same cost
 		Alignment temporaryAlignment = Alignment.NEUTRAL;
