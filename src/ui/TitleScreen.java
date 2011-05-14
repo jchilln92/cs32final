@@ -23,7 +23,6 @@ public class TitleScreen extends JPanel {
 	
 	private JButton singlePlayerButton;
 	private JButton multiPlayerButton;
-	private JButton tutorialButton;
 	private JButton quitButton;
 	
 	private GameMain gameMain;
@@ -36,10 +35,6 @@ public class TitleScreen extends JPanel {
 	private ImageIcon multiPlayerImage;
 	private ImageIcon multiPlayerPressedImage;
 	private ImageIcon multiPlayerHoverImage;
-	
-	private ImageIcon tutorialImage;
-	private ImageIcon tutorialPressedImage;
-	private ImageIcon tutorialHoverImage;
 
 	private ImageIcon exitImage;
 	private ImageIcon exitPressedImage;
@@ -61,10 +56,6 @@ public class TitleScreen extends JPanel {
 		multiPlayerPressedImage = new ImageIcon(FilePaths.buttonPath + "MultiButtonDown.png");
 		multiPlayerHoverImage = new ImageIcon(FilePaths.buttonPath + "MultiButtonHover.png");
 
-		tutorialImage = new ImageIcon(FilePaths.buttonPath + "TutorialButton.png");
-		tutorialPressedImage = new ImageIcon(FilePaths.buttonPath + "TutorialButtonDown.png");
-		tutorialHoverImage = new ImageIcon(FilePaths.buttonPath + "TutorialButtonHover.png");
-
 		exitImage = new ImageIcon(FilePaths.buttonPath + "ExitButton.png");
 		exitPressedImage = new ImageIcon(FilePaths.buttonPath + "ExitButtonDown.png");
 		exitHoverImage = new ImageIcon(FilePaths.buttonPath + "ExitButtonHover.png");
@@ -81,12 +72,6 @@ public class TitleScreen extends JPanel {
 		multiPlayerButton.setContentAreaFilled(false);
 		multiPlayerButton.setPressedIcon(multiPlayerPressedImage);
 		multiPlayerButton.setRolloverIcon(multiPlayerHoverImage);
-
-		tutorialButton = new JButton(tutorialImage);
-		tutorialButton.setBorder(BorderFactory.createEmptyBorder());
-		tutorialButton.setContentAreaFilled(false);
-		tutorialButton.setPressedIcon(tutorialPressedImage);
-		tutorialButton.setRolloverIcon(tutorialHoverImage);
 
 		quitButton = new JButton(exitImage);
 		quitButton.setBorder(BorderFactory.createEmptyBorder());
@@ -111,11 +96,6 @@ public class TitleScreen extends JPanel {
 			}
 		});
 		
-		tutorialButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -129,10 +109,7 @@ public class TitleScreen extends JPanel {
 		multiPlayerButton.setBounds(100, 320, 280, 60);
 		add(multiPlayerButton);
 		
-		tutorialButton.setBounds(100, 390, 280, 60);
-		add(tutorialButton);
-		
-		quitButton.setBounds(100, 460, 280, 60);
+		quitButton.setBounds(100, 390, 280, 60);
 		add(quitButton);
 	}
 	
