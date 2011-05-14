@@ -7,7 +7,9 @@ import java.util.Random;
 import src.core.Creep;
 
 /**
- * A small helper class responsible for generating waves of creeps.
+ * A small helper class responsible for generating waves of creeps.  Currently, does not account
+ * for things such as elementals.  This can be easily changed.  Parameters for this generator might
+ * eventually be pulled out to an xml file.
  */
 public class WaveGenerator {
 	/**
@@ -26,6 +28,7 @@ public class WaveGenerator {
 		}
 		
 		// make random numbers of other creeps, with limits on what wave they can start at
+		// for example, flying, big, and assasin creeps don't start until wave 5.
 		int numFast = r.nextInt(n * 2);
 		int numBig = r.nextInt(n * 2);
 		int numAssassin = r.nextInt(n);

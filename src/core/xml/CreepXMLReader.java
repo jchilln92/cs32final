@@ -27,8 +27,8 @@ public class CreepXMLReader {
 		try {
 			c = serializer.read(Creeps.class, input);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Failed to read Creep XML Data... Quitting.");
+			System.exit(1);
 		}
 	
 		HashMap<Creep.Type, Creep> creepTemplates = new HashMap<Creep.Type, Creep>();

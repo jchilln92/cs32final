@@ -248,8 +248,7 @@ public class CreepPurchasePanel extends JPanel {
 	
 	//Sets the iconLabel to the appropriate creep based off of type and and alignment
 	public void setIconLabel(Creep c) {
-		String path = Creep.getcreepIconPath(c.getAlignment(), c.getType());
-		creepIcon = new ImageIcon(path);
+		creepIcon = new ImageIcon(Creep.getImage(c.getType(), c.getAlignment()));
 		
 		Image i = creepIcon.getImage();
 		i = i.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);  

@@ -64,11 +64,9 @@ public class CreepSelectionPanel extends JPanel {
 		
 		// initialize a purchase button for each of the creeps
 		for (int index = 0; index < 5; index++) {
-			String path = Creep.getcreepIconPath(IAlignment.Alignment.NEUTRAL, buttonTypes[index]);
-			ImageIcon creepIcon = new ImageIcon(path);
-			Image i = creepIcon.getImage();
+			Image i = Creep.getImage(buttonTypes[index], IAlignment.Alignment.NEUTRAL);
 			i = i.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);  
-			creepIcon = new ImageIcon(i);
+			ImageIcon creepIcon = new ImageIcon(i);
 			
 			JButton creepButton = new JButton(creepIcon);
 			creepButton.setBorder(BorderFactory.createEmptyBorder());

@@ -16,10 +16,14 @@ public class Game {
 	private static final int creepDelay = 25; // delay, in ticks, between creeps
 	private static final int waveTime = 790; // number of ticks between each wave (about 25 seconds)
 	
+	// the map on which this game takes place
 	private Map map;
+	
+	// the bullets, creeps, and towers currently in play
 	private ArrayList<Bullet> bullets;
 	private ArrayList<Creep> creeps;
 	private ArrayList<Tower> towers;
+	
 	protected Player player;
 	private int elapsedTime; // the total game time, in "ticks"
 	protected int wavesSent; // the total number of waves sent
@@ -50,7 +54,7 @@ public class Game {
 	 * among other things.
 	 */
 	public void tick() {
-		if (isOver()) return;
+		if (isOver()) return; // do nothing if the game is over
 		
 		elapsedTime++;
 		
@@ -85,7 +89,7 @@ public class Game {
 	}
 
 	/**
-	 * Sends the next wave of creeps (simultaneously calls applyplayerIncomePerWave)
+	 * Sends the next wave of creeps
 	 */
 	public void sendNextWave(){
 		lastWaveTime = elapsedTime;
@@ -117,6 +121,7 @@ public class Game {
 		while (it.hasNext()) {
 			Creep c = it.next();
 			
+			// remove dead creeps
 			if (c.getHealthFraction() <= 0) {
 				synchronized (creeps) {
 					it.remove();
@@ -126,9 +131,9 @@ public class Game {
 				continue;
 			}
 			
+			// remove creeps that reached the end of the path (applying damage)
 			Point2D.Double direction = c.getNextDirection();
-
-			if (direction == null) { // the creep reached the end of the path
+			if (direction == null) {
 				player.decreaseHealth(c.getDamageToBase());
 				
 				synchronized (creeps) {
@@ -138,7 +143,7 @@ public class Game {
 				continue;
 			}
 
-			double realSpeed = speed * c.getSpeed();
+			double realSpeed = speed * c.getSpeed(); // modify the creep's speed by a percentage of the default speed
 			c.setPosition(new Point2D.Double(
 					direction.getX() * realSpeed + c.getPosition().getX(), 
 					direction.getY() * realSpeed + c.getPosition().getY()));
@@ -148,8 +153,8 @@ public class Game {
 	}
 
 	/**
-	 * Moves each of the bullets toward their specified Creep. When creeps are less than a pixel
-	 * away from their target, they deal damage and are removed from the game.
+	 * Moves each of the bullets toward their specified Creep. When the bullets get close enough
+	 * to their targets (within a tolerance), they deal damage and are removed from the game.
 	 */
 	private void stepBullets() {
 		double speed = .3; // tiles per tick

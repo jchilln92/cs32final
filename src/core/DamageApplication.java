@@ -5,8 +5,8 @@ package src.core;
  */
 public class DamageApplication {
 	private Damage damage;
-	private int timeApplied;
-	private int lastApplication;
+	private int timeApplied; // the time this damage was attached to the creep
+	private int lastApplication; // the last time timed damage was dealt
 
 	// see CreepPath for an explanation
 	@SuppressWarnings("unused")
@@ -18,10 +18,16 @@ public class DamageApplication {
 		this.lastApplication = time;
 	}
 
+	/**
+	 * Whether this damage has worn off at this time.
+	 */
 	public boolean shouldUnattach(int newTime) {
 		return newTime >= timeApplied + damage.getEffectDuration();
 	}
 
+	/**
+	 * Decides whether time based damage should be dealt at a certain game time (in ticks)
+	 */
 	public boolean shouldDoTimeDamage(int newTime) {
 		if (newTime >= lastApplication + damage.getPeriod()) {
 			lastApplication = newTime;
