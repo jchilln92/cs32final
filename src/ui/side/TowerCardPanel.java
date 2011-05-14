@@ -12,6 +12,8 @@ import src.ui.controller.GameController;
  * are managed by this UI component.
  */
 public class TowerCardPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private GameController controller;
 	private TowerPurchasePanel tpPanel;
 	private CancelPurchasePanel cpPanel;
@@ -56,8 +58,6 @@ public class TowerCardPanel extends JPanel {
 		CardLayout layout = (CardLayout) getLayout();
 		layout.show(this, PanelID.STATS_UPGRADE.toString());
 	}
-	
-
 	
 	public void enableCardPanel(boolean enable) {
 		for (int x = 0; x < cpPanel.getComponentCount(); x++){

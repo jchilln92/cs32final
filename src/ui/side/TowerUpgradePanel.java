@@ -98,6 +98,7 @@ public class TowerUpgradePanel extends JPanel {
 		controller = gc;
 		checkPaused = false;
 		
+		// load custom images into buttons and set up their actions
 		cancelUpgradeIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButton.png");
 		cancelUpgradePressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButtonDown.png");
 		cancelUpgradeHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelUpgradeButtonHover.png");
@@ -105,10 +106,7 @@ public class TowerUpgradePanel extends JPanel {
 
 		sellIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButton.png");
 		sellPressedIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonDown.png");
-		// sellHoverIcon = new ImageIcon(FilePaths.buttonPath +
-		// "BlankSellButtonHover.png");
-		 sellDisabledIcon = new ImageIcon(FilePaths.buttonPath +
-		 "BlankSellButtonDisabled.png");
+		sellDisabledIcon = new ImageIcon(FilePaths.buttonPath + "BlankSellButtonDisabled.png");
 
 		farIcon = new ImageIcon(FilePaths.buttonPath + "FarButton.png");
 		farPressedIcon = new ImageIcon(FilePaths.buttonPath + "FarButtonDown.png");
@@ -211,7 +209,6 @@ public class TowerUpgradePanel extends JPanel {
 		sellTowerButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		sellTowerButton.setBorder(BorderFactory.createEmptyBorder());
 		sellTowerButton.setContentAreaFilled(false);
-		// sellTowerButton.setRolloverIcon(sellHoverIcon);
 		sellTowerButton.setDisabledIcon(sellDisabledIcon);
 
 		sellTowerButton.setForeground(Color.BLACK);
@@ -388,6 +385,10 @@ public class TowerUpgradePanel extends JPanel {
 		add(cancelButton, c);
 	}
 
+	/**
+	 * Updates the text displayed on the sell tower button with the amount of gold the user will
+	 * receive.
+	 */
 	private void updateSellButton() {
 		sellTowerButton.setFont(new Font("sell Font", Font.BOLD, 13));
 		sellTowerButton.setText("Sell for "
@@ -395,6 +396,10 @@ public class TowerUpgradePanel extends JPanel {
 				* GameController.towerRefundPercentage));
 	}
 
+	/**
+	 * Update which upgrade buttons are clickable based on the amount of gold the user has, whether the game is paused,
+	 * etc.
+	 */
 	private void updateClickableButtons() {
 		Tower tower = controller.getSelectedTower();
 
@@ -456,6 +461,9 @@ public class TowerUpgradePanel extends JPanel {
 		updateClickableButtons();
 	}
 
+	/**
+	 * Enable or disable tower upgrades.
+	 */
 	public void enableTowerUpgrade(boolean enable) {
 		checkPaused = !enable;
 		

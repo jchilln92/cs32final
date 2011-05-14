@@ -1,19 +1,16 @@
 package src.ui.side;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.text.NumberFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import src.Runner;
 import src.core.Tower;
 import src.core.Upgrade;
-import src.core.IAlignment.Alignment;
 import src.ui.controller.GameController;
 
 /**
@@ -22,6 +19,8 @@ import src.ui.controller.GameController;
  * @see TowerPurchasePanel
  */
 public class TowerStatsPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private Tower tower; // the tower we are currently displaying
 	private Upgrade upgrade; // an upgrade that should be applied to the tower's stats before showing them
 	GameController controller;
@@ -144,6 +143,11 @@ public class TowerStatsPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Sets the upgrade that is being displayed alongside the tower's current stats.  This shows the labels that say
+	 * things like "+ 50%" next to current tower attributes.
+	 * @param u The upgrade the user is considering applying.
+	 */
 	public void setUpgrade(Upgrade u) {
 		upgrade = u;
 		NumberFormat oneDigitNF = NumberFormat.getInstance();
