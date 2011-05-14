@@ -40,7 +40,7 @@ public class MultiplayerController {
 		gameInProgress = false;
 	}
 	
-	/*
+	/**
 	 * Lobby control methods
 	 */
 	public void showLobby() {
@@ -56,7 +56,7 @@ public class MultiplayerController {
 		lobby.updateGameListPane();
 	}
 	
-	/*
+	/**
 	 * Game creation
 	 */
 	public void beginGameCreation() {
@@ -78,7 +78,7 @@ public class MultiplayerController {
 		gameMain.showScreen(hostWaitScreen);
 	}
 	
-	/*
+	/**
 	 * Joining / exiting games
 	 */
 	public void joinGame(int selectedRow) {
@@ -210,7 +210,7 @@ public class MultiplayerController {
 		gameMain.showScreen(lobby);
 	}
 	
-	/*
+	/**
 	 * Misc getters/setters
 	 */
 	public void setUsername(String uname) {

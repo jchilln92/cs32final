@@ -17,7 +17,7 @@ import src.FilePaths;
 import src.ui.controller.GameController;
 
 /**
- * Panel displaying buttons that allow the user to purchase a tower.
+ * Panel that is displayed whenever a user is in the process of purchasing a tower. 
  */
 public class CancelPurchasePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -42,6 +42,7 @@ public class CancelPurchasePanel extends JPanel {
 		
 		gc = controller;
 		
+		//setting up ImageIcons
 		cancelPurchaseIcon = new ImageIcon(FilePaths.buttonPath + "CancelPurchaseButton.png");
 		cancelPurchasePressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelPurchaseButtonDown.png");
 		cancelPurchaseHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelPurchaseButtonHover.png");
@@ -64,7 +65,7 @@ public class CancelPurchasePanel extends JPanel {
 		cancelButton.setRolloverIcon(cancelPurchaseHoverIcon);
 		cancelButton.setDisabledIcon(cancelPurchaseDisabledIcon);
 		cancelButton.setPressedIcon(cancelPurchasePressedIcon);
-		cancelButton.addActionListener(new ActionListener() {
+		cancelButton.addActionListener(new ActionListener() { //when cancel button is pressed, brings back tower purchase panel
 			public void actionPerformed(ActionEvent e) {
 				gc.cancelTowerPurchase();
 			}

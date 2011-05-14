@@ -22,6 +22,11 @@ import src.core.IAlignment;
 import src.ui.ColorConstants;
 import src.ui.controller.GameController;
 
+/**
+ * This class represents the part of the creep purchasing bottom-bar that is used for actually buying creeps.
+ * Contains all of the potential alignments to attach to a creep, an image of the creep about to be purchased,
+ * and a purchase button.
+ */
 public class CreepPurchasePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
@@ -51,20 +56,20 @@ public class CreepPurchasePanel extends JPanel {
 	public CreepPurchasePanel(CreepQueuePanel cq, GameController controller) {
 		super(new GridBagLayout());
 		gc = controller;
+		creepQueue = cq;
+		creepIndex = -1;
 		
+		//set up ImageIcons
 		buyCreepIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButton.png");
 		buyCreepHoverIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonHover.png");
 		buyCreepPressedIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonDown.png");
 		buyCreepDisabledIcon = new ImageIcon(FilePaths.buttonPath + "BuyCreepButtonDisabled.png");
 		
-
-
-		creepQueue = cq;
-		creepIndex = -1;		
+		//First, set up all of the alignment buttons
 		neutralButton = new JButton();
 		neutralButton.setBackground(ColorConstants.neutralColor);
 		neutralButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //if pressed, set potential creep to purchase alignment to neutral
 				if(creep != null) {
 					creep.setAlignment(IAlignment.Alignment.NEUTRAL);
 					setIconLabel(creep);
@@ -82,6 +87,7 @@ public class CreepPurchasePanel extends JPanel {
 				}
 			}
 		});		
+		
 		greenButton = new JButton();
 		greenButton.setBackground(ColorConstants.greenColor);
 		greenButton.addActionListener(new ActionListener() {
@@ -91,7 +97,8 @@ public class CreepPurchasePanel extends JPanel {
 					setIconLabel(creep);
 				}
 			}
-		});			
+		});		
+		
 		blueButton = new JButton();
 		blueButton.setBackground(ColorConstants.blueColor);
 		blueButton.addActionListener(new ActionListener() {
@@ -101,7 +108,8 @@ public class CreepPurchasePanel extends JPanel {
 					setIconLabel(creep);
 				}
 			}
-		});			
+		});		
+		
 		yellowButton = new JButton();
 		yellowButton.setBackground(ColorConstants.yellowColor);
 		yellowButton.addActionListener(new ActionListener() {
@@ -113,6 +121,7 @@ public class CreepPurchasePanel extends JPanel {
 			}
 		});			
 		
+		//Setting up the buy button
 		buyButton = new JButton(buyCreepIcon);
 		buyButton.setBorder(BorderFactory.createEmptyBorder());
 		buyButton.setFocusPainted(false);
@@ -121,6 +130,7 @@ public class CreepPurchasePanel extends JPanel {
 		buyButton.setRolloverIcon(buyCreepHoverIcon);
 		buyButton.setDisabledIcon(buyCreepDisabledIcon);
 
+		//On pressing button, add creep to queue and modify player's income and current gold accordingly
 		buyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Creep creepToAdd = Creep.copyCreep(creep);
@@ -131,6 +141,7 @@ public class CreepPurchasePanel extends JPanel {
 			}
 		});
 		
+		//On mouseover, show potential change in player's gold
 		buyButton.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent e) {
 					if (creep != null) {
@@ -146,10 +157,8 @@ public class CreepPurchasePanel extends JPanel {
 				}
 			
 		});
-		
-		
-		GridBagConstraints c = new GridBagConstraints();
-		
+
+		//setting up the image to show the potential creep to purchase
 		String path = FilePaths.imgPath + "blank.png";
 		creepIcon = new ImageIcon(path);
 		
@@ -158,7 +167,8 @@ public class CreepPurchasePanel extends JPanel {
 		creepIcon = new ImageIcon(i);  
 		iconLabel = new JLabel(creepIcon);
 		
-
+		//laying everything out with gridbag
+		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(0, 5, 0, 10);
 		
 		c.gridx = 1;
@@ -197,11 +207,14 @@ public class CreepPurchasePanel extends JPanel {
 		add(buyButton, c);
 	}
 
+	/**
+	 * Checks what buttons should be enabled and disabled. Whenever a creep is not selected or player cannot afford to buy creep,
+	 * buy button is disabled. Alignment buttons are only selectable when a creep is selected.
+	 */
 	private void updateAllowedButtons() {
 		if (creep == null || (creep != null && !gc.playerCanAfford(creep)) || !gc.playerCanAfford(creep)) {
 			buyButton.setEnabled(false);
-		} 
-		else{
+		} else {
 			buyButton.setEnabled(true);
 		}
 		
@@ -211,8 +224,7 @@ public class CreepPurchasePanel extends JPanel {
 			greenButton.setEnabled(true);
 			blueButton.setEnabled(true);
 			yellowButton.setEnabled(true);	
-		}
-		else{
+		} else {
 			neutralButton.setEnabled(false);
 			redButton.setEnabled(false);
 			greenButton.setEnabled(false);
@@ -225,7 +237,11 @@ public class CreepPurchasePanel extends JPanel {
 		updateAllowedButtons();
 	}
 	
-	
+	/**
+	 * Modifies the icon displayed for the potential creep to purchase. Called by the CreepSelectionPanel. Whenever a different creep is selected,
+	 * passes in the proper index and sets the creep icon accordingly.
+	 * @param index of creep icon in creepTypes array
+	 */
 	public void setCreepByIndex(int index){
 		creepIndex = index;
 		if(index == -1){
@@ -238,15 +254,17 @@ public class CreepPurchasePanel extends JPanel {
 			creepIcon = new ImageIcon(i);  
 			iconLabel.setIcon(creepIcon);
 			buyButton.setEnabled(false);
-		}
-		else{
+		} else {
 			this.creep = Creep.createCreep(creepTypes[index], gc.getGame().getWavesSent());
 			setIconLabel(creep);
 			buyButton.setEnabled(true);
 		}
 	}
 	
-	//Sets the iconLabel to the appropriate creep based off of type and and alignment
+	/**
+	 * Sets the icon for potential creep to purchase to the appropriate creep based off of type and and alignment
+	 * @param creep with proper type and alignment
+	 */
 	public void setIconLabel(Creep c) {
 		creepIcon = new ImageIcon(Creep.getImage(c.getType(), c.getAlignment()));
 		

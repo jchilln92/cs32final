@@ -10,7 +10,12 @@ import javax.swing.JPanel;
 import src.core.Creep;
 import src.ui.controller.GameController;
 
+/**
+ * Panel for displaying the stats of the currently hovered over creep. Whenever a creep in the selectionPanel is hovered over, this panel
+ * is updated to display that creeps cost, abilities, and so on.
+ */
 public class CreepStatsPanel extends JPanel{
+	private static final long serialVersionUID = 1L;
 	private Creep creep; // the creep we are currently displaying
 	private JLabel creepNameLabel;
 	private JLabel healthLabel;
@@ -60,7 +65,12 @@ public class CreepStatsPanel extends JPanel{
 		add(spacingLabel, c);
 		
 	}
-	public void setCreep(Creep c) {
+	
+	/**
+	 * When given a creep c, displays c's stats (health, name, cost, etc).
+	 * @param creep to display stats for
+	 */
+	public void setCreepStats(Creep c) {
 		creep = c;
 		
 		if (creep == null) {
