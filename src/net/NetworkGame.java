@@ -39,6 +39,7 @@ public class NetworkGame extends Game {
 	 */
 	private void initializeGameListeners() {
 		remoteConnection.addListener(new Listener() {
+			@SuppressWarnings("unchecked")
 			public void received(Connection c, Object object) {
 				if (object instanceof GameNegotiationMessage) {
 					GameNegotiationMessage m = (GameNegotiationMessage)object;
