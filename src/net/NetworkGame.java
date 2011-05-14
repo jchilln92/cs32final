@@ -13,8 +13,8 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 /**
- * Acts just like a normal game, but adds network functionality
- * This is a pretty experimental class structure
+ * Acts just like a normal game, but adds network functionality. Allows a player to be able to keep track of an opponents information, as well as
+ * send information to an opponent.
  */
 public class NetworkGame extends Game {
 	private Connection remoteConnection; // the connection with our opponent
@@ -32,6 +32,12 @@ public class NetworkGame extends Game {
 		initializeGameListeners();
 	}
 
+	/**
+	 *  Sets up listener's to handle receiving information from our opponent.
+	 *  Basically just sets up remoteConnection so it can handle all of the possible GameNegotiationMessage's it will be sent 
+	 *  throughout the course of a network game. More tangibly, sets up so we will be able to see what is happening on our opponenent's screen
+	 *  as well as be able to see our opponents health.
+	 */
 	private void initializeGameListeners() {
 		remoteConnection.addListener(new Listener() {
 			public void received(Connection c, Object object) {
@@ -71,17 +77,27 @@ public class NetworkGame extends Game {
 		});
 	}
 
+	
+	/**
+	 * Tick's the game just how Game's tick works, but also sends over information to our opponent to be displayed in his/her screen
+	 */
 	@Override
 	public void tick() {
 		super.tick();
 		provideInformation();
 	}
 	
+	/**
+	 * Checks if the game is over by looking at both our health and our opponents health
+	 */
 	@Override
 	public boolean isOver() { 
 		return getPlayer().getHealth() <= 0 || opponent.getHealth() <= 0;
 	}
 	
+	/**
+	 * Overrides Game's sendNextWave. Instead of using the waveGenerator to send waves, this method sends a wave to the opponent via sendWaveToOpponent.
+	 */
 	@Override
 	public void sendNextWave(){
 		setLastWaveTime(getElapsedTime());
@@ -110,7 +126,7 @@ public class NetworkGame extends Game {
 
 	/**
 	 * Sends the opponent data about the current state of our map,
-	 * including the creeps and the towers.
+	 * including creeps, towers, bullets, and our health.
 	 */
 	private void provideInformation() {
 		GameNegotiationMessage creepMessage = new GameNegotiationMessage();
