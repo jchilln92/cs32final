@@ -163,7 +163,8 @@ public class GameController {
 					Cereal c = new Cereal("Cheerios");
 					haveBowl(c);
 					
-					headToBusStop()
+					headToBusStop();
+					blockUntilFriendVisibilityNotification();
 				} catch (MorningRoutineException ex) {
 					\\ OMG, that is totally lame
 				} catch (SeatDecisionException ex) {
@@ -182,9 +183,14 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 * Toggles the pause state of the game.
+	 * @param shouldPause
+	 */
 	public void togglePause(boolean shouldPause) {
 		isPaused = shouldPause;
 		if (shouldPause) {
+			// disable everything when we pause
 			if (isPlacingTower())
 				cancelTowerPurchase();
 			
