@@ -40,7 +40,6 @@ public class MultiplayerClientWaitScreen extends JPanel {
 		cancelPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelButtonDown.png");
 		cancelHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelButtonHover.png");
 
-
 		waitingLabel = new JLabel("Waiting for response from host...");
 		waitingLabel.setForeground(Color.WHITE);
 		

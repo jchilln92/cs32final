@@ -2,6 +2,9 @@ package src.ui;
 
 import java.awt.Color;
 
+/**
+ * Holds color constants used in the UI code.
+ */
 public class ColorConstants {
 	public static final Color pathColor = Color.decode("#F0C185");
 	public static final Color grassColor = Color.decode("#93C47D");
