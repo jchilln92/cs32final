@@ -33,8 +33,8 @@ public class MapXMLReader {
 			registry.bind(Point2D.Double.class, PointConverter.class);
 			m = serializer.read(Maps.class, input);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Failed to read Map XML Data... Quitting.");
+			System.exit(1);
 		}
 	
 		return new ArrayList<Map>(m.getMaps());

@@ -26,8 +26,8 @@ public class TowerXMLReader {
 		try {
 			t = serializer.read(Towers.class, input);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Failed to read Tower XML Data... Quitting.");
+			System.exit(1);
 		}
 	
 		HashMap<Tower.Type, Tower> towerTemplates = new HashMap<Tower.Type, Tower>();

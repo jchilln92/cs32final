@@ -2,7 +2,8 @@ package src.net;
 
 
 /**
- * Any multiplayer game that only has one player and has not begun yet
+ * Any multiplayer game that only has one player and has not begun yet.
+ * This will be transformed into a real network game when the game begins
  */
 public class AvailableGame {
 	private String gameName;

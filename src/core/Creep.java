@@ -35,8 +35,8 @@ public class Creep implements IDrawableCreep, IAlignment, IPurchasable {
 	}
 	
 	/**
-	 * Loads all of the creep images and stores them in a useful data structure so they can be accessed quickly.
-	 * This code is kind of tedious and annoying.
+	 * Loads all of the creep images and stores them in a useful data structure so they can be accessed quickly
+	 * (I move my mouth away from the mic to breathe in)
 	 */
 	private static void loadImages() {
 		creepImages = new HashMap<Type, HashMap<IAlignment.Alignment, Image>>();

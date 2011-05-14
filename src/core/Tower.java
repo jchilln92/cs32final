@@ -16,8 +16,6 @@ import src.FilePaths;
 import src.core.xml.TowerXMLReader;
 import src.ui.IDrawableTower;
 
-import src.core.IAlignment;
-
 /**
  * Represents a tower and all of its attributes, including attack radius, which
  * creeps to attack first, damage done, and how fast to fire.

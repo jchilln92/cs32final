@@ -7,7 +7,6 @@ import src.core.Bullet;
 import src.core.Creep;
 import src.core.Game;
 import src.core.Tower;
-import src.ui.controller.GameController;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
