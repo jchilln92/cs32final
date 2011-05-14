@@ -173,6 +173,7 @@ public class GameController {
 					while (true) {
 						getDown();
 						setExcited("we we we");
+						sayToConfusedListeners("You know what it is");
 					}
 				}
 			}
