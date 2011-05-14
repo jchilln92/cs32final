@@ -29,7 +29,7 @@ import src.core.Map;
 import src.ui.controller.GameController;
 
 /**
- * Handles code for the layout and operations involved with creating a game.
+ * Handles the displaying of the single player game creation screen and sets up / manages all of the operations possible on this screen
  */
 public class GameSetup extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -67,7 +67,8 @@ public class GameSetup extends JPanel {
 		mc = new MapComponent(true);
 		mc.setGridOn(true);
 		mc.setSize(400, 400);
-			
+		
+		// Setting up all the ImageIcon's
 		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
 		beginGameIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButton.png");
 		beginGamePressedIcon = new ImageIcon(FilePaths.buttonPath + "GameStartButtonDown.png");
@@ -101,7 +102,7 @@ public class GameSetup extends JPanel {
 		cancelButton.setRolloverIcon(mainMenuHoverIcon);
 
 		
-		playButton = new JButton(beginGameIcon);
+		playButton = new JButton(beginGameIcon); //starts a game based off of map selected
 		playButton.setBorder(BorderFactory.createEmptyBorder());
 		playButton.setContentAreaFilled(false);
 		playButton.setFocusPainted(false);
@@ -132,6 +133,9 @@ public class GameSetup extends JPanel {
 		setupButtonActions();
 	}
 
+	/**
+	 * lays out everything on this screen
+	 */
 	public void setupLayout(){
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(0,0,10,0);
@@ -180,7 +184,11 @@ public class GameSetup extends JPanel {
 		add(playButton, c);
 	}
 	
+	/**
+	 * sets up handlers for both the cancel and play game buttons.
+	 */
 	public void setupButtonActions() {
+		//cancelButton brings user back to title screen
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TitleScreen titleScreen = new TitleScreen(gameMain);
@@ -188,6 +196,7 @@ public class GameSetup extends JPanel {
 			}
 		});
 		
+		//playButton starts a game based off the current map selected
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Map m = Map.getMapByName(getMapName());
@@ -214,4 +223,4 @@ public class GameSetup extends JPanel {
 		g.drawImage(background.getImage(), 0 ,0, null);
 	}
 	
-	}
+}

@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import src.ui.controller.GameController;
 import src.ui.side.Sidebar;
 
+/**
+ * Displays the actual gameplay screen for single player (the map and sidebar)
+ */
 public class SingleGamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private GameController gameController;
@@ -26,6 +29,7 @@ public class SingleGamePanel extends JPanel {
 		
 		CreepDrawer.toggleDrawHealthBar(true);
 		
+		// setup sidebar
 		Sidebar s = new Sidebar(gameController, null);
 		add(s, BorderLayout.EAST);
 		gameController.setSidebar(s);

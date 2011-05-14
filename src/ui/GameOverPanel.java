@@ -1,18 +1,12 @@
 package src.ui;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import src.FilePaths;
@@ -22,8 +16,8 @@ import src.GameMain;
  * Displays the game over screen when a player has lost
  */
 public class GameOverPanel extends JPanel {
-	
-	private JLabel gameOverLabel;
+	private static final long serialVersionUID = 1L;
+
 	private JButton returnButton;
 	
 	private ImageIcon loseBackground;
@@ -32,7 +26,7 @@ public class GameOverPanel extends JPanel {
 	private ImageIcon mainMenuHoverIcon;
 
 	public GameOverPanel(GameMain gm) {
-		super(null);
+		super(null); //No layout manager, everything on panel is placed directly by x,y coordinates
 		
 		final GameMain main = gm;
 		
@@ -46,6 +40,8 @@ public class GameOverPanel extends JPanel {
 		returnButton.setContentAreaFilled(false);
 		returnButton.setPressedIcon(mainMenuPressedIcon);
 		returnButton.setRolloverIcon(mainMenuHoverIcon);
+		
+		//brings player back to title screen upon clicking returnButton
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.showScreen(new TitleScreen(main));

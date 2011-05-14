@@ -29,6 +29,7 @@ import src.ui.controller.MultiplayerController;
 
 /**
  * Handles code for the layout and operations involved with viewing other available games and creating/joining a multiplayer game.
+ * (Handles the Multiplayer lobby screen)
  */
 public class Lobby extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -72,7 +73,9 @@ public class Lobby extends JPanel {
 	public Lobby(MultiplayerController multiController) {
 		super(new GridBagLayout());
 		setSize(800, 600);
-		
+		this.controller = multiController;
+
+		//setting up Image Icons
 		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
 		
 		mainMenuIcon = new ImageIcon(FilePaths.buttonPath + "MPMenuButton.png");
@@ -93,9 +96,8 @@ public class Lobby extends JPanel {
 		joinHoverIcon = new ImageIcon(FilePaths.buttonPath + "JoinGameButtonHover.png");
 		joinDisabledIcon = new ImageIcon(FilePaths.buttonPath + "JoinGameButtonDisabled.png");
 		
-		this.controller = multiController;
-		
-		gameTableScrollPane = new JScrollPane();
+
+		gameTableScrollPane = new JScrollPane(); //holds and displays all of the available games
 		
 		lobbyLabel = new JLabel(lobbyText);
 		lobbyLabel.setForeground(Color.WHITE);
@@ -108,6 +110,7 @@ public class Lobby extends JPanel {
 		usernameField = new JTextField(15);
 		updateGameListPane();
 		
+		//Sets up so user can input a username. Input is limited to alphanumeric characters, and spaces are not allowed.
 		usernameField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char[] key = {e.getKeyChar()};
@@ -131,7 +134,7 @@ public class Lobby extends JPanel {
 			}
 		});
 		
-		refreshButton = new JButton(refreshIcon);
+		refreshButton = new JButton(refreshIcon); //refresh button rechecks  for all of the current available games 
 		refreshButton.setBorder(BorderFactory.createEmptyBorder());
 		refreshButton.setContentAreaFilled(false);
 		refreshButton.setPressedIcon(refreshPressedIcon);
@@ -143,7 +146,7 @@ public class Lobby extends JPanel {
 			}
 		});
 		
-		exitButton = new JButton(mainMenuIcon); 
+		exitButton = new JButton(mainMenuIcon); //exitButton returns user to main menu
 		exitButton.setBorder(BorderFactory.createEmptyBorder());
 		exitButton.setContentAreaFilled(false);
 		exitButton.setPressedIcon(mainMenuPressedIcon);
@@ -155,7 +158,7 @@ public class Lobby extends JPanel {
 			}
 		});
 		
-		createGameButton = new  JButton(createIcon);
+		createGameButton = new  JButton(createIcon); //createGame starts a new network game
 		createGameButton.setBorder(BorderFactory.createEmptyBorder());
 		createGameButton.setContentAreaFilled(false);
 		createGameButton.setPressedIcon(createPressedIcon);
@@ -168,7 +171,7 @@ public class Lobby extends JPanel {
 			}
 		});
 		
-		joinButton = new JButton(joinIcon);
+		joinButton = new JButton(joinIcon); //joinButton attempts to join a selected network game
 		joinButton.setBorder(BorderFactory.createEmptyBorder());
 		joinButton.setContentAreaFilled(false);
 		joinButton.setPressedIcon(joinPressedIcon);
@@ -181,6 +184,7 @@ public class Lobby extends JPanel {
 			}
 		});
 
+		//Place all buttons/labels/panes into proper locations using a GridBag layout
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(20, 0, 0, 0);	
 		c.gridx = 0;
@@ -240,6 +244,11 @@ public class Lobby extends JPanel {
 		add(joinButton, c);	
 	}
 	
+	/**
+	 * Method is called whenever the textfield for username is changed. Checks if the username field is empty, and if so, does not allow
+	 * the user to join or create a game.
+	 * @param username to check
+	 */
 	private void updateAllowedButtons(String username) {
 	    if (gameTable != null) {
 	    	if (gameTable.getSelectedRow() < 0 || username.trim().length() <= 0) {
@@ -255,7 +264,10 @@ public class Lobby extends JPanel {
 			}
 		}
 	}
-	
+	/**
+	 * Called whenever the refresh button is pressed. 
+	 * Just finds all available games and resets gameTable to display all the games found.
+	 */
 	public void updateGameListPane() {
 		final LobbyManager lm = controller.getLobbyManager();
 		

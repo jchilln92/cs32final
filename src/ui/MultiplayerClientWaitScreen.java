@@ -21,6 +21,8 @@ import src.ui.controller.MultiplayerController;
  * Displays the waiting screen for the client before entering a multiplayer game
  */
 public class MultiplayerClientWaitScreen extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel waitingLabel;
 	private JButton cancelButton;
 	
@@ -35,11 +37,12 @@ public class MultiplayerClientWaitScreen extends JPanel {
 	public MultiplayerClientWaitScreen(MultiplayerController mc) {	
 		super(new GridBagLayout());
 		this.controller = mc;
+		
+		//sets up ImageIcon's
 		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
 		cancelIcon = new ImageIcon(FilePaths.buttonPath + "CancelButton.png");
 		cancelPressedIcon = new ImageIcon(FilePaths.buttonPath + "CancelButtonDown.png");
 		cancelHoverIcon = new ImageIcon(FilePaths.buttonPath + "CancelButtonHover.png");
-
 
 		waitingLabel = new JLabel("Waiting for response from host...");
 		waitingLabel.setForeground(Color.WHITE);
@@ -49,12 +52,15 @@ public class MultiplayerClientWaitScreen extends JPanel {
 		cancelButton.setContentAreaFilled(false);
 		cancelButton.setPressedIcon(cancelPressedIcon);
 		cancelButton.setRolloverIcon(cancelHoverIcon);
+		
+		//if cancelButton is pressed, we leave back to the lobby
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.quitNetworkGame();
 			}
 		});
 		
+		//setting up layout with GridBag
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(20, 0, 0, 0);	
 		c.gridx = 0;

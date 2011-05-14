@@ -38,10 +38,13 @@ public class MapComponent extends JComponent {
 			setupMouseEvents();
 	}
 	
+	/**
+	 * creates a mouse listener to handle mouse clicks on the main game board.
+	 */
 	private void setupMouseEvents() {
 		this.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				if (gc.getPaused()) {
+				if (gc.getPaused()) { //if game is paused, nothing should happen when a tile is pressed
 					return;
 				}
 				
@@ -50,11 +53,11 @@ public class MapComponent extends JComponent {
 				int x = mouse.x;
 				int y = mouse.y;
 				
-				if (gc.isPlacingTower()) {
+				if (gc.isPlacingTower()) { 
 					if (!m.isTerrain(x, y) && !gc.tileIsOccupied(x, y) && !m.isPath(x, y)) {
 						gc.finalizeTowerPurchase(x, y);
 					}
-				} else if (gc.tileIsOccupied(x, y)) {
+				} else if (gc.tileIsOccupied(x, y)) { 
 					gc.toggleTowerSelection(x, y);
 				} else if (gc.isTowerSelected()) {
 					gc.toggleTowerSelection(gc.getSelectedTower().getX(), gc.getSelectedTower().getY());

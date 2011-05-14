@@ -15,6 +15,9 @@ import javax.swing.JTextField;
 import src.FilePaths;
 import src.ui.controller.MultiplayerController;
 
+/**
+ * Displays the multiplayer game setup screen (adds a game name textfield).
+ */
 public class MultiplayerGameSetup extends GameSetup {
 	private static final long serialVersionUID = 1L;
 	
@@ -29,6 +32,7 @@ public class MultiplayerGameSetup extends GameSetup {
 	public MultiplayerGameSetup(MultiplayerController multiController) {
 		this.controller = multiController;
 		
+		//setting up image icons for create game button (from start game in single player)
 		createIcon = new ImageIcon(FilePaths.buttonPath + "SlimCreateButton.png");
 		createPressedIcon = new ImageIcon(FilePaths.buttonPath + "SlimCreateButtonDown.png");
 		createHoverIcon = new ImageIcon(FilePaths.buttonPath + "SlimCreateButtonHover.png");
@@ -44,13 +48,19 @@ public class MultiplayerGameSetup extends GameSetup {
 		setupButtonActions();
 		reset();
 	}
-	
+	/**
+	 * resets the screen to its original state (so when this screen is revisited later, 
+	 * old game name and map choice do not remain.
+	 */
 	public void reset() {
 		playButton.setEnabled(false);
 		nameField.setText("");
 		mapList.setSelectedIndex(0);
 	}
 	
+	/**
+	 * sets up layout using GridBag
+	 */
 	@Override
 	public void setupLayout() {
 		super.setupLayout();
@@ -63,6 +73,7 @@ public class MultiplayerGameSetup extends GameSetup {
 		add(createNameLabel, c);
 		
 		nameField = new JTextField();
+		// Allows text entry into the game name field. disables the create game button if game name is empty
 		nameField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char[] key = {e.getKeyChar()};
@@ -97,6 +108,7 @@ public class MultiplayerGameSetup extends GameSetup {
 	
 	@Override
 	public void setupButtonActions(){
+		//cancelButton takes user back to multiplayer lobby screen
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.cancelGameCreation();
@@ -104,6 +116,7 @@ public class MultiplayerGameSetup extends GameSetup {
 		});
 		
 		playButton.setText("");
+		//playButton brings user to multiplayer host wait screen
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.completeGameCreation();

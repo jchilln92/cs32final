@@ -1,6 +1,5 @@
 package src.ui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -11,32 +10,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 import src.FilePaths;
 import src.core.Map;
 import src.ui.controller.MultiplayerController;
 
+/**
+ * Displays the waiting screen for the host before entering a multiplayer game
+ */
 public class MultiplayerHostWaitScreen extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton startGameButton;
 	private JButton cancelButton;
 	private JButton bootButton;
 	
-	private JPanel waitingPanel;
-	private JPanel gridPanel;
-	
-	private JLabel gameLabel;
-	private JLabel mapNameLabel;
 	private JLabel waitingLabel;
-	private JLabel opponentLabel;
-	private JLabel opponentNameLabel;
-	
+
 	private MapComponent mc;
 	
 	private MultiplayerController controller;
@@ -61,6 +54,7 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		super (new GridBagLayout());
 		this.controller = multiController;
 		
+		//setting up ImageIcons
 		background = new ImageIcon(FilePaths.bgPath + "GenericBGRDsmall.png");
 		
 		cancelIcon = new ImageIcon(FilePaths.buttonPath + "CancelBigButton.png");
@@ -113,7 +107,7 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		mc.setSize(400, 400);
 		mc.setMap(Map.getMapByName(mapName));
 		
-		
+		//laying out components with GridBag
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(0, 40, 0, 0);
 		c.weightx = 1;
@@ -159,18 +153,21 @@ public class MultiplayerHostWaitScreen extends JPanel {
 	}
 	
 	public void setupButtonHandlers() {
+		//cancelButton brings user back to multiplayer lobby
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.stopHostingGame();
 			}
 		});
 		
+		//startGameButton brings both the client and host to the actual game screen
 		startGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.startNetworkGame();
 			}
 		});
 		
+		//bootButton kicks the player attempting to join host's game
 		bootButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.bootPotentialOpponent();
@@ -178,6 +175,10 @@ public class MultiplayerHostWaitScreen extends JPanel {
 		});
 	}
 
+	/**
+	 * If an opponent attempts to join the game, changes the waiting for opponent display level to show so
+	 * @param name of opponent attempting to join
+	 */
 	public void setPotentialOpponent(String name) {
 		if (name == null) {
 			waitingLabel.setText("Waiting for opponents...");

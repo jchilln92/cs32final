@@ -1,6 +1,5 @@
 package src.ui;
 
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -15,25 +14,24 @@ import src.ui.creepside.CreepSideBar;
 import src.ui.side.Sidebar;
 
 /**
- * Handles setup of multiplayer display components. 
+ * Handles setup of multiplayer display components (multiplayer version of sideBar, opponent map, player map, creep sidebar). Creates all of these
+ * individual components and puts them together into one panel.
  */
 public class MultiplayerGamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-
-	private MultiplayerController controller; 
 	
 	private MapComponent opponentMap;
 	private MapComponent localMap;
 	private Sidebar sidebar;
+	private CreepSideBar creepSidebar;
 	private JLabel playerLabel;
 	private JLabel opponentLabel;
-	
-	private JPanel gamePanel;
-	
+		
 	public MultiplayerGamePanel(GameController localController, 
 								NetworkGameController networkController,
 								NetworkGame game,
 								MultiplayerController multiController) {
+		
 		super(new GridBagLayout());
 				
 		playerLabel = new JLabel("You");
@@ -59,7 +57,7 @@ public class MultiplayerGamePanel extends JPanel {
 		localMap.setGameController(localController);
 		localMap.setMap(game.getMap());
 		
-		// layout maps and sidebar
+		// layout all of the components using GridBag
 		GridBagConstraints c = new GridBagConstraints();
 		
 		c.gridx = 0;
@@ -91,13 +89,12 @@ public class MultiplayerGamePanel extends JPanel {
 		add(sidebar, c);
 		c.gridheight = 0;
 		
-		// setup side bar
 		c.insets.set(0, 0, 0, 0);
 		c.gridx = 0;
 		c.gridy = 2;
 		c.gridwidth = 2;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		CreepSideBar cs = new CreepSideBar(localController);
-		add(cs, c);
+		creepSidebar = new CreepSideBar(localController);
+		add(creepSidebar, c);
 	}
 }

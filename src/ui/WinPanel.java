@@ -1,9 +1,6 @@
 package src.ui;
 
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -43,6 +40,8 @@ public class WinPanel extends JPanel {
 		returnButton.setContentAreaFilled(false);
 		returnButton.setPressedIcon(mainMenuPressedIcon);
 		returnButton.setRolloverIcon(mainMenuHoverIcon);
+		
+		//returnButton brings user back to title screen
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.exitLobby();
